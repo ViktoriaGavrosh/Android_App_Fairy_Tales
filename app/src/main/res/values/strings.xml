@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">FairyTales</string>
+    <string name="ram">Баран - бок абадран</string>
+    <string name="kitten">Коцiк Петрык i мышка</string>
+    <string name="chicken">Курачка Рабка</string>
+    <string name="fox">Лiса i цецярук</string>
+    <string name="crane">Лiсiца i жорау</string>
+    <string name="fly">Mуха-пяюха</string>
+    <string name="bear">Не сiлай, а розумам</string>
+    <string name="cuckoo">Пра што кукуе зязюля</string>
+    <string name="bee">Пчала i муха</string>
+    <string name="rooster">Як курачка пеунiка ратавала</string>
+    <string name="chicken_short_text">Жыу дзед, жыла бабка. Была у iх курачка Рабка…</string>
+    <string name="ram_short_text">Жыу-быу дзед, а у таго дзеда быу баран…</string>
+    <string name="kitten_short_text">Аднаго разу коцiк Петрык захацеу мышку злавiць…</string>
+    <string name="fox_short_text">Сядзеу цецярук на бярозе, ну i спявау свае песнi…</string>
+    <string name="crane_short_text">Сустрэла раз лiсiца журауля…</string>
+    <string name="fly_short_text">Жыла-была муха-пяюха. Мела яна каляску i шесць камароу…</string>
+    <string name="bear_short_text">Адзiн чалавек пайшоу у лес дровы секчы…</string>
+    <string name="cuckoo_short_text">Было гэта дауным-дауно, калi зязюля сваю сям\'ю мела…</string>
+    <string name="bee_short_text">Жылi-былi пчала i муха…</string>
+    <string name="rooster_short_text">Жылi-былi курачка i пеунiк…</string>
+    <string name="read">Чытаць далей</string>
+    <string name="title">Беларускiя казкi</string>
+</resources>
