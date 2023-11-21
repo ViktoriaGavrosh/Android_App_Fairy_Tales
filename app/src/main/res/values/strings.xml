@@ -10,16 +10,44 @@
     <string name="cuckoo">Пра што кукуе зязюля</string>
     <string name="bee">Пчала i муха</string>
     <string name="rooster">Як курачка пеунiка ратавала</string>
-    <string name="chicken_short_text">Жыу дзед, жыла бабка. Была у iх курачка Рабка…</string>
-    <string name="ram_short_text">Жыу-быу дзед, а у таго дзеда быу баран…</string>
-    <string name="kitten_short_text">Аднаго разу коцiк Петрык захацеу мышку злавiць…</string>
-    <string name="fox_short_text">Сядзеу цецярук на бярозе, ну i спявау свае песнi…</string>
-    <string name="crane_short_text">Сустрэла раз лiсiца журауля…</string>
-    <string name="fly_short_text">Жыла-была муха-пяюха. Мела яна каляску i шесць камароу…</string>
-    <string name="bear_short_text">Адзiн чалавек пайшоу у лес дровы секчы…</string>
-    <string name="cuckoo_short_text">Было гэта дауным-дауно, калi зязюля сваю сям\'ю мела…</string>
-    <string name="bee_short_text">Жылi-былi пчала i муха…</string>
-    <string name="rooster_short_text">Жылi-былi курачка i пеунiк…</string>
+    <string name="chicken_short_text">
+        Жыу дзед, жыла бабка. Была у iх курачка Рабка. Нанесла курачка яечак поуны падпечак.
+        Сабрала бабка яечкi у чарапiцу ды паставiла на палiцу …
+    </string>
+    <string name="ram_short_text">
+        Жыу-быу дзед, а у таго дзеда быу баран. Вось i захацеу той дзед …
+    </string>
+    <string name="kitten_short_text">
+        Аднаго разу коцiк Петрык захацеу мышку злавiць. Ён быу яшчэ маленькi,
+        але чуу ад дарослых катоу, што яны заусёды ловяць мышэй …
+    </string>
+    <string name="fox_short_text">
+        Сядзеу цецярук на бярозе, ну i спявау свае песнi. Пачула яго лiса,
+        i захацелася ёй цецеруком падсiлкавацца …
+    </string>
+    <string name="crane_short_text">
+        Сустрэла раз лiсiца журауля i гаворыць яму …
+    </string>
+    <string name="fly_short_text">
+        Жыла-была муха-пяюха. Мела яна каляску i шесць камароу. Запрэгла муха-пяюха
+        камароу у каляску ды паехала на пагулянку …
+    </string>
+    <string name="bear_short_text">
+        Адзiн чалавек пайшоу у лес дровы секчы. Насек дроу, сеу на пень адпачыць.
+        Прыходзiць мядзведзь i кажа …
+    </string>
+    <string name="cuckoo_short_text">
+        Было гэта дауным-дауно, калi зязюля сваю сям\'ю мела. Жыла адна зязюля з дзецьмi:
+        сынком i дачкою. Мацi кожнай ранiцай …
+    </string>
+    <string name="bee_short_text">
+        Жылi-былi пчала i муха. Пчала з ранку да вечара па лугах лётала, мёд збiрала.
+        А муха толькi есцi любiла …
+    </string>
+    <string name="rooster_short_text">
+        Жылi-былi курачка i пеунiк. Курачка яйкi несла, а пеунiк зярняткi здабывау, курачку
+        частавау. Выграбе з ямкi зярнятка i клiча курачку …
+    </string>
     <string name="read">Чытаць далей</string>
     <string name="title">Беларускiя казкi</string>
 </resources>
