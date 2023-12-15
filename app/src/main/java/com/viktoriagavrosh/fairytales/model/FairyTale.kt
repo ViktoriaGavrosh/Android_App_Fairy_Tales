@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.data
+package com.viktoriagavrosh.fairytales.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

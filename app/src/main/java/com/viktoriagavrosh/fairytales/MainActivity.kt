@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
+import com.viktoriagavrosh.fairytales.ui.ListFairyTales
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 class MainActivity : ComponentActivity() {
@@ -56,7 +57,7 @@ fun FairyTalesTopAppBar(
     TopAppBar(
         title = {
             Text(
-                text = stringResource(id = R.string.title),
+                text = stringResource(id = R.string.title_fairy_tales),
                 style = MaterialTheme.typography.displayLarge
             )
         },

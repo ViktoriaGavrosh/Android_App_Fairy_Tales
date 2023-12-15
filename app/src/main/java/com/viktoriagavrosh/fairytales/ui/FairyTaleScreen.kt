@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales
+package com.viktoriagavrosh.fairytales.ui
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -26,10 +26,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.viktoriagavrosh.fairytales.data.FairyTale
+import com.viktoriagavrosh.fairytales.R
+import com.viktoriagavrosh.fairytales.model.FairyTale
 
 @Composable
 fun ListFairyTales(
@@ -41,10 +43,12 @@ fun ListFairyTales(
         contentPadding = contentPadding,
         modifier = modifier
     ) {
-        items(fairyTales) {fairyTale ->
+        items(fairyTales) { fairyTale ->
             CardFairyTale(
                 fairyTale = fairyTale,
-                modifier = Modifier.padding(12.dp)
+                modifier = Modifier.padding(
+                    dimensionResource(id = R.dimen.padding_medium)
+                )
             )
         }
     }
@@ -63,7 +67,7 @@ fun CardFairyTale(
     ) {
         Column(
             modifier = Modifier
-                .padding(12.dp)
+                .padding(dimensionResource(id = R.dimen.padding_medium))
                 .animateContentSize(
                     animationSpec = spring(
                         dampingRatio = Spring.DampingRatioNoBouncy,
@@ -80,7 +84,20 @@ fun CardFairyTale(
                 contentDescription = stringResource(id = fairyTale.nameId),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
+
+                    /* это для размывания картинки
+                    .blur(
+                        radiusX = 10.dp,
+                        radiusY = 10.dp,
+                        edgeTreatment = BlurredEdgeTreatment(RoundedCornerShape(16.dp))
+                    )
+
+                     */
+                    .clip(
+                        RoundedCornerShape(
+                            dimensionResource(id = R.dimen.corner)
+                        )
+                    )
                     .clickable { bigCard = !bigCard },
                 contentScale = ContentScale.Crop
             )
@@ -103,7 +120,9 @@ fun TextFairyTale(
     ) {
         Text(
             text = stringResource(id = fairyTale.shortTextId),
-            modifier = Modifier.padding(top = 12.dp),
+            modifier = Modifier.padding(
+                top = dimensionResource(id = R.dimen.padding_medium)
+            ),
             style = MaterialTheme.typography.bodyLarge
         )
         ReadButton(
@@ -125,7 +144,8 @@ fun ReadButton(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_read),
-                contentDescription = stringResource(id = R.string.read))
+                contentDescription = stringResource(id = R.string.read)
+            )
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.fairytales.data
 
 import com.viktoriagavrosh.fairytales.R
+import com.viktoriagavrosh.fairytales.model.FairyTale
 
 object CatalogFairyTales {
     val fairyTales = listOf(
