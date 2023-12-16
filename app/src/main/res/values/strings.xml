@@ -251,13 +251,20 @@
         вулку,\nКуп\u0456\u045E Юрку булку.\nПайшо\u045E коц\u0456к рэпу рваць,\nЮрку трэба крэпка
         спаць.
     </string>
+    <string name="rooster_game_title">Кукарэку, певунок\!</string>
+    <string name="cuckoo_game_title">Ах ты, мая птушачка.</string>
+    <string name="chicken_game_title">Гушк\u0456, гушк\u0456, гушк\u0456.</string>
+    <string name="bear_game_title">У куце сядз\u0456ць мядзведзь.</string>
+    <string name="kitten_game_title">Пайшо\u045E коц\u0456к на таржок.</string>
 
     <string name="read">Чытаць далей</string>
+    <string name="empty"> </string>
 
     <string name="title">Беларуск\u0456я казк\u0456</string>
     <string name="title_fairy_tales">Казк\u0456</string>
     <string name="title_puzzle">Загадк\u0456</string>
     <string name="title_poem">Л\u0456чылк\u0456</string>
+    <string name="title_one_poem">Л\u0456чылка</string>
     <string name="title_game">Заба\u045Eлянк\u0456</string>
 
 </resources>
