@@ -19,7 +19,8 @@ val Typography = Typography(
     displayLarge = TextStyle(
         fontFamily = Popping,
         fontWeight = FontWeight.Bold,
-        fontSize = 40.sp
+        fontSize = 40.sp,
+        lineHeight = 30.sp
     ),
     displaySmall = TextStyle(
         fontFamily = Popping,

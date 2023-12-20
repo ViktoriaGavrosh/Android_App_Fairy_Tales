@@ -12,9 +12,10 @@ class FairyTalesViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(FairyTalesUiState())
     val uiState: StateFlow<FairyTalesUiState> = _uiState
 
-    fun navigateToDetailScreen() {
+    fun navigateToDetailScreen(composition: Composition) {
         _uiState.update {
             it.copy(
+                selectedComposition = composition,
                 isShowHomeScreen = false
             )
         }
@@ -39,6 +40,7 @@ class FairyTalesViewModel : ViewModel() {
             it.copy(
                 compositionType = compositionType,
                 compositions = compositions,
+                selectedComposition = compositions[0],
                 isShowHomeScreen = true
             )
         }
@@ -48,7 +50,7 @@ class FairyTalesViewModel : ViewModel() {
 data class FairyTalesUiState(
     val compositionType: CompositionType = CompositionType.FairyTales,
     val compositions: List<Composition> = CatalogFairyTales.fairyTales,
-    val currentComposition: Composition = compositions[0],
+    val selectedComposition: Composition = compositions[0],
     val isShowHomeScreen: Boolean = true
 )
 

@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">FairyTales</string>
+    <string name="app_name">Беларуск\u0456я казк\u0456</string>
+    <string name="app_name2">FairyTales</string>
 
     <string name="ram">Баран - бок абадран</string>
     <string name="kitten">Коц\u0456к Петрык \u0456 мышка</string>
@@ -258,13 +259,16 @@
     <string name="kitten_game_title">Пайшо\u045E коц\u0456к на таржок.</string>
 
     <string name="read">Чытаць далей</string>
-    <string name="empty"> </string>
 
+    <string name="title_one_puzzle">Загадка</string>
     <string name="title">Беларуск\u0456я казк\u0456</string>
     <string name="title_fairy_tales">Казк\u0456</string>
     <string name="title_puzzle">Загадк\u0456</string>
     <string name="title_poem">Л\u0456чылк\u0456</string>
     <string name="title_one_poem">Л\u0456чылка</string>
     <string name="title_game">Заба\u045Eлянк\u0456</string>
+    <string name="title_one_game">Заба\u045Eлянка</string>
+
+    <string name="answer">answer</string>
 
 </resources>

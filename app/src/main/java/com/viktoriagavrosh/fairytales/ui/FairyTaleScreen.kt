@@ -1,43 +1,59 @@
 package com.viktoriagavrosh.fairytales.ui
 
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
+import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType
 
 
 @Composable
-fun FairyTalesApp() {
-    Scaffold(
-        topBar = {
-            FairyTalesTopAppBar()
-        }
-    ) {
-        ListCompositions(
-            compositions = CatalogFairyTales.fairyTales.shuffled(),
-            contentPadding = it
-        )
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FairyTalesTopAppBar(
+fun FairyTalesApp(
+    windowSize: WindowWidthSizeClass,
     modifier: Modifier = Modifier
 ) {
-    TopAppBar(
-        title = {
-            Text(
-                text = stringResource(id = R.string.title_fairy_tales),
-                style = MaterialTheme.typography.displayLarge
-            )
+    val viewModel: FairyTalesViewModel = viewModel()
+    val uiState = viewModel.uiState.collectAsState().value
+    val navigationType: FairyTalesNavigationType
+    val contentType: FairyTalesContentType
+
+    when (windowSize) {
+        WindowWidthSizeClass.Compact -> {
+            navigationType = FairyTalesNavigationType.BOTTOM_NAVIGATION
+            contentType = FairyTalesContentType.LIST_ONLY
+        }
+
+        WindowWidthSizeClass.Medium -> {
+            navigationType = FairyTalesNavigationType.NAVIGATION_RAIL
+            contentType = FairyTalesContentType.LIST_ONLY
+        }
+
+        WindowWidthSizeClass.Expanded -> {
+            navigationType = FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER
+            contentType = FairyTalesContentType.LIST_AND_DETAILS
+        }
+
+        else -> {
+            navigationType = FairyTalesNavigationType.BOTTOM_NAVIGATION
+            contentType = FairyTalesContentType.LIST_ONLY
+        }
+    }
+
+    FairyTalesHomeScreen(
+        navigationType = navigationType,
+        contentType = contentType,
+        uiState = uiState,
+        onTabClick = { compositionType ->
+            viewModel.updateCompositionType(compositionType = compositionType)
+        },
+        onCardClick = { composition ->
+            viewModel.navigateToDetailScreen(composition = composition)
+        },
+        onDetailScreenBackClick = {
+            viewModel.navigateToHomeScreen()
         },
         modifier = modifier
     )
@@ -46,5 +62,7 @@ fun FairyTalesTopAppBar(
 @Preview
 @Composable
 fun FairyTalesAppPreview() {
-    FairyTalesApp()
+    FairyTalesApp(
+        windowSize = WindowWidthSizeClass.Compact
+    )
 }
