@@ -1,8 +1,6 @@
 package com.viktoriagavrosh.fairytales.data
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import androidx.compose.ui.res.stringResource
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.Composition
 

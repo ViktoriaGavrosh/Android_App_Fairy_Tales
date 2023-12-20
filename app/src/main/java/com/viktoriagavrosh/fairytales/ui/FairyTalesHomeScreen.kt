@@ -143,7 +143,7 @@ fun FairyTalesHomeScreenPreview() {
             uiState = FairyTalesUiState(),
             onTabClick = {},
             onCardClick = {},
-            onDetailScreenBackClick = { /*TODO*/ })
+            onDetailScreenBackClick = {})
     }
 }
 
@@ -157,6 +157,6 @@ fun FairyTalesHomeScreenTabletPreview() {
             uiState = FairyTalesUiState(),
             onTabClick = {},
             onCardClick = {},
-            onDetailScreenBackClick = { /*TODO*/ })
+            onDetailScreenBackClick = {})
     }
 }

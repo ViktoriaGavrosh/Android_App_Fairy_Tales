@@ -98,7 +98,7 @@ fun DetailScreen(
                     .fillMaxWidth()
 
             ) {
-                Text(  //TODO добавить, чтобы текст распределялся равномерно
+                Text(
                     text = stringResource(id = selectedComposition.textId),
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier

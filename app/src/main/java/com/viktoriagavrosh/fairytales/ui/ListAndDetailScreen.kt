@@ -1,8 +1,10 @@
 package com.viktoriagavrosh.fairytales.ui
 
+import android.app.Activity
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
 import com.viktoriagavrosh.fairytales.data.CompositionType
@@ -30,12 +32,12 @@ fun ListAndDetailScreen(
             onCardClick = onCardClick,
             modifier = Modifier.weight(1F)
         )
-        //val activity = LocalContext.current as Activity
-        DetailScreen(                                                     //TODO
+        val activity = LocalContext.current as Activity
+        DetailScreen(
             currentCompositionType = currentCompositionType,
             selectedComposition = selectedComposition,
             contentType = contentType,
-            onDetailScreenBackClick = {},   //{ activity.finish() },
+            onDetailScreenBackClick = { activity.finish() },
             modifier = Modifier.weight(1F)
         )
     }
