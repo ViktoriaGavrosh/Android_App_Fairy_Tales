@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui
+package com.viktoriagavrosh.fairytales.ui.screens
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Row

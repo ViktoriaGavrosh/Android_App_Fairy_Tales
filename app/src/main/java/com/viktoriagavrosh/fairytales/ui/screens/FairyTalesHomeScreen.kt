@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui
+package com.viktoriagavrosh.fairytales.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.CompositionType
 import com.viktoriagavrosh.fairytales.model.Composition
+import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType

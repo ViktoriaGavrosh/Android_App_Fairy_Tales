@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui
+package com.viktoriagavrosh.fairytales.ui.screens
 
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
@@ -6,6 +6,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.viktoriagavrosh.fairytales.ui.FairyTalesViewModel
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType
 

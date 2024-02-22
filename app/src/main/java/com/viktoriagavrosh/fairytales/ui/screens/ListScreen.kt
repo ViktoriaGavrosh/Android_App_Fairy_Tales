@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui
+package com.viktoriagavrosh.fairytales.ui.screens
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring

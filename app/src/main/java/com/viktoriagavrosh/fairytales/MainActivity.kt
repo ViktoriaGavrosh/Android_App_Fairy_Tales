@@ -12,7 +12,7 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.fairytales.ui.FairyTalesApp
+import com.viktoriagavrosh.fairytales.ui.screens.FairyTalesApp
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 class MainActivity : ComponentActivity() {
