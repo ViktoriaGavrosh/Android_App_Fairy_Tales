@@ -25,21 +25,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
-import com.viktoriagavrosh.fairytales.data.CompositionType
+import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.Composition
+import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType
 
 @Composable
 fun OnlyOneScreen(
-    currentCompositionType: CompositionType,
-    selectedComposition: Composition,
+    folkWorks: List<FolkWork>,
+    currentFolkWorkType: FolkWorkType,
+    selectedWork: FolkWork,
     navigationType: FairyTalesNavigationType,
     contentType: FairyTalesContentType,
     isShowHomeScreen: Boolean,
-    onTabClick: (CompositionType) -> Unit,
-    onCardClick: (Composition) -> Unit,
+    onTabClick: (FolkWorkType) -> Unit,
+    onCardClick: (FolkWork) -> Unit,
     onDetailScreenBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -51,7 +53,7 @@ fun OnlyOneScreen(
                 visible = navigationType == FairyTalesNavigationType.NAVIGATION_RAIL
             ) {
                 FairyTalesNavigationRail(
-                    currentCompositionType = currentCompositionType,
+                    currentFolkWorkType = currentFolkWorkType,
                     onTabClick = onTabClick,
                     modifier = Modifier.fillMaxHeight()
                 )
@@ -60,13 +62,14 @@ fun OnlyOneScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
                 OnlyScreenTopBar(
-                    text = stringResource(id = currentCompositionType.textId),
+                    text = stringResource(id = currentFolkWorkType.textId),
                     isShowHomeScreen = true,
                     onDetailScreenBackClick = onDetailScreenBackClick
                 )
                 ListCompositionsScreen(
-                    currentCompositionType = currentCompositionType,
-                    selectedComposition = selectedComposition,
+                    folkWorks = folkWorks,
+                    currentFolkWorkType = currentFolkWorkType,
+                    selectedWork = selectedWork,
                     navigationType = navigationType,
                     onCardClick = onCardClick,
                     modifier = Modifier.weight(1F)
@@ -75,7 +78,7 @@ fun OnlyOneScreen(
                     visible = navigationType == FairyTalesNavigationType.BOTTOM_NAVIGATION
                 ) {
                     BottomNavigateBar(
-                        currentCompositionType = currentCompositionType,
+                        currentFolkWorkType = currentFolkWorkType,
                         onTabClick = onTabClick,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -87,13 +90,13 @@ fun OnlyOneScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             OnlyScreenTopBar(
-                text = stringResource(id = selectedComposition.shortTitleId),
+                text = selectedWork.title,
                 isShowHomeScreen = false,
                 onDetailScreenBackClick = onDetailScreenBackClick
             )
             DetailScreen(
-                currentCompositionType = currentCompositionType,
-                selectedComposition = selectedComposition,
+                currentFolkWorkType = currentFolkWorkType,
+                selectedWork = selectedWork,
                 contentType = contentType,
                 onDetailScreenBackClick = onDetailScreenBackClick
             )
@@ -148,17 +151,17 @@ private fun OnlyScreenTopBar(
 
 @Composable
 fun FairyTalesNavigationRail(
-    currentCompositionType: CompositionType,
-    onTabClick: (CompositionType) -> Unit,
+    currentFolkWorkType: FolkWorkType,
+    onTabClick: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     NavigationRail(
         modifier = modifier
             .padding(top = dimensionResource(id = R.dimen.padding_small))
     ) {
-        for (item in CompositionType.values()) {
+        for (item in FolkWorkType.entries) {
             NavigationRailItem(
-                selected = item == currentCompositionType,
+                selected = item == currentFolkWorkType,
                 onClick = { onTabClick(item) },
                 icon = {
                     Icon(
@@ -174,16 +177,16 @@ fun FairyTalesNavigationRail(
 
 @Composable
 private fun BottomNavigateBar(
-    currentCompositionType: CompositionType,
-    onTabClick: (CompositionType) -> Unit,
+    currentFolkWorkType: FolkWorkType,
+    onTabClick: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     NavigationBar(
         modifier = modifier
     ) {
-        for (item in CompositionType.values()) {
+        for (item in FolkWorkType.entries) {
             NavigationBarItem(
-                selected = item == currentCompositionType,
+                selected = item == currentFolkWorkType,
                 onClick = { onTabClick(item) },
                 icon = {
                     Icon(
@@ -202,8 +205,18 @@ private fun BottomNavigateBar(
 fun OnlyOneScreenPreview() {
     FairyTalesTheme {
         OnlyOneScreen(
-            currentCompositionType = CompositionType.FairyTales,
-            selectedComposition = CatalogFairyTales.fairyTales[9],
+            folkWorks = emptyList(),
+            currentFolkWorkType = FolkWorkType.Story,
+            selectedWork = FolkWork(
+                id = 0,
+                genre = "story",
+                title = "Story",
+                text = "Story",
+                answer = null,
+                imageUri = null,
+                audioUri = null,
+                isFavorite = false
+            ),
             navigationType = FairyTalesNavigationType.BOTTOM_NAVIGATION,
             contentType = FairyTalesContentType.LIST_ONLY,
             isShowHomeScreen = false,

@@ -4,30 +4,33 @@ import androidx.annotation.DrawableRes
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.Composition
 
-enum class CompositionType(
+enum class FolkWorkType(
     @DrawableRes val iconId: Int,
     val textId: Int,
-    val listItems: List<Composition>
+    //val listItems: List<Composition>
 ) {
-    FairyTales(
+    Story(
         iconId = R.drawable.ic_text,
         textId = R.string.title_fairy_tales,
-        listItems = CatalogFairyTales.fairyTales
+        //listItems = CatalogFairyTales.fairyTales
     ),
-    Puzzles(
+    Puzzle(
         iconId = R.drawable.ic_puzzle,
         textId = R.string.title_puzzle,
-        listItems = CatalogFairyTales.puzzles
+        //listItems = CatalogFairyTales.puzzles
     ),
-    Poems(
+    Poem(
         iconId = R.drawable.ic_poem,
         textId = R.string.title_poem,
-        listItems = CatalogFairyTales.poems
+        //listItems = CatalogFairyTales.poems
     ),
-    Games(
+    Game(
         iconId = R.drawable.ic_game,
         textId = R.string.title_game,
-        listItems = CatalogFairyTales.games
+        //listItems = CatalogFairyTales.games
+    ),
+    Lullaby(
+        iconId = R.drawable.ic_lullaby,
+        textId = R.string.lullaby
     );
-
 }

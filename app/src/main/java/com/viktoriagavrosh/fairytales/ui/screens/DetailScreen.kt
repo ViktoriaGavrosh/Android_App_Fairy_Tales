@@ -32,15 +32,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
-import com.viktoriagavrosh.fairytales.data.CompositionType
+import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.Composition
+import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
 
 @Composable
 fun DetailScreen(
-    currentCompositionType: CompositionType,
-    selectedComposition: Composition,
+    currentFolkWorkType: FolkWorkType,
+    selectedWork: FolkWork,
     contentType: FairyTalesContentType,
     modifier: Modifier = Modifier,
     onDetailScreenBackClick: () -> Unit
@@ -74,11 +75,11 @@ fun DetailScreen(
         ) {
 
             if (contentType != FairyTalesContentType.LIST_AND_DETAILS
-                && currentCompositionType != CompositionType.Puzzles
+                && currentFolkWorkType != FolkWorkType.Puzzle
             ) {
                 Image(
-                    painter = painterResource(id = selectedComposition.imageId),
-                    contentDescription = stringResource(id = selectedComposition.titleId),
+                    painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
+                    contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(dimensionResource(id = R.dimen.padding_small))
@@ -98,7 +99,7 @@ fun DetailScreen(
 
             ) {
                 Text(
-                    text = stringResource(id = selectedComposition.textId),
+                    text = selectedWork.text,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier
                         .padding(
@@ -106,7 +107,7 @@ fun DetailScreen(
                         )
                 )
             }
-            if (currentCompositionType == CompositionType.Puzzles) {
+            if (currentFolkWorkType == FolkWorkType.Puzzle) {
                 /*Row(
                     modifier = Modifier
                         .padding(top = dimensionResource(id = R.dimen.padding_small))
@@ -119,7 +120,7 @@ fun DetailScreen(
                  */
                 if (bigCard) {
                     Answer(
-                        selectedComposition = selectedComposition as Composition.Puzzle,
+                        selectedWork = selectedWork,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(
@@ -150,15 +151,15 @@ fun DetailScreen(
 
 @Composable
 private fun Answer(
-    selectedComposition: Composition.Puzzle,
+    selectedWork: FolkWork,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
     ) {
         Image(
-            painter = painterResource(id = selectedComposition.imageId),
-            contentDescription = stringResource(id = selectedComposition.titleId),
+            painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
+            contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(
@@ -169,7 +170,7 @@ private fun Answer(
             contentScale = ContentScale.Crop
         )
         Text(
-            text = stringResource(id = selectedComposition.answerId),
+            text = selectedWork.answer ?: "",               // TODO my обработать по-другому
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
@@ -182,8 +183,17 @@ private fun Answer(
 fun DetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            currentCompositionType = CompositionType.Puzzles,
-            selectedComposition = CatalogFairyTales.puzzles[0],
+            currentFolkWorkType = FolkWorkType.Puzzle,
+            selectedWork = FolkWork(
+                id = 0,
+                genre = "story",
+                title = "Story",
+                text = "Story",
+                answer = null,
+                imageUri = null,
+                audioUri = null,
+                isFavorite = false
+            ),
             contentType = FairyTalesContentType.LIST_ONLY,
             onDetailScreenBackClick = {}
         )

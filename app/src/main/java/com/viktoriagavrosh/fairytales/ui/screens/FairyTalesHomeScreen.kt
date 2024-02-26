@@ -22,8 +22,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.CompositionType
+import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.Composition
+import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
@@ -34,8 +35,8 @@ fun FairyTalesHomeScreen(
     navigationType: FairyTalesNavigationType,
     contentType: FairyTalesContentType,
     uiState: FairyTalesUiState,
-    onTabClick: (CompositionType) -> Unit,
-    onCardClick: (Composition) -> Unit,
+    onTabClick: (FolkWorkType) -> Unit,
+    onCardClick: (FolkWork) -> Unit,
     onDetailScreenBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -48,7 +49,7 @@ fun FairyTalesHomeScreen(
                     )
                 ) {
                     NavigationDrawerContent(
-                        selectedCompositionType = uiState.compositionType,
+                        selectedFolkWorkType = uiState.folkWorkType,
                         onTabClick = onTabClick,
                         modifier = Modifier
                             .wrapContentWidth()
@@ -62,8 +63,9 @@ fun FairyTalesHomeScreen(
             }
         ) {
             ListAndDetailScreen(
-                currentCompositionType = uiState.compositionType,
-                selectedComposition = uiState.selectedComposition,
+                folkWorks = uiState.folkWorks,
+                currentFolkWorkType = uiState.folkWorkType,
+                selectedWork = uiState.selectedWork,
                 navigationType = navigationType,
                 contentType = contentType,
                 onCardClick = onCardClick,
@@ -72,8 +74,9 @@ fun FairyTalesHomeScreen(
         }
     } else {
         OnlyOneScreen(
-            currentCompositionType = uiState.compositionType,
-            selectedComposition = uiState.selectedComposition,
+            folkWorks = uiState.folkWorks,
+            currentFolkWorkType = uiState.folkWorkType,
+            selectedWork = uiState.selectedWork,
             navigationType = navigationType,
             contentType = contentType,
             isShowHomeScreen = uiState.isShowHomeScreen,
@@ -87,8 +90,8 @@ fun FairyTalesHomeScreen(
 
 @Composable
 private fun NavigationDrawerContent(
-    selectedCompositionType: CompositionType,
-    onTabClick: (CompositionType) -> Unit,
+    selectedFolkWorkType: FolkWorkType,
+    onTabClick: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -106,19 +109,19 @@ private fun NavigationDrawerContent(
             modifier = Modifier
                 .weight(1F)
         )
-        for (item in CompositionType.values()) {
+        for (item in FolkWorkType.entries) {
             NavigationDrawerItem(
                 label = {
                     Text(
                         text = stringResource(id = item.textId)
                     )
                 },
-                selected = item == selectedCompositionType,
+                selected = item == selectedFolkWorkType,
                 onClick = { onTabClick(item) },
                 icon = {
                     Icon(
                         painter = painterResource(id = item.iconId),
-                        contentDescription = null,
+                        contentDescription = null,       // TODO my сделать обязательно!!!
                         tint = MaterialTheme.colorScheme.surfaceTint
                     )
                 },

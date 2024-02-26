@@ -7,35 +7,38 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
-import com.viktoriagavrosh.fairytales.data.CompositionType
+import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.Composition
+import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType
 
 @Composable
 fun ListAndDetailScreen(
-    currentCompositionType: CompositionType,
-    selectedComposition: Composition,
+    folkWorks: List<FolkWork>,
+    currentFolkWorkType: FolkWorkType,
+    selectedWork: FolkWork,
     navigationType: FairyTalesNavigationType,
     contentType: FairyTalesContentType,
-    onCardClick: (Composition) -> Unit,
+    onCardClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
     ) {
         ListCompositionsScreen(
-            currentCompositionType = currentCompositionType,
-            selectedComposition = selectedComposition,
+            folkWorks = folkWorks,
+            currentFolkWorkType = currentFolkWorkType,
+            selectedWork = selectedWork,
             navigationType = navigationType,
             onCardClick = onCardClick,
             modifier = Modifier.weight(1F)
         )
         val activity = LocalContext.current as Activity
         DetailScreen(
-            currentCompositionType = currentCompositionType,
-            selectedComposition = selectedComposition,
+            currentFolkWorkType = currentFolkWorkType,
+            selectedWork = selectedWork,
             contentType = contentType,
             onDetailScreenBackClick = { activity.finish() },
             modifier = Modifier.weight(1F)
@@ -48,8 +51,18 @@ fun ListAndDetailScreen(
 fun ListAndDetailScreenPreview() {
     FairyTalesTheme {
         ListAndDetailScreen(
-            currentCompositionType = CompositionType.FairyTales,
-            selectedComposition = CatalogFairyTales.fairyTales[0],
+            folkWorks = emptyList(),
+            currentFolkWorkType = FolkWorkType.Story,
+            selectedWork = FolkWork(
+                id = 0,
+                genre = "story",
+                title = "Story",
+                text = "Story",
+                answer = null,
+                imageUri = null,
+                audioUri = null,
+                isFavorite = false
+            ),
             navigationType = FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER,
             contentType = FairyTalesContentType.LIST_AND_DETAILS,
             onCardClick = {}

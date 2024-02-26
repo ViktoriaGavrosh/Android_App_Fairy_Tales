@@ -7,23 +7,21 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.viktoriagavrosh.fairytales.FairyTalesApplication
-import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
-import com.viktoriagavrosh.fairytales.data.CompositionType
 import com.viktoriagavrosh.fairytales.data.FolkWorkRepository
-import com.viktoriagavrosh.fairytales.model.Composition
+import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class FairyTalesViewModel(
     private val folkWorkRepository: FolkWorkRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(FairyTalesUiState())
     val uiState: StateFlow<FairyTalesUiState> = _uiState
-
+/*
    val allStoriesState: StateFlow<List<FolkWork>> = folkWorkRepository.getAllStories()
         .stateIn(
             scope = viewModelScope,
@@ -33,10 +31,16 @@ class FairyTalesViewModel(
 
     fun getAllGamesStream() = folkWorkRepository.getAllGames()
 
-    fun navigateToDetailScreen(composition: Composition) {
+
+ */
+    init {
+        updateCompositionType(FolkWorkType.Story)
+    }
+
+    fun navigateToDetailScreen(folkWork: FolkWork) {
         _uiState.update {
             it.copy(
-                selectedComposition = composition,
+                selectedWork = folkWork,
                 isShowHomeScreen = false
             )
         }
@@ -50,21 +54,28 @@ class FairyTalesViewModel(
         }
     }
 
-    fun updateCompositionType(compositionType: CompositionType) {
-        val compositions = when(compositionType) {
-            CompositionType.FairyTales -> CatalogFairyTales.fairyTales
-            CompositionType.Poems -> CatalogFairyTales.poems
-            CompositionType.Puzzles -> CatalogFairyTales.puzzles
-            CompositionType.Games -> CatalogFairyTales.games
+    fun updateCompositionType(folkWorkType: FolkWorkType) {
+
+         val genre = when(folkWorkType) {
+            FolkWorkType.Story -> "story"
+            FolkWorkType.Poem -> "poem"
+            FolkWorkType.Puzzle -> "puzzle"
+            FolkWorkType.Game -> "game"
+            FolkWorkType.Lullaby -> "lullaby"
         }
-        _uiState.update {
-            it.copy(
-                compositionType = compositionType,
-                compositions = compositions,
-                selectedComposition = compositions[0],
-                isShowHomeScreen = true
-            )
+        val folkWorks = folkWorkRepository.getAllWorks(genre)
+
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(
+                    folkWorkType = folkWorkType,
+                    folkWorks = folkWorks.first(),
+                    selectedWork = folkWorks.first()[0],
+                    isShowHomeScreen = true
+                )
+            }
         }
+
     }
 
     companion object {
@@ -78,9 +89,19 @@ class FairyTalesViewModel(
 }
 
 data class FairyTalesUiState(
-    val compositionType: CompositionType = CompositionType.FairyTales,
-    val compositions: List<Composition> = CatalogFairyTales.fairyTales,
-    val selectedComposition: Composition = compositions[0],
+    val folkWorkType: FolkWorkType = FolkWorkType.Story,
+    val folkWorks: List<FolkWork> = listOf(                 // TODO my поменять потом !!!
+        FolkWork(
+            id = 0,
+            genre = "story",
+            title = "Story",
+            text = "Story",
+            answer = null,
+            imageUri = null,
+            audioUri = null,
+            isFavorite = false)
+    ),
+    val selectedWork: FolkWork = folkWorks[0],
     val isShowHomeScreen: Boolean = true
 )
 

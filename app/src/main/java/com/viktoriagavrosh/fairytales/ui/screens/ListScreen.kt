@@ -37,17 +37,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
-import com.viktoriagavrosh.fairytales.data.CompositionType
+import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.Composition
+import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType
 import com.viktoriagavrosh.fairytales.ui.utils.MAX_NUMBER_LINES_IN_TITLE_FAIRY_TALE
 
 @Composable
 fun ListCompositionsScreen(
-    currentCompositionType: CompositionType,
-    selectedComposition: Composition,
+    folkWorks: List<FolkWork>,
+    currentFolkWorkType: FolkWorkType,
+    selectedWork: FolkWork,
     navigationType: FairyTalesNavigationType,
-    onCardClick: (Composition) -> Unit,
+    onCardClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -55,12 +57,12 @@ fun ListCompositionsScreen(
         contentPadding = contentPadding,
         modifier = modifier
     ) {
-        items(currentCompositionType.listItems) { composition ->
+        items(folkWorks) { folkWork ->
             CardComposition(
-                currentCompositionType = currentCompositionType,
-                selectedComposition = selectedComposition,
+                currentFolkWorkType = currentFolkWorkType,
+                selectedWork = selectedWork,
                 navigationType = navigationType,
-                composition = composition,
+                folkWork = folkWork,
                 onCardClick = onCardClick,
                 modifier = Modifier.padding(
                     dimensionResource(id = R.dimen.padding_medium)
@@ -72,11 +74,11 @@ fun ListCompositionsScreen(
 
 @Composable
 fun CardComposition(
-    currentCompositionType: CompositionType,
-    selectedComposition: Composition,
+    currentFolkWorkType: FolkWorkType,
+    selectedWork: FolkWork,
     navigationType: FairyTalesNavigationType,
-    composition: Composition,
-    onCardClick: (Composition) -> Unit,
+    folkWork: FolkWork,
+    onCardClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var bigCard by remember {
@@ -85,7 +87,7 @@ fun CardComposition(
     Card(
         modifier = modifier,
         colors = if (
-            composition == selectedComposition
+            folkWork == selectedWork
             && navigationType == FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER
         ) {
             CardDefaults.cardColors(
@@ -108,20 +110,20 @@ fun CardComposition(
                 )
         ) {
             Text(
-                text = stringResource(id = composition.titleId),
+                text = folkWork.title,
                 style = MaterialTheme.typography.displaySmall,
-                maxLines = if (currentCompositionType == CompositionType.FairyTales) {
+                maxLines = if (currentFolkWorkType == FolkWorkType.Story) {
                     MAX_NUMBER_LINES_IN_TITLE_FAIRY_TALE
                 } else 1,
                 overflow = TextOverflow.Ellipsis
             )
-            if (currentCompositionType == CompositionType.Puzzles
+            if (currentFolkWorkType == FolkWorkType.Puzzle
                 || navigationType == FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER
             ) {
                 Image(
-                    painter = painterResource(id = composition.imageId),
-                    contentDescription = stringResource(id = composition.titleId),
-                    modifier = if (currentCompositionType == CompositionType.Puzzles) {
+                    painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
+                    contentDescription = null,
+                    modifier = if (currentFolkWorkType == FolkWorkType.Puzzle) {
                         Modifier
                             .fillMaxWidth()
                             .blur(
@@ -129,7 +131,7 @@ fun CardComposition(
                                 radiusY = 20.dp,
                                 edgeTreatment = BlurredEdgeTreatment(RoundedCornerShape(16.dp))
                             )
-                            .clickable { onCardClick(composition) }
+                            .clickable { onCardClick(folkWork) }
                     } else {
                         Modifier
                             .fillMaxWidth()
@@ -138,14 +140,14 @@ fun CardComposition(
                                     dimensionResource(id = R.dimen.corner)
                                 )
                             )
-                            .clickable { onCardClick(composition) }
+                            .clickable { onCardClick(folkWork) }
                     },
                     contentScale = ContentScale.Crop
                 )
             } else {
                 Image(
-                    painter = painterResource(id = composition.imageId),
-                    contentDescription = stringResource(id = composition.titleId),
+                    painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
+                    contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(
@@ -161,7 +163,7 @@ fun CardComposition(
                 )
                 if (bigCard) {
                     TextFairyTale(
-                        composition = composition,
+                        folkWork = folkWork,
                         onCardClick = onCardClick
                     )
                 }
@@ -172,15 +174,15 @@ fun CardComposition(
 
 @Composable
 fun TextFairyTale(
-    composition: Composition,
-    onCardClick: (Composition) -> Unit,
+    folkWork: FolkWork,
+    onCardClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
     ) {
         Text(
-            text = stringResource(id = composition.textId),
+            text = folkWork.text,
             modifier = Modifier.padding(
                 top = dimensionResource(id = R.dimen.padding_medium)
             ),
@@ -189,7 +191,7 @@ fun TextFairyTale(
             overflow = TextOverflow.Ellipsis
         )
         ReadButton(
-            composition = composition,
+            folkWork = folkWork,
             onCardClick = onCardClick,
             modifier = Modifier.fillMaxWidth()
         )
@@ -198,8 +200,8 @@ fun TextFairyTale(
 
 @Composable
 fun ReadButton(
-    composition: Composition,
-    onCardClick: (Composition) -> Unit,
+    folkWork: FolkWork,
+    onCardClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -207,7 +209,7 @@ fun ReadButton(
         horizontalArrangement = Arrangement.End
     ) {
         Button(
-            onClick = { onCardClick(composition) }
+            onClick = { onCardClick(folkWork) }
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_next),
@@ -221,8 +223,18 @@ fun ReadButton(
 @Composable
 fun ListCompositionsPreview() {
     ListCompositionsScreen(
-        currentCompositionType = CompositionType.Puzzles,
-        selectedComposition = CatalogFairyTales.puzzles[0],
+        currentFolkWorkType = FolkWorkType.Puzzle,
+        selectedWork = FolkWork(
+            id = 0,
+            genre = "story",
+            title = "Story",
+            text = "Story",
+            answer = null,
+            imageUri = null,
+            audioUri = null,
+            isFavorite = false
+        ),
+        folkWorks = emptyList(),
         navigationType = FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER,
         onCardClick = {}
     )
