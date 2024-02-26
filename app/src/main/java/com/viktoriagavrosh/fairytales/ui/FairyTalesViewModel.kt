@@ -1,6 +1,5 @@
 package com.viktoriagavrosh.fairytales.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -13,17 +12,11 @@ import com.viktoriagavrosh.fairytales.data.CompositionType
 import com.viktoriagavrosh.fairytales.data.FolkWorkRepository
 import com.viktoriagavrosh.fairytales.model.Composition
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 class FairyTalesViewModel(
     private val folkWorkRepository: FolkWorkRepository

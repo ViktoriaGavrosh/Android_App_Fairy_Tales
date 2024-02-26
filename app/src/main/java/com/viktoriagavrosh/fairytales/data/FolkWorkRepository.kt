@@ -1,6 +1,5 @@
 package com.viktoriagavrosh.fairytales.data
 
-import android.util.Log
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import kotlinx.coroutines.flow.Flow
 
