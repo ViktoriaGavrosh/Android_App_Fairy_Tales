@@ -1,0 +1,18 @@
+package com.viktoriagavrosh.fairytales.model
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "library")
+data class FolkWork(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val genre: String,
+    val title: String,
+    val text: String,
+    val answer: String?,
+    @ColumnInfo(name = "image_uri") val imageUri: String?,
+    @ColumnInfo(name = "audio_uri") val audioUri: String?,
+    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
+)

@@ -1,10 +1,14 @@
 package com.viktoriagavrosh.fairytales.ui.screens
 
+import android.util.Log
+import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.viktoriagavrosh.fairytales.ui.FairyTalesViewModel
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
@@ -16,7 +20,8 @@ fun FairyTalesApp(
     windowSize: WindowWidthSizeClass,
     modifier: Modifier = Modifier
 ) {
-    val viewModel: FairyTalesViewModel = viewModel()
+    val viewModel: FairyTalesViewModel = viewModel(factory = FairyTalesViewModel.factory)
+    Log.e("123", "vm init in screen")
     val uiState = viewModel.uiState.collectAsState().value
     val navigationType: FairyTalesNavigationType
     val contentType: FairyTalesContentType
@@ -42,6 +47,13 @@ fun FairyTalesApp(
             contentType = FairyTalesContentType.LIST_ONLY
         }
     }
+
+    /*
+    val works by viewModel.allStoriesState.collectAsStateWithLifecycle()
+
+    val games by viewModel.getAllGamesStream().collectAsState(emptyList())
+
+     */
 
     FairyTalesHomeScreen(
         navigationType = navigationType,
