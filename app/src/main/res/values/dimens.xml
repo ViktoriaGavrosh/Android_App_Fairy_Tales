@@ -7,4 +7,5 @@
     <dimen name="corner">16dp</dimen>
     <dimen name="permanent_drawer_sheet_width">220dp</dimen>
     <dimen name="card_elevation">20dp</dimen>
+    <dimen name="bottom_bar_icon_size">30dp</dimen>
 </resources>

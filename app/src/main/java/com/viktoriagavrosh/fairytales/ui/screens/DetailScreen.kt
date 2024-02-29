@@ -1,7 +1,6 @@
 package com.viktoriagavrosh.fairytales.ui.screens
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,15 +24,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
-import com.viktoriagavrosh.fairytales.model.Composition
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
@@ -77,14 +77,24 @@ fun DetailScreen(
             if (contentType != FairyTalesContentType.LIST_AND_DETAILS
                 && currentFolkWorkType != FolkWorkType.Puzzle
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
+                AsyncImage(
+                    model = ImageRequest
+                        .Builder(context = LocalContext.current)
+                        .data(selectedWork.imageUri)
+                        .crossfade(true)
+                        .build(),
                     contentDescription = null,
+                    error = painterResource(id = R.drawable.crane),
+                    placeholder = painterResource(id = R.drawable.kitten),
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(dimensionResource(id = R.dimen.padding_small))
-                        .clip(RoundedCornerShape(dimensionResource(id = R.dimen.corner))),
-                    contentScale = ContentScale.Crop
+                        .clip(
+                            RoundedCornerShape(
+                                dimensionResource(id = R.dimen.corner)
+                            )
+                        )
                 )
             }
             Card(
@@ -157,17 +167,23 @@ private fun Answer(
     Column(
         modifier = modifier
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
+        AsyncImage(
+            model = ImageRequest
+                .Builder(context = LocalContext.current)
+                .data(selectedWork.imageUri)
+                .crossfade(true)
+                .build(),
             contentDescription = null,
+            error = painterResource(id = R.drawable.chicken),
+            placeholder = painterResource(id = R.drawable.kitten),
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(
                     RoundedCornerShape(
                         dimensionResource(id = R.dimen.corner)
                     )
-                ),
-            contentScale = ContentScale.Crop
+                )
         )
         Text(
             text = selectedWork.answer ?: "",               // TODO my обработать по-другому

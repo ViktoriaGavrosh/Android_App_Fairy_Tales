@@ -2,7 +2,6 @@ package com.viktoriagavrosh.fairytales.ui.screens
 
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,7 +18,7 @@ fun FairyTalesApp(
     modifier: Modifier = Modifier
 ) {
     val viewModel: FairyTalesViewModel = viewModel(factory = FairyTalesViewModel.factory)
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()   // TODO my сделать через by  и collectAsStateWithLifecycle
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val navigationType: FairyTalesNavigationType
     val contentType: FairyTalesContentType
 
@@ -45,7 +44,7 @@ fun FairyTalesApp(
         }
     }
 
-    /*
+    /*    TODO my
     val works by viewModel.allStoriesState.collectAsStateWithLifecycle()
 
     val games by viewModel.getAllGamesStream().collectAsState(emptyList())
@@ -57,12 +56,8 @@ fun FairyTalesApp(
             navigationType = navigationType,
             contentType = contentType,
             uiState = uiState,
-            onTabClick = { compositionType ->
-                viewModel.updateCompositionType(folkWorkType = compositionType)
-            },
-            onCardClick = { folkWork ->
-                viewModel.navigateToDetailScreen(folkWork = folkWork)    // TODO my try viewModel::navigateToDetailScreen
-            },
+            onTabClick = viewModel::updateCompositionType,
+            onCardClick = viewModel::navigateToDetailScreen,
             onDetailScreenBackClick = {
                 viewModel.navigateToHomeScreen()
             },

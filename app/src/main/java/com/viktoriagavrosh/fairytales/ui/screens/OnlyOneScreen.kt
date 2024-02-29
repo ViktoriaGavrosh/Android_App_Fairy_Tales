@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -24,9 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
-import com.viktoriagavrosh.fairytales.model.Composition
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
@@ -116,7 +115,7 @@ private fun OnlyScreenTopBar(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (!isShowHomeScreen){
+        if (!isShowHomeScreen) {
             IconButton(
                 onClick = { onDetailScreenBackClick() },
                 modifier = Modifier.padding(
@@ -192,11 +191,22 @@ private fun BottomNavigateBar(
                     Icon(
                         painter = painterResource(id = item.iconId),
                         contentDescription = stringResource(id = item.textId),
+                        modifier = Modifier.size(dimensionResource(id = R.dimen.bottom_bar_icon_size)),
                         tint = MaterialTheme.colorScheme.surfaceTint
                     )
                 }
             )
         }
+    }
+}
+
+@Preview
+@Composable
+fun BottomNavigateBarPreview() {
+    FairyTalesTheme {
+        BottomNavigateBar(
+            currentFolkWorkType = FolkWorkType.Story,
+            onTabClick = {})
     }
 }
 

@@ -6,9 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.fairytales.data.CatalogFairyTales
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
-import com.viktoriagavrosh.fairytales.model.Composition
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType

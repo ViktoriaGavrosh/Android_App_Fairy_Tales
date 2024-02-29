@@ -23,7 +23,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
-import com.viktoriagavrosh.fairytales.model.Composition
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
