@@ -24,7 +24,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -33,7 +32,6 @@ import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType
-import com.viktoriagavrosh.fairytales.ui.utils.MAX_NUMBER_LINES_IN_TITLE_FAIRY_TALE
 
 @Composable
 fun ListCompositionsScreen(
@@ -103,11 +101,7 @@ fun CardComposition(
         ) {
             Text(
                 text = folkWork.title,
-                style = MaterialTheme.typography.displaySmall,
-                maxLines = if (currentFolkWorkType == FolkWorkType.Story) {
-                    MAX_NUMBER_LINES_IN_TITLE_FAIRY_TALE
-                } else 1,
-                overflow = TextOverflow.Ellipsis
+                style = MaterialTheme.typography.displaySmall
             )
 
             AsyncImage(
