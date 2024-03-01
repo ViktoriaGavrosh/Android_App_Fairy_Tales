@@ -111,8 +111,8 @@ fun CardComposition(
                     .crossfade(true)
                     .build(),
                 contentDescription = null,
-                error = painterResource(id = R.drawable.bee),
-                placeholder = painterResource(id = R.drawable.kitten),
+                error = painterResource(id = R.drawable.error),
+                placeholder = painterResource(id = R.drawable.placeholder),
                 contentScale = ContentScale.Crop,
                 modifier = if (currentFolkWorkType == FolkWorkType.Puzzle) {
                     Modifier

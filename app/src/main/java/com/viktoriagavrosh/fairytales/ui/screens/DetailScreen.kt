@@ -84,8 +84,8 @@ fun DetailScreen(
                         .crossfade(true)
                         .build(),
                     contentDescription = null,
-                    error = painterResource(id = R.drawable.crane),
-                    placeholder = painterResource(id = R.drawable.kitten),
+                    error = painterResource(id = R.drawable.error),
+                    placeholder = painterResource(id = R.drawable.placeholder),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -174,8 +174,8 @@ private fun Answer(
                 .crossfade(true)
                 .build(),
             contentDescription = null,
-            error = painterResource(id = R.drawable.chicken),
-            placeholder = painterResource(id = R.drawable.kitten),
+            error = painterResource(id = R.drawable.error),
+            placeholder = painterResource(id = R.drawable.placeholder),
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
