@@ -69,7 +69,7 @@ class FairyTalesViewModel(
             _uiState.update {
                 it.copy(
                     folkWorkType = folkWorkType,
-                    folkWorks = folkWorks.first(),
+                    folkWorks = folkWorks.first().shuffled(),
                     selectedWork = folkWorks.first()[0],
                     isShowHomeScreen = true
                 )
