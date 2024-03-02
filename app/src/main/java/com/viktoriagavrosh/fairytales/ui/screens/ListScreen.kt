@@ -111,7 +111,7 @@ fun CardComposition(
                     .data(folkWork.imageUri)
                     .crossfade(true)
                     .build(),
-                contentDescription = null,
+                contentDescription = folkWork.title,
                 error = painterResource(id = R.drawable.error),
                 placeholder = painterResource(id = R.drawable.placeholder),
                 contentScale = ContentScale.Crop,
