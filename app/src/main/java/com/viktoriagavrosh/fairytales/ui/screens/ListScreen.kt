@@ -6,6 +6,7 @@ import androidx.compose.animation.core.spring
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -117,6 +118,7 @@ fun CardComposition(
                 modifier = if (currentFolkWorkType == FolkWorkType.Puzzle) {
                     Modifier
                         .fillMaxWidth()
+                        .aspectRatio(1.5F)
                         .blur(
                             radiusX = 20.dp,
                             radiusY = 20.dp,
@@ -127,6 +129,7 @@ fun CardComposition(
                 } else {
                     Modifier
                         .fillMaxWidth()
+                        .aspectRatio(1.5F)
                         .clip(
                             RoundedCornerShape(
                                 dimensionResource(id = R.dimen.corner)
