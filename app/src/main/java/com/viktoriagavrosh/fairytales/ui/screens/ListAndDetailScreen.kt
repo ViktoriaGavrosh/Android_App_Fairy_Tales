@@ -20,6 +20,7 @@ fun ListAndDetailScreen(
     navigationType: FairyTalesNavigationType,
     contentType: FairyTalesContentType,
     onCardClick: (FolkWork) -> Unit,
+    onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -31,6 +32,7 @@ fun ListAndDetailScreen(
             selectedWork = selectedWork,
             navigationType = navigationType,
             onCardClick = onCardClick,
+            onHeartClicked = onHeartClicked,
             modifier = Modifier.weight(1F)
         )
         val activity = LocalContext.current as Activity
@@ -63,7 +65,8 @@ fun ListAndDetailScreenPreview() {
             ),
             navigationType = FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER,
             contentType = FairyTalesContentType.LIST_AND_DETAILS,
-            onCardClick = {}
+            onCardClick = {},
+            onHeartClicked = {_,_ ->}
         )
     }
 }

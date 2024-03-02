@@ -37,6 +37,9 @@ fun FairyTalesHomeScreen(
     onTabClick: (FolkWorkType) -> Unit,
     onCardClick: (FolkWork) -> Unit,
     onDetailScreenBackClick: () -> Unit,
+    onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
+    isFavoriteWorks: Boolean,
+    onTopBarHeartClicked: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (navigationType == FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER) {
@@ -68,6 +71,7 @@ fun FairyTalesHomeScreen(
                 navigationType = navigationType,
                 contentType = contentType,
                 onCardClick = onCardClick,
+                onHeartClicked = onHeartClicked,
                 modifier = modifier
             )
         }
@@ -82,6 +86,9 @@ fun FairyTalesHomeScreen(
             onTabClick = onTabClick,
             onCardClick = onCardClick,
             onDetailScreenBackClick = onDetailScreenBackClick,
+            onHeartClicked = onHeartClicked,
+            isFavoriteWorks = isFavoriteWorks,
+            onTopBarHeartClicked = onTopBarHeartClicked,
             modifier = modifier
         )
     }
@@ -146,7 +153,11 @@ fun FairyTalesHomeScreenPreview() {
             uiState = FairyTalesUiState(),
             onTabClick = {},
             onCardClick = {},
-            onDetailScreenBackClick = {})
+            onDetailScreenBackClick = {},
+            onHeartClicked = {_,_ ->},
+            isFavoriteWorks = false,
+            onTopBarHeartClicked = {}
+        )
     }
 }
 
@@ -160,6 +171,10 @@ fun FairyTalesHomeScreenTabletPreview() {
             uiState = FairyTalesUiState(),
             onTabClick = {},
             onCardClick = {},
-            onDetailScreenBackClick = {})
+            onDetailScreenBackClick = {},
+            onHeartClicked = {_,_ ->},
+            isFavoriteWorks = false,
+            onTopBarHeartClicked = {}
+        )
     }
 }

@@ -21,18 +21,19 @@ class FairyTalesViewModel(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(FairyTalesUiState())
     val uiState: StateFlow<FairyTalesUiState> = _uiState
-/*
-   val allStoriesState: StateFlow<List<FolkWork>> = folkWorkRepository.getAllStories()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000L),
-            initialValue = listOf()
-        )
 
-    fun getAllGamesStream() = folkWorkRepository.getAllGames()
+    /*
+       val allStoriesState: StateFlow<List<FolkWork>> = folkWorkRepository.getAllStories()
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000L),
+                initialValue = listOf()
+            )
+
+        fun getAllGamesStream() = folkWorkRepository.getAllGames()
 
 
- */
+     */
     init {
         updateCompositionType(FolkWorkType.Story)
     }
@@ -56,29 +57,53 @@ class FairyTalesViewModel(
 
     fun updateCompositionType(folkWorkType: FolkWorkType) {
 
-         val genre = when(folkWorkType) {
+        val genre = when (folkWorkType) {
             FolkWorkType.Story -> "story"
             FolkWorkType.Poem -> "poem"
             FolkWorkType.Puzzle -> "puzzle"
             FolkWorkType.Game -> "game"
             FolkWorkType.Lullaby -> "lullaby"
         }
-        val folkWorks = folkWorkRepository.getAllWorks(genre)
-
-        viewModelScope.launch {
-            _uiState.update {
-                it.copy(
-                    folkWorkType = folkWorkType,
-                    folkWorks = folkWorks.first().shuffled(),
-                    selectedWork = folkWorks.first()[0],
-                    isShowHomeScreen = true
-                )
-            }
+        val folkWorks = if (_uiState.value.isFavoriteWorks) {
+            folkWorkRepository.getAllFavoriteWorks(genre)
+        } else {
+            folkWorkRepository.getAllWorks(genre)
         }
 
+        viewModelScope.launch {
+            if (folkWorks.first().isNotEmpty()) {
+                _uiState.update {
+                    it.copy(
+                        folkWorkType = folkWorkType,
+                        folkWorks = folkWorks.first(),
+                        selectedWork = folkWorks.first().first(),
+                        isShowHomeScreen = true
+                    )
+                }
+            }
+        }
     }
 
+    fun updateWorkFavorite(
+        folkWork: FolkWork,
+        folkWorkType: FolkWorkType
+    ) {     // TODO my поработать с enum и genre
+        val changedFavoriteState = !folkWork.isFavorite
+        viewModelScope.launch {
+            folkWorkRepository.updateFavoriteWork(folkWork.id, changedFavoriteState)
+        }
+        updateCompositionType(folkWorkType)
+    }
 
+    fun updateLustFavoriteWorks(folkWorkType: FolkWorkType) {
+        val newState = !_uiState.value.isFavoriteWorks
+        _uiState.update {
+            it.copy(
+                isFavoriteWorks = newState
+            )
+        }
+        updateCompositionType(folkWorkType)
+    }
 
     companion object {
         val factory: ViewModelProvider.Factory = viewModelFactory {
@@ -101,9 +126,11 @@ data class FairyTalesUiState(
             answer = null,
             imageUri = null,
             audioUri = null,
-            isFavorite = false)
+            isFavorite = false
+        )
     ),
     val selectedWork: FolkWork = folkWorks[0],
-    val isShowHomeScreen: Boolean = true
+    val isShowHomeScreen: Boolean = true,
+    val isFavoriteWorks: Boolean = false
 )
 

@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.fairytales.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,6 +43,9 @@ fun OnlyOneScreen(
     onTabClick: (FolkWorkType) -> Unit,
     onCardClick: (FolkWork) -> Unit,
     onDetailScreenBackClick: () -> Unit,
+    onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
+    isFavoriteWorks: Boolean,
+    onTopBarHeartClicked: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (isShowHomeScreen) {
@@ -63,7 +67,10 @@ fun OnlyOneScreen(
                 OnlyScreenTopBar(
                     text = stringResource(id = currentFolkWorkType.textId),
                     isShowHomeScreen = true,
-                    onDetailScreenBackClick = onDetailScreenBackClick
+                    currentFolkWorkType = currentFolkWorkType,
+                    onDetailScreenBackClick = onDetailScreenBackClick,
+                    isFavoriteWorks = isFavoriteWorks,
+                    onTopBarHeartClicked = onTopBarHeartClicked
                 )
                 ListCompositionsScreen(
                     folkWorks = folkWorks,
@@ -71,6 +78,7 @@ fun OnlyOneScreen(
                     selectedWork = selectedWork,
                     navigationType = navigationType,
                     onCardClick = onCardClick,
+                    onHeartClicked = onHeartClicked,
                     modifier = Modifier.weight(1F)
                 )
                 AnimatedVisibility(
@@ -91,7 +99,10 @@ fun OnlyOneScreen(
             OnlyScreenTopBar(
                 text = selectedWork.title,
                 isShowHomeScreen = false,
-                onDetailScreenBackClick = onDetailScreenBackClick
+                currentFolkWorkType = currentFolkWorkType,
+                onDetailScreenBackClick = onDetailScreenBackClick,
+                isFavoriteWorks = isFavoriteWorks,
+                onTopBarHeartClicked = onTopBarHeartClicked
             )
             DetailScreen(
                 currentFolkWorkType = currentFolkWorkType,
@@ -107,11 +118,14 @@ fun OnlyOneScreen(
 private fun OnlyScreenTopBar(
     text: String,
     isShowHomeScreen: Boolean,
+    currentFolkWorkType: FolkWorkType,
     onDetailScreenBackClick: () -> Unit,
+    isFavoriteWorks: Boolean,
+    onTopBarHeartClicked: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -143,6 +157,17 @@ private fun OnlyScreenTopBar(
                         top = dimensionResource(id = R.dimen.padding_medium)
                     )
 
+            )
+            Icon(
+                painter = if (isFavoriteWorks) {
+                    painterResource(id = R.drawable.ic_favorite_true)
+                } else {
+                    painterResource(id = R.drawable.ic_favorite_false)
+                },
+                contentDescription = stringResource(R.string.favorite_folk_works),
+                modifier = Modifier.clickable {
+                    onTopBarHeartClicked(currentFolkWorkType)
+                }
             )
         }
     }
@@ -232,7 +257,10 @@ fun OnlyOneScreenPreview() {
             isShowHomeScreen = false,
             onTabClick = {},
             onCardClick = {},
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onHeartClicked = { _, _ -> },
+            isFavoriteWorks = false,
+            onTopBarHeartClicked = {}
         )
     }
 }
