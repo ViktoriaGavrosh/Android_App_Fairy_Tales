@@ -127,7 +127,7 @@ private fun NavigationDrawerContent(
                 icon = {
                     Icon(
                         painter = painterResource(id = item.iconId),
-                        contentDescription = null,       // TODO my сделать обязательно!!!
+                        contentDescription = stringResource(id = item.textId),
                         tint = MaterialTheme.colorScheme.surfaceTint
                     )
                 },
