@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.screens
+package com.viktoriagavrosh.fairytales.ui.elements
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -37,14 +37,12 @@ import coil.request.ImageRequest
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesNavigationType
 
 @Composable
-fun ListCompositionsScreen(
+fun ListFolkWorks(
     folkWorks: List<FolkWork>,
     currentFolkWorkType: FolkWorkType,
     selectedWork: FolkWork,
-    navigationType: FairyTalesNavigationType,
     onCardClick: (FolkWork) -> Unit,
     onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
     modifier: Modifier = Modifier,
@@ -58,7 +56,6 @@ fun ListCompositionsScreen(
             CardComposition(
                 currentFolkWorkType = currentFolkWorkType,
                 selectedWork = selectedWork,
-                navigationType = navigationType,
                 folkWork = folkWork,
                 onCardClick = onCardClick,
                 onHeartClicked = onHeartClicked,
@@ -74,7 +71,6 @@ fun ListCompositionsScreen(
 fun CardComposition(
     currentFolkWorkType: FolkWorkType,
     selectedWork: FolkWork,
-    navigationType: FairyTalesNavigationType,
     folkWork: FolkWork,
     onCardClick: (FolkWork) -> Unit,
     onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
@@ -87,7 +83,6 @@ fun CardComposition(
             },
         colors = if (
             folkWork == selectedWork
-            && navigationType == FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER
         ) {
             CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.secondaryContainer
@@ -133,99 +128,59 @@ fun CardComposition(
                         contentDescription = stringResource(R.string.not_favorite),
                         modifier = Modifier
                             .clickable {
-                            onHeartClicked(folkWork, currentFolkWorkType)
-                        }
+                                onHeartClicked(folkWork, currentFolkWorkType)
+                            }
                     )
                 }
             }
-
-            AsyncImage(
-                model = ImageRequest
-                    .Builder(context = LocalContext.current)
-                    .data(folkWork.imageUri)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = folkWork.title,
-                error = painterResource(id = R.drawable.error),
-                placeholder = painterResource(id = R.drawable.placeholder),
-                contentScale = ContentScale.Crop,
-                modifier = if (currentFolkWorkType == FolkWorkType.Puzzle) {
-                    Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1.5F)
-                        .blur(
-                            radiusX = 20.dp,
-                            radiusY = 20.dp,
-                            edgeTreatment = BlurredEdgeTreatment(
-                                RoundedCornerShape(dimensionResource(id = R.dimen.corner))
-                            )
-                        )
-                } else {
-                    Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1.5F)
-                        .clip(
-                            RoundedCornerShape(
-                                dimensionResource(id = R.dimen.corner)
-                            )
-                        )
-                }
+            FolkWorkImage(
+                title = folkWork.title,
+                imageUri = folkWork.imageUri ?: "",
+                isBlur = currentFolkWorkType == FolkWorkType.Puzzle
             )
-            /*
-                        if (currentFolkWorkType == FolkWorkType.Puzzle
-                            || navigationType == FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER      // TODO my delete after fix horizontal screen
-                        ) {
-
-                            Image(
-                                painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
-                                contentDescription = null,
-                                modifier = if (currentFolkWorkType == FolkWorkType.Puzzle) {
-                                    Modifier
-                                        .fillMaxWidth()
-                                        .blur(
-                                            radiusX = 20.dp,
-                                            radiusY = 20.dp,
-                                            edgeTreatment = BlurredEdgeTreatment(RoundedCornerShape(16.dp))
-                                        )
-                                        .clickable { onCardClick(folkWork) }
-                                } else {
-                                    Modifier
-                                        .fillMaxWidth()
-                                        .clip(
-                                            RoundedCornerShape(
-                                                dimensionResource(id = R.dimen.corner)
-                                            )
-                                        )
-                                        .clickable { onCardClick(folkWork) }
-                                },
-                                contentScale = ContentScale.Crop
-                            )
-                        } else {
-                            Image(
-                                painter = painterResource(id = R.drawable.bee),     // TODO my placeholder
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clip(
-                                        RoundedCornerShape(
-                                            dimensionResource(id = R.dimen.corner)
-                                        )
-                                    )
-                                    .clickable {
-                                        bigCard = !bigCard
-
-                                    },
-                                contentScale = ContentScale.Crop
-                            )
-                            if (bigCard) {
-                                TextFairyTale(
-                                    folkWork = folkWork,
-                                    onCardClick = onCardClick
-                                )
-                            }
-                        } */
         }
     }
+}
+
+@Composable
+fun FolkWorkImage(
+    title: String,
+    imageUri: String,
+    isBlur: Boolean,
+    modifier: Modifier = Modifier
+) {
+    AsyncImage(
+        model = ImageRequest
+            .Builder(context = LocalContext.current)
+            .data(imageUri)
+            .crossfade(true)
+            .build(),
+        contentDescription = title,
+        error = painterResource(id = R.drawable.error),
+        placeholder = painterResource(id = R.drawable.placeholder),
+        contentScale = ContentScale.Crop,
+        modifier = if (isBlur) {
+            modifier
+                .fillMaxWidth()
+                .aspectRatio(1.5F)
+                .blur(
+                    radiusX = 20.dp,
+                    radiusY = 20.dp,
+                    edgeTreatment = BlurredEdgeTreatment(
+                        RoundedCornerShape(dimensionResource(id = R.dimen.corner))
+                    )
+                )
+        } else {
+            modifier
+                .fillMaxWidth()
+                .aspectRatio(1.5F)
+                .clip(
+                    RoundedCornerShape(
+                        dimensionResource(id = R.dimen.corner)
+                    )
+                )
+        }
+    )
 }
 
 @Preview
@@ -244,17 +199,16 @@ fun CardCompositionPreview() {
     CardComposition(
         currentFolkWorkType = FolkWorkType.Story,
         selectedWork = fakeFolkWork,
-        navigationType = FairyTalesNavigationType.BOTTOM_NAVIGATION,
         folkWork = fakeFolkWork,
         onCardClick = {},
-        onHeartClicked = {_,_ ->}
+        onHeartClicked = { _, _ -> }
     )
 }
 
 
 @Preview
 @Composable
-fun ListCompositionsPreview() {
+fun ListFolkWorksPreview() {
     val fakeFolkWork = FolkWork(
         id = 0,
         genre = "story",
@@ -265,12 +219,11 @@ fun ListCompositionsPreview() {
         audioUri = null,
         isFavorite = false
     )
-    ListCompositionsScreen(
+    ListFolkWorks(
         currentFolkWorkType = FolkWorkType.Puzzle,
         selectedWork = fakeFolkWork,
         folkWorks = emptyList(),
-        navigationType = FairyTalesNavigationType.PERMANENT_NAVIGATION_DRAWER,
         onCardClick = {},
-        onHeartClicked = {_, _ ->  }
+        onHeartClicked = { _, _ -> }
     )
 }

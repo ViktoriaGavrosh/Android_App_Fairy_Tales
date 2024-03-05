@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -22,139 +21,115 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
+import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
+import com.viktoriagavrosh.fairytales.ui.elements.OnlyScreenTopBar
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-import com.viktoriagavrosh.fairytales.ui.utils.FairyTalesContentType
+import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
 @Composable
 fun DetailScreen(
-    currentFolkWorkType: FolkWorkType,
-    selectedWork: FolkWork,
-    contentType: FairyTalesContentType,
+    uiState: FairyTalesUiState,
+    logic: UILogic,
+    isPuzzleType: Boolean,
     modifier: Modifier = Modifier,
-    onDetailScreenBackClick: () -> Unit
+    isExpandedScreen: Boolean
 ) {
     BackHandler {
-        onDetailScreenBackClick()
+        logic.onDetailScreenBackClick()
     }
 
     var bigCard by remember {
         mutableStateOf(false)
     }
 
-    Card(
-        modifier = modifier
-            .fillMaxHeight()
-            .padding(dimensionResource(id = R.dimen.padding_medium))
-            .verticalScroll(rememberScrollState()),
-        colors = if (contentType == FairyTalesContentType.LIST_AND_DETAILS) {
-            CardDefaults
-                .cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
-        } else {
-            CardDefaults
+    Column {
+        OnlyScreenTopBar(
+            text = uiState.selectedWork.title,
+            isShowHomeScreen = uiState.isShowHomeScreen,
+            currentFolkWorkType = uiState.folkWorkType,
+            onDetailScreenBackClick = logic.onDetailScreenBackClick,
+            isFavoriteWorks = uiState.isFavoriteWorks,
+            onTopBarHeartClicked = logic.onTopBarHeartClicked
+        )
+        Card(
+            modifier = modifier
+                .fillMaxHeight()
+                .padding(dimensionResource(id = R.dimen.padding_medium))
+                .verticalScroll(rememberScrollState()),
+            colors = CardDefaults
                 .cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
-        }
-    ) {
-        Spacer(modifier = Modifier.weight(1F))
-        Column(
-            modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.padding_medium)),
-            verticalArrangement = Arrangement.Center
         ) {
-
-            if (contentType != FairyTalesContentType.LIST_AND_DETAILS
-                && currentFolkWorkType != FolkWorkType.Puzzle
-            ) {
-                AsyncImage(
-                    model = ImageRequest
-                        .Builder(context = LocalContext.current)
-                        .data(selectedWork.imageUri)
-                        .crossfade(true)
-                        .build(),
-                    contentDescription = null,
-                    error = painterResource(id = R.drawable.error),
-                    placeholder = painterResource(id = R.drawable.placeholder),
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(dimensionResource(id = R.dimen.padding_small))
-                        .clip(
-                            RoundedCornerShape(
-                                dimensionResource(id = R.dimen.corner)
-                            )
-                        )
-                )
-            }
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.onPrimary
-                ),
+            Spacer(modifier = Modifier.weight(1F))
+            Column(
                 modifier = Modifier
-                    .padding(
-                        top = dimensionResource(id = R.dimen.padding_small)
-                    )
-                    .fillMaxWidth()
-
+                    .padding(dimensionResource(id = R.dimen.padding_medium)),
+                verticalArrangement = Arrangement.Center
             ) {
-                Text(
-                    text = selectedWork.text,
-                    style = MaterialTheme.typography.bodyLarge,
+
+                if (!isPuzzleType) {
+                    FolkWorkImage(
+                        title = uiState.selectedWork.title,
+                        imageUri = uiState.selectedWork.imageUri ?: "",
+                        isBlur = false,
+                        modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))
+                    )
+                }
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.onPrimary
+                    ),
                     modifier = Modifier
                         .padding(
-                            dimensionResource(id = R.dimen.padding_small)
+                            top = dimensionResource(id = R.dimen.padding_small)
                         )
-                )
-            }
-            if (currentFolkWorkType == FolkWorkType.Puzzle) {
-                /*Row(
-                    modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.padding_small))
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
+                        .fillMaxWidth()
+
                 ) {
-
-                }
-
-                 */
-                if (bigCard) {
-                    Answer(
-                        selectedWork = selectedWork,
+                    Text(
+                        text = uiState.selectedWork.text,
+                        style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier
-                            .fillMaxWidth()
                             .padding(
-                                top = dimensionResource(id = R.dimen.padding_medium)
+                                dimensionResource(id = R.dimen.padding_small)
                             )
                     )
-                } else {
-                    Button(
-                        onClick = {
-                            bigCard = true
-                        },
-                        modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.padding_extra_large))
-                            .align(Alignment.CenterHorizontally)
-                    ) {
-                        Text(
-                            text = stringResource(R.string.answer_button),
-                            style = MaterialTheme.typography.bodyLarge
+                }
+                if (isPuzzleType) {
+                    if (bigCard) {
+                        Answer(
+                            selectedWork = uiState.selectedWork,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(
+                                    top = dimensionResource(id = R.dimen.padding_medium)
+                                )
                         )
+                    } else {
+                        Button(
+                            onClick = {
+                                bigCard = true
+                            },
+                            modifier = Modifier
+                                .padding(top = dimensionResource(id = R.dimen.padding_extra_large))
+                                .align(Alignment.CenterHorizontally)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.answer_button),
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                        }
                     }
                 }
             }
+            Spacer(modifier = Modifier.weight(1F))
         }
-        Spacer(modifier = Modifier.weight(1F))
     }
 }
 
@@ -167,23 +142,10 @@ private fun Answer(
     Column(
         modifier = modifier
     ) {
-        AsyncImage(
-            model = ImageRequest
-                .Builder(context = LocalContext.current)
-                .data(selectedWork.imageUri)
-                .crossfade(true)
-                .build(),
-            contentDescription = selectedWork.answer,
-            error = painterResource(id = R.drawable.error),
-            placeholder = painterResource(id = R.drawable.placeholder),
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(
-                    RoundedCornerShape(
-                        dimensionResource(id = R.dimen.corner)
-                    )
-                )
+        FolkWorkImage(
+            title = selectedWork.answer ?: "",
+            imageUri = selectedWork.imageUri ?: "",
+            isBlur = false
         )
         Text(
             text = selectedWork.answer ?: "",               // TODO my обработать по-другому
@@ -199,19 +161,10 @@ private fun Answer(
 fun DetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            currentFolkWorkType = FolkWorkType.Story,
-            selectedWork = FolkWork(
-                id = 0,
-                genre = "story",
-                title = "Story",
-                text = "Story",
-                answer = null,
-                imageUri = null,
-                audioUri = null,
-                isFavorite = false
-            ),
-            contentType = FairyTalesContentType.LIST_ONLY,
-            onDetailScreenBackClick = {}
+            isPuzzleType = true,
+            uiState = FairyTalesUiState(),
+            logic = UILogic({}, {}, {}, {_,_ ->}, {}),
+            isExpandedScreen = false
         )
     }
 }
