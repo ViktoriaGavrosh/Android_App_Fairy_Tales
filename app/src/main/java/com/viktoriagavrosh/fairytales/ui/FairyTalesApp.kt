@@ -9,7 +9,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.ui.screens.ContentScreen
-import com.viktoriagavrosh.fairytales.ui.screens.DetailScreen
+import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
 
@@ -37,7 +37,7 @@ fun FairyTalesApp(
         )
     } else {
         DetailScreen(
-            uiState = uiState,
+            folkWork = uiState.selectedWork,
             logic = logic,
             isPuzzleType = uiState.folkWorkType == FolkWorkType.Puzzle,
             isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,

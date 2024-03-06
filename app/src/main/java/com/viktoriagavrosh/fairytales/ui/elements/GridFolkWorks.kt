@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
+import com.viktoriagavrosh.fairytales.ui.utils.MockData
 
 @Composable
 fun GridFolkWorks(
@@ -30,7 +31,7 @@ fun GridFolkWorks(
         modifier = modifier
     ) {
         items(folkWorks) { folkWork ->
-            CardComposition(
+            FolkWorkCard(
                 isBlurImage = isBlurImage,
                 isSelected = folkWork == selectedWork,
                 folkWork = folkWork,
@@ -47,22 +48,11 @@ fun GridFolkWorks(
 @Preview(showBackground = true, widthDp = 1000)
 @Composable
 fun GridFolkWorksPreview() {
-
-    val fakeFolkWork = FolkWork(
-        id = 0,
-        genre = "story",
-        title = "Story",
-        text = "Story",
-        answer = null,
-        imageUri = null,
-        audioUri = null,
-        isFavorite = false
-    )
     FairyTalesTheme {
         GridFolkWorks(
             isBlurImage = false,
-            selectedWork = fakeFolkWork,
-            folkWorks = List(5) {fakeFolkWork},
+            selectedWork = MockData.fakeFolkWork,
+            folkWorks = List(5) {MockData.fakeFolkWork},
             onCardClick = {},
             onHeartClicked = {}
         )
