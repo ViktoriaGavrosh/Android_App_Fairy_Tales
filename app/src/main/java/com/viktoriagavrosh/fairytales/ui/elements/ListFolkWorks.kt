@@ -35,16 +35,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.FolkWork
 
 @Composable
 fun ListFolkWorks(
     folkWorks: List<FolkWork>,
-    currentFolkWorkType: FolkWorkType,
+    isBlurImage: Boolean,
     selectedWork: FolkWork,
     onCardClick: (FolkWork) -> Unit,
-    onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
+    onHeartClicked: (FolkWork) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -54,8 +53,8 @@ fun ListFolkWorks(
     ) {
         items(folkWorks) { folkWork ->
             CardComposition(
-                currentFolkWorkType = currentFolkWorkType,
-                selectedWork = selectedWork,
+                isBlurImage = isBlurImage,
+                isSelected = folkWork == selectedWork,
                 folkWork = folkWork,
                 onCardClick = onCardClick,
                 onHeartClicked = onHeartClicked,
@@ -69,21 +68,19 @@ fun ListFolkWorks(
 
 @Composable
 fun CardComposition(
-    currentFolkWorkType: FolkWorkType,
-    selectedWork: FolkWork,
     folkWork: FolkWork,
+    isBlurImage: Boolean,
+    isSelected: Boolean,
     onCardClick: (FolkWork) -> Unit,
-    onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
+    onHeartClicked: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .clickable {
-                onCardClick(selectedWork)
+                onCardClick(folkWork)
             },
-        colors = if (
-            folkWork == selectedWork
-        ) {
+        colors = if (isSelected) {
             CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.secondaryContainer
             )
@@ -103,40 +100,53 @@ fun CardComposition(
                     )
                 )
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = folkWork.title,
-                    style = MaterialTheme.typography.displaySmall,
-                    modifier = Modifier.weight(1F)
-                )
-                if (folkWork.isFavorite) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_favorite_true),
-                        contentDescription = stringResource(R.string.favorite),
-                        modifier = Modifier
-                            .clickable {
-                                onHeartClicked(folkWork, currentFolkWorkType)
-                            }
-                    )
-                } else {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_favorite_false),
-                        contentDescription = stringResource(R.string.not_favorite),
-                        modifier = Modifier
-                            .clickable {
-                                onHeartClicked(folkWork, currentFolkWorkType)
-                            }
-                    )
-                }
-            }
+            CardText(
+                folkWork = folkWork,
+                onHeartClicked = onHeartClicked,
+                modifier = Modifier.fillMaxWidth()
+            )
             FolkWorkImage(
                 title = folkWork.title,
                 imageUri = folkWork.imageUri ?: "",
-                isBlur = currentFolkWorkType == FolkWorkType.Puzzle
+                isBlur = isBlurImage
+            )
+        }
+    }
+}
+
+@Composable
+private fun CardText(
+    folkWork: FolkWork,
+    onHeartClicked: (FolkWork) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = folkWork.title,
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier.weight(1F)
+        )
+        if (folkWork.isFavorite) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_favorite_true),
+                contentDescription = stringResource(R.string.favorite),
+                modifier = Modifier
+                    .clickable {
+                        onHeartClicked(folkWork)
+                    }
+            )
+        } else {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_favorite_false),
+                contentDescription = stringResource(R.string.not_favorite),
+                modifier = Modifier
+                    .clickable {
+                        onHeartClicked(folkWork)
+                    }
             )
         }
     }
@@ -197,11 +207,11 @@ fun CardCompositionPreview() {
         isFavorite = false
     )
     CardComposition(
-        currentFolkWorkType = FolkWorkType.Story,
-        selectedWork = fakeFolkWork,
+        isBlurImage = false,
+        isSelected = false,
         folkWork = fakeFolkWork,
         onCardClick = {},
-        onHeartClicked = { _, _ -> }
+        onHeartClicked = {}
     )
 }
 
@@ -220,10 +230,10 @@ fun ListFolkWorksPreview() {
         isFavorite = false
     )
     ListFolkWorks(
-        currentFolkWorkType = FolkWorkType.Puzzle,
+        isBlurImage = true,
         selectedWork = fakeFolkWork,
         folkWorks = emptyList(),
         onCardClick = {},
-        onHeartClicked = { _, _ -> }
+        onHeartClicked = {}
     )
 }

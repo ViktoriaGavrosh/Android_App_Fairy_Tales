@@ -5,10 +5,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.elements.GridFolkWorks
 import com.viktoriagavrosh.fairytales.ui.elements.ListFolkWorks
-import com.viktoriagavrosh.fairytales.ui.elements.OnlyScreenTopBar
+import com.viktoriagavrosh.fairytales.ui.elements.bars.ContentTopBar
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
@@ -22,14 +23,13 @@ fun HomeScreen(
     Column(
         modifier = modifier
     ) {
-        OnlyScreenTopBar(
+        ContentTopBar(
             text = if (uiState.isShowHomeScreen) {
                 stringResource(id = uiState.folkWorkType.textId)
             } else {
                 uiState.selectedWork.title
             },
             isShowHomeScreen = uiState.isShowHomeScreen,
-            currentFolkWorkType = uiState.folkWorkType,
             onDetailScreenBackClick = logic.onDetailScreenBackClick,
             isFavoriteWorks = uiState.isFavoriteWorks,
             onTopBarHeartClicked = logic.onTopBarHeartClicked
@@ -37,7 +37,7 @@ fun HomeScreen(
         if (isExpandedScreen) {
             GridFolkWorks(
                 folkWorks = uiState.folkWorks,
-                currentFolkWorkType = uiState.folkWorkType,
+                isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
                 selectedWork = uiState.selectedWork,
                 onCardClick = logic.onCardClick,
                 onHeartClicked = logic.onHeartClicked,
@@ -46,7 +46,7 @@ fun HomeScreen(
         } else {
             ListFolkWorks(
                 folkWorks = uiState.folkWorks,
-                currentFolkWorkType = uiState.folkWorkType,
+                isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
                 selectedWork = uiState.selectedWork,
                 onCardClick = logic.onCardClick,
                 onHeartClicked = logic.onHeartClicked,
@@ -60,7 +60,7 @@ fun HomeScreen(
 @Composable
 fun FairyTalesHomeScreenPreview() {
     FairyTalesTheme {
-        val fakeLogic = UILogic({}, {}, {}, { _, _ -> }, {})
+        val fakeLogic = UILogic()
         FairyTalesTheme {
             HomeScreen(
                 logic = fakeLogic,
@@ -74,7 +74,7 @@ fun FairyTalesHomeScreenPreview() {
 @Preview(showBackground = true, widthDp = 1000)
 @Composable
 fun FairyTalesHomeScreenTabletPreview() {
-    val fakeLogic = UILogic({}, {}, {}, { _, _ -> }, {})
+    val fakeLogic = UILogic()
     FairyTalesTheme {
         HomeScreen(
             logic = fakeLogic,

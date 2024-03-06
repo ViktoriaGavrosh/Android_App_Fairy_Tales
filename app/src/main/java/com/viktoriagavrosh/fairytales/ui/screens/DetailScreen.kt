@@ -29,7 +29,7 @@ import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
-import com.viktoriagavrosh.fairytales.ui.elements.OnlyScreenTopBar
+import com.viktoriagavrosh.fairytales.ui.elements.bars.ContentTopBar
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
@@ -50,10 +50,9 @@ fun DetailScreen(
     }
 
     Column {
-        OnlyScreenTopBar(
+        ContentTopBar(
             text = uiState.selectedWork.title,
             isShowHomeScreen = uiState.isShowHomeScreen,
-            currentFolkWorkType = uiState.folkWorkType,
             onDetailScreenBackClick = logic.onDetailScreenBackClick,
             isFavoriteWorks = uiState.isFavoriteWorks,
             onTopBarHeartClicked = logic.onTopBarHeartClicked
@@ -163,7 +162,7 @@ fun DetailScreenPreview() {
         DetailScreen(
             isPuzzleType = true,
             uiState = FairyTalesUiState(),
-            logic = UILogic({}, {}, {}, {_,_ ->}, {}),
+            logic = UILogic(),
             isExpandedScreen = false
         )
     }

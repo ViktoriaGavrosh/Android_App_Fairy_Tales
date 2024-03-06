@@ -10,9 +10,9 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
-import com.viktoriagavrosh.fairytales.ui.elements.BigLeftBar
-import com.viktoriagavrosh.fairytales.ui.elements.BottomNavigateBar
-import com.viktoriagavrosh.fairytales.ui.elements.FairyTalesNavigationRail
+import com.viktoriagavrosh.fairytales.ui.elements.bars.BottomNavigateBar
+import com.viktoriagavrosh.fairytales.ui.elements.bars.ExpandedScreenVerticalBar
+import com.viktoriagavrosh.fairytales.ui.elements.bars.VerticalNavigationRail
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
 @Composable
@@ -26,7 +26,7 @@ fun ContentScreen(
         WindowWidthSizeClass.Expanded -> {
             PermanentNavigationDrawer(
                 drawerContent = {
-                    BigLeftBar(
+                    ExpandedScreenVerticalBar(
                         selectedType = uiState.folkWorkType,
                         onTabClick = logic.onTabClick
                     )
@@ -51,7 +51,7 @@ fun ContentScreen(
                     modifier = Modifier.weight(1F)
                 )
                 BottomNavigateBar(
-                    currentFolkWorkType = uiState.folkWorkType,
+                    selectedType = uiState.folkWorkType,
                     onTabClick = logic.onTabClick,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -62,8 +62,8 @@ fun ContentScreen(
             Row(
                 modifier = modifier
             ) {
-                FairyTalesNavigationRail(
-                    currentFolkWorkType = uiState.folkWorkType,
+                VerticalNavigationRail(
+                    selectedType = uiState.folkWorkType,
                     onTabClick = logic.onTabClick,
                     modifier = Modifier.fillMaxHeight()
                 )

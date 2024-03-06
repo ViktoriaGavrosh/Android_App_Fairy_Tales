@@ -11,17 +11,16 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 @Composable
 fun GridFolkWorks(
     folkWorks: List<FolkWork>,
-    currentFolkWorkType: FolkWorkType,
+    isBlurImage: Boolean,
     selectedWork: FolkWork,
     onCardClick: (FolkWork) -> Unit,
-    onHeartClicked: (FolkWork, FolkWorkType) -> Unit,
+    onHeartClicked: (FolkWork) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -32,8 +31,8 @@ fun GridFolkWorks(
     ) {
         items(folkWorks) { folkWork ->
             CardComposition(
-                currentFolkWorkType = currentFolkWorkType,
-                selectedWork = selectedWork,
+                isBlurImage = isBlurImage,
+                isSelected = folkWork == selectedWork,
                 folkWork = folkWork,
                 onCardClick = onCardClick,
                 onHeartClicked = onHeartClicked,
@@ -61,11 +60,11 @@ fun GridFolkWorksPreview() {
     )
     FairyTalesTheme {
         GridFolkWorks(
-            currentFolkWorkType = FolkWorkType.Story,
+            isBlurImage = false,
             selectedWork = fakeFolkWork,
             folkWorks = List(5) {fakeFolkWork},
             onCardClick = {},
-            onHeartClicked = { _, _ -> }
+            onHeartClicked = {}
         )
     }
 }

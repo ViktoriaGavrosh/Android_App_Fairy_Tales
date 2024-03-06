@@ -25,7 +25,7 @@ fun FairyTalesApp(
         onCardClick = viewModel::navigateToDetailScreen,
         onDetailScreenBackClick = viewModel::navigateToHomeScreen,
         onHeartClicked = viewModel::updateWorkFavorite,
-        onTopBarHeartClicked = viewModel::updateLustFavoriteWorks
+        onTopBarHeartClicked = viewModel::updateListFavoriteWorks
     )
 
     if (uiState.isShowHomeScreen) {

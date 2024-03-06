@@ -84,19 +84,18 @@ class FairyTalesViewModel(
         }
     }
 
-    fun updateWorkFavorite(
-        folkWork: FolkWork,
-        folkWorkType: FolkWorkType
-    ) {     // TODO my поработать с enum и genre
+    fun updateWorkFavorite(folkWork: FolkWork) {
         val changedFavoriteState = !folkWork.isFavorite
+        val folkWorkType = _uiState.value.folkWorkType
         viewModelScope.launch {
             folkWorkRepository.updateFavoriteWork(folkWork.id, changedFavoriteState)
         }
         updateCompositionType(folkWorkType)
     }
 
-    fun updateLustFavoriteWorks(folkWorkType: FolkWorkType) {
+    fun updateListFavoriteWorks() {
         val newState = !_uiState.value.isFavoriteWorks
+        val folkWorkType = _uiState.value.folkWorkType
         _uiState.update {
             it.copy(
                 isFavoriteWorks = newState
