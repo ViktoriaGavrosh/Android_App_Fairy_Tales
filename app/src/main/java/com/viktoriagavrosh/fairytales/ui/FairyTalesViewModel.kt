@@ -57,29 +57,25 @@ class FairyTalesViewModel(
 
     fun updateCompositionType(folkWorkType: FolkWorkType) {
 
-        val genre = when (folkWorkType) {
-            FolkWorkType.Story -> "story"
-            FolkWorkType.Poem -> "poem"
-            FolkWorkType.Puzzle -> "puzzle"
-            FolkWorkType.Game -> "game"
-            FolkWorkType.Lullaby -> "lullaby"
-        }
+        val genre = getGenre(folkWorkType)
         val folkWorks = if (_uiState.value.isFavoriteWorks) {
             folkWorkRepository.getAllFavoriteWorks(genre)
         } else {
             folkWorkRepository.getAllWorks(genre)
         }
 
+        var selectedWork = _uiState.value.selectedWork
         viewModelScope.launch {
             if (folkWorks.first().isNotEmpty()) {
-                _uiState.update {
-                    it.copy(
-                        folkWorkType = folkWorkType,
-                        folkWorks = folkWorks.first(),
-                        selectedWork = folkWorks.first().first(),
-                        isShowHomeScreen = true
-                    )
-                }
+                selectedWork = folkWorks.first().first()
+            }
+            _uiState.update {
+                it.copy(
+                    folkWorkType = folkWorkType,
+                    folkWorks = folkWorks.first(),
+                    selectedWork = selectedWork,
+                    isShowHomeScreen = true
+                )
             }
         }
     }
@@ -102,6 +98,15 @@ class FairyTalesViewModel(
             )
         }
         updateCompositionType(folkWorkType)
+    }
+
+    private fun getGenre(folkWorkType: FolkWorkType): String = when (folkWorkType) {
+        FolkWorkType.Story -> "story"
+        FolkWorkType.Poem -> "poem"
+        FolkWorkType.Puzzle -> "puzzle"
+        FolkWorkType.Game -> "game"
+        FolkWorkType.Lullaby -> "lullaby"
+
     }
 
     companion object {

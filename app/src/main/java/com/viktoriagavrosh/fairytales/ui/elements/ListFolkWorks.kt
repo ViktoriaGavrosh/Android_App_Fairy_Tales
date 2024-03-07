@@ -11,13 +11,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import com.viktoriagavrosh.fairytales.ui.utils.MockData
 
 @Composable
 fun ListFolkWorks(
     folkWorks: List<FolkWork>,
     isBlurImage: Boolean,
-    selectedWork: FolkWork,
     onCardClick: (FolkWork) -> Unit,
     onHeartClicked: (FolkWork) -> Unit,
     modifier: Modifier = Modifier,
@@ -30,7 +28,6 @@ fun ListFolkWorks(
         items(folkWorks) { folkWork ->
             FolkWorkCard(
                 isBlurImage = isBlurImage,
-                isSelected = folkWork == selectedWork,
                 folkWork = folkWork,
                 onCardClick = onCardClick,
                 onHeartClicked = onHeartClicked,
@@ -47,7 +44,6 @@ fun ListFolkWorks(
 fun ListFolkWorksPreview() {
     ListFolkWorks(
         isBlurImage = true,
-        selectedWork = MockData.fakeFolkWork,
         folkWorks = emptyList(),
         onCardClick = {},
         onHeartClicked = {}

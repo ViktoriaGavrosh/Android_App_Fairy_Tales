@@ -29,7 +29,6 @@ import com.viktoriagavrosh.fairytales.ui.utils.MockData
 fun FolkWorkCard(
     folkWork: FolkWork,
     isBlurImage: Boolean,
-    isSelected: Boolean,
     onCardClick: (FolkWork) -> Unit,
     onHeartClicked: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
@@ -39,15 +38,9 @@ fun FolkWorkCard(
             .clickable {
                 onCardClick(folkWork)
             },
-        colors = if (isSelected) {
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer
-            )
-        } else {
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
-            )
-        }
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        )
     ) {
         Column(
             modifier = Modifier
@@ -111,7 +104,6 @@ private fun CardText(
 fun CardCompositionPreview() {
     FolkWorkCard(
         isBlurImage = false,
-        isSelected = false,
         folkWork = MockData.fakeFolkWork,
         onCardClick = {},
         onHeartClicked = {}

@@ -19,7 +19,6 @@ import com.viktoriagavrosh.fairytales.ui.utils.MockData
 fun GridFolkWorks(
     folkWorks: List<FolkWork>,
     isBlurImage: Boolean,
-    selectedWork: FolkWork,
     onCardClick: (FolkWork) -> Unit,
     onHeartClicked: (FolkWork) -> Unit,
     modifier: Modifier = Modifier,
@@ -33,7 +32,6 @@ fun GridFolkWorks(
         items(folkWorks) { folkWork ->
             FolkWorkCard(
                 isBlurImage = isBlurImage,
-                isSelected = folkWork == selectedWork,
                 folkWork = folkWork,
                 onCardClick = onCardClick,
                 onHeartClicked = onHeartClicked,
@@ -51,7 +49,6 @@ fun GridFolkWorksPreview() {
     FairyTalesTheme {
         GridFolkWorks(
             isBlurImage = false,
-            selectedWork = MockData.fakeFolkWork,
             folkWorks = List(5) {MockData.fakeFolkWork},
             onCardClick = {},
             onHeartClicked = {}

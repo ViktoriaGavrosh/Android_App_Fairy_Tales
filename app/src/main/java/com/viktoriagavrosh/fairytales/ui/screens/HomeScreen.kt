@@ -38,7 +38,6 @@ fun HomeScreen(
             GridFolkWorks(
                 folkWorks = uiState.folkWorks,
                 isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
-                selectedWork = uiState.selectedWork,
                 onCardClick = logic.onCardClick,
                 onHeartClicked = logic.onHeartClicked,
                 modifier = modifier
@@ -47,7 +46,6 @@ fun HomeScreen(
             ListFolkWorks(
                 folkWorks = uiState.folkWorks,
                 isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
-                selectedWork = uiState.selectedWork,
                 onCardClick = logic.onCardClick,
                 onHeartClicked = logic.onHeartClicked,
                 modifier = modifier
