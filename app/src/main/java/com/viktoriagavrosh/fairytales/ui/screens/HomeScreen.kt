@@ -32,14 +32,14 @@ fun HomeScreen(
             isShowHomeScreen = uiState.isShowHomeScreen,
             onDetailScreenBackClick = logic.onDetailScreenBackClick,
             isFavoriteWorks = uiState.isFavoriteWorks,
-            onTopBarHeartClicked = logic.onTopBarHeartClicked
+            onTopBarHeartClick = logic.onTopBarHeartClick
         )
         if (isExpandedScreen) {
             GridFolkWorks(
                 folkWorks = uiState.folkWorks,
                 isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
                 onCardClick = logic.onCardClick,
-                onHeartClicked = logic.onHeartClicked,
+                onHeartClick = logic.onHeartClick,
                 modifier = modifier
             )
         } else {
@@ -47,7 +47,7 @@ fun HomeScreen(
                 folkWorks = uiState.folkWorks,
                 isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
                 onCardClick = logic.onCardClick,
-                onHeartClicked = logic.onHeartClicked,
+                onHeartClick = logic.onHeartClick,
                 modifier = modifier
             )
         }

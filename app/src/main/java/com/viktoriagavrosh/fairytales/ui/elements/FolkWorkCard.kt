@@ -30,7 +30,7 @@ fun FolkWorkCard(
     folkWork: FolkWork,
     isBlurImage: Boolean,
     onCardClick: (FolkWork) -> Unit,
-    onHeartClicked: (FolkWork) -> Unit,
+    onHeartClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -54,7 +54,7 @@ fun FolkWorkCard(
         ) {
             CardText(
                 folkWork = folkWork,
-                onHeartClicked = onHeartClicked,
+                onHeartClick = onHeartClick,
                 modifier = Modifier.fillMaxWidth()
             )
             FolkWorkImage(
@@ -70,7 +70,7 @@ fun FolkWorkCard(
 @Composable
 private fun CardText(
     folkWork: FolkWork,
-    onHeartClicked: (FolkWork) -> Unit,
+    onHeartClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -87,13 +87,13 @@ private fun CardText(
             Icon(
                 painter = painterResource(id = R.drawable.ic_favorite_true),
                 contentDescription = stringResource(R.string.favorite),
-                modifier = Modifier.clickable { onHeartClicked(folkWork) }
+                modifier = Modifier.clickable { onHeartClick(folkWork) }
             )
         } else {
             Icon(
                 painter = painterResource(id = R.drawable.ic_favorite_false),
                 contentDescription = stringResource(R.string.not_favorite),
-                modifier = Modifier.clickable { onHeartClicked(folkWork) }
+                modifier = Modifier.clickable { onHeartClick(folkWork) }
             )
         }
     }
@@ -106,7 +106,7 @@ fun CardCompositionPreview() {
         isBlurImage = false,
         folkWork = MockData.fakeFolkWork,
         onCardClick = {},
-        onHeartClicked = {}
+        onHeartClick = {}
     )
 }
 

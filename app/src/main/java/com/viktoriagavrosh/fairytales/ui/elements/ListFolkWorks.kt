@@ -17,7 +17,7 @@ fun ListFolkWorks(
     folkWorks: List<FolkWork>,
     isBlurImage: Boolean,
     onCardClick: (FolkWork) -> Unit,
-    onHeartClicked: (FolkWork) -> Unit,
+    onHeartClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -30,7 +30,7 @@ fun ListFolkWorks(
                 isBlurImage = isBlurImage,
                 folkWork = folkWork,
                 onCardClick = onCardClick,
-                onHeartClicked = onHeartClicked,
+                onHeartClick = onHeartClick,
                 modifier = Modifier.padding(
                     dimensionResource(id = R.dimen.padding_medium)
                 )
@@ -46,6 +46,6 @@ fun ListFolkWorksPreview() {
         isBlurImage = true,
         folkWorks = emptyList(),
         onCardClick = {},
-        onHeartClicked = {}
+        onHeartClick = {}
     )
 }

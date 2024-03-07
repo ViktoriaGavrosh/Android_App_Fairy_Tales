@@ -38,7 +38,7 @@ fun DetailScreen(
             isShowHomeScreen = false,
             onDetailScreenBackClick = logic.onDetailScreenBackClick,
             isFavoriteWorks = false,
-            onTopBarHeartClicked = logic.onTopBarHeartClicked
+            onTopBarHeartClick = logic.onTopBarHeartClick
         )
         if (isExpandedScreen) {
             HorizontalDetailScreen(

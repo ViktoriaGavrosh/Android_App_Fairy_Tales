@@ -7,6 +7,6 @@ data class UILogic(
     val onTabClick: (FolkWorkType) -> Unit = {},
     val onCardClick: (FolkWork) -> Unit = {},
     val onDetailScreenBackClick: () -> Unit = {},
-    val onHeartClicked: (FolkWork) -> Unit = {},
-    val onTopBarHeartClicked: () -> Unit = {}
+    val onHeartClick: (FolkWork) -> Unit = {},
+    val onTopBarHeartClick: () -> Unit = {}
 )

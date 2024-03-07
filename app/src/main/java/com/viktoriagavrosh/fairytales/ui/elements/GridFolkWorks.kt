@@ -20,7 +20,7 @@ fun GridFolkWorks(
     folkWorks: List<FolkWork>,
     isBlurImage: Boolean,
     onCardClick: (FolkWork) -> Unit,
-    onHeartClicked: (FolkWork) -> Unit,
+    onHeartClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -34,7 +34,7 @@ fun GridFolkWorks(
                 isBlurImage = isBlurImage,
                 folkWork = folkWork,
                 onCardClick = onCardClick,
-                onHeartClicked = onHeartClicked,
+                onHeartClick = onHeartClick,
                 modifier = Modifier.padding(
                     dimensionResource(id = R.dimen.padding_medium)
                 )
@@ -51,7 +51,7 @@ fun GridFolkWorksPreview() {
             isBlurImage = false,
             folkWorks = List(5) {MockData.fakeFolkWork},
             onCardClick = {},
-            onHeartClicked = {}
+            onHeartClick = {}
         )
     }
 }

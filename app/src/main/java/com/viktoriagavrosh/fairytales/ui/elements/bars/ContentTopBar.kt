@@ -26,7 +26,7 @@ fun ContentTopBar(
     isShowHomeScreen: Boolean,
     isFavoriteWorks: Boolean,
     onDetailScreenBackClick: () -> Unit,
-    onTopBarHeartClicked: () -> Unit,    // TODO my fix name "Click"
+    onTopBarHeartClick: () -> Unit,    // TODO my fix name "Click"
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -43,7 +43,7 @@ fun ContentTopBar(
             HomeScreenTopBar(
                 text = text,
                 isFavoriteWorks = isFavoriteWorks,
-                onTopBarHeartClicked = onTopBarHeartClicked
+                onTopBarHeartClick = onTopBarHeartClick
             )
         }
     }
@@ -53,7 +53,7 @@ fun ContentTopBar(
 private fun HomeScreenTopBar(
     text: String,
     isFavoriteWorks: Boolean,
-    onTopBarHeartClicked: () -> Unit,
+    onTopBarHeartClick: () -> Unit,
     //modifier: Modifier = Modifier
 ) {
     Text(
@@ -75,7 +75,7 @@ private fun HomeScreenTopBar(
         contentDescription = stringResource(R.string.favorite_folk_works),
         modifier = Modifier
             .clickable {
-                onTopBarHeartClicked()
+                onTopBarHeartClick()
             }
             .padding(end = dimensionResource(id = R.dimen.padding_medium))
             .size(dimensionResource(id = R.dimen.top_bar_icon_size))
@@ -120,7 +120,7 @@ fun ContentTopBarHomeScreenPreview() {
         isShowHomeScreen = true,
         onDetailScreenBackClick = {},
         isFavoriteWorks = false,
-        onTopBarHeartClicked = {}
+        onTopBarHeartClick = {}
     )
 }
 
@@ -132,6 +132,6 @@ fun ContentTopBarDetailScreenPreview() {
         isShowHomeScreen = false,
         onDetailScreenBackClick = {},
         isFavoriteWorks = false,
-        onTopBarHeartClicked = {}
+        onTopBarHeartClick = {}
     )
 }
