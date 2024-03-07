@@ -26,7 +26,7 @@ fun ContentTopBar(
     isShowHomeScreen: Boolean,
     isFavoriteWorks: Boolean,
     onDetailScreenBackClick: () -> Unit,
-    onTopBarHeartClick: () -> Unit,    // TODO my fix name "Click"
+    onTopBarHeartClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
