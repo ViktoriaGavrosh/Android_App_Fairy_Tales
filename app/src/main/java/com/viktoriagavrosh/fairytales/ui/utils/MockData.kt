@@ -7,7 +7,7 @@ object MockData {
         id = 0,
         genre = "story",
         title = "Story cat cat cat cat cat",
-        text = "Story",
+        text = "This is a very large story about one day.",
         answer = null,
         imageUri = null,
         audioUri = null,

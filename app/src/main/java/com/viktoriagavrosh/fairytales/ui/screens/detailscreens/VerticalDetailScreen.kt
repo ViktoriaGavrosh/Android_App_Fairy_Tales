@@ -33,7 +33,6 @@ fun VerticalDetailScreen(
 ) {
     Card(
         modifier = modifier
-
             .padding(dimensionResource(id = R.dimen.padding_medium))
             .verticalScroll(rememberScrollState()),
         colors = CardDefaults
@@ -68,7 +67,8 @@ private fun DetailContent(
                 title = folkWork.title,
                 imageUri = folkWork.imageUri ?: "",
                 isBlur = false,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))
+                modifier = Modifier.fillMaxWidth()
+                    .padding(dimensionResource(id = R.dimen.padding_small))
             )
         }
         TextDetail(
@@ -101,7 +101,7 @@ private fun DetailContent(
 }
 
 @Composable
-private fun TextDetail(
+fun TextDetail(
     text: String,
     modifier: Modifier = Modifier
 ) {

@@ -67,7 +67,8 @@ fun FolkWorkCard(
             FolkWorkImage(
                 title = folkWork.title,
                 imageUri = folkWork.imageUri ?: "",
-                isBlur = isBlurImage
+                isBlur = isBlurImage,
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }

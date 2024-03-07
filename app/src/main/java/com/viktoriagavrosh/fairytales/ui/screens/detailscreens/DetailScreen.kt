@@ -3,6 +3,7 @@ package com.viktoriagavrosh.fairytales.ui.screens.detailscreens
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,6 +23,7 @@ fun DetailScreen(
     folkWork: FolkWork,
     logic: UILogic,
     isPuzzleType: Boolean,
+    isStoryType: Boolean,
     modifier: Modifier = Modifier,
     isExpandedScreen: Boolean
 ) {
@@ -42,7 +44,8 @@ fun DetailScreen(
             HorizontalDetailScreen(
                 folkWork = folkWork,
                 isPuzzleType = isPuzzleType,
-                modifier = Modifier
+                isStoryType = isStoryType,
+                modifier = Modifier.fillMaxSize()
             )
         } else {
             VerticalDetailScreen(
@@ -65,7 +68,8 @@ fun Answer(
         FolkWorkImage(
             title = selectedWork.answer ?: "",
             imageUri = selectedWork.imageUri ?: "",
-            isBlur = false
+            isBlur = false,
+            modifier = Modifier.fillMaxWidth()
         )
         Text(
             text = selectedWork.answer ?: "",               // TODO my обработать по-другому
@@ -82,6 +86,7 @@ fun DetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
             isPuzzleType = true,
+            isStoryType = false,
             folkWork = MockData.fakeFolkWork,
             logic = UILogic(),
             isExpandedScreen = false
@@ -91,10 +96,11 @@ fun DetailScreenPreview() {
 
 @Preview(widthDp = 1000)
 @Composable
-fun HorizontalDetailScreenPreview() {
+fun DetailHorizontalScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            isPuzzleType = true,
+            isPuzzleType = false,
+            isStoryType = true,
             folkWork = MockData.fakeFolkWork,
             logic = UILogic(),
             isExpandedScreen = true

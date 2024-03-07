@@ -40,6 +40,7 @@ fun FairyTalesApp(
             folkWork = uiState.selectedWork,
             logic = logic,
             isPuzzleType = uiState.folkWorkType == FolkWorkType.Puzzle,
+            isStoryType = uiState.folkWorkType == FolkWorkType.Story,
             isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
             modifier = modifier
         )

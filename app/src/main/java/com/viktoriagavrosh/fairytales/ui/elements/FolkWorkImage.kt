@@ -1,7 +1,6 @@
 package com.viktoriagavrosh.fairytales.ui.elements
 
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -36,7 +35,6 @@ fun FolkWorkImage(
         contentScale = ContentScale.Crop,
         modifier = if (isBlur) {
             modifier
-                .fillMaxWidth()
                 .aspectRatio(1.5F)
                 .blur(
                     radiusX = 20.dp,
@@ -47,7 +45,6 @@ fun FolkWorkImage(
                 )
         } else {
             modifier
-                .fillMaxWidth()
                 .aspectRatio(1.5F)
                 .clip(
                     RoundedCornerShape(
