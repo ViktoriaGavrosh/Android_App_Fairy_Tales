@@ -33,6 +33,7 @@ fun GridFolkWorks(
             FolkWorkCard(
                 isBlurImage = isBlurImage,
                 folkWork = folkWork,
+                minLineText = 2,
                 onCardClick = onCardClick,
                 onHeartClick = onHeartClick,
                 modifier = Modifier.padding(
@@ -49,7 +50,9 @@ fun GridFolkWorksPreview() {
     FairyTalesTheme {
         GridFolkWorks(
             isBlurImage = false,
-            folkWorks = List(5) {MockData.fakeFolkWork},
+            folkWorks = listOf(MockData.fakeFolkWork,
+                MockData.fakeFolkWork.copy(title = "Story Story Story Story Story Story Story Story ")),
+            //List(5) {MockData.fakeFolkWork},
             onCardClick = {},
             onHeartClick = {}
         )

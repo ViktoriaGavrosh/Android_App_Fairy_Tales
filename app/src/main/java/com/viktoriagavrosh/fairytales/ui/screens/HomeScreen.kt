@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.fairytales.ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -40,7 +41,7 @@ fun HomeScreen(
                 isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
                 onCardClick = logic.onCardClick,
                 onHeartClick = logic.onHeartClick,
-                modifier = modifier
+                modifier = Modifier.fillMaxSize()
             )
         } else {
             ListFolkWorks(
@@ -48,7 +49,7 @@ fun HomeScreen(
                 isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
                 onCardClick = logic.onCardClick,
                 onHeartClick = logic.onHeartClick,
-                modifier = modifier
+                modifier = Modifier
             )
         }
     }

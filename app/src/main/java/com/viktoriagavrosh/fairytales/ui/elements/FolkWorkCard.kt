@@ -27,11 +27,12 @@ import com.viktoriagavrosh.fairytales.ui.utils.MockData
 
 @Composable
 fun FolkWorkCard(
+    modifier: Modifier = Modifier,
     folkWork: FolkWork,
     isBlurImage: Boolean,
+    minLineText: Int = 1,
     onCardClick: (FolkWork) -> Unit,
-    onHeartClick: (FolkWork) -> Unit,
-    modifier: Modifier = Modifier
+    onHeartClick: (FolkWork) -> Unit
 ) {
     Card(
         modifier = modifier
@@ -55,7 +56,8 @@ fun FolkWorkCard(
             CardText(
                 folkWork = folkWork,
                 onHeartClick = onHeartClick,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                minLineText = minLineText
             )
             FolkWorkImage(
                 title = folkWork.title,
@@ -71,6 +73,7 @@ fun FolkWorkCard(
 private fun CardText(
     folkWork: FolkWork,
     onHeartClick: (FolkWork) -> Unit,
+    minLineText: Int,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -81,7 +84,8 @@ private fun CardText(
         Text(
             text = folkWork.title,
             style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier.weight(1F)
+            modifier = Modifier.weight(1F),
+            minLines = minLineText
         )
         if (folkWork.isFavorite) {
             Icon(

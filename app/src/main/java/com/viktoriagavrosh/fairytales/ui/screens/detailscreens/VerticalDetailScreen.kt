@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
@@ -115,6 +116,29 @@ fun TextDetail(
             text = text,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))
+        )
+    }
+}
+
+@Composable
+fun Answer(
+    selectedWork: FolkWork,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        FolkWorkImage(
+            title = selectedWork.answer ?: "",
+            imageUri = selectedWork.imageUri ?: "",
+            isBlur = false,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = selectedWork.answer ?: "",               // TODO my обработать по-другому
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
         )
     }
 }
