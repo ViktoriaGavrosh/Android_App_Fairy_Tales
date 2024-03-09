@@ -8,7 +8,7 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
 
 @Database(
     entities = [FolkWork::class],
-    version = 1
+    version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun folkWorkDao(): FolkWorkDao
@@ -34,6 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
                 )
                     .createFromAsset("database/fairytales2.db")
                     //.addMigrations(migration_1_2)
+                    .fallbackToDestructiveMigration()
                     .build()
                     .also { Instance = it }
             }
