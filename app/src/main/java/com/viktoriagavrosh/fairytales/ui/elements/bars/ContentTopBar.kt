@@ -19,7 +19,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 
-
+/**
+ * App bar to display title and  conditionally display the back navigation
+ */
 @Composable
 fun ContentTopBar(
     text: String,
@@ -32,7 +34,7 @@ fun ContentTopBar(
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.Bottom
     ) {
         if (!isShowHomeScreen) {
             DetailScreenTopBar(
@@ -77,7 +79,10 @@ private fun HomeScreenTopBar(
             .clickable {
                 onTopBarHeartClick()
             }
-            .padding(end = dimensionResource(id = R.dimen.padding_medium))
+            .padding(
+                end = dimensionResource(id = R.dimen.padding_medium),
+                bottom = dimensionResource(id = R.dimen.padding_small)
+            )
             .size(dimensionResource(id = R.dimen.top_bar_icon_size))
     )
 }
@@ -85,11 +90,11 @@ private fun HomeScreenTopBar(
 @Composable
 private fun DetailScreenTopBar(
     text: String,
-    onDetailScreenBackClick: () -> Unit,
-    //modifier: Modifier = Modifier
+    onDetailScreenBackClick: () -> Unit
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.Bottom,
+        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_small))
     ) {
         IconButton(
             onClick = { onDetailScreenBackClick() },

@@ -12,6 +12,9 @@ import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
 
+/**
+ * Composable to display a list of [FolkWork]-s on compact and medium screens
+ */
 @Composable
 fun ListFolkWorks(
     folkWorks: List<FolkWork>,

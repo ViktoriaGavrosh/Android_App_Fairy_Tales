@@ -27,6 +27,9 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
 import com.viktoriagavrosh.fairytales.ui.utils.MockData
 
+/**
+ * Composable to display details of selected [FolkWork] on expanded screen
+ */
 @Composable
 fun HorizontalDetailScreen(
     folkWork: FolkWork,
@@ -74,7 +77,7 @@ fun HorizontalDetailScreen(
             }
             if (isPuzzleType) {
                 AnswerHorizontal(
-                    title = folkWork.title,
+                    answer = folkWork.answer ?: "",
                     imageUri = folkWork.imageUri ?: "",
                     modifier = Modifier
                         .padding(bottom = dimensionResource(id = R.dimen.padding_small))
@@ -97,7 +100,6 @@ private fun ImageHorizontal(
         FolkWorkImage(
             title = title,
             imageUri = imageUri,
-            isBlur = false,
             modifier = Modifier
                 .weight(2F)
                 .padding(top = dimensionResource(id = R.dimen.padding_small))
@@ -108,7 +110,7 @@ private fun ImageHorizontal(
 
 @Composable
 private fun AnswerHorizontal(
-    title: String,
+    answer: String,
     imageUri: String,
     modifier: Modifier = Modifier
 ) {
@@ -116,11 +118,18 @@ private fun AnswerHorizontal(
         mutableStateOf(false)
     }
     if (bigCard) {
-        ImageHorizontal(
-            title = title,
-            imageUri = imageUri,
-            modifier = modifier
-        )
+        Row {
+            Spacer(modifier = Modifier.weight(1F))
+            Answer(
+                answer = answer,
+                imageUri = imageUri,
+                isBigImage = false,
+                modifier = modifier
+                    .weight(2F)
+                    .padding(top = dimensionResource(id = R.dimen.padding_small))
+            )
+            Spacer(modifier = Modifier.weight(1F))
+        }
     } else {
         Button(
             onClick = { bigCard = true },

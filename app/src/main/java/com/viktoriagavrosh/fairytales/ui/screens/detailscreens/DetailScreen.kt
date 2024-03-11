@@ -4,15 +4,21 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.elements.bars.ContentTopBar
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.MockData
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
+/**
+ * Composable to display details of selected [FolkWork]
+ */
 @Composable
 fun DetailScreen(
     folkWork: FolkWork,
@@ -40,7 +46,9 @@ fun DetailScreen(
                 folkWork = folkWork,
                 isPuzzleType = isPuzzleType,
                 isStoryType = isStoryType,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(end = dimensionResource(id = R.dimen.right_padding_horizontal_screen))
             )
         } else {
             VerticalDetailScreen(

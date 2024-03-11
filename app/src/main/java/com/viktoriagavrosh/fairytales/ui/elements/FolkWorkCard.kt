@@ -25,6 +25,9 @@ import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.utils.MockData
 
+/**
+ * Card for display [FolkWork]
+ */
 @Composable
 fun FolkWorkCard(
     modifier: Modifier = Modifier,

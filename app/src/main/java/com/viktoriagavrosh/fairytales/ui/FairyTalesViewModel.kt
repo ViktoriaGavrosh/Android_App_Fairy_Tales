@@ -16,28 +16,22 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel to retrieve and update item from the [FolkWorkRepository]'s data source
+ */
 class FairyTalesViewModel(
     private val folkWorkRepository: FolkWorkRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(FairyTalesUiState())
     val uiState: StateFlow<FairyTalesUiState> = _uiState
 
-    /*
-       val allStoriesState: StateFlow<List<FolkWork>> = folkWorkRepository.getAllStories()
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5_000L),
-                initialValue = listOf()
-            )
-
-        fun getAllGamesStream() = folkWorkRepository.getAllGames()
-
-
-     */
     init {
         updateCompositionType(FolkWorkType.Story)
     }
 
+    /**
+     * Update [FairyTalesUiState] for navigation to DetailScreen
+     */
     fun navigateToDetailScreen(folkWork: FolkWork) {
         _uiState.update {
             it.copy(
@@ -47,6 +41,9 @@ class FairyTalesViewModel(
         }
     }
 
+    /**
+     * Update [FairyTalesUiState] for navigation to HomeScreen
+     */
     fun navigateToHomeScreen() {
         _uiState.update {
             it.copy(
@@ -55,8 +52,10 @@ class FairyTalesViewModel(
         }
     }
 
+    /**
+     * Update [FairyTalesUiState] for navigation between tabs
+     */
     fun updateCompositionType(folkWorkType: FolkWorkType) {
-
         val genre = getGenre(folkWorkType)
         val folkWorks = if (_uiState.value.isFavoriteWorks) {
             folkWorkRepository.getAllFavoriteWorks(genre)
@@ -80,6 +79,9 @@ class FairyTalesViewModel(
         }
     }
 
+    /**
+     * Update the value of an item field is_favorite in the data source
+     */
     fun updateWorkFavorite(folkWork: FolkWork) {
         val changedFavoriteState = !folkWork.isFavorite
         val folkWorkType = _uiState.value.folkWorkType
@@ -89,6 +91,9 @@ class FairyTalesViewModel(
         updateCompositionType(folkWorkType)
     }
 
+    /**
+     * Update [FairyTalesUiState] for navigation to Favorite List
+     */
     fun updateListFavoriteWorks() {
         val newState = !_uiState.value.isFavoriteWorks
         val folkWorkType = _uiState.value.folkWorkType
@@ -119,9 +124,12 @@ class FairyTalesViewModel(
     }
 }
 
+/**
+ * Holds the UI state.
+ */
 data class FairyTalesUiState(
     val folkWorkType: FolkWorkType = FolkWorkType.Story,
-    val folkWorks: List<FolkWork> = listOf(                 // TODO my поменять потом !!!
+    val folkWorks: List<FolkWork> = listOf(
         FolkWork(
             id = 0,
             genre = "story",

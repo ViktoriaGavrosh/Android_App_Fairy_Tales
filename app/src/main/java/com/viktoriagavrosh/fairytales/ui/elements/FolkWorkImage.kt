@@ -15,13 +15,17 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.viktoriagavrosh.fairytales.R
+import com.viktoriagavrosh.fairytales.model.FolkWork
 
+/**
+ * Composable that represents an image of [FolkWork]
+ */
 @Composable
 fun FolkWorkImage(
+    modifier: Modifier = Modifier,
     title: String,
     imageUri: String,
-    isBlur: Boolean,
-    modifier: Modifier = Modifier
+    isBlur: Boolean = false
 ) {
     AsyncImage(
         model = ImageRequest

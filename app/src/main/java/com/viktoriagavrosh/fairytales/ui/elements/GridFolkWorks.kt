@@ -15,6 +15,9 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.MockData
 
+/**
+ * Composable to display a grid of [FolkWork]-s on expanded screen
+ */
 @Composable
 fun GridFolkWorks(
     folkWorks: List<FolkWork>,
@@ -50,8 +53,10 @@ fun GridFolkWorksPreview() {
     FairyTalesTheme {
         GridFolkWorks(
             isBlurImage = false,
-            folkWorks = listOf(MockData.fakeFolkWork,
-                MockData.fakeFolkWork.copy(title = "Story Story Story Story Story Story Story Story ")),
+            folkWorks = listOf(
+                MockData.fakeFolkWork,
+                MockData.fakeFolkWork.copy(title = "Story Story Story Story Story Story Story Story ")
+            ),
             //List(5) {MockData.fakeFolkWork},
             onCardClick = {},
             onHeartClick = {}

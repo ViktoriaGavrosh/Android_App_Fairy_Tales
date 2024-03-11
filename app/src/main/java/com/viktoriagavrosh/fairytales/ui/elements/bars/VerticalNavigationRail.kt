@@ -14,6 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 
+/**
+ * App bar to display tabs on medium screen
+ */
 @Composable
 fun VerticalNavigationRail(
     selectedType: FolkWorkType,

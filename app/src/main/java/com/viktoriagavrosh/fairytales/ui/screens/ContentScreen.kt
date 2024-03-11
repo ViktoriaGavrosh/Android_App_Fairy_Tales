@@ -15,6 +15,9 @@ import com.viktoriagavrosh.fairytales.ui.elements.bars.ExpandedScreenVerticalBar
 import com.viktoriagavrosh.fairytales.ui.elements.bars.VerticalNavigationRail
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
+/**
+ * Composable to display different screens depending on window size
+ */
 @Composable
 fun ContentScreen(
     uiState: FairyTalesUiState,

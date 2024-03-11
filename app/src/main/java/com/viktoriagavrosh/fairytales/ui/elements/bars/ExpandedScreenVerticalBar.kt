@@ -23,8 +23,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 
-
-
+/**
+ * App bar to display tabs on expanded screen
+ */
 @Composable
 fun ExpandedScreenVerticalBar(
     selectedType: FolkWorkType,
@@ -92,5 +93,5 @@ fun ExpandedScreenVerticalBarPreview() {
     ExpandedScreenVerticalBar(
         selectedType = FolkWorkType.Story,
         onTabClick = {}
-        )
+    )
 }

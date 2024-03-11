@@ -13,7 +13,6 @@ val Popping = FontFamily(
     Font(R.font.poppins_bold, FontWeight.Bold)
 )
 
-// Set of Material typography styles to start with
 val Typography = Typography(
     displayLarge = TextStyle(
         fontFamily = Popping,

@@ -26,6 +26,9 @@ import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
 
+/**
+ * Composable to display details of selected [FolkWork] on compact and medium screens
+ */
 @Composable
 fun VerticalDetailScreen(
     folkWork: FolkWork,
@@ -68,7 +71,8 @@ private fun DetailContent(
                 title = folkWork.title,
                 imageUri = folkWork.imageUri ?: "",
                 isBlur = false,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(dimensionResource(id = R.dimen.padding_small))
             )
         }
@@ -79,7 +83,9 @@ private fun DetailContent(
         if (isPuzzleType) {
             if (bigCard) {
                 Answer(
-                    selectedWork = folkWork,
+                    answer = folkWork.answer ?: "",
+                    imageUri = folkWork.imageUri ?: "",
+                    isBigImage = true,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = dimensionResource(id = R.dimen.padding_medium))
@@ -101,6 +107,9 @@ private fun DetailContent(
     }
 }
 
+/**
+ * Composable to display title [FolkWork]
+ */
 @Composable
 fun TextDetail(
     text: String,
@@ -120,22 +129,30 @@ fun TextDetail(
     }
 }
 
+/**
+ * Composable to display answer of puzzle
+ */
 @Composable
 fun Answer(
-    selectedWork: FolkWork,
+    answer: String,
+    imageUri: String,
+    isBigImage: Boolean,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
     ) {
         FolkWorkImage(
-            title = selectedWork.answer ?: "",
-            imageUri = selectedWork.imageUri ?: "",
-            isBlur = false,
-            modifier = Modifier.fillMaxWidth()
+            title = answer,
+            imageUri = imageUri,
+            modifier = if (isBigImage) {
+                Modifier.fillMaxWidth()
+            } else {
+                Modifier
+            }
         )
         Text(
-            text = selectedWork.answer ?: "",               // TODO my обработать по-другому
+            text = answer,
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center

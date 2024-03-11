@@ -83,7 +83,7 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun FairyTalesTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     val colors = if (!useDarkTheme) {
         LightColors
@@ -94,7 +94,7 @@ fun FairyTalesTheme(
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            //setUpEdgeToEdge(view, useDarkTheme)
+            setUpEdgeToEdge(view, useDarkTheme)
             val window = (view.context as Activity).window
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
                 useDarkTheme

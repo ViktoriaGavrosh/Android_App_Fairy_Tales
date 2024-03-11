@@ -12,7 +12,9 @@ import com.viktoriagavrosh.fairytales.ui.screens.ContentScreen
 import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 
-
+/**
+ * Top level composable that represents screens for the application
+ */
 @Composable
 fun FairyTalesApp(
     windowSize: WindowWidthSizeClass,

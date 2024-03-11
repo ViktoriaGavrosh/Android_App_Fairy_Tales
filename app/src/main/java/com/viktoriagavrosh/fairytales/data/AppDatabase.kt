@@ -6,6 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.viktoriagavrosh.fairytales.model.FolkWork
 
+/**
+ * Database class with a singleton Instance object.
+ */
 @Database(
     entities = [FolkWork::class],
     version = 2
@@ -17,14 +20,6 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var Instance: AppDatabase? = null
 
-        /*
-        private val migration_1_2 = object : Migration(1,2) {
-            override fun migrate(db: SupportSQLiteDatabase) {
-            }
-        }
-
-         */
-
         fun getDatabase(context: Context): AppDatabase {
             return Instance ?: synchronized(this) {
                 Room.databaseBuilder(
@@ -33,7 +28,6 @@ abstract class AppDatabase : RoomDatabase() {
                     "fairytales"
                 )
                     .createFromAsset("database/fairytales2.db")
-                    //.addMigrations(migration_1_2)
                     .fallbackToDestructiveMigration()
                     .build()
                     .also { Instance = it }

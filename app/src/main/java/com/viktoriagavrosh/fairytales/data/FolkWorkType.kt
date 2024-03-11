@@ -3,6 +3,9 @@ package com.viktoriagavrosh.fairytales.data
 import androidx.annotation.DrawableRes
 import com.viktoriagavrosh.fairytales.R
 
+/**
+ * Enum class to describe the destination of tab navigation
+ */
 enum class FolkWorkType(
     @DrawableRes val iconId: Int,
     val textId: Int

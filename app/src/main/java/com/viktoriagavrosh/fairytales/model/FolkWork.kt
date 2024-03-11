@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entity data class represents a single row in the database
+ */
 @Entity(tableName = "library")
 data class FolkWork(
     @PrimaryKey(autoGenerate = true)

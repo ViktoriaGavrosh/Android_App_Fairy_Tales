@@ -5,6 +5,9 @@ import androidx.room.Query
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Database access object to access the App Database
+ */
 @Dao
 interface FolkWorkDao {
     @Query("SELECT * FROM library WHERE genre = :genre")
