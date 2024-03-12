@@ -96,13 +96,17 @@ class FairyTalesViewModel(
      */
     fun updateListFavoriteWorks() {
         val newState = !_uiState.value.isFavoriteWorks
+        changeIsFavoriteWorks(newState)
         val folkWorkType = _uiState.value.folkWorkType
+        updateCompositionType(folkWorkType)
+    }
+
+    internal fun changeIsFavoriteWorks(isFavoriteWorks: Boolean) {
         _uiState.update {
             it.copy(
-                isFavoriteWorks = newState
+                isFavoriteWorks = isFavoriteWorks
             )
         }
-        updateCompositionType(folkWorkType)
     }
 
     private fun getGenre(folkWorkType: FolkWorkType): String = when (folkWorkType) {

@@ -5,6 +5,18 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="compactDevice_verifyUsingBottomNavigation()">
+        <State />
+      </entry>
+      <entry key="daoGetAllFavoriteWorks_returnsAllFavoriteStoriesFromDb()">
+        <State />
+      </entry>
+      <entry key="daoUpdateFavoriteWork_updatedItemInDb()">
+        <State />
+      </entry>
+      <entry key="expandedDevice_verifyUsingNavigationDrawer()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

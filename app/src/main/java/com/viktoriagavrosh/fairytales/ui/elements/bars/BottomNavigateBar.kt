@@ -7,6 +7,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,8 +24,9 @@ fun BottomNavigateBar(
     onTabClick: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val bottomNavigateBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
     NavigationBar(
-        modifier = modifier
+        modifier = modifier.testTag(bottomNavigateBarTestTag)
     ) {
         for (item in FolkWorkType.entries) {
             NavigationBarItem(

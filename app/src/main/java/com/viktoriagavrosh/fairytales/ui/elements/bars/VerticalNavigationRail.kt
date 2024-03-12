@@ -7,6 +7,7 @@ import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,9 +24,13 @@ fun VerticalNavigationRail(
     onTabClick: (FolkWorkType) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val verticalNavigationRailTestTag = stringResource(
+        id = R.string.medium_screen_test_tag
+    )
     NavigationRail(
         modifier = modifier
             .padding(top = dimensionResource(id = R.dimen.padding_small))
+            .testTag(verticalNavigationRailTestTag)
     ) {
         for (item in FolkWorkType.entries) {
             NavigationRailItem(

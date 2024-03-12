@@ -20,4 +20,7 @@
     <string name="not_favorite">Not favorite</string>
     <string name="favorite_folk_works">Favorite folk works</string>
 
+    <string name="expanded_screen_test_tag">expanded screen</string>
+    <string name="medium_screen_test_tag">medium screen</string>
+    <string name="compact_screen_test_tag">compact screen</string>
 </resources>

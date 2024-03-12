@@ -16,6 +16,7 @@ import androidx.compose.material3.PermanentDrawerSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,6 +32,9 @@ fun ExpandedScreenVerticalBar(
     selectedType: FolkWorkType,
     onTabClick: (FolkWorkType) -> Unit
 ) {
+    val expandedScreenVerticalBarTestTag = stringResource(
+        id = R.string.expanded_screen_test_tag
+    )
     PermanentDrawerSheet(
         modifier = Modifier.width(
             dimensionResource(id = R.dimen.permanent_drawer_sheet_width)
@@ -46,6 +50,7 @@ fun ExpandedScreenVerticalBar(
                     color = MaterialTheme.colorScheme.inverseOnSurface
                 )
                 .padding(dimensionResource(id = R.dimen.padding_small))
+                .testTag(expandedScreenVerticalBarTestTag)
         )
     }
 }

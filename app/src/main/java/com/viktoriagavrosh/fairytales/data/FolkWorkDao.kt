@@ -1,6 +1,8 @@
 package com.viktoriagavrosh.fairytales.data
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import kotlinx.coroutines.flow.Flow
@@ -18,4 +20,7 @@ interface FolkWorkDao {
 
     @Query("UPDATE library SET is_favorite = :isFavorite WHERE id = :id")
     suspend fun updateFavoriteWork(id: Int, isFavorite: Int)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(folkWork: FolkWork)
 }
