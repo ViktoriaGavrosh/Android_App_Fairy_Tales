@@ -19,8 +19,12 @@
     <string name="favorite">favorite</string>
     <string name="not_favorite">Not favorite</string>
     <string name="favorite_folk_works">Favorite folk works</string>
+    <string name="all_folk_works">All folk works</string>
 
     <string name="expanded_screen_test_tag">expanded screen</string>
     <string name="medium_screen_test_tag">medium screen</string>
     <string name="compact_screen_test_tag">compact screen</string>
+    <string name="back">back</string>
+    <string name="horizontal_detail_screen">Horizontal detail screen</string>
+    <string name="vertical_detail_screen">Vertical detail screen</string>
 </resources>

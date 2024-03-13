@@ -74,7 +74,11 @@ private fun HomeScreenTopBar(
         } else {
             painterResource(id = R.drawable.ic_favorite_false)
         },
-        contentDescription = stringResource(R.string.favorite_folk_works),
+        contentDescription = if (isFavoriteWorks) {
+            stringResource(R.string.favorite_folk_works)
+        } else {
+            stringResource(R.string.all_folk_works)
+        },
         modifier = Modifier
             .clickable {
                 onTopBarHeartClick()
@@ -104,7 +108,7 @@ private fun DetailScreenTopBar(
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_back),
-                contentDescription = null,
+                contentDescription = stringResource(R.string.back),
                 modifier = Modifier.size(dimensionResource(id = R.dimen.top_bar_icon_size))
             )
         }

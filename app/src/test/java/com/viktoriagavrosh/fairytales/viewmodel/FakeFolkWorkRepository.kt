@@ -8,8 +8,6 @@ import kotlinx.coroutines.flow.flow
 
 class FakeFolkWorkRepository : FolkWorkRepository {
 
-    //private val fakeFlow = MutableSharedFlow<List<FolkWork>>()
-    //suspend fun emit(value: List<FolkWork>) = fakeFlow.emit(value)
     private val fakeListFolkWork = FakeSource().fakeListFolkWork
 
     override fun getAllWorks(genre: String): Flow<List<FolkWork>> = flow {

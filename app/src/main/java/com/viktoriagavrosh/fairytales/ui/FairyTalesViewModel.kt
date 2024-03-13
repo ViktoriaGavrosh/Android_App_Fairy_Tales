@@ -138,8 +138,8 @@ data class FairyTalesUiState(
             id = 0,
             genre = "story",
             title = "Story",
-            text = "Story",
-            answer = null,
+            text = "Text",
+            answer = "Answer",
             imageUri = null,
             audioUri = null,
             isFavorite = false

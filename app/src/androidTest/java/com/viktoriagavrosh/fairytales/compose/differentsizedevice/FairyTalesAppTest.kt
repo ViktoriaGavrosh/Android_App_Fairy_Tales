@@ -1,14 +1,10 @@
 package com.viktoriagavrosh.fairytales.compose.differentsizedevice
 
 import androidx.activity.ComponentActivity
-import androidx.annotation.StringRes
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.ui.test.SemanticsNodeInteraction
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.viktoriagavrosh.fairytales.R
+import com.viktoriagavrosh.fairytales.compose.utils.onNodeWithTagForStringId
 import com.viktoriagavrosh.fairytales.ui.FairyTalesApp
 import org.junit.Rule
 import org.junit.Test
@@ -45,9 +41,4 @@ class FairyTalesAppTest {
         }
         composeTestRule.onNodeWithTagForStringId(R.string.expanded_screen_test_tag)
     }
-
-    private fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.onNodeWithTagForStringId(
-        @StringRes id: Int
-    ): SemanticsNodeInteraction =
-        onNodeWithTag(activity.getString(id))
 }

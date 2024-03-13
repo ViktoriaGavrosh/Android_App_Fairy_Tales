@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
@@ -49,12 +51,15 @@ fun DetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(end = dimensionResource(id = R.dimen.right_padding_horizontal_screen))
+                    .testTag(stringResource(R.string.horizontal_detail_screen))
             )
         } else {
             VerticalDetailScreen(
                 folkWork = folkWork,
                 isPuzzleType = isPuzzleType,
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .testTag(stringResource(R.string.vertical_detail_screen))
             )
         }
     }

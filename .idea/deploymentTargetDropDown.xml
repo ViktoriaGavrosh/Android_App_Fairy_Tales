@@ -5,16 +5,19 @@
       <entry key="app">
         <State />
       </entry>
-      <entry key="compactDevice_verifyUsingBottomNavigation()">
+      <entry key="detailScreen_puzzleType_showAnswer()">
         <State />
       </entry>
-      <entry key="daoGetAllFavoriteWorks_returnsAllFavoriteStoriesFromDb()">
+      <entry key="folkWorkCard_verifyDarkHeart()">
         <State />
       </entry>
-      <entry key="daoUpdateFavoriteWork_updatedItemInDb()">
+      <entry key="navigation_bottomNavigationBar_navigateByTabs()">
         <State />
       </entry>
-      <entry key="expandedDevice_verifyUsingNavigationDrawer()">
+      <entry key="navigation_clickCard_navigateFromHomeScreenToDetailScreen()">
+        <State />
+      </entry>
+      <entry key="navigation_clickCard_navigateHomeScreenToDetailScreen()">
         <State />
       </entry>
     </value>
