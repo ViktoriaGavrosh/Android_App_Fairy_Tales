@@ -78,7 +78,9 @@ private fun DetailContent(
         }
         TextDetail(
             text = folkWork.text,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = dimensionResource(id = R.dimen.padding_medium))
         )
         if (isPuzzleType) {
             if (bigCard) {
