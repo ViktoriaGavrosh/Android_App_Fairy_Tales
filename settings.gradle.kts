@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "FairyTales"
 include(":app")
- 
+include(":database")

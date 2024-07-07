@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.fairytales.data
 
 import android.content.Context
+import com.viktoriagavrosh.database.getDatabase
 
 /**
  * App container for Dependency injection
@@ -18,6 +19,6 @@ class AppDataContainer(private val context: Context) : AppContainer {
      * Implementation for [FolkWorkRepository]
      */
     override val folkWorkRepository: FolkWorkRepository by lazy {
-        OfflineForkWorkRepository(AppDatabase.getDatabase(context).folkWorkDao())
+        OfflineForkWorkRepository(getDatabase(context).folkWorkDao)
     }
 }

@@ -1,10 +1,10 @@
-package com.viktoriagavrosh.fairytales.data
+package com.viktoriagavrosh.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.database.model.FolkWorkDB
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -13,14 +13,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FolkWorkDao {
     @Query("SELECT * FROM library WHERE genre = :genre")
-    fun getAllWorks(genre: String): Flow<List<FolkWork>>
+    fun getAllWorks(genre: String): Flow<List<FolkWorkDB>>
 
     @Query("SELECT * FROM library WHERE genre = :genre AND is_favorite = 1")
-    fun getAllFavoriteWorks(genre: String): Flow<List<FolkWork>>
+    fun getAllFavoriteWorks(genre: String): Flow<List<FolkWorkDB>>
 
     @Query("UPDATE library SET is_favorite = :isFavorite WHERE id = :id")
     suspend fun updateFavoriteWork(id: Int, isFavorite: Int)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(folkWork: FolkWork)
+    suspend fun insert(folkWork: FolkWorkDB)
 }
