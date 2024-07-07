@@ -15,7 +15,7 @@ data class FolkWork(
     val title: String,
     val text: String,
     val answer: String?,
-    @ColumnInfo(name = "image_uri") val imageUri: String?,
     @ColumnInfo(name = "audio_uri") val audioUri: String?,
+    @ColumnInfo(name = "image_uri") val imageUri: String?,
     @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
 )
