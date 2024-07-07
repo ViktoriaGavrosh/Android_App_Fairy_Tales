@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version "2.0.0-1.0.21"
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
 }
 
@@ -50,14 +49,11 @@ android {
 }
 
 dependencies {
-
-    //Room
-    implementation("androidx.room:room-runtime:${rootProject.extra["room_version"]}")
-    ksp("androidx.room:room-compiler:${rootProject.extra["room_version"]}")
-    implementation("androidx.room:room-ktx:${rootProject.extra["room_version"]}")
-
     // Coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // Modules
+    implementation(project(":database"))
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")

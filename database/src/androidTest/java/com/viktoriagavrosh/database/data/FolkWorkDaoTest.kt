@@ -1,10 +1,12 @@
-package com.viktoriagavrosh.fairytales.data
+package com.viktoriagavrosh.database.data
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.database.AppRoomDatabase
+import com.viktoriagavrosh.database.dao.FolkWorkDao
+import com.viktoriagavrosh.database.model.FolkWorkDB
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -18,8 +20,8 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 class FolkWorkDaoTest {
     private lateinit var folkWorkDao: FolkWorkDao
-    private lateinit var appDatabase: AppDatabase
-    private val folkWork1 = FolkWork(
+    private lateinit var appDatabase: AppRoomDatabase
+    private val folkWork1 = FolkWorkDB(
         id = 1,
         genre = "story",
         title = "Title",
@@ -29,7 +31,7 @@ class FolkWorkDaoTest {
         audioUri = null,
         isFavorite = false
     )
-    private val folkWork2 = FolkWork(
+    private val folkWork2 = FolkWorkDB(
         id = 2,
         genre = "story",
         title = "Title2",
@@ -39,7 +41,7 @@ class FolkWorkDaoTest {
         audioUri = null,
         isFavorite = true
     )
-    private val folkWork3 = FolkWork(
+    private val folkWork3 = FolkWorkDB(
         id = 3,
         genre = "puzzle",
         title = "Title3",
@@ -53,7 +55,7 @@ class FolkWorkDaoTest {
     @Before
     fun createDb() {
         val context: Context = ApplicationProvider.getApplicationContext()
-        appDatabase = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
+        appDatabase = Room.inMemoryDatabaseBuilder(context, AppRoomDatabase::class.java)
             .allowMainThreadQueries()
             .build()
         folkWorkDao = appDatabase.folkWorkDao()

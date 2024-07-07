@@ -35,9 +35,10 @@ fun ListFolkWorks(
                 folkWork = folkWork,
                 onCardClick = onCardClick,
                 onHeartClick = onHeartClick,
-                modifier = Modifier.padding(
-                    dimensionResource(id = R.dimen.padding_medium)
-                )
+                modifier = Modifier
+                    .padding(
+                        dimensionResource(id = R.dimen.padding_medium)
+                    )
                     .testTag(folkWork.id.toString())
             )
         }
