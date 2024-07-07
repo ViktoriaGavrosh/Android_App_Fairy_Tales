@@ -5,13 +5,13 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="navigation_clickHeartOnTopBar_navigateToFavoriteList()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="navigation_clickCard_navigateHomeScreenToDetailScreen()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="All Tests">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="Tests in 'com.viktoriagavrosh.fairytales.compose.differentsizedevice'">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="Tests in 'com.viktoriagavrosh.fairytales.compose.navigation'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
