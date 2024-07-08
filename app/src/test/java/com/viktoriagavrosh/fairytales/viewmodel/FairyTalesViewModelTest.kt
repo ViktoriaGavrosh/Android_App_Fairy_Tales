@@ -3,6 +3,7 @@ package com.viktoriagavrosh.fairytales.viewmodel
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.fake.FakeSource
 import com.viktoriagavrosh.fairytales.ui.FairyTalesViewModel
+import com.viktoriagavrosh.fairytales.ui.toFolkWork
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -19,7 +20,7 @@ class FairyTalesViewModelTest {
                 folkWorkRepository = FakeFolkWorkRepository()
             )
             assertEquals(
-                FakeSource().fakeListFolkWork[0],
+                FakeSource().fakeListFolkWork[0].toFolkWork(),
                 viewModel.uiState.value.selectedWork
             )
         }
@@ -27,7 +28,7 @@ class FairyTalesViewModelTest {
 
     @Test
     fun fairyTalesViewModel_navigateToDetailScreen_updateUiState() {
-        val expectedFolkWork = FakeSource().fakeListFolkWork[1]
+        val expectedFolkWork = FakeSource().fakeListFolkWork[1].toFolkWork()
         runTest {
             val viewModel = FairyTalesViewModel(
                 folkWorkRepository = FakeFolkWorkRepository()
@@ -60,7 +61,7 @@ class FairyTalesViewModelTest {
 
     @Test
     fun fairyTalesViewModel_updateCompositionType_successUpdateUiState() {
-        val expectedFolkWork = FakeSource().fakeListFolkWork[1]
+        val expectedFolkWork = FakeSource().fakeListFolkWork[1].toFolkWork()
         val expectedFolkWorkType = FolkWorkType.Game
         runTest {
             val viewModel = FairyTalesViewModel(
@@ -84,7 +85,7 @@ class FairyTalesViewModelTest {
 
     @Test
     fun fairyTalesViewModel_updateCompositionType_updateUiStateWithEmptyList() {
-        val expectedFolkWork = FakeSource().fakeListFolkWork[0]
+        val expectedFolkWork = FakeSource().fakeListFolkWork[0].toFolkWork()
         val expectedFolkWorkType = FolkWorkType.Puzzle
         runTest {
             val viewModel = FairyTalesViewModel(
@@ -108,7 +109,7 @@ class FairyTalesViewModelTest {
 
     @Test
     fun fairyTalesViewModel_updateCompositionType_successUpdateUiStateWithFavoriteList() {
-        val newFolkWork = FakeSource().fakeListFolkWork[3]
+        val newFolkWork = FakeSource().fakeListFolkWork[3].toFolkWork()
         val expectedFolkWorkType = FolkWorkType.Game
         runTest {
             val viewModel = FairyTalesViewModel(
@@ -135,7 +136,7 @@ class FairyTalesViewModelTest {
 
     @Test
     fun fairyTalesViewModel_updateWorkFavorite_updateSelectedWork() {
-        val folkWork = FakeSource().fakeListFolkWork[0]
+        val folkWork = FakeSource().fakeListFolkWork[0].toFolkWork()
         runTest {
             val viewModel = FairyTalesViewModel(
                 folkWorkRepository = FakeFolkWorkRepository()
@@ -151,7 +152,7 @@ class FairyTalesViewModelTest {
 
     @Test
     fun fairyTalesViewModel_updateWorkFavorite_doubleUpdateSelectedWork() {
-        val folkWork = FakeSource().fakeListFolkWork[0]
+        val folkWork = FakeSource().fakeListFolkWork[0].toFolkWork()
         runTest {
             val viewModel = FairyTalesViewModel(
                 folkWorkRepository = FakeFolkWorkRepository()
