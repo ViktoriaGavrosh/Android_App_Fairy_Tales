@@ -1,24 +1,24 @@
-package com.viktoriagavrosh.fairytales.data
+package com.viktoriagavrosh.repositories
 
 import com.viktoriagavrosh.database.dao.FolkWorkDao
 import com.viktoriagavrosh.database.model.FolkWorkDB
-import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.fairytales.model.Tale
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /**
- * Repository that provides insert, update, delete and retrieve of [FolkWork] from a given data source.
+ * Repository that provides insert, update, delete and retrieve of [Tale] from a given data source.
  */
 interface FolkWorkRepository {
     /**
      * Retrieve all the items from the given data source by genre
      */
-    fun getAllWorks(genre: String): Flow<List<FolkWork>>
+    fun getAllWorks(genre: String): Flow<List<Tale>>
 
     /**
      * Retrieve all the favorite items from the given data source by genre
      */
-    fun getAllFavoriteWorks(genre: String): Flow<List<FolkWork>>
+    fun getAllFavoriteWorks(genre: String): Flow<List<Tale>>
 
     /**
      * Update the value of an item field is_favorite in the data source
@@ -34,11 +34,11 @@ class OfflineForkWorkRepository(private val folkWorkDao: FolkWorkDao) : FolkWork
     /**
      * Retrieve all the items from the given data source by genre
      */
-    override fun getAllWorks(genre: String): Flow<List<FolkWork>> {
+    override fun getAllWorks(genre: String): Flow<List<Tale>> {
         return folkWorkDao.getAllWorks(genre)
             .map { folkWorks ->
                 folkWorks.map { folkWorkDB ->
-                    folkWorkDB.toFolkWork()
+                    folkWorkDB.toTale()
                 }
             }
     }
@@ -46,11 +46,11 @@ class OfflineForkWorkRepository(private val folkWorkDao: FolkWorkDao) : FolkWork
     /**
      * Retrieve all the favorite items from the given data source by genre
      */
-    override fun getAllFavoriteWorks(genre: String): Flow<List<FolkWork>> {
+    override fun getAllFavoriteWorks(genre: String): Flow<List<Tale>> {
         return folkWorkDao.getAllFavoriteWorks(genre)
             .map { folkWorks ->
                 folkWorks.map { folkWorkDB ->
-                    folkWorkDB.toFolkWork()
+                    folkWorkDB.toTale()
                 }
             }
     }
@@ -64,8 +64,8 @@ class OfflineForkWorkRepository(private val folkWorkDao: FolkWorkDao) : FolkWork
     }
 }
 
-fun FolkWorkDB.toFolkWork(): FolkWork {
-    return FolkWork(
+fun FolkWorkDB.toTale(): Tale {
+    return Tale(
         id = id,
         genre = genre,
         title = title,

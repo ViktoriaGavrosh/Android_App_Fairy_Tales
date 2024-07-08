@@ -2,6 +2,8 @@ package com.viktoriagavrosh.fairytales.data
 
 import android.content.Context
 import com.viktoriagavrosh.database.getDatabase
+import com.viktoriagavrosh.repositories.FolkWorkRepository
+import com.viktoriagavrosh.repositories.OfflineForkWorkRepository
 
 /**
  * App container for Dependency injection

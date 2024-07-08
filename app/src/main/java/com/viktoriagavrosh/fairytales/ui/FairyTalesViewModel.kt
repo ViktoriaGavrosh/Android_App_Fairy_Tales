@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.viktoriagavrosh.fairytales.FairyTalesApplication
-import com.viktoriagavrosh.fairytales.data.FolkWorkRepository
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.fairytales.model.Tale
+import com.viktoriagavrosh.repositories.FolkWorkRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -58,9 +61,9 @@ class FairyTalesViewModel(
     fun updateCompositionType(folkWorkType: FolkWorkType) {
         val genre = getGenre(folkWorkType)
         val folkWorks = if (_uiState.value.isFavoriteWorks) {
-            folkWorkRepository.getAllFavoriteWorks(genre)
+            folkWorkRepository.getAllFavoriteWorks(genre).toFlowListFolkWork()
         } else {
-            folkWorkRepository.getAllWorks(genre)
+            folkWorkRepository.getAllWorks(genre).toFlowListFolkWork()
         }
 
         var selectedWork = _uiState.value.selectedWork
@@ -150,3 +153,23 @@ data class FairyTalesUiState(
     val isFavoriteWorks: Boolean = false
 )
 
+fun Tale.toFolkWork(): FolkWork {
+    return FolkWork(
+        id = id,
+        genre = genre,
+        title = title,
+        text = text,
+        answer = answer,
+        imageUri = imageUri,
+        audioUri = audioUri,
+        isFavorite = isFavorite
+    )
+}
+
+private fun Flow<List<Tale>>.toFlowListFolkWork(): Flow<List<FolkWork>> {
+    return this.map { tales ->
+        tales.map { tale ->
+            tale.toFolkWork()
+        }
+    }
+}
