@@ -58,7 +58,7 @@ class FairyTalesViewModel(
     fun updateCompositionType(folkWorkType: FolkWorkType) {
         val genre = getGenre(folkWorkType)
         val folkWorks = if (_uiState.value.isFavoriteWorks) {
-            folkWorkRepository.getAllFavoriteWorks(genre)
+            // folkWorkRepository.getAllFavoriteWorks(genre)
         } else {
             folkWorkRepository.getAllWorks(genre)
         }
