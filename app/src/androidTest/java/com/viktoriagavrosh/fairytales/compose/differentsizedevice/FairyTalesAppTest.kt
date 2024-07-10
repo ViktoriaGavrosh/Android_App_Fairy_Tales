@@ -5,7 +5,7 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.compose.utils.onNodeWithTagForStringId
-import com.viktoriagavrosh.fairytales.ui.FairyTalesApp
+import com.viktoriagavrosh.ui.uiscreens.FairyTalesApp
 import org.junit.Rule
 import org.junit.Test
 

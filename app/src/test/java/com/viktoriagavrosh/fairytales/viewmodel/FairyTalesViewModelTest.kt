@@ -2,8 +2,8 @@ package com.viktoriagavrosh.fairytales.viewmodel
 
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.fake.FakeSource
-import com.viktoriagavrosh.fairytales.ui.FairyTalesViewModel
-import com.viktoriagavrosh.fairytales.ui.toFolkWork
+import com.viktoriagavrosh.ui.uiscreens.FairyTalesViewModel
+import com.viktoriagavrosh.ui.uiscreens.toFolkWork
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule

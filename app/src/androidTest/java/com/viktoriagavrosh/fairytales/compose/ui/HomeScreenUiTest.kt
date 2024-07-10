@@ -6,7 +6,7 @@ import androidx.compose.ui.test.onNodeWithText
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.compose.utils.onNodeWithContentDescriptionForStringId
 import com.viktoriagavrosh.fairytales.data.FolkWorkType
-import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
+import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.screens.HomeScreen
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic

@@ -11,7 +11,7 @@ import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.compose.differentsizedevice.TestCompactWidth
 import com.viktoriagavrosh.fairytales.compose.utils.onNodeWithContentDescriptionForStringId
 import com.viktoriagavrosh.fairytales.compose.utils.onNodeWithTagForStringId
-import com.viktoriagavrosh.fairytales.ui.FairyTalesApp
+import com.viktoriagavrosh.ui.uiscreens.FairyTalesApp
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test
