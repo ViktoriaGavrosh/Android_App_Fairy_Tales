@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.viewmodel
+package com.viktoriagavrosh.ui.viewmodel
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

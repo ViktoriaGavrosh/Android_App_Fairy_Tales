@@ -1,14 +1,16 @@
 package com.viktoriagavrosh.repositories
 
-import com.viktoriagavrosh.database.dao.FolkWorkDao
+import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.model.FolkWorkDB
 import com.viktoriagavrosh.fairytales.model.Tale
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /**
  * Repository that provides insert, update, delete and retrieve of [Tale] from a given data source.
  */
+
 interface FolkWorkRepository {
     /**
      * Retrieve all the items from the given data source by genre
@@ -29,13 +31,15 @@ interface FolkWorkRepository {
 /**
  * [FolkWorkRepository] implementation that provides functions for working with the database
  */
-class OfflineForkWorkRepository(private val folkWorkDao: FolkWorkDao) : FolkWorkRepository {
+class OfflineForkWorkRepository @Inject constructor(
+    private val appDatabase: AppDatabase
+) : FolkWorkRepository {
 
     /**
      * Retrieve all the items from the given data source by genre
      */
     override fun getAllWorks(genre: String): Flow<List<Tale>> {
-        return folkWorkDao.getAllWorks(genre)
+        return appDatabase.folkWorkDao.getAllWorks(genre)
             .map { folkWorks ->
                 folkWorks.map { folkWorkDB ->
                     folkWorkDB.toTale()
@@ -47,7 +51,7 @@ class OfflineForkWorkRepository(private val folkWorkDao: FolkWorkDao) : FolkWork
      * Retrieve all the favorite items from the given data source by genre
      */
     override fun getAllFavoriteWorks(genre: String): Flow<List<Tale>> {
-        return folkWorkDao.getAllFavoriteWorks(genre)
+        return appDatabase.folkWorkDao.getAllFavoriteWorks(genre)
             .map { folkWorks ->
                 folkWorks.map { folkWorkDB ->
                     folkWorkDB.toTale()
@@ -60,7 +64,7 @@ class OfflineForkWorkRepository(private val folkWorkDao: FolkWorkDao) : FolkWork
      */
     override suspend fun updateFavoriteWork(id: Int, isFavorite: Boolean) {
         val isFavoriteValue = if (isFavorite) 1 else 0
-        folkWorkDao.updateFavoriteWork(id = id, isFavorite = isFavoriteValue)
+        appDatabase.folkWorkDao.updateFavoriteWork(id = id, isFavorite = isFavoriteValue)
     }
 }
 

@@ -9,13 +9,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.elements.GridFolkWorks
 import com.viktoriagavrosh.fairytales.ui.elements.ListFolkWorks
 import com.viktoriagavrosh.fairytales.ui.elements.bars.ContentTopBar
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 import com.viktoriagavrosh.ui.R
+import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
 
 /**

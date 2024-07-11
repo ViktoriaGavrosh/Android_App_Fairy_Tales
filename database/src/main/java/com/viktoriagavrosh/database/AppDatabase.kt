@@ -24,27 +24,6 @@ class AppDatabase internal constructor(
 )
 internal abstract class AppRoomDatabase : RoomDatabase() {
     abstract fun folkWorkDao(): FolkWorkDao
-    /*
-        companion object {
-            @Volatile
-            private var Instance: AppDatabase? = null
-
-            fun getDatabase(context: Context): AppDatabase {
-                return Instance ?: synchronized(this) {
-                    Room.databaseBuilder(
-                        context,
-                        AppDatabase::class.java,
-                        "fairytales"
-                    )
-                        .createFromAsset("database/fairytales2.db")
-                        .fallbackToDestructiveMigration()
-                        .build()
-                        .also { Instance = it }
-                }
-            }
-        }
-
-     */
 }
 
 fun getDatabase(context: Context): AppDatabase {

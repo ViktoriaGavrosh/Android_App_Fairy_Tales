@@ -1,14 +1,11 @@
 package com.viktoriagavrosh.ui.uiscreens
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.model.Tale
 import com.viktoriagavrosh.repositories.FolkWorkRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,11 +13,13 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * ViewModel to retrieve and update item from the [FolkWorkRepository]'s data source
  */
-class FairyTalesViewModel(
+@HiltViewModel
+class FairyTalesViewModel @Inject constructor(
     private val folkWorkRepository: FolkWorkRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(FairyTalesUiState())
@@ -118,16 +117,18 @@ class FairyTalesViewModel(
         FolkWorkType.Lullaby -> "lullaby"
 
     }
-
-    companion object {
-        val factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = (this[APPLICATION_KEY] as FairyTalesApplication)
-                FairyTalesViewModel(application.container.folkWorkRepository)
+    /*
+        companion object {
+            val factory: ViewModelProvider.Factory = viewModelFactory {
+                initializer {
+                    val application = (this[APPLICATION_KEY] as FairyTalesApplication)
+                    FairyTalesViewModel(application.container.folkWorkRepository)
+                }
             }
         }
-    }
 
+
+     */
 }
 
 /**

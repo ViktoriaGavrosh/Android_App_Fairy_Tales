@@ -7,12 +7,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.viktoriagavrosh.fairytales.ui.screens.ContentScreen
 import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
-import com.viktoriagavrosh.repositories.FolkWorkRepository
 import com.viktoriagavrosh.ui.R
 
 /**
@@ -20,10 +18,10 @@ import com.viktoriagavrosh.ui.R
  */
 @Composable
 fun FairyTalesApp(
+    modifier: Modifier = Modifier,
     windowSize: WindowWidthSizeClass,
-    modifier: Modifier = Modifier
+    viewModel: FairyTalesViewModel = viewModel(),
 ) {
-    val viewModel: FairyTalesViewModel = viewModel(factory = FairyTalesViewModel.factory)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val logic = UILogic(
         onTabClick = viewModel::updateCompositionType,

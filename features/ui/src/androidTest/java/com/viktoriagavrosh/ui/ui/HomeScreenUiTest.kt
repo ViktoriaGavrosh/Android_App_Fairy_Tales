@@ -1,15 +1,15 @@
-package com.viktoriagavrosh.fairytales.compose.ui
+package com.viktoriagavrosh.ui.ui
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.compose.utils.onNodeWithContentDescriptionForStringId
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
-import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.screens.HomeScreen
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
+import com.viktoriagavrosh.ui.R
+import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
+import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
+import com.viktoriagavrosh.ui.utils.onNodeWithContentDescriptionForStringId
 import org.junit.Rule
 import org.junit.Test
 

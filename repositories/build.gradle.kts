@@ -36,6 +36,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation("jakarta.inject:jakarta.inject-api:2.0.1")
 
     implementation(project(":database"))
 

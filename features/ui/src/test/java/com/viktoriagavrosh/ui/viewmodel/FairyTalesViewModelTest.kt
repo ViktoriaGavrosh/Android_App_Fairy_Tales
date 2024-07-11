@@ -1,9 +1,11 @@
 package com.viktoriagavrosh.fairytales.viewmodel
 
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
 import com.viktoriagavrosh.fairytales.fake.FakeSource
 import com.viktoriagavrosh.ui.uiscreens.FairyTalesViewModel
+import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
 import com.viktoriagavrosh.ui.uiscreens.toFolkWork
+import com.viktoriagavrosh.ui.viewmodel.FakeFolkWorkRepository
+import com.viktoriagavrosh.ui.viewmodel.TestDispatcherRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule

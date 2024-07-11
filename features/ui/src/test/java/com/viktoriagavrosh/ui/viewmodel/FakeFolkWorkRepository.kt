@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.viewmodel
+package com.viktoriagavrosh.ui.viewmodel
 
 import com.viktoriagavrosh.fairytales.fake.FakeSource
 import com.viktoriagavrosh.fairytales.model.Tale

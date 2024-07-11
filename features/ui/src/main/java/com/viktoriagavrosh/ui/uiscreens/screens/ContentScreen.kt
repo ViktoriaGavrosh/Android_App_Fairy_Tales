@@ -9,11 +9,11 @@ import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.fairytales.ui.elements.bars.BottomNavigateBar
 import com.viktoriagavrosh.fairytales.ui.elements.bars.ExpandedScreenVerticalBar
 import com.viktoriagavrosh.fairytales.ui.elements.bars.VerticalNavigationRail
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
+import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 
 /**
  * Composable to display different screens depending on window size

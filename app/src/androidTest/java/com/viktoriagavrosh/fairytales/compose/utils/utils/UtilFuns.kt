@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.compose.utils
+package com.viktoriagavrosh.fairytales.compose.utils.utils
 
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
