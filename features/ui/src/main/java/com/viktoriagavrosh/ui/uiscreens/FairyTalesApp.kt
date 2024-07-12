@@ -1,21 +1,12 @@
 package com.viktoriagavrosh.ui.uiscreens
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.viktoriagavrosh.fairytales.ui.screens.ContentScreen
-import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
-import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 import com.viktoriagavrosh.ui.R
 
 /**
  * Top level composable that represents screens for the application
  */
+/*
 @Composable
 fun FairyTalesApp(
     modifier: Modifier = Modifier,
@@ -59,6 +50,8 @@ fun FairyTalesAppPreview() {
 }
 
 
+ */
+
 /**
  * Enum class to describe the destination of tab navigation
  */
@@ -87,4 +80,6 @@ enum class FolkWorkType(
         textId = R.string.lullaby
     );
 }
+
+
 

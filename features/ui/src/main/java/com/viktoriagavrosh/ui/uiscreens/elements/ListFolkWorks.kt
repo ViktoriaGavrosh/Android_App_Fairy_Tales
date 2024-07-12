@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.ui.R
+import com.viktoriagavrosh.ui.uiscreens.elements.FolkWorkCard
 
 /**
  * Composable to display a list of [FolkWork]-s on compact and medium screens

@@ -1,11 +1,9 @@
-package com.viktoriagavrosh.fairytales.viewmodel
+package com.viktoriagavrosh.ui.viewmodel
 
 import com.viktoriagavrosh.fairytales.fake.FakeSource
 import com.viktoriagavrosh.ui.uiscreens.FairyTalesViewModel
 import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
 import com.viktoriagavrosh.ui.uiscreens.toFolkWork
-import com.viktoriagavrosh.ui.viewmodel.FakeFolkWorkRepository
-import com.viktoriagavrosh.ui.viewmodel.TestDispatcherRule
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -29,39 +27,6 @@ class FairyTalesViewModelTest {
     }
 
     @Test
-    fun fairyTalesViewModel_navigateToDetailScreen_updateUiState() {
-        val expectedFolkWork = FakeSource().fakeListFolkWork[1].toFolkWork()
-        runTest {
-            val viewModel = FairyTalesViewModel(
-                folkWorkRepository = FakeFolkWorkRepository()
-            )
-            viewModel.navigateToDetailScreen(expectedFolkWork)
-            assertEquals(
-                expectedFolkWork,
-                viewModel.uiState.value.selectedWork
-            )
-            assertEquals(
-                false,
-                viewModel.uiState.value.isShowHomeScreen
-            )
-        }
-    }
-
-    @Test
-    fun fairyTalesViewModel_navigateToHomeScreen_updateUiState() {
-        runTest {
-            val viewModel = FairyTalesViewModel(
-                folkWorkRepository = FakeFolkWorkRepository()
-            )
-            viewModel.navigateToHomeScreen()
-            assertEquals(
-                true,
-                viewModel.uiState.value.isShowHomeScreen
-            )
-        }
-    }
-
-    @Test
     fun fairyTalesViewModel_updateCompositionType_successUpdateUiState() {
         val expectedFolkWork = FakeSource().fakeListFolkWork[1].toFolkWork()
         val expectedFolkWorkType = FolkWorkType.Game
@@ -77,10 +42,6 @@ class FairyTalesViewModelTest {
             assertEquals(
                 expectedFolkWork,
                 viewModel.uiState.value.selectedWork
-            )
-            assertEquals(
-                true,
-                viewModel.uiState.value.isShowHomeScreen
             )
         }
     }
@@ -101,10 +62,6 @@ class FairyTalesViewModelTest {
             assertEquals(
                 expectedFolkWork,
                 viewModel.uiState.value.selectedWork
-            )
-            assertEquals(
-                true,
-                viewModel.uiState.value.isShowHomeScreen
             )
         }
     }
@@ -128,10 +85,6 @@ class FairyTalesViewModelTest {
             assertEquals(
                 expectedFolkWork,
                 viewModel.uiState.value.selectedWork
-            )
-            assertEquals(
-                true,
-                viewModel.uiState.value.isShowHomeScreen
             )
         }
     }

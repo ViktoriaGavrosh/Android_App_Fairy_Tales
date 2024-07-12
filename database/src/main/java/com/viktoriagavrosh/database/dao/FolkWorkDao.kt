@@ -18,6 +18,9 @@ interface FolkWorkDao {
     @Query("SELECT * FROM library WHERE genre = :genre AND is_favorite = 1")
     fun getAllFavoriteWorks(genre: String): Flow<List<FolkWorkDB>>
 
+    @Query("SELECT * FROM library WHERE id = :id")
+    fun getWorkById(id: Int): Flow<FolkWorkDB>
+
     @Query("UPDATE library SET is_favorite = :isFavorite WHERE id = :id")
     suspend fun updateFavoriteWork(id: Int, isFavorite: Int)
 

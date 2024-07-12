@@ -18,6 +18,10 @@ class FakeFolkWorkRepository : FolkWorkRepository {
         emit(fakeListFolkWork.filter { it.genre == genre && it.isFavorite })
     }
 
+    override fun getWorkById(id: Int): Flow<Tale> = flow {
+        emit(fakeListFolkWork.first { it.id == id })
+    }
+
     override suspend fun updateFavoriteWork(id: Int, isFavorite: Boolean) {
         fakeListFolkWork[id] = fakeListFolkWork[id]
             .copy(isFavorite = isFavorite)

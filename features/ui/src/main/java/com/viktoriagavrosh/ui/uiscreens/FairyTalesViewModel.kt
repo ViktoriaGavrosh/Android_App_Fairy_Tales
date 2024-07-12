@@ -30,25 +30,16 @@ class FairyTalesViewModel @Inject constructor(
     }
 
     /**
-     * Update [FairyTalesUiState] for navigation to DetailScreen
+     * Update the value of an item field selectedWork in the data source
      */
-    fun navigateToDetailScreen(folkWork: FolkWork) {
-        _uiState.update {
-            it.copy(
-                selectedWork = folkWork,
-                isShowHomeScreen = false
-            )
-        }
-    }
-
-    /**
-     * Update [FairyTalesUiState] for navigation to HomeScreen
-     */
-    fun navigateToHomeScreen() {
-        _uiState.update {
-            it.copy(
-                isShowHomeScreen = true
-            )
+    fun updateSelectedWork(id: Int) {
+        val folkWork = folkWorkRepository.getWorkById(id)
+        viewModelScope.launch {
+            _uiState.update {
+                it.copy(
+                    selectedWork = folkWork.first().toFolkWork(),
+                )
+            }
         }
     }
 
@@ -73,7 +64,7 @@ class FairyTalesViewModel @Inject constructor(
                     folkWorkType = folkWorkType,
                     folkWorks = folkWorks.first(),
                     selectedWork = selectedWork,
-                    isShowHomeScreen = true
+                    //isShowHomeScreen = true
                 )
             }
         }
@@ -149,7 +140,6 @@ data class FairyTalesUiState(
         )
     ),
     val selectedWork: FolkWork = folkWorks[0],
-    val isShowHomeScreen: Boolean = true,
     val isFavoriteWorks: Boolean = false
 )
 

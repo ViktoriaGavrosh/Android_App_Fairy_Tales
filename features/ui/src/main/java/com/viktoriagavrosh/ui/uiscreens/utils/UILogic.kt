@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.utils
+package com.viktoriagavrosh.ui.uiscreens.utils
 
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
@@ -8,8 +8,6 @@ import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
  */
 data class UILogic(
     val onTabClick: (FolkWorkType) -> Unit = {},
-    val onCardClick: (FolkWork) -> Unit = {},
-    val onDetailScreenBackClick: () -> Unit = {},
     val onHeartClick: (FolkWork) -> Unit = {},
-    val onTopBarHeartClick: () -> Unit = {}
+    val onTopBarHeartClick: () -> Unit = {},
 )

@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.screens
+package com.viktoriagavrosh.ui.uiscreens.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,11 +9,12 @@ import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.elements.bars.BottomNavigateBar
 import com.viktoriagavrosh.fairytales.ui.elements.bars.ExpandedScreenVerticalBar
 import com.viktoriagavrosh.fairytales.ui.elements.bars.VerticalNavigationRail
-import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
+import com.viktoriagavrosh.ui.uiscreens.utils.UILogic
 
 /**
  * Composable to display different screens depending on window size
@@ -23,6 +24,7 @@ fun ContentScreen(
     uiState: FairyTalesUiState,
     logic: UILogic,
     windowSize: WindowWidthSizeClass,
+    onCardClick: (FolkWork) -> Unit,
     modifier: Modifier = Modifier
 ) {
     when (windowSize) {
@@ -38,6 +40,7 @@ fun ContentScreen(
                 HomeScreen(
                     uiState = uiState,
                     logic = logic,
+                    onCardClick = onCardClick,
                     isExpandedScreen = true
                 )
             }
@@ -51,6 +54,7 @@ fun ContentScreen(
                     uiState = uiState,
                     logic = logic,
                     isExpandedScreen = false,
+                    onCardClick = onCardClick,
                     modifier = Modifier.weight(1F)
                 )
                 BottomNavigateBar(
@@ -73,6 +77,7 @@ fun ContentScreen(
                 HomeScreen(
                     uiState = uiState,
                     logic = logic,
+                    onCardClick = onCardClick,
                     isExpandedScreen = false
                 )
             }

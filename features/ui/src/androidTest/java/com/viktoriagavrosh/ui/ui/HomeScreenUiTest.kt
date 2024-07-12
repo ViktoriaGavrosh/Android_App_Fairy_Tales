@@ -3,12 +3,12 @@ package com.viktoriagavrosh.ui.ui
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.viktoriagavrosh.fairytales.ui.screens.HomeScreen
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 import com.viktoriagavrosh.ui.R
 import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
+import com.viktoriagavrosh.ui.uiscreens.screens.HomeScreen
+import com.viktoriagavrosh.ui.uiscreens.utils.UILogic
 import com.viktoriagavrosh.ui.utils.onNodeWithContentDescriptionForStringId
 import org.junit.Rule
 import org.junit.Test
@@ -22,7 +22,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Story)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = false)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = false,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Казк\u0456").assertExists("No story title")
@@ -36,7 +41,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Puzzle)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = false)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = false,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Загадк\u0456").assertExists("No puzzle title")
@@ -50,7 +60,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Game)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = false)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = false,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Заба\u045Eлянк\u0456").assertExists("No game title")
@@ -64,7 +79,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Poem)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = false)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = false,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Л\u0456чылк\u0456").assertExists("No poem title")
@@ -78,7 +98,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Lullaby)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = false)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = false,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Калыханк\u0456").assertExists("No lullaby title")
@@ -92,7 +117,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Story)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = true)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = true,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Казк\u0456").assertExists("No story title")
@@ -106,7 +136,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Puzzle)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = true)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = true,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Загадк\u0456").assertExists("No puzzle title")
@@ -120,7 +155,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Game)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = true)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = true,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Заба\u045Eлянк\u0456").assertExists("No game title")
@@ -134,7 +174,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Poem)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = true)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = true,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Л\u0456чылк\u0456").assertExists("No poem title")
@@ -148,7 +193,12 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Lullaby)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = true)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = true,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithText("Калыханк\u0456").assertExists("No lullaby title")
@@ -163,7 +213,12 @@ class HomeScreenUiTest {
             .copy(folkWorkType = FolkWorkType.Story, isFavoriteWorks = true)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(logic = UILogic(), uiState = fakeUiState, isExpandedScreen = false)
+                HomeScreen(
+                    logic = UILogic(),
+                    uiState = fakeUiState,
+                    isExpandedScreen = false,
+                    onCardClick = { _ -> },
+                )
             }
         }
         composeTestRule.onNodeWithContentDescriptionForStringId(R.string.favorite_folk_works)

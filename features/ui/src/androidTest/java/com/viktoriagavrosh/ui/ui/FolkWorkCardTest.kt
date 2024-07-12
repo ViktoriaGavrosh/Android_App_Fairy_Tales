@@ -4,11 +4,11 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
-import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkCard
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.ui.R
 import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
+import com.viktoriagavrosh.ui.uiscreens.elements.FolkWorkCard
 import com.viktoriagavrosh.ui.utils.onNodeWithContentDescriptionForStringId
 import org.junit.Rule
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.elements
+package com.viktoriagavrosh.ui.uiscreens.elements
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
 import com.viktoriagavrosh.fairytales.ui.utils.MockData
 import com.viktoriagavrosh.ui.R
 

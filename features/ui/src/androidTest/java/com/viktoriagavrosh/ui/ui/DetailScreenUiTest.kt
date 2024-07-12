@@ -5,12 +5,12 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 import com.viktoriagavrosh.ui.R
 import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
+import com.viktoriagavrosh.ui.uiscreens.screens.detailscreens.DetailScreen
+import com.viktoriagavrosh.ui.uiscreens.utils.UILogic
 import com.viktoriagavrosh.ui.utils.onNodeWithContentDescriptionForStringId
 import org.junit.Rule
 import org.junit.Test
@@ -22,7 +22,7 @@ class DetailScreenUiTest {
     @Test
     fun detailScreen_verticalScreen_verifyContent() {
         val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Story, isShowHomeScreen = false)
+            .copy(folkWorkType = FolkWorkType.Story)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
@@ -30,6 +30,7 @@ class DetailScreenUiTest {
                     logic = UILogic(),
                     isPuzzleType = false,
                     isStoryType = true,
+                    onDetailScreenBackClick = {},
                     isExpandedScreen = false
                 )
             }
@@ -47,7 +48,7 @@ class DetailScreenUiTest {
     @Test
     fun detailScreen_horizontalScreen_verifyContent() {
         val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Story, isShowHomeScreen = false)
+            .copy(folkWorkType = FolkWorkType.Story)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
@@ -55,6 +56,7 @@ class DetailScreenUiTest {
                     logic = UILogic(),
                     isPuzzleType = false,
                     isStoryType = true,
+                    onDetailScreenBackClick = {},
                     isExpandedScreen = true
                 )
             }
@@ -72,7 +74,7 @@ class DetailScreenUiTest {
     @Test
     fun detailScreen_puzzleTypeVerticalScreen_verifyContent() {
         val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Puzzle, isShowHomeScreen = false)
+            .copy(folkWorkType = FolkWorkType.Puzzle)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
@@ -80,6 +82,7 @@ class DetailScreenUiTest {
                     logic = UILogic(),
                     isPuzzleType = true,
                     isStoryType = false,
+                    onDetailScreenBackClick = {},
                     isExpandedScreen = false
                 )
             }
@@ -97,7 +100,7 @@ class DetailScreenUiTest {
     @Test
     fun detailScreen_puzzleTypeHorizontalScreen_verifyContent() {
         val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Puzzle, isShowHomeScreen = false)
+            .copy(folkWorkType = FolkWorkType.Puzzle)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
@@ -105,6 +108,7 @@ class DetailScreenUiTest {
                     logic = UILogic(),
                     isPuzzleType = true,
                     isStoryType = false,
+                    onDetailScreenBackClick = {},
                     isExpandedScreen = true
                 )
             }
@@ -123,7 +127,7 @@ class DetailScreenUiTest {
     @Throws(Exception::class)
     fun detailScreen_puzzleType_showAnswer() {
         val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Puzzle, isShowHomeScreen = false)
+            .copy(folkWorkType = FolkWorkType.Puzzle)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
@@ -131,6 +135,7 @@ class DetailScreenUiTest {
                     logic = UILogic(),
                     isPuzzleType = true,
                     isStoryType = false,
+                    onDetailScreenBackClick = {},
                     isExpandedScreen = false
                 )
             }

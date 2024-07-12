@@ -23,6 +23,11 @@ interface FolkWorkRepository {
     fun getAllFavoriteWorks(genre: String): Flow<List<Tale>>
 
     /**
+     * Retrieve the item from the given data source by id
+     */
+    fun getWorkById(id: Int): Flow<Tale>
+
+    /**
      * Update the value of an item field is_favorite in the data source
      */
     suspend fun updateFavoriteWork(id: Int, isFavorite: Boolean)
@@ -57,6 +62,14 @@ class OfflineForkWorkRepository @Inject constructor(
                     folkWorkDB.toTale()
                 }
             }
+    }
+
+    /**
+     * Retrieve the item from the given data source by id
+     */
+    override fun getWorkById(id: Int): Flow<Tale> {
+        return appDatabase.folkWorkDao.getWorkById(id)
+            .map { folkWorkDb -> folkWorkDb.toTale() }
     }
 
     /**

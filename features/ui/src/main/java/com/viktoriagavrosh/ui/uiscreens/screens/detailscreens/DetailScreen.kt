@@ -1,6 +1,5 @@
-package com.viktoriagavrosh.fairytales.ui.screens.detailscreens
+package com.viktoriagavrosh.ui.uiscreens.screens.detailscreens
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,13 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.elements.bars.ContentTopBar
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-import com.viktoriagavrosh.fairytales.ui.utils.MockData
-import com.viktoriagavrosh.fairytales.ui.utils.UILogic
+import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.HorizontalDetailScreen
+import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.VerticalDetailScreen
 import com.viktoriagavrosh.ui.R
+import com.viktoriagavrosh.ui.uiscreens.utils.UILogic
 
 /**
  * Composable to display details of selected [FolkWork]
@@ -28,18 +26,16 @@ fun DetailScreen(
     isPuzzleType: Boolean,
     isStoryType: Boolean,
     modifier: Modifier = Modifier,
+    onDetailScreenBackClick: () -> Unit,
     isExpandedScreen: Boolean
 ) {
-    BackHandler {
-        logic.onDetailScreenBackClick()
-    }
     Column(
         modifier = modifier
     ) {
         ContentTopBar(
             text = folkWork.title,
             isShowHomeScreen = false,
-            onDetailScreenBackClick = logic.onDetailScreenBackClick,
+            onDetailScreenBackClick = onDetailScreenBackClick,
             isFavoriteWorks = false,
             onTopBarHeartClick = logic.onTopBarHeartClick
         )
@@ -64,7 +60,7 @@ fun DetailScreen(
         }
     }
 }
-
+/*
 @Preview
 @Composable
 fun DetailScreenPreview() {
@@ -92,3 +88,6 @@ fun DetailHorizontalScreenPreview() {
         )
     }
 }
+
+
+ */

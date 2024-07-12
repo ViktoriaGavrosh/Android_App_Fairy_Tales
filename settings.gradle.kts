@@ -19,4 +19,5 @@ include(":app")
 include(":database")
 include(":repositories")
 include(":features:ui")
+include(":features:navigation")
 

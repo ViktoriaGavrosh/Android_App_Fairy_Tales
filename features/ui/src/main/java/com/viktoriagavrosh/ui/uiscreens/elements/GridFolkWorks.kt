@@ -14,6 +14,7 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.MockData
 import com.viktoriagavrosh.ui.R
+import com.viktoriagavrosh.ui.uiscreens.elements.FolkWorkCard
 
 /**
  * Composable to display a grid of [FolkWork]-s on expanded screen
