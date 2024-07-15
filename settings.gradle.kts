@@ -18,6 +18,7 @@ rootProject.name = "FairyTales"
 include(":app")
 include(":database")
 include(":repositories")
-include(":features:ui")
-include(":features:navigation")
+include(":ui:home")
+include(":ui:navigation")
+include(":ui:details")
 

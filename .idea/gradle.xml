@@ -12,10 +12,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/database" />
-            <option value="$PROJECT_DIR$/features" />
-            <option value="$PROJECT_DIR$/features/navigation" />
-            <option value="$PROJECT_DIR$/features/ui" />
             <option value="$PROJECT_DIR$/repositories" />
+            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/details" />
+            <option value="$PROJECT_DIR$/ui/home" />
+            <option value="$PROJECT_DIR$/ui/navigation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
