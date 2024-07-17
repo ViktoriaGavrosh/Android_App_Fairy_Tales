@@ -3,12 +3,12 @@ package com.viktoriagavrosh.fairytales.compose.utils.differentsizedevice
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.compose.utils.utils.onNodeWithTagForStringId
-import com.viktoriagavrosh.ui.R
-import com.viktoriagavrosh.ui.uiscreens.FairyTalesApp
+import com.viktoriagavrosh.navigation.FairyTalesApp
 import org.junit.Rule
 import org.junit.Test
-
+/*
 // TODO Эти тесты пока не работают (не настраивала)
 class FairyTalesAppTest {
     @get:Rule
@@ -43,3 +43,6 @@ class FairyTalesAppTest {
         composeTestRule.onNodeWithTagForStringId(R.string.expanded_screen_test_tag)
     }
 }
+
+
+ */

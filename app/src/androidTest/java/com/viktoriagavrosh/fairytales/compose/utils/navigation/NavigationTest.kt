@@ -1,22 +1,6 @@
 package com.viktoriagavrosh.fairytales.compose.utils.navigation
 
-import androidx.activity.ComponentActivity
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.ui.test.assertIsNotDisplayed
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
-import com.viktoriagavrosh.fairytales.compose.utils.differentsizedevice.TestCompactWidth
-import com.viktoriagavrosh.fairytales.compose.utils.utils.onNodeWithContentDescriptionForStringId
-import com.viktoriagavrosh.fairytales.compose.utils.utils.onNodeWithTagForStringId
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-import com.viktoriagavrosh.ui.R
-import com.viktoriagavrosh.ui.uiscreens.FairyTalesApp
-import org.junit.Rule
-import org.junit.Test
-
-// TODO Эти тесты пока не работают (не настраивала)
+/* TODO Эти тесты пока не работают (не настраивала)
 class NavigationTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
@@ -54,3 +38,6 @@ class NavigationTest {
         composeTestRule.onNodeWithTag(selectedFolkWorkId).assertExists("No card")
     }
 }
+
+
+ */

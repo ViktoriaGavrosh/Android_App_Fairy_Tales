@@ -1,7 +1,7 @@
-package com.viktoriagavrosh.fairytales.fake
+package com.viktoriagavrosh.home.fake
 
 import com.viktoriagavrosh.fairytales.model.Tale
-/*  TODO
+/* TODO
 class FakeSource(
     val fakeListFolkWork: MutableList<Tale> = MutableList(4) {
         Tale(

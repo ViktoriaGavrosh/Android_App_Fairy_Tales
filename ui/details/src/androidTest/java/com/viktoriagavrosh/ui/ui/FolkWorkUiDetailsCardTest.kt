@@ -4,16 +4,16 @@ import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-import com.viktoriagavrosh.home.R
-import com.viktoriagavrosh.home.uiscreens.FairyTalesUiState
+//import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.home.uiscreens.FolkWorkType
-import com.viktoriagavrosh.home.uiscreens.elements.FolkWorkCard
+//import com.viktoriagavrosh.ui.uiscreens.elements.FolkWorkCard
 import com.viktoriagavrosh.ui.utils.onNodeWithContentDescriptionForStringId
 import org.junit.Rule
 import org.junit.Test
-/*   TODO this has many problems
-class FolkWorkCardTest {
+/*
+class FolkWorkUiDetailsCardTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 

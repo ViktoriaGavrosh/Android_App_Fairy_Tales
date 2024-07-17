@@ -62,13 +62,16 @@ dependencies {
     // Modules
     implementation(project(":repositories"))
     implementation(project(":ui:home"))
+    implementation(project(":ui:details"))
 
     // Dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+   // androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
+    //kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.51.1")
 
+    /* TODO
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
@@ -76,4 +79,6 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+     */
 }

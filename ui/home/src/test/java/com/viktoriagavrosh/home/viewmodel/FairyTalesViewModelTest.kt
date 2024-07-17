@@ -1,17 +1,11 @@
-package com.viktoriagavrosh.ui.viewmodel
-/*   TODO this has many problems
-import com.viktoriagavrosh.fairytales.fake.FakeSource
-import com.viktoriagavrosh.ui.uiscreens.FairyTalesViewModel
-import com.viktoriagavrosh.ui.uiscreens.FolkWorkType
-import com.viktoriagavrosh.ui.uiscreens.toFolkWork
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Rule
-import org.junit.Test
+package com.viktoriagavrosh.home.viewmodel
 
+import org.junit.Rule
+/*   TODO this has many problems
 class FairyTalesViewModelTest {
     @get:Rule
     val testDispatcher = TestDispatcherRule()
+
 
     @Test
     fun fairyTalesViewModel_init_verifyFairyTalesUiState() {
@@ -139,6 +133,7 @@ class FairyTalesViewModelTest {
             )
         }
     }
-}
 
- */
+
+}
+*/
