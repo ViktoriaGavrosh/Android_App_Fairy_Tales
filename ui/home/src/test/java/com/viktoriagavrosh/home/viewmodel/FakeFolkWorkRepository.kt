@@ -1,7 +1,7 @@
 package com.viktoriagavrosh.home.viewmodel
-/* TODO
-import com.viktoriagavrosh.fairytales.fake.FakeSource
+
 import com.viktoriagavrosh.fairytales.model.Tale
+import com.viktoriagavrosh.home.fake.FakeSource
 import com.viktoriagavrosh.repositories.FolkWorkRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,5 +28,3 @@ class FakeFolkWorkRepository : FolkWorkRepository {
     }
 }
 
-
- */

@@ -8,7 +8,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
-/* TODO
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class TestDispatcherRule(
     private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
@@ -21,6 +21,3 @@ class TestDispatcherRule(
         Dispatchers.resetMain()
     }
 }
-
-
- */

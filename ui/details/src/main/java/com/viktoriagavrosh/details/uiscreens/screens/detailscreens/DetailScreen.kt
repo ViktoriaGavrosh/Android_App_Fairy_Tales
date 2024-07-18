@@ -47,7 +47,7 @@ fun DetailScreen(
         }
     )
 
-    val folkWork by viewModel.tale.collectAsState()
+    val folkWork by viewModel.folkWorkUiDetails.collectAsState()
 
     Column(
         modifier = modifier

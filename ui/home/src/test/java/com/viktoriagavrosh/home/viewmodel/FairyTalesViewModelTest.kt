@@ -1,7 +1,15 @@
 package com.viktoriagavrosh.home.viewmodel
 
+import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.home.fake.FakeSource
+import com.viktoriagavrosh.home.uiscreens.FairyTalesViewModel
+import com.viktoriagavrosh.home.uiscreens.FolkWorkType
+import com.viktoriagavrosh.home.uiscreens.toFolkWork
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
 import org.junit.Rule
-/*   TODO this has many problems
+import org.junit.Test
+
 class FairyTalesViewModelTest {
     @get:Rule
     val testDispatcher = TestDispatcherRule()
@@ -13,16 +21,32 @@ class FairyTalesViewModelTest {
             val viewModel = FairyTalesViewModel(
                 folkWorkRepository = FakeFolkWorkRepository()
             )
+            val expectedList = FakeSource().fakeListFolkWork
+                .map { it.toFolkWork() }
+                .filter { it.genre == "story" }
+            val actualList = viewModel.uiState.value.folkWorks
             assertEquals(
-                FakeSource().fakeListFolkWork[0].toFolkWork(),
-                viewModel.uiState.value.selectedWork
+                expectedList,
+                actualList
+            )
+            val expectedTypeName = "Story"
+            val actualTypeName = viewModel.uiState.value.folkWorkType.name
+            assertEquals(
+                expectedTypeName,
+                actualTypeName
+            )
+            assertEquals(
+                false,
+                viewModel.uiState.value.isFavoriteWorks
             )
         }
     }
 
     @Test
     fun fairyTalesViewModel_updateCompositionType_successUpdateUiState() {
-        val expectedFolkWork = FakeSource().fakeListFolkWork[1].toFolkWork()
+        val expectedList = FakeSource().fakeListFolkWork
+            .map { it.toFolkWork() }
+            .filter { it.genre == "game" }
         val expectedFolkWorkType = FolkWorkType.Game
         runTest {
             val viewModel = FairyTalesViewModel(
@@ -34,15 +58,15 @@ class FairyTalesViewModelTest {
                 viewModel.uiState.value.folkWorkType
             )
             assertEquals(
-                expectedFolkWork,
-                viewModel.uiState.value.selectedWork
+                expectedList,
+                viewModel.uiState.value.folkWorks
             )
         }
     }
 
     @Test
     fun fairyTalesViewModel_updateCompositionType_updateUiStateWithEmptyList() {
-        val expectedFolkWork = FakeSource().fakeListFolkWork[0].toFolkWork()
+        val expectedList = emptyList<FolkWork>()
         val expectedFolkWorkType = FolkWorkType.Puzzle
         runTest {
             val viewModel = FairyTalesViewModel(
@@ -54,8 +78,8 @@ class FairyTalesViewModelTest {
                 viewModel.uiState.value.folkWorkType
             )
             assertEquals(
-                expectedFolkWork,
-                viewModel.uiState.value.selectedWork
+                expectedList,
+                viewModel.uiState.value.folkWorks
             )
         }
     }
@@ -71,46 +95,14 @@ class FairyTalesViewModelTest {
             viewModel.updateWorkFavorite(newFolkWork)
             viewModel.changeIsFavoriteWorks(true)
             viewModel.updateCompositionType(expectedFolkWorkType)
-            val expectedFolkWork = newFolkWork.copy(isFavorite = true)
+            val expectedList = listOf(newFolkWork.copy(isFavorite = true))
             assertEquals(
                 expectedFolkWorkType,
                 viewModel.uiState.value.folkWorkType
             )
             assertEquals(
-                expectedFolkWork,
-                viewModel.uiState.value.selectedWork
-            )
-        }
-    }
-
-    @Test
-    fun fairyTalesViewModel_updateWorkFavorite_updateSelectedWork() {
-        val folkWork = FakeSource().fakeListFolkWork[0].toFolkWork()
-        runTest {
-            val viewModel = FairyTalesViewModel(
-                folkWorkRepository = FakeFolkWorkRepository()
-            )
-            viewModel.updateWorkFavorite(folkWork)
-            val expectedFolkWork = folkWork.copy(isFavorite = true)
-            assertEquals(
-                expectedFolkWork,
-                viewModel.uiState.value.selectedWork
-            )
-        }
-    }
-
-    @Test
-    fun fairyTalesViewModel_updateWorkFavorite_doubleUpdateSelectedWork() {
-        val folkWork = FakeSource().fakeListFolkWork[0].toFolkWork()
-        runTest {
-            val viewModel = FairyTalesViewModel(
-                folkWorkRepository = FakeFolkWorkRepository()
-            )
-            viewModel.updateWorkFavorite(folkWork)
-            viewModel.updateWorkFavorite(viewModel.uiState.value.selectedWork)
-            assertEquals(
-                folkWork,
-                viewModel.uiState.value.selectedWork
+                expectedList,
+                viewModel.uiState.value.folkWorks
             )
         }
     }
@@ -133,7 +125,5 @@ class FairyTalesViewModelTest {
             )
         }
     }
-
-
 }
-*/
+

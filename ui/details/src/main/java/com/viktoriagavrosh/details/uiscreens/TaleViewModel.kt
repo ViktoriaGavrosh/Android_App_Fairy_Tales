@@ -1,5 +1,6 @@
 package com.viktoriagavrosh.details.uiscreens
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
@@ -10,7 +11,6 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -29,7 +29,7 @@ class TaleViewModel @AssistedInject constructor(   // TODO было Inject
     val uiState: StateFlow<FairyTalesUiState> = _uiState
      */
 
-    val tale: StateFlow<FolkWorkUiDetails> = folkWorkRepository.getWorkById(taleId)  // TODO изменила taleId
+    val folkWorkUiDetails: StateFlow<FolkWorkUiDetails> = folkWorkRepository.getWorkById(taleId)  // TODO изменила taleId
         .map { tale ->
         tale.toFolkWorkUiDetails()
     }
@@ -38,7 +38,6 @@ class TaleViewModel @AssistedInject constructor(   // TODO было Inject
             SharingStarted.Lazily,
             FolkWorkUiDetails()
         )
-
 
     // TODO добавлено для передачи значения во ViewModel
     @AssistedFactory
