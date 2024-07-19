@@ -5,7 +5,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-import com.viktoriagavrosh.home.R
 import com.viktoriagavrosh.home.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.home.uiscreens.FolkWorkType
 import com.viktoriagavrosh.home.uiscreens.elements.FolkWorkCard

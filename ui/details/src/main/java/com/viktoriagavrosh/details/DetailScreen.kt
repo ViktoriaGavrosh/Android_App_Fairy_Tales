@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.details.uiscreens.screens.detailscreens
+package com.viktoriagavrosh.details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,11 +21,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
-import com.viktoriagavrosh.details.uiscreens.TaleViewModel
-import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.HorizontalDetailScreen
+import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
  * Composable to display details of selected [FolkWorkUiDetails]
@@ -34,9 +33,6 @@ import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.HorizontalDetailS
 fun DetailScreen(
     folkWorkId: Int,
     isExpandedScreen: Boolean,
-    //logic: UILogic,   TODO delete
-    //isPuzzleType: Boolean,
-    //isStoryType: Boolean,
     onDetailScreenBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -53,10 +49,8 @@ fun DetailScreen(
     ) {
         DetailsTopBar(
             text = folkWork.title,
-            //isShowHomeScreen = false,  TODO delete
             onDetailScreenBackClick = onDetailScreenBackClick,
-            //isFavoriteWorks = false,
-            //onTopBarHeartClick = {}
+            modifier = Modifier.fillMaxWidth()
         )
         if (isExpandedScreen) {
             HorizontalDetailScreen(
@@ -83,14 +77,11 @@ fun DetailScreen(
 @Composable
 private fun DetailsTopBar(
     text: String,
-    //isShowHomeScreen: Boolean,
-    // isFavoriteWorks: Boolean,  TODO delete
     onDetailScreenBackClick: () -> Unit,
-    //onTopBarHeartClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom
     ) {
@@ -131,34 +122,13 @@ private fun DetailScreenTopBar(
     }
 }
 
-/*
 @Preview
 @Composable
-fun DetailScreenPreview() {
+private fun DetailsTopBarPreview() {
     FairyTalesTheme {
-        DetailScreen(
-            isPuzzleType = true,
-            isStoryType = false,
-            folkWork = MockData.fakeFolkWork,
-            logic = UILogic(),
-            isExpandedScreen = false
+        DetailsTopBar(
+            text = "Top bar",
+            onDetailScreenBackClick = {}
         )
     }
 }
-
-@Preview(widthDp = 1000)
-@Composable
-fun DetailHorizontalScreenPreview() {
-    FairyTalesTheme {
-        DetailScreen(
-            isPuzzleType = false,
-            isStoryType = true,
-            folkWork = MockData.fakeFolkWork,
-            logic = UILogic(),
-            isExpandedScreen = true
-        )
-    }
-}
-
-
- */

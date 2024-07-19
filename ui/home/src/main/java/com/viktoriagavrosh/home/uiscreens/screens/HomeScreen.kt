@@ -12,13 +12,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.viktoriagavrosh.fairytales.model.FolkWork
+import com.viktoriagavrosh.home.uiscreens.FairyTalesViewModel
 import com.viktoriagavrosh.home.uiscreens.elements.bars.BottomNavigateBar
 import com.viktoriagavrosh.home.uiscreens.elements.bars.ExpandedScreenVerticalBar
 import com.viktoriagavrosh.home.uiscreens.elements.bars.VerticalNavigationRail
-import com.viktoriagavrosh.home.uiscreens.FairyTalesUiState
-import com.viktoriagavrosh.home.uiscreens.FairyTalesViewModel
 import com.viktoriagavrosh.home.uiscreens.utils.UILogic
 
 /**

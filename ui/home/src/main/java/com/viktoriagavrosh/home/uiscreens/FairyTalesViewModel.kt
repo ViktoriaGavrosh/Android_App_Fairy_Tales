@@ -29,23 +29,6 @@ class FairyTalesViewModel @Inject constructor(
         updateCompositionType(FolkWorkType.Story)
     }
 
-    /*  TODO  to details screen
-    /**
-     * Update the value of an item field selectedWork in the data source
-     */
-    fun updateSelectedWork(id: Int) {
-        val folkWork = folkWorkRepository.getWorkById(id)
-        viewModelScope.launch {
-            _uiState.update {
-                it.copy(
-                    selectedWork = folkWork.first().toFolkWork(),
-                )
-            }
-        }
-    }
-
-     */
-
     /**
      * Update [FairyTalesUiState] for navigation between tabs
      */
@@ -57,18 +40,11 @@ class FairyTalesViewModel @Inject constructor(
             folkWorkRepository.getAllWorks(genre).toFlowListFolkWork()
         }
 
-        //var selectedWork = _uiState.value.selectedWork  TODO delete
         viewModelScope.launch {
-            /*  TODO delete
-            if (folkWorks.first().isNotEmpty()) {
-                selectedWork = folkWorks.first().first()
-            }
-             */
             _uiState.update {
                 it.copy(
                     folkWorkType = folkWorkType,
                     folkWorks = folkWorks.first(),
-                    //selectedWork = selectedWork, TODO delete
                 )
             }
         }
@@ -112,18 +88,6 @@ class FairyTalesViewModel @Inject constructor(
         FolkWorkType.Lullaby -> "lullaby"
 
     }
-    /*
-        companion object {
-            val factory: ViewModelProvider.Factory = viewModelFactory {
-                initializer {
-                    val application = (this[APPLICATION_KEY] as FairyTalesApplication)
-                    FairyTalesViewModel(application.container.folkWorkRepository)
-                }
-            }
-        }
-
-
-     */
 }
 
 /**
@@ -143,7 +107,6 @@ data class FairyTalesUiState(
             isFavorite = false
         )
     ),
-   // val selectedWork: FolkWork = folkWorks[0],   TODO delete
     val isFavoriteWorks: Boolean = false
 )
 

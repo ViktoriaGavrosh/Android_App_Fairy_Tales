@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import com.viktoriagavrosh.home.uiscreens.elements.GridFolkWorks
-import com.viktoriagavrosh.home.uiscreens.elements.ListFolkWorks
-import com.viktoriagavrosh.home.uiscreens.elements.bars.ContentTopBar
 import com.viktoriagavrosh.home.R
 import com.viktoriagavrosh.home.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.home.uiscreens.FolkWorkType
+import com.viktoriagavrosh.home.uiscreens.elements.GridFolkWorks
+import com.viktoriagavrosh.home.uiscreens.elements.ListFolkWorks
+import com.viktoriagavrosh.home.uiscreens.elements.bars.ContentTopBar
 import com.viktoriagavrosh.home.uiscreens.utils.UILogic
 
 /**
@@ -36,8 +36,6 @@ internal fun ContentScreen(
     ) {
         ContentTopBar(
             text = stringResource(id = uiState.folkWorkType.textId),
-            isShowHomeScreen = true,
-            onDetailScreenBackClick = {},
             isFavoriteWorks = uiState.isFavoriteWorks,
             onTopBarHeartClick = logic.onTopBarHeartClick
         )
@@ -67,11 +65,14 @@ fun FairyTalesHomeScreenPreview() {
     FairyTalesTheme {
         val fakeLogic = UILogic()
         FairyTalesTheme {
-            HomeScreen(
-                logic = fakeLogic,
-                uiState = FairyTalesUiState(),
-                isExpandedScreen = false
+            ContentScreen(
+                logic = ,
+                uiState = ,
+                isExpandedScreen = ,
+                onCardClick =
             )
+
+
         }
     }
 }
@@ -88,6 +89,4 @@ fun FairyTalesHomeScreenTabletPreview() {
         )
     }
 }
-
-
- */
+*/

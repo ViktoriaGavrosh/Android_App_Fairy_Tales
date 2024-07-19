@@ -6,7 +6,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
-import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.HorizontalDetailScreen
+import com.viktoriagavrosh.details.uiscreens.screens.detailscreens.HorizontalDetailScreen
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test

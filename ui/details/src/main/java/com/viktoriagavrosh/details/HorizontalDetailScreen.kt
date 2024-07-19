@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.screens.detailscreens
+package com.viktoriagavrosh.details
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,13 +29,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
-import com.viktoriagavrosh.details.uiscreens.screens.detailscreens.Answer
-import com.viktoriagavrosh.details.uiscreens.screens.detailscreens.TextDetail
 
 /**
  * Composable to display details of selected [FolkWorkUiDetails] on expanded screen
@@ -193,16 +191,14 @@ private fun AnswerHorizontal(
         }
     }
 }
-/*
+
 @Preview
 @Composable
 fun HorizontalDetailScreenPreview() {
     HorizontalDetailScreen(
-        folkWork = MockData.fakeFolkWork,
-        isPuzzleType = true,
-        isStoryType = false
+        folkWork = FolkWorkUiDetails()
+            .copy(
+                text = "Text"
+            )
     )
 }
-
-
- */

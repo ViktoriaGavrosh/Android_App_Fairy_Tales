@@ -57,7 +57,6 @@ fun GridFolkWorksPreview() {
                 MockData.fakeFolkWork,
                 MockData.fakeFolkWork.copy(title = "Story Story Story Story Story Story Story Story ")
             ),
-            //List(5) {MockData.fakeFolkWork},
             onCardClick = {},
             onHeartClick = {}
         )

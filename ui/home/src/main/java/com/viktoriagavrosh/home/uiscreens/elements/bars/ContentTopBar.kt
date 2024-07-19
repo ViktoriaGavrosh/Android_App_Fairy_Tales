@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +24,7 @@ import com.viktoriagavrosh.home.R
 @Composable
 internal fun ContentTopBar(
     text: String,
-    isShowHomeScreen: Boolean,    //  TODO delete
     isFavoriteWorks: Boolean,
-    onDetailScreenBackClick: () -> Unit,   // TODO delete
     onTopBarHeartClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -50,7 +47,6 @@ private fun HomeScreenTopBar(
     text: String,
     isFavoriteWorks: Boolean,
     onTopBarHeartClick: () -> Unit,
-    //modifier: Modifier = Modifier    TODO
 ) {
     Text(
         text = text,
@@ -90,8 +86,6 @@ private fun HomeScreenTopBar(
 fun ContentTopBarHomeScreenPreview() {
     ContentTopBar(
         text = "Text",
-        isShowHomeScreen = true,
-        onDetailScreenBackClick = {},
         isFavoriteWorks = false,
         onTopBarHeartClick = {}
     )
@@ -102,8 +96,6 @@ fun ContentTopBarHomeScreenPreview() {
 fun ContentTopBarDetailScreenPreview() {
     ContentTopBar(
         text = "Text",
-        isShowHomeScreen = false,
-        onDetailScreenBackClick = {},
         isFavoriteWorks = false,
         onTopBarHeartClick = {}
     )

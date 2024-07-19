@@ -1,10 +1,5 @@
 package com.viktoriagavrosh.navigation
 
-import android.app.Application
-import android.content.Context
-import androidx.test.runner.AndroidJUnitRunner
-import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.HiltTestApplication
 /*   TODO слишком сложно пака
 @HiltAndroidTest
 class HiltTestRunner : AndroidJUnitRunner() {

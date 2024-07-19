@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.details.uiscreens.screens.detailscreens
+package com.viktoriagavrosh.details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,9 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
-import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.FolkWorkImage
 
 /**
  * Composable to display details of selected [FolkWorkUiDetails] on compact and medium screens
