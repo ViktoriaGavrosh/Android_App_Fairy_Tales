@@ -1,8 +1,8 @@
 package com.viktoriagavrosh.details.viewmodel
 
+import com.viktoriagavrosh.details.TaleViewModel
 import com.viktoriagavrosh.details.fake.FakeData
-import com.viktoriagavrosh.details.uiscreens.TaleViewModel
-import com.viktoriagavrosh.details.uiscreens.toFolkWorkUiDetails
+import com.viktoriagavrosh.details.toFolkWorkUiDetails
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
