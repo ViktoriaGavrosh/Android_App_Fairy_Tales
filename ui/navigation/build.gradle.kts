@@ -13,7 +13,7 @@ android {
     defaultConfig {
         minSdk = 24
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.viktoriagavrosh.navigation.HiltTestRunner" //TODO "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -68,8 +68,8 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-   // androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
-    //kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.51.1")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:2.51.1")
 
     /* TODO
     testImplementation("junit:junit:4.13.2")
@@ -79,5 +79,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 }

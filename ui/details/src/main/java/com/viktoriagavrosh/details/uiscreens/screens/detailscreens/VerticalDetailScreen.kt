@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.screens.detailscreens
+package com.viktoriagavrosh.details.uiscreens.screens.detailscreens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
+import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.FolkWorkImage
 
 /**
  * Composable to display details of selected [FolkWorkUiDetails] on compact and medium screens
@@ -31,7 +32,6 @@ import com.viktoriagavrosh.details.model.FolkWorkUiDetails
 @Composable
 fun VerticalDetailScreen(
     folkWork: FolkWorkUiDetails,
-    isPuzzleType: Boolean,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -44,7 +44,6 @@ fun VerticalDetailScreen(
         Spacer(modifier = Modifier.weight(1F))
         DetailContent(
             folkWork = folkWork,
-            isPuzzleType = isPuzzleType,
             modifier = Modifier
                 .padding(dimensionResource(id = R.dimen.padding_medium))
         )
@@ -55,7 +54,6 @@ fun VerticalDetailScreen(
 @Composable
 private fun DetailContent(
     folkWork: FolkWorkUiDetails,
-    isPuzzleType: Boolean,
     modifier: Modifier = Modifier
 ) {
     var bigCard by remember {
@@ -65,7 +63,7 @@ private fun DetailContent(
         modifier = modifier,
         verticalArrangement = Arrangement.Center
     ) {
-        if (!isPuzzleType) {
+        if (folkWork.genre != "puzzle") {
             FolkWorkImage(
                 title = folkWork.title,
                 imageUri = folkWork.imageUri ?: "",
@@ -81,7 +79,7 @@ private fun DetailContent(
                 .fillMaxWidth()
                 .padding(bottom = dimensionResource(id = R.dimen.padding_medium))
         )
-        if (isPuzzleType) {
+        if (folkWork.genre == "puzzle") {
             if (bigCard) {
                 Answer(
                     answer = folkWork.answer ?: "",

@@ -26,7 +26,6 @@ import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
 import com.viktoriagavrosh.details.uiscreens.TaleViewModel
 import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.HorizontalDetailScreen
-import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.VerticalDetailScreen
 
 /**
  * Composable to display details of selected [FolkWorkUiDetails]
@@ -34,12 +33,12 @@ import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.VerticalDetailScr
 @Composable
 fun DetailScreen(
     folkWorkId: Int,
+    isExpandedScreen: Boolean,
     //logic: UILogic,   TODO delete
     //isPuzzleType: Boolean,
     //isStoryType: Boolean,
-    modifier: Modifier = Modifier,
     onDetailScreenBackClick: () -> Unit,
-    isExpandedScreen: Boolean,
+    modifier: Modifier = Modifier,
 ) {
     val viewModel: TaleViewModel = hiltViewModel(
         creationCallback = { factory: TaleViewModel.TaleViewModelFactory ->
@@ -62,8 +61,6 @@ fun DetailScreen(
         if (isExpandedScreen) {
             HorizontalDetailScreen(
                 folkWork = folkWork,
-                isPuzzleType = folkWork.genre == "puzzle",  // TODO change
-                isStoryType = folkWork.genre == "story",    // TODO change
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(end = dimensionResource(id = R.dimen.right_padding_horizontal_screen))
@@ -72,7 +69,6 @@ fun DetailScreen(
         } else {
             VerticalDetailScreen(
                 folkWork = folkWork,
-                isPuzzleType = folkWork.genre == "puzzle",  // TODO change
                 modifier = Modifier
                     .fillMaxHeight()
                     .testTag(stringResource(R.string.vertical_detail_screen))

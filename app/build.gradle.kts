@@ -66,6 +66,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-test-junit4-android:1.6.8")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    //androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
+    //kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.51.1")
 
 
     implementation("androidx.core:core-ktx:1.13.1")

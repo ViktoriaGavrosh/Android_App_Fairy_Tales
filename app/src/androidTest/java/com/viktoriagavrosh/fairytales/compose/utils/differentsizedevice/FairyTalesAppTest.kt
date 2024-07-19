@@ -3,6 +3,8 @@ package com.viktoriagavrosh.fairytales.compose.utils.differentsizedevice
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.compose.utils.utils.onNodeWithTagForStringId
 import com.viktoriagavrosh.navigation.FairyTalesApp
@@ -20,7 +22,7 @@ class FairyTalesAppTest {
         composeTestRule.setContent {
             FairyTalesApp(windowSize = WindowWidthSizeClass.Compact)
         }
-        composeTestRule.onNodeWithTagForStringId(R.string.compact_screen_test_tag)
+        composeTestRule.onNodeWithTag("compact screen")
             .assertExists()
     }
 
@@ -42,7 +44,7 @@ class FairyTalesAppTest {
         }
         composeTestRule.onNodeWithTagForStringId(R.string.expanded_screen_test_tag)
     }
+
+
 }
-
-
- */
+*/

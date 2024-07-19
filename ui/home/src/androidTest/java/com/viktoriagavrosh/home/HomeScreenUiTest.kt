@@ -1,18 +1,22 @@
-package com.viktoriagavrosh.ui.ui
+package com.viktoriagavrosh.home
 
 import androidx.activity.ComponentActivity
+import androidx.annotation.StringRes
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
-import com.viktoriagavrosh.details.R
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
-//import com.viktoriagavrosh.ui.uiscreens.FairyTalesUiState
+import com.viktoriagavrosh.home.R
+import com.viktoriagavrosh.home.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.home.uiscreens.FolkWorkType
-//import com.viktoriagavrosh.ui.uiscreens.screens.HomeScreen
+import com.viktoriagavrosh.home.uiscreens.screens.ContentScreen
 import com.viktoriagavrosh.home.uiscreens.utils.UILogic
-import com.viktoriagavrosh.ui.utils.onNodeWithContentDescriptionForStringId
 import org.junit.Rule
 import org.junit.Test
-/*   TODO this has many problems
+
 class HomeScreenUiTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
@@ -22,7 +26,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Story)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = false,
@@ -41,7 +45,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Puzzle)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = false,
@@ -60,7 +64,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Game)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = false,
@@ -79,7 +83,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Poem)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = false,
@@ -98,7 +102,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Lullaby)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = false,
@@ -117,7 +121,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Story)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = true,
@@ -136,7 +140,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Puzzle)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = true,
@@ -155,7 +159,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Game)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = true,
@@ -174,7 +178,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Poem)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = true,
@@ -193,7 +197,7 @@ class HomeScreenUiTest {
         val fakeUiState = FairyTalesUiState().copy(folkWorkType = FolkWorkType.Lullaby)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = true,
@@ -213,7 +217,7 @@ class HomeScreenUiTest {
             .copy(folkWorkType = FolkWorkType.Story, isFavoriteWorks = true)
         composeTestRule.setContent {
             FairyTalesTheme {
-                HomeScreen(
+                ContentScreen(
                     logic = UILogic(),
                     uiState = fakeUiState,
                     isExpandedScreen = false,
@@ -226,5 +230,7 @@ class HomeScreenUiTest {
     }
 }
 
-
- */
+fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.onNodeWithContentDescriptionForStringId(
+    @StringRes id: Int
+): SemanticsNodeInteraction =
+    onNodeWithContentDescription(activity.getString(id))

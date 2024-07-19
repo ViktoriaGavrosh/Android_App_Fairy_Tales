@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.ui.ui
+package com.viktoriagavrosh.home
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -9,10 +9,9 @@ import com.viktoriagavrosh.home.R
 import com.viktoriagavrosh.home.uiscreens.FairyTalesUiState
 import com.viktoriagavrosh.home.uiscreens.FolkWorkType
 import com.viktoriagavrosh.home.uiscreens.elements.FolkWorkCard
-import com.viktoriagavrosh.ui.utils.onNodeWithContentDescriptionForStringId
 import org.junit.Rule
 import org.junit.Test
-/*   TODO this has many problems
+
 class FolkWorkCardTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
@@ -23,23 +22,23 @@ class FolkWorkCardTest {
         composeTestRule.setContent {
             FairyTalesTheme {
                 FolkWorkCard(
-                    folkWork = fakeUiState.selectedWork,
+                    folkWork = fakeUiState.folkWorks[0],
                     isBlurImage = false,
                     onCardClick = {},
                     onHeartClick = {}
                 )
             }
         }
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.title).assertExists("No card title")
+        composeTestRule.onNodeWithText(fakeUiState.folkWorks[0].title).assertExists("No card title")
         composeTestRule.onNodeWithContentDescriptionForStringId(R.string.not_favorite)
             .assertExists("No heart on top bar")
-        composeTestRule.onNodeWithContentDescription(fakeUiState.selectedWork.title)
+        composeTestRule.onNodeWithContentDescription(fakeUiState.folkWorks[0].title)
             .assertExists("No image")
     }
 
     @Test
     fun folkWorkCard_verifyDarkHeart() {
-        val fakeFolkWork = FairyTalesUiState().selectedWork.copy(isFavorite = true)
+        val fakeFolkWork = FairyTalesUiState().folkWorks[0].copy(isFavorite = true)
         composeTestRule.setContent {
             FairyTalesTheme {
                 FolkWorkCard(
@@ -54,6 +53,3 @@ class FolkWorkCardTest {
             .assertExists("No dark heart on card")
     }
 }
-
-
- */

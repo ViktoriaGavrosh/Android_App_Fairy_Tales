@@ -29,13 +29,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.details.model.FolkWorkUiDetails
-import com.viktoriagavrosh.fairytales.ui.utils.MockData
+import com.viktoriagavrosh.details.uiscreens.screens.detailscreens.Answer
+import com.viktoriagavrosh.details.uiscreens.screens.detailscreens.TextDetail
 
 /**
  * Composable to display details of selected [FolkWorkUiDetails] on expanded screen
@@ -43,8 +43,6 @@ import com.viktoriagavrosh.fairytales.ui.utils.MockData
 @Composable
 fun HorizontalDetailScreen(
     folkWork: FolkWorkUiDetails,
-    isPuzzleType: Boolean,
-    isStoryType: Boolean,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -57,7 +55,7 @@ fun HorizontalDetailScreen(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (!isPuzzleType) {
+            if (folkWork.genre != "puzzle") {
                 ImageHorizontal(
                     title = folkWork.title,
                     imageUri = folkWork.imageUri ?: ""
@@ -65,7 +63,7 @@ fun HorizontalDetailScreen(
             }
             Row {
                 Spacer(
-                    modifier = if (isStoryType) {
+                    modifier = if (folkWork.genre == "story") {
                         Modifier.width(dimensionResource(id = R.dimen.padding_small))
                     } else {
                         Modifier.weight(1F)
@@ -78,14 +76,14 @@ fun HorizontalDetailScreen(
                         .padding(dimensionResource(id = R.dimen.padding_small))
                 )
                 Spacer(
-                    modifier = if (isStoryType) {
+                    modifier = if (folkWork.genre == "story") {
                         Modifier.width(dimensionResource(id = R.dimen.padding_small))
                     } else {
                         Modifier.weight(1F)
                     }
                 )
             }
-            if (isPuzzleType) {
+            if (folkWork.genre == "puzzle") {
                 AnswerHorizontal(
                     answer = folkWork.answer ?: "",
                     imageUri = folkWork.imageUri ?: "",
