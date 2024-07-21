@@ -3,8 +3,8 @@ package com.viktoriagavrosh.fairytales
 import android.content.Context
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
-import com.viktoriagavrosh.repositories.FolkWorkRepository
-import com.viktoriagavrosh.repositories.OfflineForkWorkRepository
+import com.viktoriagavrosh.repositories.TaleRepository
+import com.viktoriagavrosh.repositories.OfflineTaleRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +34,7 @@ object AppModule {
     @Singleton
     fun provideRepository(
         appDatabase: AppDatabase
-    ): FolkWorkRepository {
-        return OfflineForkWorkRepository(appDatabase)
+    ): TaleRepository {
+        return OfflineTaleRepository(appDatabase)
     }
 }

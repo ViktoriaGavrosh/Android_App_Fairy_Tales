@@ -2,30 +2,30 @@ package com.viktoriagavrosh.details.viewmodel
 
 import com.viktoriagavrosh.details.TaleViewModel
 import com.viktoriagavrosh.details.fake.FakeData
-import com.viktoriagavrosh.details.toFolkWorkUiDetails
+import com.viktoriagavrosh.details.toTaleUiDetail
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 
-class TaleViewModelTest {
+internal class TaleViewModelTest {
     @get:Rule
     val testDispatcher = TestDetailScreenDispatcherRule()
 
     @Test
-    fun taleViewModel_init_initFolkWorkUiDetailsSuccess() {
+    internal fun taleViewModel_init_initTaleSuccess() {
         runTest {
             val viewModel = TaleViewModel(
                 taleId = 1,
-                folkWorkRepository = FakeFolkWorkUiDetailsRepository()
+                taleRepository = FakeTaleRepository()
             )
 
-            val expectedFolkWork = FakeData.fakeTale.toFolkWorkUiDetails()
-            val actualFolkWork = viewModel.folkWorkUiDetails.first()
+            val expectedTale = FakeData.fakeTale.toTaleUiDetail()
+            val actualTale = viewModel.tales.first()
             assertEquals(
-                expectedFolkWork,
-                actualFolkWork
+                expectedTale,
+                actualTale
             )
         }
     }

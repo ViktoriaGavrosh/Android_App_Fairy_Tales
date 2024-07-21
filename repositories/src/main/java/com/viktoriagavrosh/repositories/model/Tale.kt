@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.model
+package com.viktoriagavrosh.repositories.model
 
 /**
  * Model represents a single tale

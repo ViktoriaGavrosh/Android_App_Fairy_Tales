@@ -1,17 +1,14 @@
 package com.viktoriagavrosh.details
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,62 +30,56 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.viktoriagavrosh.details.model.FolkWorkUiDetails
+import com.viktoriagavrosh.details.model.TaleUiDetail
+import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [FolkWorkUiDetails] on expanded screen
+ * Composable to display details of selected [TaleUiDetail] on expanded screen
  */
 @Composable
 fun HorizontalDetailScreen(
-    folkWork: FolkWorkUiDetails,
+    tale: TaleUiDetail,
     modifier: Modifier = Modifier
 ) {
-    Card(
-        modifier = modifier
-            .padding(dimensionResource(id = R.dimen.padding_medium))
-            .verticalScroll(rememberScrollState()),
-        colors = CardDefaults
-            .cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier,
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            if (folkWork.genre != "puzzle") {
-                ImageHorizontal(
-                    title = folkWork.title,
-                    imageUri = folkWork.imageUri ?: ""
-                )
-            }
-            Row {
-                Spacer(
-                    modifier = if (folkWork.genre == "story") {
-                        Modifier.width(dimensionResource(id = R.dimen.padding_small))
-                    } else {
-                        Modifier.weight(1F)
-                    }
-                )
-                TextDetail(
-                    text = folkWork.text,
-                    modifier = Modifier
-                        .weight(3F)
-                        .padding(dimensionResource(id = R.dimen.padding_small))
-                )
-                Spacer(
-                    modifier = if (folkWork.genre == "story") {
-                        Modifier.width(dimensionResource(id = R.dimen.padding_small))
-                    } else {
-                        Modifier.weight(1F)
-                    }
-                )
-            }
-            if (folkWork.genre == "puzzle") {
-                AnswerHorizontal(
-                    answer = folkWork.answer ?: "",
-                    imageUri = folkWork.imageUri ?: "",
-                    modifier = Modifier
-                        .padding(bottom = dimensionResource(id = R.dimen.padding_small))
-                )
-            }
+        if (tale.genre != "puzzle") {
+            ImageHorizontal(
+                title = tale.title,
+                imageUri = tale.imageUri ?: ""
+            )
+        }
+        Row {
+            Spacer(
+                modifier = if (tale.genre == "story") {
+                    Modifier.width(dimensionResource(id = R.dimen.padding_small))
+                } else {
+                    Modifier.weight(1F)
+                }
+            )
+            TextDetail(
+                text = tale.text,
+                modifier = Modifier
+                    .weight(3F)
+                    .padding(dimensionResource(id = R.dimen.padding_small))
+            )
+            Spacer(
+                modifier = if (tale.genre == "story") {
+                    Modifier.width(dimensionResource(id = R.dimen.padding_small))
+                } else {
+                    Modifier.weight(1F)
+                }
+            )
+        }
+        if (tale.genre == "puzzle") {
+            AnswerHorizontal(
+                answer = tale.answer ?: "",
+                imageUri = tale.imageUri ?: "",
+                modifier = Modifier
+                    .padding(bottom = dimensionResource(id = R.dimen.padding_small))
+            )
         }
     }
 }
@@ -103,7 +94,7 @@ private fun ImageHorizontal(
         modifier = modifier
     ) {
         Spacer(modifier = Modifier.weight(1F))
-        FolkWorkImage(
+        TaleImage(
             title = title,
             imageUri = imageUri,
             modifier = Modifier
@@ -115,10 +106,10 @@ private fun ImageHorizontal(
 }
 
 /**
- * Composable that represents an image of [FolkWorkUiDetails]
+ * Composable that represents an image of [TaleUiDetail]
  */
 @Composable
-internal fun FolkWorkImage(
+internal fun TaleImage(
     modifier: Modifier = Modifier,
     title: String,
     imageUri: String,
@@ -192,13 +183,44 @@ private fun AnswerHorizontal(
     }
 }
 
-@Preview
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun HorizontalDetailScreenPreview() {
-    HorizontalDetailScreen(
-        folkWork = FolkWorkUiDetails()
-            .copy(
+private fun HorizontalDetailScreenPreview() {
+    FairyTalesTheme {
+        HorizontalDetailScreen(
+            tale = TaleUiDetail(
                 text = "Text"
             )
-    )
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun PuzzleHorizontalDetailScreenPreview() {
+    FairyTalesTheme {
+        HorizontalDetailScreen(
+            tale = TaleUiDetail(
+                genre = "puzzle",
+                text = "Text",
+                answer = "Answer"
+            )
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun StoryHorizontalDetailScreenPreview() {
+    FairyTalesTheme {
+        HorizontalDetailScreen(
+            tale = TaleUiDetail(
+                genre = "story",
+                text = "Text"
+            )
+        )
+    }
 }

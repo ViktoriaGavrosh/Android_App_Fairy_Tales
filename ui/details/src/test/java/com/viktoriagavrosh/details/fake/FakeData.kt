@@ -1,8 +1,8 @@
 package com.viktoriagavrosh.details.fake
 
-import com.viktoriagavrosh.fairytales.model.Tale
+import com.viktoriagavrosh.repositories.model.Tale
 
-object FakeData {
+internal object FakeData {
     val fakeTale = Tale(
         id = 0,
         genre = "story",

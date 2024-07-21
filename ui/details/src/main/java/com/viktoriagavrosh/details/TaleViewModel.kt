@@ -2,9 +2,9 @@ package com.viktoriagavrosh.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.viktoriagavrosh.details.model.FolkWorkUiDetails
-import com.viktoriagavrosh.fairytales.model.Tale
-import com.viktoriagavrosh.repositories.FolkWorkRepository
+import com.viktoriagavrosh.details.model.TaleUiDetail
+import com.viktoriagavrosh.repositories.TaleRepository
+import com.viktoriagavrosh.repositories.model.Tale
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -15,22 +15,22 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 /**
- * ViewModel to retrieve and update item from the [FolkWorkRepository]'s data source
+ * ViewModel to retrieve and update item from the [TaleRepository]'s data source
  */
 @HiltViewModel(assistedFactory = TaleViewModel.TaleViewModelFactory::class)
 class TaleViewModel @AssistedInject constructor(
     @Assisted private val taleId: Int,
-    private val folkWorkRepository: FolkWorkRepository,
+    private val taleRepository: TaleRepository,
 ) : ViewModel() {
 
-    val folkWorkUiDetails: StateFlow<FolkWorkUiDetails> = folkWorkRepository.getWorkById(taleId)
+    val tales: StateFlow<TaleUiDetail> = taleRepository.getTaleById(taleId)
         .map { tale ->
-            tale.toFolkWorkUiDetails()
+            tale.toTaleUiDetail()
         }
         .stateIn(
             viewModelScope,
             SharingStarted.Lazily,
-            FolkWorkUiDetails()
+            TaleUiDetail()
         )
 
     @AssistedFactory
@@ -39,8 +39,8 @@ class TaleViewModel @AssistedInject constructor(
     }
 }
 
-fun Tale.toFolkWorkUiDetails(): FolkWorkUiDetails {
-    return FolkWorkUiDetails(
+fun Tale.toTaleUiDetail(): TaleUiDetail {
+    return TaleUiDetail(
         id = id,
         genre = genre,
         title = title,

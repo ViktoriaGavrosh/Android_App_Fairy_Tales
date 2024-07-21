@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.viktoriagavrosh.details.DetailScreen
-import com.viktoriagavrosh.home.uiscreens.screens.HomeScreen
+import com.viktoriagavrosh.home.HomeScreen
 
 /**
  * Top level composable that represents screens for the application
@@ -27,8 +27,8 @@ fun FairyTalesApp(
         ) {
             HomeScreen(
                 windowSize = windowSize,
-                onCardClick = { folkWork ->
-                    navController.navigate(route = "details/${folkWork.id}")
+                onCardClick = { tale ->
+                    navController.navigate(route = "details/${tale.id}")
                 },
                 modifier = modifier
             )
@@ -36,9 +36,9 @@ fun FairyTalesApp(
         composable(
             route = "details/{value}"
         ) { backStackEntry ->
-            val folkWorkId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
+            val taleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
             DetailScreen(
-                folkWorkId = folkWorkId,
+                taleId = taleId,
                 isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
                 onDetailScreenBackClick = { navController.navigate("home") },
                 modifier = modifier,

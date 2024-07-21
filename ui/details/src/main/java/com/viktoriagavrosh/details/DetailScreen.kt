@@ -1,6 +1,6 @@
 package com.viktoriagavrosh.details
 
-import androidx.compose.foundation.layout.Arrangement
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -17,57 +19,56 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.viktoriagavrosh.details.model.FolkWorkUiDetails
+import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [FolkWorkUiDetails]
+ * Composable to display details of selected [TaleUiDetail]
  */
 @Composable
 fun DetailScreen(
-    folkWorkId: Int,
+    taleId: Int,
     isExpandedScreen: Boolean,
     onDetailScreenBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: TaleViewModel = hiltViewModel(
         creationCallback = { factory: TaleViewModel.TaleViewModelFactory ->
-            factory.create(folkWorkId)
+            factory.create(taleId)
         }
     )
 
-    val folkWork by viewModel.folkWorkUiDetails.collectAsState()
+    val tale by viewModel.tales.collectAsState()
 
     Column(
         modifier = modifier
     ) {
         DetailsTopBar(
-            text = folkWork.title,
+            text = tale.title,
             onDetailScreenBackClick = onDetailScreenBackClick,
             modifier = Modifier.fillMaxWidth()
         )
-        if (isExpandedScreen) {
-            HorizontalDetailScreen(
-                folkWork = folkWork,
-                modifier = Modifier
+        ContentDetailScreen(
+            tale = tale,
+            isExpandedScreen = isExpandedScreen,
+            modifier = if (isExpandedScreen) {
+                Modifier
                     .fillMaxSize()
                     .padding(end = dimensionResource(id = R.dimen.right_padding_horizontal_screen))
-                    .testTag(stringResource(R.string.horizontal_detail_screen))
-            )
-        } else {
-            VerticalDetailScreen(
-                folkWork = folkWork,
-                modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.padding_medium))
+                    .verticalScroll(rememberScrollState())
+            } else {
+                Modifier
                     .fillMaxHeight()
-                    .testTag(stringResource(R.string.vertical_detail_screen))
-            )
-        }
+                    .padding(dimensionResource(id = R.dimen.padding_extra_large))
+                    .verticalScroll(rememberScrollState())
+            }
+        )
     }
 }
 
@@ -82,24 +83,7 @@ private fun DetailsTopBar(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom
-    ) {
-        DetailScreenTopBar(
-            text = text,
-            onDetailScreenBackClick = onDetailScreenBackClick
-        )
-    }
-}
-
-@Composable
-private fun DetailScreenTopBar(
-    text: String,
-    onDetailScreenBackClick: () -> Unit
-) {
-    Row(
-        verticalAlignment = Alignment.Bottom,
-        modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_small))
     ) {
         IconButton(
             onClick = { onDetailScreenBackClick() },
@@ -117,12 +101,16 @@ private fun DetailScreenTopBar(
             text = text,
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.padding_medium))
+                .padding(
+                    top = dimensionResource(id = R.dimen.padding_medium),
+                    end = dimensionResource(id = R.dimen.padding_small)
+                )
         )
     }
 }
 
-@Preview
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun DetailsTopBarPreview() {
     FairyTalesTheme {

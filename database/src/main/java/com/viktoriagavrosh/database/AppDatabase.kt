@@ -4,26 +4,26 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.viktoriagavrosh.database.dao.FolkWorkDao
-import com.viktoriagavrosh.database.model.FolkWorkDB
+import com.viktoriagavrosh.database.dao.TaleDao
+import com.viktoriagavrosh.database.model.TaleDb
 
 
 class AppDatabase internal constructor(
     private val database: AppRoomDatabase
 ) {
-    val folkWorkDao: FolkWorkDao
-        get() = database.folkWorkDao()
+    val taleDao: TaleDao
+        get() = database.taleDao()
 }
 
 /**
  * Database class with a singleton Instance object.
  */
 @Database(
-    entities = [FolkWorkDB::class],
+    entities = [TaleDb::class],
     version = 2
 )
 internal abstract class AppRoomDatabase : RoomDatabase() {
-    abstract fun folkWorkDao(): FolkWorkDao
+    abstract fun taleDao(): TaleDao
 }
 
 fun getDatabase(context: Context): AppDatabase {

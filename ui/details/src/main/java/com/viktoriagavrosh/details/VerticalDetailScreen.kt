@@ -1,12 +1,10 @@
 package com.viktoriagavrosh.details
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -22,36 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.viktoriagavrosh.details.model.FolkWorkUiDetails
+import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.details.model.TaleUiDetail
+import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [FolkWorkUiDetails] on compact and medium screens
+ * Composable to display details of selected [TaleUiDetail] on compact and medium screens
  */
 @Composable
 fun VerticalDetailScreen(
-    folkWork: FolkWorkUiDetails,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        modifier = modifier
-            .padding(dimensionResource(id = R.dimen.padding_medium))
-            .verticalScroll(rememberScrollState()),
-        colors = CardDefaults
-            .cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
-    ) {
-        Spacer(modifier = Modifier.weight(1F))
-        DetailContent(
-            folkWork = folkWork,
-            modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.padding_medium))
-        )
-        Spacer(modifier = Modifier.weight(1F))
-    }
-}
-
-@Composable
-private fun DetailContent(
-    folkWork: FolkWorkUiDetails,
+    tale: TaleUiDetail,
     modifier: Modifier = Modifier
 ) {
     var bigCard by remember {
@@ -61,10 +39,10 @@ private fun DetailContent(
         modifier = modifier,
         verticalArrangement = Arrangement.Center
     ) {
-        if (folkWork.genre != "puzzle") {
-            FolkWorkImage(
-                title = folkWork.title,
-                imageUri = folkWork.imageUri ?: "",
+        if (tale.genre != "puzzle") {
+            TaleImage(
+                title = tale.title,
+                imageUri = tale.imageUri ?: "",
                 isBlur = false,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -72,16 +50,16 @@ private fun DetailContent(
             )
         }
         TextDetail(
-            text = folkWork.text,
+            text = tale.text,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = dimensionResource(id = R.dimen.padding_medium))
         )
-        if (folkWork.genre == "puzzle") {
+        if (tale.genre == "puzzle") {
             if (bigCard) {
                 Answer(
-                    answer = folkWork.answer ?: "",
-                    imageUri = folkWork.imageUri ?: "",
+                    answer = tale.answer ?: "",
+                    imageUri = tale.imageUri ?: "",
                     isBigImage = true,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -105,7 +83,7 @@ private fun DetailContent(
 }
 
 /**
- * Composable to display title [FolkWorkUiDetails]
+ * Composable to display title [TaleUiDetail]
  */
 @Composable
 internal fun TextDetail(
@@ -139,7 +117,7 @@ internal fun Answer(
     Column(
         modifier = modifier
     ) {
-        FolkWorkImage(
+        TaleImage(
             title = answer,
             imageUri = imageUri,
             modifier = if (isBigImage) {
@@ -153,6 +131,34 @@ internal fun Answer(
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalDetailScreenPreview() {
+    FairyTalesTheme {
+        VerticalDetailScreen(
+            tale = TaleUiDetail(
+                text = "Text"
+            ),
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun PuzzleVerticalDetailScreenPreview() {
+    FairyTalesTheme {
+        VerticalDetailScreen(
+            tale = TaleUiDetail(
+                text = "Text",
+                genre = "puzzle",
+                answer = "Answer",
+            ),
         )
     }
 }
