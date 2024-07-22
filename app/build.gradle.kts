@@ -52,7 +52,7 @@ android {
 
 dependencies {
     // Coil
-    implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation("io.coil-kt:coil-compose:2.7.0")
 
     // Modules
     implementation(project(":database"))
@@ -63,7 +63,7 @@ dependencies {
 
     // Dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
-    implementation("androidx.compose.ui:ui-test-junit4-android:1.6.8")
+    //implementation("androidx.compose.ui:ui-test-junit4-android:1.6.8")   ???
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     //androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
@@ -78,8 +78,8 @@ dependencies {
     implementation("androidx.compose.material3:material3-window-size-class")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }
