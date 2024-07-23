@@ -18,6 +18,7 @@ fun FairyTalesApp(
     windowSize: WindowWidthSizeClass,
 ) {
     val navController = rememberNavController()
+
     NavHost(
         navController = navController,
         startDestination = "home",
