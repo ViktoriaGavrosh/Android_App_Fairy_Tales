@@ -7,7 +7,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.viktoriagavrosh.details.HorizontalDetailScreen
 import com.viktoriagavrosh.details.model.TaleUiDetail
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test
 

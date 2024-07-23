@@ -14,7 +14,7 @@ android {
         minSdk = 24
 
         testInstrumentationRunner =
-            "com.viktoriagavrosh.navigation.HiltTestRunner" //TODO "androidx.test.runner.AndroidJUnitRunner"
+            "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 

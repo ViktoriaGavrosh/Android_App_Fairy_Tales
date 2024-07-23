@@ -1,5 +1,0 @@
-package com.viktoriagavrosh.fairytales.compose.utils.differentsizedevice
-
-annotation class TestCompactWidth
-annotation class TestMediumWidth
-annotation class TestExpandedWidth
