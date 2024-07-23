@@ -10,8 +10,8 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.ui.Modifier
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.navigation.FairyTalesApp
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

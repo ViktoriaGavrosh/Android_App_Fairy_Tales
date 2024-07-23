@@ -51,15 +51,20 @@ dependencies {
 
     // Compose
     implementation(platform("androidx.compose:compose-bom:2024.06.00"))
+    implementation("androidx.compose.material3:material3-window-size-class")
+    /*
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material3:material3-window-size-class")
+
+
+     */
 
     // Modules
     implementation(project(":repositories"))
-    implementation(project(":ui:home"))   // TODO for theme
+    //implementation(project(":ui:home"))   // TODO for theme
+    implementation(project(":uitheme"))
 
     // Dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
@@ -76,6 +81,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    /*
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     debugImplementation("androidx.compose.ui:ui-tooling")
+
+     */
 }

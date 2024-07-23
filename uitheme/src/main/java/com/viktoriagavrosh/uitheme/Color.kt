@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.theme
+package com.viktoriagavrosh.uitheme
 
 import androidx.compose.ui.graphics.Color
 

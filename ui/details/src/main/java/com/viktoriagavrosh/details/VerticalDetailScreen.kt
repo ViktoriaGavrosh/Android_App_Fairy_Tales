@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.details.model.TaleUiDetail
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Composable to display details of selected [TaleUiDetail] on compact and medium screens

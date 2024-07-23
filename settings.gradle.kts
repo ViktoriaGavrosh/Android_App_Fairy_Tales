@@ -22,3 +22,4 @@ include(":ui:home")
 include(":ui:navigation")
 include(":ui:details")
 
+include(":uitheme")

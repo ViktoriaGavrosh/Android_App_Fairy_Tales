@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/ui/details" />
             <option value="$PROJECT_DIR$/ui/home" />
             <option value="$PROJECT_DIR$/ui/navigation" />
+            <option value="$PROJECT_DIR$/uitheme" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

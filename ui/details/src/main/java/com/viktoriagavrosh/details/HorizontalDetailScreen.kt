@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.viktoriagavrosh.details.model.TaleUiDetail
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Composable to display details of selected [TaleUiDetail] on expanded screen

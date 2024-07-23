@@ -33,8 +33,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.viktoriagavrosh.home.model.TaleUiHome
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.home.R
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Card for display [TaleUiHome]

@@ -12,10 +12,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.home.model.TaleUiHome
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.home.elements.GridTales
 import com.viktoriagavrosh.home.elements.ListTales
 import com.viktoriagavrosh.home.elements.bars.ContentTopBar
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Composable to display [TaleUiHome] list or grid screen

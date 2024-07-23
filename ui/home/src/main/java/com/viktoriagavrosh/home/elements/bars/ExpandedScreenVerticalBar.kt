@@ -23,9 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.home.R
 import com.viktoriagavrosh.home.elements.TaleType
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * App bar to display tabs on expanded screen

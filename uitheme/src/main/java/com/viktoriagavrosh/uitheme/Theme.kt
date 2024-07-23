@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.fairytales.ui.theme
+package com.viktoriagavrosh.uitheme
 
 import android.app.Activity
 import android.os.Build

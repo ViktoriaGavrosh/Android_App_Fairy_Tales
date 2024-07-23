@@ -12,8 +12,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.home.model.TaleUiHome
-import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.home.R
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Composable to display a grid of [TaleUiHome]-s on expanded screen
