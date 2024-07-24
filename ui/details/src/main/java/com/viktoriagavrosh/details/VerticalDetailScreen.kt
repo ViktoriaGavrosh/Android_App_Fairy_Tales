@@ -28,7 +28,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  * Composable to display details of selected [TaleUiDetail] on compact and medium screens
  */
 @Composable
-fun VerticalDetailScreen(
+internal fun VerticalDetailScreen(
     tale: TaleUiDetail,
     modifier: Modifier = Modifier
 ) {

@@ -74,7 +74,7 @@ internal fun ContentTopBar(
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ContentTopBarPreview() {
+private fun ContentTopBarPreview() {
     FairyTalesTheme {
         ContentTopBar(
             text = "Text",
@@ -86,7 +86,7 @@ fun ContentTopBarPreview() {
 
 @Preview
 @Composable
-fun FavoriteContentTopBarPreview() {
+private fun FavoriteContentTopBarPreview() {
     FairyTalesTheme {
         ContentTopBar(
             text = "Text",

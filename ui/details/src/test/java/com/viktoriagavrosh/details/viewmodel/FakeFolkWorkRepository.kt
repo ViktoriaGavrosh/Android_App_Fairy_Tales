@@ -1,8 +1,8 @@
 package com.viktoriagavrosh.details.viewmodel
 
 import com.viktoriagavrosh.details.fake.FakeData
-import com.viktoriagavrosh.repositories.model.Tale
 import com.viktoriagavrosh.repositories.TaleRepository
+import com.viktoriagavrosh.repositories.model.Tale
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

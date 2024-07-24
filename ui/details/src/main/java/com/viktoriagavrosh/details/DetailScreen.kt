@@ -42,9 +42,23 @@ fun DetailScreen(
             factory.create(taleId)
         }
     )
-
     val tale by viewModel.tales.collectAsState()
 
+    DetailScreen(
+        tale = tale,
+        isExpandedScreen = isExpandedScreen,
+        onDetailScreenBackClick = onDetailScreenBackClick,
+        modifier = modifier
+    )
+}
+
+@Composable
+private fun DetailScreen(
+    tale: TaleUiDetail,
+    isExpandedScreen: Boolean,
+    onDetailScreenBackClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Column(
         modifier = modifier
     ) {
@@ -116,6 +130,106 @@ private fun DetailsTopBarPreview() {
     FairyTalesTheme {
         DetailsTopBar(
             text = "Top bar",
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalDetailScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            tale = TaleUiDetail(
+                title = "title",
+                text = "text"
+            ),
+            isExpandedScreen = false,
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalPuzzleDetailScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            tale = TaleUiDetail(
+                genre = "puzzle",
+                title = "title",
+                text = "text"
+            ),
+            isExpandedScreen = false,
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalStoryDetailScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            tale = TaleUiDetail(
+                genre = "story",
+                title = "title",
+                text = "text"
+            ),
+            isExpandedScreen = false,
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalDetailScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            tale = TaleUiDetail(
+                title = "title",
+                text = "text"
+            ),
+            isExpandedScreen = true,
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalPuzzleDetailScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            tale = TaleUiDetail(
+                genre = "puzzle",
+                title = "title",
+                text = "text"
+            ),
+            isExpandedScreen = true,
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalStoryDetailScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            tale = TaleUiDetail(
+                genre = "story",
+                title = "title",
+                text = "text"
+            ),
+            isExpandedScreen = true,
             onDetailScreenBackClick = {}
         )
     }

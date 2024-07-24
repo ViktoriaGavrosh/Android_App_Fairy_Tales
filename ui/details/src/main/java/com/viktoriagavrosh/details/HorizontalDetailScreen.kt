@@ -37,7 +37,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  * Composable to display details of selected [TaleUiDetail] on expanded screen
  */
 @Composable
-fun HorizontalDetailScreen(
+internal fun HorizontalDetailScreen(
     tale: TaleUiDetail,
     modifier: Modifier = Modifier
 ) {

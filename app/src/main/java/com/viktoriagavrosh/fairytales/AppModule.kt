@@ -3,8 +3,8 @@ package com.viktoriagavrosh.fairytales
 import android.content.Context
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
-import com.viktoriagavrosh.repositories.TaleRepository
 import com.viktoriagavrosh.repositories.OfflineTaleRepository
+import com.viktoriagavrosh.repositories.TaleRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

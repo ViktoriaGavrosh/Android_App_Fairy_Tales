@@ -14,7 +14,7 @@ import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
-fun ContentDetailScreen(
+internal fun ContentDetailScreen(
     tale: TaleUiDetail,
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,

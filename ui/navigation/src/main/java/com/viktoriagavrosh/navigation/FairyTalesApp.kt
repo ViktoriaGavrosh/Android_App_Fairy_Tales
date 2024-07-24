@@ -21,29 +21,38 @@ fun FairyTalesApp(
 
     NavHost(
         navController = navController,
-        startDestination = "home",
+        startDestination = NavigationDestination.HomeScreen.screen,
     ) {
         composable(
-            route = "home"
+            route = NavigationDestination.HomeScreen.screen
         ) {
             HomeScreen(
                 windowSize = windowSize,
                 onCardClick = { tale ->
-                    navController.navigate(route = "details/${tale.id}")
+                    navController.navigate(
+                        route = "${NavigationDestination.DetailScreen.screen}/${tale.id}"
+                    )
                 },
                 modifier = modifier
             )
         }
         composable(
-            route = "details/{value}"
+            route = "${NavigationDestination.DetailScreen.screen}/{value}"
         ) { backStackEntry ->
             val taleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
             DetailScreen(
                 taleId = taleId,
                 isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
-                onDetailScreenBackClick = { navController.navigate("home") },
+                onDetailScreenBackClick = {
+                    navController.navigate(NavigationDestination.HomeScreen.screen)
+                },
                 modifier = modifier,
             )
         }
     }
+}
+
+enum class NavigationDestination(val screen: String) {
+    HomeScreen(screen = "home"),
+    DetailScreen(screen = "details")
 }
