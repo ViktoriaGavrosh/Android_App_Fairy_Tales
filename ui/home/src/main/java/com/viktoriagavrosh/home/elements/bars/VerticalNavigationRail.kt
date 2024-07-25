@@ -8,6 +8,7 @@ import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -31,7 +32,7 @@ internal fun VerticalNavigationRail(
     )
     NavigationRail(
         modifier = modifier
-            .padding(top = dimensionResource(id = R.dimen.padding_small))
+            .padding(top = dimensionResource(id = R.dimen.padding_double_extra_large))
             .testTag(verticalNavigationRailTestTag)
     ) {
         for (item in TaleType.entries) {
@@ -42,7 +43,8 @@ internal fun VerticalNavigationRail(
                     Icon(
                         painter = painterResource(id = item.iconId),
                         contentDescription = stringResource(id = item.textId),
-                        tint = MaterialTheme.colorScheme.surfaceTint
+                        tint = MaterialTheme.colorScheme.surfaceTint,
+                        modifier = Modifier.scale(1.5F)
                     )
                 }
             )

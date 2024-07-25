@@ -3,6 +3,8 @@ package com.viktoriagavrosh.details
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -46,15 +48,28 @@ internal fun VerticalDetailScreen(
                 isBlur = false,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(dimensionResource(id = R.dimen.padding_small))
+                    .padding(
+                        start = dimensionResource(id = R.dimen.padding_extra_large),
+                        top = dimensionResource(id = R.dimen.padding_large),
+                        end = dimensionResource(id = R.dimen.padding_extra_large),
+                        bottom = dimensionResource(id = R.dimen.padding_small)
+                    )
             )
         }
-        TextDetail(
-            text = tale.text,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = dimensionResource(id = R.dimen.padding_medium))
-        )
+        Row(modifier = Modifier.fillMaxWidth()) {
+            if (tale.genre != "story") {
+                Spacer(modifier = Modifier.weight(1F))
+                TextDetail(
+                    text = tale.text
+                )
+                Spacer(modifier = Modifier.weight(1F))
+            } else {
+                TextDetail(
+                    text = tale.text,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
         if (tale.genre == "puzzle") {
             if (bigCard) {
                 Answer(
@@ -69,7 +84,7 @@ internal fun VerticalDetailScreen(
                 Button(
                     onClick = { bigCard = true },
                     modifier = Modifier
-                        .padding(top = dimensionResource(id = R.dimen.padding_extra_large))
+                        .padding(top = dimensionResource(id = R.dimen.padding_small))
                         .align(Alignment.CenterHorizontally)
                 ) {
                     Text(
@@ -94,7 +109,7 @@ internal fun TextDetail(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onPrimary
         ),
-        modifier = modifier.padding(top = dimensionResource(id = R.dimen.padding_small))
+        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_small))
     ) {
         Text(
             text = text,
@@ -121,7 +136,14 @@ internal fun Answer(
             title = answer,
             imageUri = imageUri,
             modifier = if (isBigImage) {
-                Modifier.fillMaxWidth()
+                Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = dimensionResource(id = R.dimen.padding_extra_large),
+                        top = dimensionResource(id = R.dimen.padding_large),
+                        end = dimensionResource(id = R.dimen.padding_extra_large),
+                        bottom = dimensionResource(id = R.dimen.padding_small)
+                    )
             } else {
                 Modifier
             }
@@ -143,6 +165,20 @@ private fun VerticalDetailScreenPreview() {
         VerticalDetailScreen(
             tale = TaleUiDetail(
                 text = "Text"
+            ),
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun StoryVerticalDetailScreenPreview() {
+    FairyTalesTheme {
+        VerticalDetailScreen(
+            tale = TaleUiDetail(
+                text = "Text",
+                genre = "story"
             ),
         )
     }

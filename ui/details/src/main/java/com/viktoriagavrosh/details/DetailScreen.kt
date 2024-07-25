@@ -2,23 +2,25 @@ package com.viktoriagavrosh.details
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -52,6 +54,7 @@ fun DetailScreen(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DetailScreen(
     tale: TaleUiDetail,
@@ -59,13 +62,17 @@ private fun DetailScreen(
     onDetailScreenBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val topAppBarState = rememberTopAppBarState()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
+
     Column(
         modifier = modifier
     ) {
         DetailsTopBar(
             text = tale.title,
             onDetailScreenBackClick = onDetailScreenBackClick,
-            modifier = Modifier.fillMaxWidth()
+            scrollBehavior = scrollBehavior,
+            modifier = Modifier.fillMaxWidth(),
         )
         ContentDetailScreen(
             tale = tale,
@@ -73,14 +80,11 @@ private fun DetailScreen(
             modifier = if (isExpandedScreen) {
                 Modifier
                     .fillMaxSize()
-                    .padding(end = dimensionResource(id = R.dimen.right_padding_horizontal_screen))
-                    .padding(dimensionResource(id = R.dimen.padding_medium))
-                    .verticalScroll(rememberScrollState())
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
             } else {
                 Modifier
                     .fillMaxHeight()
-                    .padding(dimensionResource(id = R.dimen.padding_extra_large))
-                    .verticalScroll(rememberScrollState())
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
             }
         )
     }
@@ -89,40 +93,41 @@ private fun DetailScreen(
 /**
  * App bar to display title and  conditionally display the back navigation
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DetailsTopBar(
     text: String,
     onDetailScreenBackClick: () -> Unit,
+    scrollBehavior: TopAppBarScrollBehavior,
     modifier: Modifier = Modifier
 ) {
-    Row(
+    TopAppBar(
+        title = {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.displaySmall,
+            )
+        },
         modifier = modifier,
-        verticalAlignment = Alignment.Bottom
-    ) {
-        IconButton(
-            onClick = { onDetailScreenBackClick() },
-            modifier = Modifier.padding(
-                start = dimensionResource(id = R.dimen.padding_medium)
-            )
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_back),
-                contentDescription = stringResource(R.string.back),
-                modifier = Modifier.size(dimensionResource(id = R.dimen.top_bar_icon_size))
-            )
-        }
-        Text(
-            text = text,
-            style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier
-                .padding(
-                    top = dimensionResource(id = R.dimen.padding_medium),
-                    end = dimensionResource(id = R.dimen.padding_small)
+        navigationIcon = {
+            IconButton(
+                onClick = { onDetailScreenBackClick() },
+                modifier = Modifier.padding(
+                    start = dimensionResource(id = R.dimen.padding_medium)
                 )
-        )
-    }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_back),
+                    contentDescription = stringResource(R.string.back),
+                    modifier = Modifier.size(dimensionResource(id = R.dimen.top_bar_icon_size))
+                )
+            }
+        },
+        scrollBehavior = scrollBehavior,
+    )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -130,7 +135,8 @@ private fun DetailsTopBarPreview() {
     FairyTalesTheme {
         DetailsTopBar(
             text = "Top bar",
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
         )
     }
 }

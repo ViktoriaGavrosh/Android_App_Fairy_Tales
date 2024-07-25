@@ -6,19 +6,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.elements.bars.BottomNavigateBar
-import com.viktoriagavrosh.home.elements.bars.ExpandedScreenVerticalBar
 import com.viktoriagavrosh.home.elements.bars.VerticalNavigationRail
 import com.viktoriagavrosh.home.model.TaleUiHome
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -57,72 +53,42 @@ private fun HomeScreen(
 
     modifier: Modifier = Modifier,
 ) {
-    when (windowSize) {
-        WindowWidthSizeClass.Expanded -> {
-            PermanentNavigationDrawer(
-                drawerContent = {
-                    ExpandedScreenVerticalBar(
-                        selectedType = uiState.taleType,
-                        onTabClick = onTabClick,
-                        modifier = Modifier.width(
-                            dimensionResource(id = R.dimen.permanent_drawer_sheet_width)
-                        )
-                    )
-                }
-            ) {
-                ContentScreen(
-                    tales = uiState.tales,
-                    topBarTextId = uiState.taleType.textId,
-                    isFavoriteTalesList = uiState.isFavoriteTalesList,
-                    onHeartClick = onHeartClick,
-                    onTopBarHeartClick = onTopBarHeartClick,
-                    onCardClick = onCardClick,
-                    isExpandedScreen = true
-                )
-            }
+    if (windowSize == WindowWidthSizeClass.Compact) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            ContentScreen(
+                tales = uiState.tales,
+                topBarTextId = uiState.taleType.textId,
+                isFavoriteTalesList = uiState.isFavoriteTalesList,
+                onHeartClick = onHeartClick,
+                onTopBarHeartClick = onTopBarHeartClick,
+                isCompactScreen = true,
+                onCardClick = onCardClick,
+                modifier = Modifier.weight(1F)
+            )
+            BottomNavigateBar(
+                selectedType = uiState.taleType,
+                onTabClick = onTabClick,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
-
-        WindowWidthSizeClass.Compact -> {
-            Column(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                ContentScreen(
-                    tales = uiState.tales,
-                    topBarTextId = uiState.taleType.textId,
-                    isFavoriteTalesList = uiState.isFavoriteTalesList,
-                    onHeartClick = onHeartClick,
-                    onTopBarHeartClick = onTopBarHeartClick,
-                    isExpandedScreen = false,
-                    onCardClick = onCardClick,
-                    modifier = Modifier.weight(1F)
-                )
-                BottomNavigateBar(
-                    selectedType = uiState.taleType,
-                    onTabClick = onTabClick,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        }
-
-        else -> {
-            Row(
-                modifier = modifier
-            ) {
-                VerticalNavigationRail(
-                    selectedType = uiState.taleType,
-                    onTabClick = onTabClick,
-                    modifier = Modifier.fillMaxHeight()
-                )
-                ContentScreen(
-                    tales = uiState.tales,
-                    topBarTextId = uiState.taleType.textId,
-                    isFavoriteTalesList = uiState.isFavoriteTalesList,
-                    onHeartClick = onHeartClick,
-                    onTopBarHeartClick = onTopBarHeartClick,
-                    onCardClick = onCardClick,
-                    isExpandedScreen = false
-                )
-            }
+    } else {
+        Row(modifier = modifier) {
+            VerticalNavigationRail(
+                selectedType = uiState.taleType,
+                onTabClick = onTabClick,
+                modifier = Modifier.fillMaxHeight()
+            )
+            ContentScreen(
+                tales = uiState.tales,
+                topBarTextId = uiState.taleType.textId,
+                isFavoriteTalesList = uiState.isFavoriteTalesList,
+                onHeartClick = onHeartClick,
+                onTopBarHeartClick = onTopBarHeartClick,
+                onCardClick = onCardClick,
+                isCompactScreen = false,
+            )
         }
     }
 }

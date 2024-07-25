@@ -1,9 +1,11 @@
 package com.viktoriagavrosh.details
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,10 +21,10 @@ internal fun ContentDetailScreen(
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    Card(
-        modifier = modifier,
-        colors = CardDefaults
-            .cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    Column(
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
+            .background(color = MaterialTheme.colorScheme.surfaceContainerHigh),
     ) {
         if (isExpandedScreen) {
             HorizontalDetailScreen(

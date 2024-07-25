@@ -1,13 +1,14 @@
 package com.viktoriagavrosh.home.elements.bars
 
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -28,7 +29,9 @@ internal fun BottomNavigateBar(
 ) {
     val bottomNavigateBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
     NavigationBar(
-        modifier = modifier.testTag(bottomNavigateBarTestTag)
+        modifier = modifier
+            .testTag(bottomNavigateBarTestTag)
+            .sizeIn(maxHeight = dimensionResource(id = R.dimen.max_bottom_navigation_bar_height))
     ) {
         for (item in TaleType.entries) {
             NavigationBarItem(
@@ -38,7 +41,7 @@ internal fun BottomNavigateBar(
                     Icon(
                         painter = painterResource(id = item.iconId),
                         contentDescription = stringResource(id = item.textId),
-                        modifier = Modifier.size(dimensionResource(id = R.dimen.bottom_bar_icon_size)),
+                        modifier = Modifier.scale(1.5F),
                         tint = MaterialTheme.colorScheme.surfaceTint
                     )
                 }

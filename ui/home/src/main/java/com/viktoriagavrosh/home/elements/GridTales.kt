@@ -27,7 +27,7 @@ internal fun GridTales(
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+        columns = GridCells.Adaptive(minSize = 300.dp),
         contentPadding = contentPadding,
         modifier = modifier
     ) {
