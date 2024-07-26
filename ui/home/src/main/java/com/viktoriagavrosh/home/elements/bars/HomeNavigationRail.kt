@@ -22,13 +22,13 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  * App bar to display tabs on medium screen
  */
 @Composable
-internal fun VerticalNavigationRail(
+internal fun HomeNavigationRail(
     selectedType: TaleType,
     onTabClick: (TaleType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val verticalNavigationRailTestTag = stringResource(
-        id = R.string.medium_screen_test_tag
+        id = R.string.expanded_screen_test_tag
     )
     NavigationRail(
         modifier = modifier
@@ -57,7 +57,7 @@ internal fun VerticalNavigationRail(
 @Composable
 private fun VerticalNavigationRailPreview() {
     FairyTalesTheme {
-        VerticalNavigationRail(
+        HomeNavigationRail(
             selectedType = TaleType.Puzzle,
             onTabClick = {}
         )

@@ -56,7 +56,7 @@ fun DetailScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun DetailScreen(
+internal fun DetailScreen(
     tale: TaleUiDetail,
     isExpandedScreen: Boolean,
     onDetailScreenBackClick: () -> Unit,

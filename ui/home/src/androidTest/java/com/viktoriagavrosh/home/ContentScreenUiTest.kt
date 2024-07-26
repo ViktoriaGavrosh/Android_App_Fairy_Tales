@@ -13,12 +13,12 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test
 
-class HomeScreenUiTest {
+class ContentScreenUiTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun homeScreen_storyTypeVerticalScreen_verifyContent() {
+    fun contentScreen_storyTypeVerticalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Story)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -31,7 +31,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_puzzleTypeVerticalScreen_verifyContent() {
+    fun contentScreen_puzzleTypeVerticalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Puzzle)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -45,7 +45,7 @@ class HomeScreenUiTest {
 
 
     @Test
-    fun homeScreen_gameTypeVerticalScreen_verifyContent() {
+    fun contentScreen_gameTypeVerticalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Game)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -58,7 +58,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_poemTypeVerticalScreen_verifyContent() {
+    fun contentScreen_poemTypeVerticalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Poem)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -71,7 +71,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_lullabyTypeVerticalScreen_verifyContent() {
+    fun contentScreen_lullabyTypeVerticalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Lullaby)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -84,7 +84,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_storyTypeHorizontalScreen_verifyContent() {
+    fun contentScreen_storyTypeHorizontalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Story)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -97,7 +97,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_puzzleTypeHorizontalScreen_verifyContent() {
+    fun contentScreen_puzzleTypeHorizontalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Puzzle)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -110,7 +110,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_gameTypeHorizontalScreen_verifyContent() {
+    fun contentScreen_gameTypeHorizontalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Game)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -123,7 +123,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_poemTypeHorizontalScreen_verifyContent() {
+    fun contentScreen_poemTypeHorizontalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Poem)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -136,7 +136,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_lullabyTypeHorizontalScreen_verifyContent() {
+    fun contentScreen_lullabyTypeHorizontalScreen_verifyContent() {
         val fakeUiState = TalesListUiState().copy(taleType = TaleType.Lullaby)
         setContentScreen(
             fakeUiState = fakeUiState,
@@ -149,7 +149,7 @@ class HomeScreenUiTest {
     }
 
     @Test
-    fun homeScreen_verticalScreen_verifyDarkHeart() {
+    fun contentScreen_verticalScreen_verifyDarkHeart() {
         val fakeUiState = TalesListUiState()
             .copy(taleType = TaleType.Story, isFavoriteTalesList = true)
         setContentScreen(
@@ -167,7 +167,7 @@ class HomeScreenUiTest {
                     tales = fakeUiState.tales,
                     topBarTextId = fakeUiState.taleType.textId,
                     isFavoriteTalesList = fakeUiState.isFavoriteTalesList,
-                    isExpandedScreen = isExpandedScreen,
+                    isCompactScreen = !isExpandedScreen,
                     onHeartClick = {},
                     onTopBarHeartClick = {},
                     onCardClick = {}
@@ -177,7 +177,7 @@ class HomeScreenUiTest {
     }
 }
 
-fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.onNodeWithContentDescriptionForStringId(
+internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.onNodeWithContentDescriptionForStringId(
     @StringRes id: Int
 ): SemanticsNodeInteraction =
     onNodeWithContentDescription(activity.getString(id))

@@ -15,7 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.elements.bars.BottomNavigateBar
-import com.viktoriagavrosh.home.elements.bars.VerticalNavigationRail
+import com.viktoriagavrosh.home.elements.bars.HomeNavigationRail
 import com.viktoriagavrosh.home.model.TaleUiHome
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -43,7 +43,7 @@ fun HomeScreen(
 }
 
 @Composable
-private fun HomeScreen(
+internal fun HomeScreen(
     uiState: TalesListUiState,
     windowSize: WindowWidthSizeClass,
     onCardClick: (TaleUiHome) -> Unit,
@@ -75,7 +75,7 @@ private fun HomeScreen(
         }
     } else {
         Row(modifier = modifier) {
-            VerticalNavigationRail(
+            HomeNavigationRail(
                 selectedType = uiState.taleType,
                 onTabClick = onTabClick,
                 modifier = Modifier.fillMaxHeight()

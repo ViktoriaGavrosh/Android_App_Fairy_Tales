@@ -16,7 +16,7 @@ class VerticalDetailScreenUiTest {
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun detailScreen_verticalScreen_verifyContent() {
+    fun verticalDetailScreen_verticalScreen_verifyContent() {
         val fakeTale = TaleUiDetail(
             genre = "story",
             title = "title",
@@ -30,7 +30,7 @@ class VerticalDetailScreenUiTest {
     }
 
     @Test
-    fun detailScreen_puzzleTypeVerticalScreen_verifyContent() {
+    fun verticalDetailScreen_puzzleTypeVerticalScreen_verifyContent() {
         val fakeTale = TaleUiDetail(
             genre = "puzzle",
             title = "puzzleTitle",
@@ -45,7 +45,7 @@ class VerticalDetailScreenUiTest {
 
     @Test
     @Throws(Exception::class)
-    fun detailScreen_puzzleType_showAnswer() {
+    fun verticalDetailScreen_puzzleType_showAnswer() {
         val fakeTale = TaleUiDetail(
             genre = "puzzle",
             title = "puzzleTitle",
