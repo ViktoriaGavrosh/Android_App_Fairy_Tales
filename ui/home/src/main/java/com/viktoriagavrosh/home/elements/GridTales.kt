@@ -27,7 +27,8 @@ internal fun GridTales(
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 300.dp),
+        columns = GridCells
+            .Adaptive(minSize = dimensionResource(id = R.dimen.card_min_size_in_grid)),
         contentPadding = contentPadding,
         modifier = modifier
     ) {

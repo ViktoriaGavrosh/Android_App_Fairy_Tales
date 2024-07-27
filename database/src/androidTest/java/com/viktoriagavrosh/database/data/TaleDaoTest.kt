@@ -103,6 +103,14 @@ class TaleDaoTest {
 
     @Test
     @Throws(Exception::class)
+    fun daoGetTaleById_returnTaleFromDB() = runBlocking {
+        addThreeItemsToDb()
+        val actualTale = taleDao.getTaleById(3).first()
+        assertEquals(actualTale, tale3)
+    }
+
+    @Test
+    @Throws(Exception::class)
     fun daoUpdateFavoriteTale_updatedItemInDb() = runBlocking {
         val isTrueFavorite = 1
         val isFavoriteExpected = true
