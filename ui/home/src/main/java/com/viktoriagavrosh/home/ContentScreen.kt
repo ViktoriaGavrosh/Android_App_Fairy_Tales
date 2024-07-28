@@ -26,7 +26,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ContentScreen(
-    tales: List<TaleUiHome>,
+    screenState: HomeScreenState,
     @StringRes topBarTextId: Int,
     isFavoriteTalesList: Boolean,
     isCompactScreen: Boolean,
@@ -49,25 +49,41 @@ internal fun ContentScreen(
             )
         }
     ) { paddingValues ->
-        if (isCompactScreen) {
-            ListTales(
-                tales = tales,
-                onCardClick = onCardClick,
-                onHeartClick = onHeartClick,
-                modifier = Modifier
-                    .padding(paddingValues)
-                    .nestedScroll(scrollBehavior.nestedScrollConnection)
-            )
-        } else {
-            GridTales(
-                tales = tales,
-                onCardClick = onCardClick,
-                onHeartClick = onHeartClick,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-                    .nestedScroll(scrollBehavior.nestedScrollConnection)
-            )
+        when (screenState) {
+            is HomeScreenState.Loading -> {
+                //TODO
+            }
+
+            is HomeScreenState.Error -> {
+                //TODO
+            }
+
+            is HomeScreenState.None -> {
+                //TODO
+            }
+
+            is HomeScreenState.Success -> {
+                if (isCompactScreen) {
+                    ListTales(
+                        tales = screenState.tales.orEmpty(),
+                        onCardClick = onCardClick,
+                        onHeartClick = onHeartClick,
+                        modifier = Modifier
+                            .padding(paddingValues)
+                            .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    )
+                } else {
+                    GridTales(
+                        tales = screenState.tales.orEmpty(),
+                        onCardClick = onCardClick,
+                        onHeartClick = onHeartClick,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(paddingValues)
+                            .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    )
+                }
+            }
         }
     }
 }
@@ -78,12 +94,14 @@ internal fun ContentScreen(
 private fun VerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
-            tales = List(4) {
-                TaleUiHome(
-                    id = it,
-                    title = "title",
-                )
-            },
+            screenState = HomeScreenState.Success(
+                List(4) {
+                    TaleUiHome(
+                        id = it,
+                        title = "title",
+                    )
+                }
+            ),
             topBarTextId = R.string.title_fairy_tales,
             isFavoriteTalesList = false,
             isCompactScreen = true,
@@ -100,13 +118,15 @@ private fun VerticalContentScreenPreview() {
 private fun VerticalFavoriteContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
-            tales = List(2) {
-                TaleUiHome(
-                    id = it,
-                    title = "title",
-                    isFavorite = true
-                )
-            },
+            screenState = HomeScreenState.Success(
+                List(2) {
+                    TaleUiHome(
+                        id = it,
+                        title = "title",
+                        isFavorite = true
+                    )
+                }
+            ),
             topBarTextId = R.string.title_fairy_tales,
             isFavoriteTalesList = true,
             isCompactScreen = true,
@@ -123,12 +143,14 @@ private fun VerticalFavoriteContentScreenPreview() {
 private fun HorizontalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
-            tales = List(4) {
-                TaleUiHome(
-                    id = it,
-                    title = "title",
-                )
-            },
+            screenState = HomeScreenState.Success(
+                List(4) {
+                    TaleUiHome(
+                        id = it,
+                        title = "title",
+                    )
+                }
+            ),
             topBarTextId = R.string.title_fairy_tales,
             isFavoriteTalesList = false,
             isCompactScreen = false,

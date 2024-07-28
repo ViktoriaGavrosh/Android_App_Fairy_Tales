@@ -5,6 +5,7 @@ import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.fake.FakeSource
 import com.viktoriagavrosh.home.model.TaleUiHome
 import com.viktoriagavrosh.home.toTaleUiHome
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -24,7 +25,7 @@ class TalesListViewModelTest {
             val expectedList = FakeSource().fakeListTales
                 .map { it.toTaleUiHome() }
                 .filter { it.genre == "story" }
-            val actualList = viewModel.uiState.value.tales
+            val actualList = viewModel.screenState.first().tales ?: emptyList()
             assertEquals(
                 expectedList,
                 actualList
@@ -53,13 +54,14 @@ class TalesListViewModelTest {
                 taleRepository = FakeTaleRepository()
             )
             viewModel.updateTaleType(expectedTaleType)
+            val actualList = viewModel.screenState.first().tales ?: emptyList()
             assertEquals(
                 expectedTaleType,
                 viewModel.uiState.value.taleType
             )
             assertEquals(
                 expectedList,
-                viewModel.uiState.value.tales
+                actualList
             )
         }
     }
@@ -77,13 +79,15 @@ class TalesListViewModelTest {
                 expectedTaleType,
                 viewModel.uiState.value.taleType
             )
+            val actualList = viewModel.screenState.first().tales ?: emptyList()
             assertEquals(
                 expectedList,
-                viewModel.uiState.value.tales
+                actualList
             )
         }
     }
 
+    // TODO тест падает. где-то неверно срабатывает, т к достаёт список сказок по теме , но не любимые
     @Test
     fun fairyTalesViewModel_updateCompositionType_successUpdateUiStateWithFavoriteList() {
         val newTale = FakeSource().fakeListTales[3].toTaleUiHome()
@@ -96,13 +100,14 @@ class TalesListViewModelTest {
             viewModel.changeIsFavoriteTalesList(true)
             viewModel.updateTaleType(expectedTaleType)
             val expectedList = listOf(newTale.copy(isFavorite = true))
+            val actualList = viewModel.screenState.first().tales ?: emptyList()
             assertEquals(
                 expectedTaleType,
                 viewModel.uiState.value.taleType
             )
             assertEquals(
                 expectedList,
-                viewModel.uiState.value.tales
+                actualList
             )
         }
     }

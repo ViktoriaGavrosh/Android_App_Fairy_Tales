@@ -3,6 +3,7 @@ package com.viktoriagavrosh.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.details.model.TaleUiDetail
+import com.viktoriagavrosh.repositories.RequestResult
 import com.viktoriagavrosh.repositories.TaleRepository
 import com.viktoriagavrosh.repositories.model.Tale
 import dagger.assisted.Assisted
@@ -23,19 +24,35 @@ class TaleViewModel @AssistedInject constructor(
     private val taleRepository: TaleRepository,
 ) : ViewModel() {
 
-    val tales: StateFlow<TaleUiDetail> = taleRepository.getTaleById(taleId)
-        .map { tale ->
-            tale.toTaleUiDetail()
-        }
+    internal val tales: StateFlow<DetailScreenState> = taleRepository.getTaleById(taleId)
+        .map { it.toDetailScreenState() }
         .stateIn(
             viewModelScope,
             SharingStarted.Lazily,
-            TaleUiDetail()
+            DetailScreenState.None()
         )
 
     @AssistedFactory
     interface TaleViewModelFactory {
         fun create(taleId: Int): TaleViewModel
+    }
+}
+
+internal sealed class DetailScreenState(val tale: TaleUiDetail? = null) {
+    class None : DetailScreenState()
+    class Success(tale: TaleUiDetail) : DetailScreenState(tale)
+    class Loading : DetailScreenState()
+    class Error : DetailScreenState()
+}
+
+internal fun RequestResult<Tale>.toDetailScreenState(): DetailScreenState {
+    return when (this) {
+        is RequestResult.Success -> DetailScreenState.Success(
+            tale = data.toTaleUiDetail()
+        )
+
+        is RequestResult.Loading -> DetailScreenState.Loading()
+        is RequestResult.Error -> DetailScreenState.Error()
     }
 }
 

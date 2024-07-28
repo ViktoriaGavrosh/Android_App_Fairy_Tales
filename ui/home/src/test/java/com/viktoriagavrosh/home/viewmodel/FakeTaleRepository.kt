@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.home.viewmodel
 
 import com.viktoriagavrosh.home.fake.FakeSource
+import com.viktoriagavrosh.repositories.RequestResult
 import com.viktoriagavrosh.repositories.TaleRepository
 import com.viktoriagavrosh.repositories.model.Tale
 import kotlinx.coroutines.flow.Flow
@@ -10,16 +11,13 @@ class FakeTaleRepository : TaleRepository {
 
     private val fakeListTales = FakeSource().fakeListTales
 
-    override fun getAllTales(genre: String): Flow<List<Tale>> = flow {
-        emit(fakeListTales.filter { it.genre == genre })
-    }
+    override fun getTales(genre: String, isFavorite: Boolean): Flow<RequestResult<List<Tale>>> =
+        flow {
+            emit(RequestResult.Success(fakeListTales.filter { it.genre == genre }))
+        }
 
-    override fun getAllFavoriteTales(genre: String): Flow<List<Tale>> = flow {
-        emit(fakeListTales.filter { it.genre == genre && it.isFavorite })
-    }
-
-    override fun getTaleById(id: Int): Flow<Tale> = flow {
-        emit(fakeListTales.first { it.id == id })
+    override fun getTaleById(id: Int): Flow<RequestResult<Tale>> = flow {
+        emit(RequestResult.Success(fakeListTales.first { it.id == id }))
     }
 
     override suspend fun updateFavoriteTale(id: Int, isFavorite: Boolean) {

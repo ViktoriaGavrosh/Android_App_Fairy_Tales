@@ -30,9 +30,11 @@ fun HomeScreen(
     viewModel: TalesListViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val screenState by viewModel.screenState.collectAsStateWithLifecycle(HomeScreenState.None())
 
     HomeScreen(
         uiState = uiState,
+        screenState = screenState,
         windowSize = windowSize,
         onCardClick = onCardClick,
         onTabClick = viewModel::updateTaleType,
@@ -45,6 +47,7 @@ fun HomeScreen(
 @Composable
 internal fun HomeScreen(
     uiState: TalesListUiState,
+    screenState: HomeScreenState,
     windowSize: WindowWidthSizeClass,
     onCardClick: (TaleUiHome) -> Unit,
     onTabClick: (TaleType) -> Unit,
@@ -58,7 +61,7 @@ internal fun HomeScreen(
             modifier = Modifier.fillMaxSize()
         ) {
             ContentScreen(
-                tales = uiState.tales,
+                screenState = screenState,
                 topBarTextId = uiState.taleType.textId,
                 isFavoriteTalesList = uiState.isFavoriteTalesList,
                 onHeartClick = onHeartClick,
@@ -81,7 +84,7 @@ internal fun HomeScreen(
                 modifier = Modifier.fillMaxHeight()
             )
             ContentScreen(
-                tales = uiState.tales,
+                screenState = screenState,
                 topBarTextId = uiState.taleType.textId,
                 isFavoriteTalesList = uiState.isFavoriteTalesList,
                 onHeartClick = onHeartClick,
@@ -100,6 +103,14 @@ private fun CompactHomeScreenPreview() {
     FairyTalesTheme {
         HomeScreen(
             uiState = TalesListUiState(),
+            screenState = HomeScreenState.Success(
+                List(4) {
+                    TaleUiHome(
+                        id = it,
+                        title = "title",
+                    )
+                }
+            ),
             windowSize = WindowWidthSizeClass.Compact,
             onCardClick = {},
             onTabClick = {},
@@ -116,6 +127,14 @@ private fun MediumHomeScreenPreview() {
     FairyTalesTheme {
         HomeScreen(
             uiState = TalesListUiState(),
+            screenState = HomeScreenState.Success(
+                List(4) {
+                    TaleUiHome(
+                        id = it,
+                        title = "title",
+                    )
+                }
+            ),
             windowSize = WindowWidthSizeClass.Medium,
             onCardClick = {},
             onTabClick = {},
@@ -132,6 +151,14 @@ private fun ExpandedHomeScreenPreview() {
     FairyTalesTheme {
         HomeScreen(
             uiState = TalesListUiState(),
+            screenState = HomeScreenState.Success(
+                List(4) {
+                    TaleUiHome(
+                        id = it,
+                        title = "title",
+                    )
+                }
+            ),
             windowSize = WindowWidthSizeClass.Expanded,
             onCardClick = {},
             onTabClick = {},

@@ -9,6 +9,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.viktoriagavrosh.home.elements.TaleType
+import com.viktoriagavrosh.home.model.TaleUiHome
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test
@@ -16,6 +17,8 @@ import org.junit.Test
 class ContentScreenUiTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
+
+    private val fakeList: List<TaleUiHome> = listOf(TaleUiHome(title = "Story"))
 
     @Test
     fun contentScreen_storyTypeVerticalScreen_verifyContent() {
@@ -164,7 +167,7 @@ class ContentScreenUiTest {
         composeTestRule.setContent {
             FairyTalesTheme {
                 ContentScreen(
-                    tales = fakeUiState.tales,
+                    screenState = HomeScreenState.Success(fakeList),
                     topBarTextId = fakeUiState.taleType.textId,
                     isFavoriteTalesList = fakeUiState.isFavoriteTalesList,
                     isCompactScreen = !isExpandedScreen,

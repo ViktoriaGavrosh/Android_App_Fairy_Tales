@@ -44,10 +44,10 @@ fun DetailScreen(
             factory.create(taleId)
         }
     )
-    val tale by viewModel.tales.collectAsState()
+    val screenState by viewModel.tales.collectAsState()
 
     DetailScreen(
-        tale = tale,
+        screenState = screenState,
         isExpandedScreen = isExpandedScreen,
         onDetailScreenBackClick = onDetailScreenBackClick,
         modifier = modifier
@@ -57,7 +57,7 @@ fun DetailScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DetailScreen(
-    tale: TaleUiDetail,
+    screenState: DetailScreenState,
     isExpandedScreen: Boolean,
     onDetailScreenBackClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -69,24 +69,40 @@ internal fun DetailScreen(
         modifier = modifier
     ) {
         DetailsTopBar(
-            text = tale.title,
+            text = screenState.tale?.title ?: "",
             onDetailScreenBackClick = onDetailScreenBackClick,
             scrollBehavior = scrollBehavior,
             modifier = Modifier.fillMaxWidth(),
         )
-        ContentDetailScreen(
-            tale = tale,
-            isExpandedScreen = isExpandedScreen,
-            modifier = if (isExpandedScreen) {
-                Modifier
-                    .fillMaxSize()
-                    .nestedScroll(scrollBehavior.nestedScrollConnection)
-            } else {
-                Modifier
-                    .fillMaxHeight()
-                    .nestedScroll(scrollBehavior.nestedScrollConnection)
+        when (screenState) {
+            is DetailScreenState.Loading -> {
+                //TODO
             }
-        )
+
+            is DetailScreenState.Error -> {
+                //TODO
+            }
+
+            is DetailScreenState.None -> {
+                //TODO
+            }
+
+            is DetailScreenState.Success -> {
+                ContentDetailScreen(
+                    tale = screenState.tale ?: TaleUiDetail(),
+                    isExpandedScreen = isExpandedScreen,
+                    modifier = if (isExpandedScreen) {
+                        Modifier
+                            .fillMaxSize()
+                            .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    } else {
+                        Modifier
+                            .fillMaxHeight()
+                            .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    }
+                )
+            }
+        }
     }
 }
 
@@ -147,9 +163,11 @@ private fun DetailsTopBarPreview() {
 private fun VerticalDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            tale = TaleUiDetail(
-                title = "title",
-                text = "text"
+            screenState = DetailScreenState.Success(
+                TaleUiDetail(
+                    title = "title",
+                    text = "text"
+                )
             ),
             isExpandedScreen = false,
             onDetailScreenBackClick = {}
@@ -163,10 +181,12 @@ private fun VerticalDetailScreenPreview() {
 private fun VerticalPuzzleDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            tale = TaleUiDetail(
-                genre = "puzzle",
-                title = "title",
-                text = "text"
+            screenState = DetailScreenState.Success(
+                TaleUiDetail(
+                    genre = "puzzle",
+                    title = "title",
+                    text = "text"
+                )
             ),
             isExpandedScreen = false,
             onDetailScreenBackClick = {}
@@ -180,10 +200,12 @@ private fun VerticalPuzzleDetailScreenPreview() {
 private fun VerticalStoryDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            tale = TaleUiDetail(
-                genre = "story",
-                title = "title",
-                text = "text"
+            screenState = DetailScreenState.Success(
+                TaleUiDetail(
+                    genre = "story",
+                    title = "title",
+                    text = "text"
+                )
             ),
             isExpandedScreen = false,
             onDetailScreenBackClick = {}
@@ -197,9 +219,11 @@ private fun VerticalStoryDetailScreenPreview() {
 private fun HorizontalDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            tale = TaleUiDetail(
-                title = "title",
-                text = "text"
+            screenState = DetailScreenState.Success(
+                TaleUiDetail(
+                    title = "title",
+                    text = "text"
+                )
             ),
             isExpandedScreen = true,
             onDetailScreenBackClick = {}
@@ -213,10 +237,12 @@ private fun HorizontalDetailScreenPreview() {
 private fun HorizontalPuzzleDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            tale = TaleUiDetail(
-                genre = "puzzle",
-                title = "title",
-                text = "text"
+            screenState = DetailScreenState.Success(
+                TaleUiDetail(
+                    genre = "puzzle",
+                    title = "title",
+                    text = "text"
+                )
             ),
             isExpandedScreen = true,
             onDetailScreenBackClick = {}
@@ -230,10 +256,12 @@ private fun HorizontalPuzzleDetailScreenPreview() {
 private fun HorizontalStoryDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            tale = TaleUiDetail(
-                genre = "story",
-                title = "title",
-                text = "text"
+            screenState = DetailScreenState.Success(
+                TaleUiDetail(
+                    genre = "story",
+                    title = "title",
+                    text = "text"
+                )
             ),
             isExpandedScreen = true,
             onDetailScreenBackClick = {}

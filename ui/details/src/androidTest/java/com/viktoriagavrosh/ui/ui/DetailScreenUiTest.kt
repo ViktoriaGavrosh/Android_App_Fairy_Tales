@@ -9,6 +9,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.viktoriagavrosh.details.DetailScreen
+import com.viktoriagavrosh.details.DetailScreenState
 import com.viktoriagavrosh.details.R
 import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -48,7 +49,7 @@ class DetailScreenUiTest {
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    tale = fakeTale,
+                    screenState = DetailScreenState.Success(fakeTale),
                     isExpandedScreen = isExpanded,
                     onDetailScreenBackClick = {}
                 )
