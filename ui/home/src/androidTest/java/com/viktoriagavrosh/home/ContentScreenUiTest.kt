@@ -153,14 +153,59 @@ class ContentScreenUiTest {
 
     @Test
     fun contentScreen_verticalScreen_verifyDarkHeart() {
-        val fakeUiState = TalesListUiState()
-            .copy(taleType = TaleType.Story, isFavoriteTalesList = true)
+        val fakeUiState = TalesListUiState(taleType = TaleType.Story, isFavoriteTalesList = true)
         setContentScreen(
             fakeUiState = fakeUiState,
             isExpandedScreen = false
         )
         composeTestRule.onNodeWithContentDescriptionForStringId(R.string.favorite_folk_works)
             .assertExists("No dark heart on top bar")
+    }
+
+    @Test
+    fun contentScreen_verticalErrorScreen_verifyContent() {
+        val fakeUiState = TalesListUiState()
+        composeTestRule.setContent {
+            FairyTalesTheme {
+                ContentScreen(
+                    screenState = HomeScreenState.Error(),
+                    topBarTextId = fakeUiState.taleType.textId,
+                    isFavoriteTalesList = fakeUiState.isFavoriteTalesList,
+                    isCompactScreen = true,
+                    onHeartClick = {},
+                    onTopBarHeartClick = {},
+                    onCardClick = {},
+                    onTabClick = {}
+                )
+            }
+        }
+        composeTestRule.onNodeWithTextById(R.string.error_text)
+            .assertExists("No error text")
+        composeTestRule.onNodeWithTextById(R.string.error_button_text)
+            .assertExists("No error button")
+    }
+
+    @Test
+    fun contentScreen_horizontalErrorScreen_verifyContent() {
+        val fakeUiState = TalesListUiState()
+        composeTestRule.setContent {
+            FairyTalesTheme {
+                ContentScreen(
+                    screenState = HomeScreenState.Error(),
+                    topBarTextId = fakeUiState.taleType.textId,
+                    isFavoriteTalesList = fakeUiState.isFavoriteTalesList,
+                    isCompactScreen = false,
+                    onHeartClick = {},
+                    onTopBarHeartClick = {},
+                    onCardClick = {},
+                    onTabClick = {}
+                )
+            }
+        }
+        composeTestRule.onNodeWithTextById(R.string.error_text)
+            .assertExists("No error text")
+        composeTestRule.onNodeWithTextById(R.string.error_button_text)
+            .assertExists("No error button")
     }
 
     private fun setContentScreen(fakeUiState: TalesListUiState, isExpandedScreen: Boolean) {
@@ -173,6 +218,7 @@ class ContentScreenUiTest {
                     isCompactScreen = !isExpandedScreen,
                     onHeartClick = {},
                     onTopBarHeartClick = {},
+                    onTabClick = {},
                     onCardClick = {}
                 )
             }
@@ -184,3 +230,8 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     @StringRes id: Int
 ): SemanticsNodeInteraction =
     onNodeWithContentDescription(activity.getString(id))
+
+internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.onNodeWithTextById(
+    @StringRes id: Int
+): SemanticsNodeInteraction =
+    onNodeWithText(activity.getString(id))

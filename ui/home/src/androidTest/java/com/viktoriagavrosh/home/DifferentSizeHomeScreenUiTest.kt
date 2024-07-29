@@ -54,7 +54,7 @@ class DifferentSizeHomeScreenUiTest {
             FairyTalesTheme {
                 HomeScreen(
                     uiState = fakeUiState,
-                    screenState = HomeScreenState.Loading(),
+                    screenState = HomeScreenState.Error(),
                     windowSize = windowSize,
                     onCardClick = {},
                     onTabClick = {},

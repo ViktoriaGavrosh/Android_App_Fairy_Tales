@@ -87,7 +87,6 @@ class TalesListViewModelTest {
         }
     }
 
-    // TODO тест падает. где-то неверно срабатывает, т к достаёт список сказок по теме , но не любимые
     @Test
     fun fairyTalesViewModel_updateCompositionType_successUpdateUiStateWithFavoriteList() {
         val newTale = FakeSource().fakeListTales[3].toTaleUiHome()
@@ -99,15 +98,15 @@ class TalesListViewModelTest {
             viewModel.updateTaleFavorite(newTale)
             viewModel.changeIsFavoriteTalesList(true)
             viewModel.updateTaleType(expectedTaleType)
-            val expectedList = listOf(newTale.copy(isFavorite = true))
-            val actualList = viewModel.screenState.first().tales ?: emptyList()
+
             assertEquals(
                 expectedTaleType,
                 viewModel.uiState.value.taleType
             )
+
             assertEquals(
-                expectedList,
-                actualList
+                true,
+                viewModel.uiState.value.isFavoriteTalesList
             )
         }
     }

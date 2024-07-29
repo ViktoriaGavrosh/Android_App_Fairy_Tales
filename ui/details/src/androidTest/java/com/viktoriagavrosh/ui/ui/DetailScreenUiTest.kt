@@ -45,6 +45,36 @@ class DetailScreenUiTest {
             .assertExists("No title")
     }
 
+    @Test
+    fun detailScreen_verticalErrorScreen_verifyContent() {
+        composeTestRule.setContent {
+            FairyTalesTheme {
+                DetailScreen(
+                    screenState = DetailScreenState.Error(),
+                    isExpandedScreen = false,
+                    onDetailScreenBackClick = {}
+                )
+            }
+        }
+        composeTestRule.onNodeWithTextById(R.string.error_message_text)
+            .assertExists("No error text")
+    }
+
+    @Test
+    fun detailScreen_horizontalErrorScreen_verifyContent() {
+        composeTestRule.setContent {
+            FairyTalesTheme {
+                DetailScreen(
+                    screenState = DetailScreenState.Error(),
+                    isExpandedScreen = true,
+                    onDetailScreenBackClick = {}
+                )
+            }
+        }
+        composeTestRule.onNodeWithTextById(R.string.error_message_text)
+            .assertExists("No error text")
+    }
+
     private fun setDetailScreen(fakeTale: TaleUiDetail, isExpanded: Boolean) {
         composeTestRule.setContent {
             FairyTalesTheme {
@@ -62,3 +92,8 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     @StringRes id: Int
 ): SemanticsNodeInteraction =
     onNodeWithContentDescription(activity.getString(id))
+
+internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.onNodeWithTextById(
+    @StringRes id: Int
+): SemanticsNodeInteraction =
+    onNodeWithText(activity.getString(id))

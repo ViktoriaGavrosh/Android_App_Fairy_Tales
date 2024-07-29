@@ -5,16 +5,16 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="DifferentSizeHomeScreenUiTest">
+      <SelectionState runConfigName="contentScreen_verticalErrorScreen_verifyContent()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ContentScreenUiTest">
+      <SelectionState runConfigName="contentScreen_horizontalErrorScreen_verifyContent()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="contentScreen_puzzleTypeVerticalScreen_verifyContent()">
+      <SelectionState runConfigName="detailScreen_verticalErrorScreen_verifyContent()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="contentScreen_storyTypeVerticalScreen_verifyContent()">
+      <SelectionState runConfigName="detailScreen_horizontalErrorScreen_verifyContent()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

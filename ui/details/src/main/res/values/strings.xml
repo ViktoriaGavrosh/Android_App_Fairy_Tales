@@ -27,4 +27,5 @@
     <string name="back">back</string>
     <string name="horizontal_detail_screen">Horizontal detail screen</string>
     <string name="vertical_detail_screen">Vertical detail screen</string>
+    <string name="error_message_text">Казка\nнедзе згуб\u0456лася</string>
 </resources>

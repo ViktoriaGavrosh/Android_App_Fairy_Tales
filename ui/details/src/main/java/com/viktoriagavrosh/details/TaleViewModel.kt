@@ -41,7 +41,6 @@ class TaleViewModel @AssistedInject constructor(
 internal sealed class DetailScreenState(val tale: TaleUiDetail? = null) {
     class None : DetailScreenState()
     class Success(tale: TaleUiDetail) : DetailScreenState(tale)
-    class Loading : DetailScreenState()
     class Error : DetailScreenState()
 }
 
@@ -51,7 +50,6 @@ internal fun RequestResult<Tale>.toDetailScreenState(): DetailScreenState {
             tale = data.toTaleUiDetail()
         )
 
-        is RequestResult.Loading -> DetailScreenState.Loading()
         is RequestResult.Error -> DetailScreenState.Error()
     }
 }

@@ -75,17 +75,11 @@ internal fun DetailScreen(
             modifier = Modifier.fillMaxWidth(),
         )
         when (screenState) {
-            is DetailScreenState.Loading -> {
-                //TODO
-            }
-
             is DetailScreenState.Error -> {
-                //TODO
+                ErrorScreen(modifier = Modifier.fillMaxSize())
             }
 
-            is DetailScreenState.None -> {
-                //TODO
-            }
+            is DetailScreenState.None -> {}
 
             is DetailScreenState.Success -> {
                 ContentDetailScreen(
@@ -263,6 +257,32 @@ private fun HorizontalStoryDetailScreenPreview() {
                     text = "text"
                 )
             ),
+            isExpandedScreen = true,
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalErrorScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            screenState = DetailScreenState.Error(),
+            isExpandedScreen = false,
+            onDetailScreenBackClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalErrorScreenPreview() {
+    FairyTalesTheme {
+        DetailScreen(
+            screenState = DetailScreenState.Error(),
             isExpandedScreen = true,
             onDetailScreenBackClick = {}
         )

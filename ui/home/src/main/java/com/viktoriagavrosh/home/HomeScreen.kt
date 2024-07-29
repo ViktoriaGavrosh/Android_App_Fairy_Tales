@@ -68,6 +68,7 @@ internal fun HomeScreen(
                 onTopBarHeartClick = onTopBarHeartClick,
                 isCompactScreen = true,
                 onCardClick = onCardClick,
+                onTabClick = onTabClick,
                 modifier = Modifier.weight(1F)
             )
             BottomNavigateBar(
@@ -90,6 +91,7 @@ internal fun HomeScreen(
                 onHeartClick = onHeartClick,
                 onTopBarHeartClick = onTopBarHeartClick,
                 onCardClick = onCardClick,
+                onTabClick = onTabClick,
                 isCompactScreen = false,
             )
         }

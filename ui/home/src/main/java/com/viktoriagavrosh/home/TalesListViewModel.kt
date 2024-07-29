@@ -37,7 +37,6 @@ class TalesListViewModel @Inject constructor(
     SharingStarted.Lazily,
     HomeScreenState.None()
 )
-
      */
 
     init {
@@ -111,7 +110,6 @@ data class TalesListUiState(
 internal sealed class HomeScreenState(val tales: List<TaleUiHome>? = null) {
     class None : HomeScreenState()
     class Success(tales: List<TaleUiHome>) : HomeScreenState(tales)
-    class Loading : HomeScreenState()
     class Error : HomeScreenState()
 }
 
@@ -121,7 +119,6 @@ internal fun RequestResult<List<Tale>>.toHomeScreenState(): HomeScreenState {
             tales = data.map { it.toTaleUiHome() }
         )
 
-        is RequestResult.Loading -> HomeScreenState.Loading()
         is RequestResult.Error -> HomeScreenState.Error()
     }
 }

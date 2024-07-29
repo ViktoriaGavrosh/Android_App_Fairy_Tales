@@ -6,9 +6,7 @@ import com.viktoriagavrosh.repositories.model.Tale
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.merge
 
 /**
  * Repository that provides insert, update, delete and retrieve of [Tale] from a given data source.
@@ -55,9 +53,7 @@ class OfflineTaleRepository @Inject constructor(
                 emit(RequestResult.Error(error = it))
             }
 
-        // TODO обработать слияние потоков т.ч. не прыгал ui пока идет Loading
-        //val start = flowOf<RequestResult<List<Tale>>>(RequestResult.Loading())
-        return request //merge(start, request)
+        return request
     }
 
     /**
@@ -71,8 +67,7 @@ class OfflineTaleRepository @Inject constructor(
                 emit(RequestResult.Error(error = it))
             }
 
-        val start = flowOf<RequestResult<Tale>>(RequestResult.Loading())
-        return merge(start, request)
+        return request
     }
 
     /**

@@ -2,20 +2,29 @@ package com.viktoriagavrosh.home
 
 import android.content.res.Configuration
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.home.elements.GridTales
 import com.viktoriagavrosh.home.elements.ListTales
+import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.elements.bars.ContentTopBar
 import com.viktoriagavrosh.home.model.TaleUiHome
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -33,6 +42,7 @@ internal fun ContentScreen(
     onHeartClick: (TaleUiHome) -> Unit,
     onTopBarHeartClick: () -> Unit,
     onCardClick: (TaleUiHome) -> Unit,
+    onTabClick: (TaleType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val topAppBarState = rememberTopAppBarState()
@@ -50,17 +60,14 @@ internal fun ContentScreen(
         }
     ) { paddingValues ->
         when (screenState) {
-            is HomeScreenState.Loading -> {
-                //TODO
-            }
-
             is HomeScreenState.Error -> {
-                //TODO
+                ErrorHomeScreen(
+                    onTabClick = onTabClick,
+                    modifier = Modifier.fillMaxSize()
+                )
             }
 
-            is HomeScreenState.None -> {
-                //TODO
-            }
+            is HomeScreenState.None -> {}
 
             is HomeScreenState.Success -> {
                 if (isCompactScreen) {
@@ -88,6 +95,36 @@ internal fun ContentScreen(
     }
 }
 
+@Composable
+private fun ErrorHomeScreen(
+    onTabClick: (TaleType) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.error_text),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.displaySmall
+        )
+        Button(
+            onClick = { onTabClick(TaleType.Story) },
+            modifier = Modifier
+                .padding(top = dimensionResource(id = R.dimen.padding_extra_large))
+        ) {
+            Text(
+                text = stringResource(R.string.error_button_text),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.displaySmall,
+
+                )
+        }
+    }
+}
+
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -107,6 +144,7 @@ private fun VerticalContentScreenPreview() {
             isCompactScreen = true,
             onHeartClick = {},
             onTopBarHeartClick = {},
+            onTabClick = {},
             onCardClick = {}
         )
     }
@@ -132,6 +170,7 @@ private fun VerticalFavoriteContentScreenPreview() {
             isCompactScreen = true,
             onHeartClick = {},
             onTopBarHeartClick = {},
+            onTabClick = {},
             onCardClick = {}
         )
     }
@@ -156,6 +195,43 @@ private fun HorizontalContentScreenPreview() {
             isCompactScreen = false,
             onHeartClick = {},
             onTopBarHeartClick = {},
+            onTabClick = {},
+            onCardClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalErrorContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            screenState = HomeScreenState.Error(),
+            topBarTextId = R.string.title_fairy_tales,
+            isFavoriteTalesList = false,
+            isCompactScreen = true,
+            onHeartClick = {},
+            onTopBarHeartClick = {},
+            onTabClick = {},
+            onCardClick = {}
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalErrorContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            screenState = HomeScreenState.Error(),
+            topBarTextId = R.string.title_fairy_tales,
+            isFavoriteTalesList = false,
+            isCompactScreen = true,
+            onHeartClick = {},
+            onTopBarHeartClick = {},
+            onTabClick = {},
             onCardClick = {}
         )
     }
