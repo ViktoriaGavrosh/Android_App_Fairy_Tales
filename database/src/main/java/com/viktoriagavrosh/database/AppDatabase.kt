@@ -7,11 +7,16 @@ import androidx.room.RoomDatabase
 import com.viktoriagavrosh.database.dao.TaleDao
 import com.viktoriagavrosh.database.model.TaleDb
 
+// Database interface for testing
+interface TaleAppDatabase {
+    val taleDao: TaleDao
+}
+
 
 class AppDatabase internal constructor(
     private val database: AppRoomDatabase
-) {
-    val taleDao: TaleDao
+) : TaleAppDatabase {
+    override val taleDao: TaleDao
         get() = database.taleDao()
 }
 
