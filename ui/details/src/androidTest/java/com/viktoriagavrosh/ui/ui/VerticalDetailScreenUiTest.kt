@@ -67,6 +67,7 @@ class VerticalDetailScreenUiTest {
             FairyTalesTheme {
                 VerticalDetailScreen(
                     tale = fakeTale,
+                    fontSize = 24.0,
                 )
             }
         }

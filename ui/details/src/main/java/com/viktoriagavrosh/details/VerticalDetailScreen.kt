@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.details
 
 import android.content.res.Configuration
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -32,6 +34,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 internal fun VerticalDetailScreen(
     tale: TaleUiDetail,
+    fontSize: Double,
     modifier: Modifier = Modifier
 ) {
     var bigCard by remember {
@@ -60,13 +63,15 @@ internal fun VerticalDetailScreen(
             if (tale.genre != "story") {
                 Spacer(modifier = Modifier.weight(1F))
                 TextDetail(
-                    text = tale.text
+                    text = tale.text,
+                    fontSize = fontSize,
                 )
                 Spacer(modifier = Modifier.weight(1F))
             } else {
                 TextDetail(
                     text = tale.text,
-                    modifier = Modifier.fillMaxWidth()
+                    fontSize = fontSize,
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }
@@ -103,18 +108,23 @@ internal fun VerticalDetailScreen(
 @Composable
 internal fun TextDetail(
     text: String,
+    fontSize: Double,
     modifier: Modifier = Modifier
 ) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.onPrimary
         ),
-        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_small))
+        modifier = modifier
+            .padding(dimensionResource(id = R.dimen.padding_small))
     ) {
         Text(
             text = text,
+            fontSize = fontSize.sp,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))
+            modifier = Modifier
+                .padding(dimensionResource(id = R.dimen.padding_small))
+                .animateContentSize()
         )
     }
 }
@@ -164,8 +174,9 @@ private fun VerticalDetailScreenPreview() {
     FairyTalesTheme {
         VerticalDetailScreen(
             tale = TaleUiDetail(
-                text = "Text"
+                text = "Text",
             ),
+            fontSize = 24.0,
         )
     }
 }
@@ -180,6 +191,7 @@ private fun StoryVerticalDetailScreenPreview() {
                 text = "Text",
                 genre = "story"
             ),
+            fontSize = 24.0,
         )
     }
 }
@@ -195,6 +207,7 @@ private fun PuzzleVerticalDetailScreenPreview() {
                 genre = "puzzle",
                 answer = "Answer",
             ),
+            fontSize = 24.0,
         )
     }
 }

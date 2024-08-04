@@ -67,6 +67,7 @@ class HorizontalDetailScreenUiTest {
             FairyTalesTheme {
                 HorizontalDetailScreen(
                     tale = fakeTale,
+                    fontSize = 24.0,
                 )
             }
         }

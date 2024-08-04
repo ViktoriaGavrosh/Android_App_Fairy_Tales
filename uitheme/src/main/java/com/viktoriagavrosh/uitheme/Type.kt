@@ -17,7 +17,6 @@ val Typography = Typography(
         fontFamily = LxFont,
         fontWeight = FontWeight.Bold,
         fontSize = 40.sp,
-        lineHeight = 30.sp
     ),
     displaySmall = TextStyle(
         fontFamily = LxFont,
@@ -28,14 +27,12 @@ val Typography = Typography(
         fontFamily = LxFont,
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
-        lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
     labelSmall = TextStyle(
         fontFamily = LxFont,
         fontWeight = FontWeight.Normal,
         fontSize = 11.sp,
-        lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     )
 )
