@@ -26,6 +26,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 fun HomeScreen(
     windowSize: WindowWidthSizeClass,
     onCardClick: (TaleUiHome) -> Unit,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: TalesListViewModel = hiltViewModel(),
 ) {
@@ -40,6 +41,7 @@ fun HomeScreen(
         onTabClick = viewModel::updateTaleType,
         onTopBarHeartClick = viewModel::updateFavoriteTalesList,
         onHeartClick = viewModel::updateTaleFavorite,
+        onSettingsClick = onSettingsClick,
         modifier = modifier,
     )
 }
@@ -53,7 +55,7 @@ internal fun HomeScreen(
     onTabClick: (TaleType) -> Unit,
     onTopBarHeartClick: () -> Unit,
     onHeartClick: (TaleUiHome) -> Unit,
-
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     if (windowSize == WindowWidthSizeClass.Compact) {
@@ -69,6 +71,7 @@ internal fun HomeScreen(
                 isCompactScreen = true,
                 onCardClick = onCardClick,
                 onTabClick = onTabClick,
+                onSettingsClick = onSettingsClick,
                 modifier = Modifier.weight(1F)
             )
             BottomNavigateBar(
@@ -92,6 +95,7 @@ internal fun HomeScreen(
                 onTopBarHeartClick = onTopBarHeartClick,
                 onCardClick = onCardClick,
                 onTabClick = onTabClick,
+                onSettingsClick = onSettingsClick,
                 isCompactScreen = false,
             )
         }
@@ -117,7 +121,8 @@ private fun CompactHomeScreenPreview() {
             onCardClick = {},
             onTabClick = {},
             onTopBarHeartClick = {},
-            onHeartClick = {}
+            onHeartClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -141,7 +146,8 @@ private fun MediumHomeScreenPreview() {
             onCardClick = {},
             onTabClick = {},
             onTopBarHeartClick = {},
-            onHeartClick = {}
+            onHeartClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -165,7 +171,8 @@ private fun ExpandedHomeScreenPreview() {
             onCardClick = {},
             onTabClick = {},
             onTopBarHeartClick = {},
-            onHeartClick = {}
+            onHeartClick = {},
+            onSettingsClick = {},
         )
     }
 }

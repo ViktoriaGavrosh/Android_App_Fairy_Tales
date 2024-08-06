@@ -3,7 +3,9 @@ package com.viktoriagavrosh.fairytales
 import android.content.Context
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
+import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
 import com.viktoriagavrosh.repositories.OfflineTaleRepository
+import com.viktoriagavrosh.repositories.SettingsRepository
 import com.viktoriagavrosh.repositories.TaleRepository
 import dagger.Module
 import dagger.Provides
@@ -32,9 +34,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepository(
+    fun provideTaleRepository(
         appDatabase: AppDatabase
     ): TaleRepository {
         return OfflineTaleRepository(appDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(
+    ): SettingsRepository {
+        return DatastoreSettingsRepository()
     }
 }

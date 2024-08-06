@@ -43,6 +43,7 @@ internal fun ContentScreen(
     onTopBarHeartClick: () -> Unit,
     onCardClick: (TaleUiHome) -> Unit,
     onTabClick: (TaleType) -> Unit,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val topAppBarState = rememberTopAppBarState()
@@ -55,6 +56,7 @@ internal fun ContentScreen(
                 isFavoriteTalesList = isFavoriteTalesList,
                 onTopBarHeartClick = onTopBarHeartClick,
                 scrollBehavior = scrollBehavior,
+                onSettingsClick = onSettingsClick,
                 modifier = Modifier.fillMaxWidth()
             )
         }
@@ -145,7 +147,8 @@ private fun VerticalContentScreenPreview() {
             onHeartClick = {},
             onTopBarHeartClick = {},
             onTabClick = {},
-            onCardClick = {}
+            onCardClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -171,7 +174,8 @@ private fun VerticalFavoriteContentScreenPreview() {
             onHeartClick = {},
             onTopBarHeartClick = {},
             onTabClick = {},
-            onCardClick = {}
+            onCardClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -196,7 +200,8 @@ private fun HorizontalContentScreenPreview() {
             onHeartClick = {},
             onTopBarHeartClick = {},
             onTabClick = {},
-            onCardClick = {}
+            onCardClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -214,7 +219,8 @@ private fun VerticalErrorContentScreenPreview() {
             onHeartClick = {},
             onTopBarHeartClick = {},
             onTabClick = {},
-            onCardClick = {}
+            onCardClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -232,7 +238,8 @@ private fun HorizontalErrorContentScreenPreview() {
             onHeartClick = {},
             onTopBarHeartClick = {},
             onTabClick = {},
-            onCardClick = {}
+            onCardClick = {},
+            onSettingsClick = {},
         )
     }
 }

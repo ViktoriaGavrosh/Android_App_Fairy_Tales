@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.viktoriagavrosh.details.DetailScreen
 import com.viktoriagavrosh.home.HomeScreen
+import com.viktoriagavrosh.settings.SettingsScreen
 
 /**
  * Top level composable that represents screens for the application
@@ -33,6 +34,9 @@ fun FairyTalesApp(
                         route = "${NavigationDestination.DetailScreen.screen}/${tale.id}"
                     )
                 },
+                onSettingsClick = {
+                    navController.navigate(NavigationDestination.SettingsScreen.screen)
+                },
                 modifier = modifier
             )
         }
@@ -46,7 +50,19 @@ fun FairyTalesApp(
                 onDetailScreenBackClick = {
                     navController.navigate(NavigationDestination.HomeScreen.screen)
                 },
+                onSettingsClick = {
+                    navController.navigate(NavigationDestination.SettingsScreen.screen)
+                },
                 modifier = modifier,
+            )
+        }
+        composable(
+            route = NavigationDestination.SettingsScreen.screen
+        ) {
+            SettingsScreen(
+                onBackClick = {
+                    navController.navigateUp()
+                }
             )
         }
     }
@@ -54,5 +70,6 @@ fun FairyTalesApp(
 
 enum class NavigationDestination(val screen: String) {
     HomeScreen(screen = "home"),
-    DetailScreen(screen = "details")
+    DetailScreen(screen = "details"),
+    SettingsScreen(screen = "settings")
 }

@@ -30,6 +30,7 @@ internal fun ContentTopBar(
     isFavoriteTalesList: Boolean,
     onTopBarHeartClick: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val painterId: Int
@@ -67,6 +68,20 @@ internal fun ContentTopBar(
                     )
                     .size(dimensionResource(id = R.dimen.top_bar_icon_size))
             )
+            Icon(
+                painter = painterResource(id = R.drawable.ic_settings),
+                contentDescription = stringResource(R.string.settings),
+                modifier = Modifier
+                    .clickable {
+                        onSettingsClick()
+                    }
+                    .padding(
+                        start = dimensionResource(id = R.dimen.padding_small),
+                        end = dimensionResource(id = R.dimen.padding_medium),
+                        bottom = dimensionResource(id = R.dimen.padding_small)
+                    )
+                    .size(dimensionResource(id = R.dimen.top_bar_icon_size))
+            )
         },
         scrollBehavior = scrollBehavior,
     )
@@ -83,6 +98,7 @@ private fun ContentTopBarPreview() {
             isFavoriteTalesList = false,
             onTopBarHeartClick = {},
             scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+            onSettingsClick = {},
         )
     }
 }
@@ -97,6 +113,7 @@ private fun FavoriteContentTopBarPreview() {
             isFavoriteTalesList = true,
             onTopBarHeartClick = {},
             scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+            onSettingsClick = {},
         )
     }
 }

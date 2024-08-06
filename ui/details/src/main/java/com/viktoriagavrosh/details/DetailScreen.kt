@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.details
 
 import android.content.res.Configuration
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,6 +38,7 @@ fun DetailScreen(
     taleId: Int,
     isExpandedScreen: Boolean,
     onDetailScreenBackClick: () -> Unit,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: TaleViewModel = hiltViewModel(
@@ -50,6 +52,7 @@ fun DetailScreen(
         screenState = screenState,
         isExpandedScreen = isExpandedScreen,
         onDetailScreenBackClick = onDetailScreenBackClick,
+        onSettingsClick = onSettingsClick,
         modifier = modifier
     )
 }
@@ -60,6 +63,7 @@ internal fun DetailScreen(
     screenState: DetailScreenState,
     isExpandedScreen: Boolean,
     onDetailScreenBackClick: () -> Unit,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val topAppBarState = rememberTopAppBarState()
@@ -72,6 +76,7 @@ internal fun DetailScreen(
             text = screenState.tale?.title ?: "",
             onDetailScreenBackClick = onDetailScreenBackClick,
             scrollBehavior = scrollBehavior,
+            onSettingsClick = onSettingsClick,
             modifier = Modifier.fillMaxWidth(),
         )
         when (screenState) {
@@ -109,6 +114,7 @@ private fun DetailsTopBar(
     text: String,
     onDetailScreenBackClick: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
@@ -133,6 +139,22 @@ private fun DetailsTopBar(
                 )
             }
         },
+        actions = {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_settings),
+                contentDescription = stringResource(R.string.settings),
+                modifier = Modifier
+                    .clickable {
+                        onSettingsClick()
+                    }
+                    .padding(
+                        start = dimensionResource(id = R.dimen.padding_small),
+                        end = dimensionResource(id = R.dimen.padding_medium),
+                        bottom = dimensionResource(id = R.dimen.padding_small)
+                    )
+                    .size(dimensionResource(id = R.dimen.top_bar_icon_size))
+            )
+        },
         scrollBehavior = scrollBehavior,
     )
 }
@@ -147,6 +169,7 @@ private fun DetailsTopBarPreview() {
             text = "Top bar",
             onDetailScreenBackClick = {},
             scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+            onSettingsClick = {},
         )
     }
 }
@@ -164,7 +187,8 @@ private fun VerticalDetailScreenPreview() {
                 )
             ),
             isExpandedScreen = false,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -183,7 +207,8 @@ private fun VerticalPuzzleDetailScreenPreview() {
                 )
             ),
             isExpandedScreen = false,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -202,7 +227,8 @@ private fun VerticalStoryDetailScreenPreview() {
                 )
             ),
             isExpandedScreen = false,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -220,7 +246,8 @@ private fun HorizontalDetailScreenPreview() {
                 )
             ),
             isExpandedScreen = true,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -239,7 +266,8 @@ private fun HorizontalPuzzleDetailScreenPreview() {
                 )
             ),
             isExpandedScreen = true,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -258,7 +286,8 @@ private fun HorizontalStoryDetailScreenPreview() {
                 )
             ),
             isExpandedScreen = true,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -271,7 +300,8 @@ private fun VerticalErrorScreenPreview() {
         DetailScreen(
             screenState = DetailScreenState.Error(),
             isExpandedScreen = false,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
@@ -284,7 +314,8 @@ private fun HorizontalErrorScreenPreview() {
         DetailScreen(
             screenState = DetailScreenState.Error(),
             isExpandedScreen = true,
-            onDetailScreenBackClick = {}
+            onDetailScreenBackClick = {},
+            onSettingsClick = {},
         )
     }
 }
