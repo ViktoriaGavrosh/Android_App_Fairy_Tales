@@ -1,8 +1,12 @@
 package com.viktoriagavrosh.fairytales
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
+import com.viktoriagavrosh.datastore.PreferencesManager
 import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
 import com.viktoriagavrosh.repositories.OfflineTaleRepository
 import com.viktoriagavrosh.repositories.SettingsRepository
@@ -13,6 +17,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 /**
  * Object fo dependency injection (dagger hilt)
@@ -42,8 +48,18 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideDataStore(
+        @ApplicationContext
+        context: Context
+    ): DataStore<Preferences> {
+        return context.dataStore
+    }
+
+    @Provides
+    @Singleton
     fun provideSettingsRepository(
+        preferencesManager: PreferencesManager
     ): SettingsRepository {
-        return DatastoreSettingsRepository()
+        return DatastoreSettingsRepository(preferencesManager)
     }
 }

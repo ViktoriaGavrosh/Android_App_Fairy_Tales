@@ -17,10 +17,12 @@ dependencyResolutionManagement {
 rootProject.name = "FairyTales"
 include(":app")
 include(":database")
+include(":datastore")
 include(":repositories")
 include(":ui:home")
 include(":ui:navigation")
 include(":ui:details")
 include(":ui:settings")
 include(":uitheme")
+
 

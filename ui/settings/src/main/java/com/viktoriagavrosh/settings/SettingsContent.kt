@@ -26,8 +26,8 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
 internal fun SettingsContent(
-    textSize: Double,
-    onTextSizeUpdate: (Double) -> Unit,
+    textSize: Float,
+    onTextSizeUpdate: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -43,13 +43,15 @@ internal fun SettingsContent(
 
 @Composable
 private fun TextSizeRow(
-    textSize: Double,
-    onTextSizeUpdate: (Double) -> Unit,
+    textSize: Float,
+    onTextSizeUpdate: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var sliderPosition by remember {
-        mutableFloatStateOf(textSize.toFloat())
+        mutableFloatStateOf(0.0F)
     }
+    if(sliderPosition == 0.0F) sliderPosition = textSize
+
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -80,7 +82,7 @@ private fun TextSizeRow(
                 onValueChange = { sliderPosition = it },
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_medium)),
                 valueRange = 8F..100F,
-                onValueChangeFinished = { onTextSizeUpdate(sliderPosition.toDouble()) }
+                onValueChangeFinished = { onTextSizeUpdate(sliderPosition) }
                 // colors = SliderDefaults.colors(activeTrackColor и inactiveTrackColor)
             )
         }
@@ -92,7 +94,7 @@ private fun TextSizeRow(
 private fun TextSizeRowPreview() {
     FairyTalesTheme {
         TextSizeRow(
-            textSize = 100.0,
+            textSize = 80.0F,
             onTextSizeUpdate = {}
         )
     }

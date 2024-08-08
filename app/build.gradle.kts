@@ -56,6 +56,7 @@ dependencies {
 
     // Modules
     implementation(project(":database"))
+    implementation(project(":datastore"))
     implementation(project(":repositories"))
     implementation(project(":ui:navigation"))
     implementation(project(":ui:home"))
@@ -67,6 +68,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    //Datastore
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")

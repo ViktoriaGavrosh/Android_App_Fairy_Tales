@@ -1,6 +1,5 @@
 package com.viktoriagavrosh.settings
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,10 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
 fun SettingsScreen(
@@ -42,7 +39,7 @@ fun SettingsScreen(
 @Composable
 private fun SettingsScreen(
     uiState: SettingsState,
-    onTextSizeUpdate: (Double) -> Unit,
+    onTextSizeUpdate: (Float) -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -101,7 +98,7 @@ private fun SettingsTopBar(
         },
     )
 }
-
+/*
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -131,3 +128,5 @@ private fun HorizontalSettingsScreenPreview() {
         )
     }
 }
+
+ */
