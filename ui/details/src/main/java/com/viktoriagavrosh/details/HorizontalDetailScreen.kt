@@ -39,7 +39,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 internal fun HorizontalDetailScreen(
     tale: TaleUiDetail,
-    fontSize: Double,
+    fontSize: Float,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -194,7 +194,7 @@ private fun HorizontalDetailScreenPreview() {
             tale = TaleUiDetail(
                 text = "Text"
             ),
-            fontSize = 24.0,
+            fontSize = 24.0F,
         )
     }
 }
@@ -210,7 +210,7 @@ private fun PuzzleHorizontalDetailScreenPreview() {
                 text = "Text",
                 answer = "Answer"
             ),
-            fontSize = 24.0,
+            fontSize = 24.0F,
         )
     }
 }
@@ -225,7 +225,7 @@ private fun StoryHorizontalDetailScreenPreview() {
                 genre = "story",
                 text = "Text"
             ),
-            fontSize = 24.0,
+            fontSize = 24.0F,
         )
     }
 }

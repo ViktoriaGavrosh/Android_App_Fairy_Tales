@@ -34,7 +34,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 internal fun VerticalDetailScreen(
     tale: TaleUiDetail,
-    fontSize: Double,
+    fontSize: Float,
     modifier: Modifier = Modifier
 ) {
     var bigCard by remember {
@@ -108,7 +108,7 @@ internal fun VerticalDetailScreen(
 @Composable
 internal fun TextDetail(
     text: String,
-    fontSize: Double,
+    fontSize: Float,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -176,7 +176,7 @@ private fun VerticalDetailScreenPreview() {
             tale = TaleUiDetail(
                 text = "Text",
             ),
-            fontSize = 24.0,
+            fontSize = 24.0F,
         )
     }
 }
@@ -191,7 +191,7 @@ private fun StoryVerticalDetailScreenPreview() {
                 text = "Text",
                 genre = "story"
             ),
-            fontSize = 24.0,
+            fontSize = 24.0F,
         )
     }
 }
@@ -207,7 +207,7 @@ private fun PuzzleVerticalDetailScreenPreview() {
                 genre = "puzzle",
                 answer = "Answer",
             ),
-            fontSize = 24.0,
+            fontSize = 24.0F,
         )
     }
 }

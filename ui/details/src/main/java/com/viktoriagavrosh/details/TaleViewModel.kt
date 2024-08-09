@@ -4,16 +4,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.repositories.RequestResult
+import com.viktoriagavrosh.repositories.SettingsRepository
 import com.viktoriagavrosh.repositories.TaleRepository
 import com.viktoriagavrosh.repositories.model.Tale
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel to retrieve and update item from the [TaleRepository]'s data source
@@ -22,6 +25,7 @@ import kotlinx.coroutines.flow.stateIn
 class TaleViewModel @AssistedInject constructor(
     @Assisted private val taleId: Int,
     private val taleRepository: TaleRepository,
+    private val settingsRepository: SettingsRepository,
 ) : ViewModel() {
 
     internal val tales: StateFlow<DetailScreenState> = taleRepository.getTaleById(taleId)
@@ -31,6 +35,20 @@ class TaleViewModel @AssistedInject constructor(
             SharingStarted.Lazily,
             DetailScreenState.None()
         )
+
+    private var _textSize: Flow<Float> = settingsRepository.getTextSize()
+    internal val textSize: StateFlow<Float>
+        get() = _textSize.stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            0.0F
+        )
+
+    internal fun updateTextSize(textSize: Float) {
+        viewModelScope.launch {
+            settingsRepository.updateTextSize(textSize)
+        }
+    }
 
     @AssistedFactory
     interface TaleViewModelFactory {

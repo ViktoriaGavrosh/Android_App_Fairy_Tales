@@ -9,7 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -24,21 +24,25 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 internal fun ContentDetailScreen(
     tale: TaleUiDetail,
     isExpandedScreen: Boolean,
+    textSize: Float,
+    onTextSizeUpdate: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     // States are only here, otherwise scroll disappears
     val scrollState = rememberScrollState()
     var fontSize by remember {
-        mutableStateOf(24.0)
+        mutableFloatStateOf(0.0F)
     }
+    if (fontSize == 0.0F) fontSize = textSize
     Column(
         modifier = modifier
             .background(color = MaterialTheme.colorScheme.surfaceContainerHigh)
             .pointerInput(Unit) {
                 detectTransformGestures { _, _, zoom, _ ->
                     fontSize *= zoom
-                    if (fontSize < 8) fontSize = 8.0
-                    if (fontSize > 100) fontSize = 100.0
+                    if (fontSize < 8) fontSize = 8.0F
+                    if (fontSize > 100) fontSize = 100.0F
+                    onTextSizeUpdate(fontSize)
                 }
             }
             .verticalScroll(scrollState)
@@ -75,6 +79,8 @@ private fun VerticalContentScreenPreview() {
                 text = "Text"
             ),
             isExpandedScreen = false,
+            textSize = 24.0F,
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -90,7 +96,9 @@ private fun PuzzleVerticalContentScreenPreview() {
                 genre = "puzzle",
                 answer = "Answer",
             ),
-            isExpandedScreen = false
+            isExpandedScreen = false,
+            textSize = 24.0F,
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -105,7 +113,9 @@ private fun StoryHorizontalContentScreenPreview() {
                 text = "Text",
                 genre = "story",
             ),
-            isExpandedScreen = true
+            isExpandedScreen = true,
+            textSize = 24.0F,
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -121,7 +131,8 @@ private fun PuzzleHorizontalContentScreenPreview() {
                 genre = "puzzle",
                 answer = "Answer",
             ),
-            isExpandedScreen = true
+            isExpandedScreen = true,textSize = 24.0F,
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -136,7 +147,8 @@ private fun GameHorizontalContentScreenPreview() {
                 text = "Text",
                 genre = "game",
             ),
-            isExpandedScreen = true
+            isExpandedScreen = true,textSize = 24.0F,
+            onTextSizeUpdate = {},
         )
     }
 }

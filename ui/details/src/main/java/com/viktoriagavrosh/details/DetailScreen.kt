@@ -18,7 +18,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -27,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -46,13 +46,16 @@ fun DetailScreen(
             factory.create(taleId)
         }
     )
-    val screenState by viewModel.tales.collectAsState()
+    val screenState by viewModel.tales.collectAsStateWithLifecycle()
+    val textSizeFromDataStore by viewModel.textSize.collectAsStateWithLifecycle()
 
     DetailScreen(
         screenState = screenState,
+        textSizeFromDataStore = textSizeFromDataStore,
         isExpandedScreen = isExpandedScreen,
         onDetailScreenBackClick = onDetailScreenBackClick,
         onSettingsClick = onSettingsClick,
+        onTextSizeUpdate = viewModel::updateTextSize,
         modifier = modifier
     )
 }
@@ -61,9 +64,11 @@ fun DetailScreen(
 @Composable
 internal fun DetailScreen(
     screenState: DetailScreenState,
+    textSizeFromDataStore: Float,
     isExpandedScreen: Boolean,
     onDetailScreenBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
+    onTextSizeUpdate: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val topAppBarState = rememberTopAppBarState()
@@ -79,7 +84,7 @@ internal fun DetailScreen(
             onSettingsClick = onSettingsClick,
             modifier = Modifier.fillMaxWidth(),
         )
-        when (screenState) {
+        when (screenState) {       //when (uiState.screenState) {
             is DetailScreenState.Error -> {
                 ErrorScreen(modifier = Modifier.fillMaxSize())
             }
@@ -88,8 +93,12 @@ internal fun DetailScreen(
 
             is DetailScreenState.Success -> {
                 ContentDetailScreen(
+                    //tale = uiState.screenState.tale ?: TaleUiDetail(),
                     tale = screenState.tale ?: TaleUiDetail(),
                     isExpandedScreen = isExpandedScreen,
+                    //textSize = uiState.textSize,
+                    textSize = textSizeFromDataStore,
+                    onTextSizeUpdate = onTextSizeUpdate,
                     modifier = if (isExpandedScreen) {
                         Modifier
                             .fillMaxSize()
@@ -173,7 +182,7 @@ private fun DetailsTopBarPreview() {
         )
     }
 }
-
+/*
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -319,3 +328,6 @@ private fun HorizontalErrorScreenPreview() {
         )
     }
 }
+
+
+ */
