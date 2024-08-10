@@ -1,6 +1,9 @@
 package com.viktoriagavrosh.repositories
 
 import com.viktoriagavrosh.repositories.model.Tale
+import com.viktoriagavrosh.repositories.tale.OfflineTaleRepository
+import com.viktoriagavrosh.repositories.tale.RequestResult
+import com.viktoriagavrosh.repositories.tale.toTale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first

@@ -175,7 +175,8 @@ class ContentScreenUiTest {
                     onHeartClick = {},
                     onTopBarHeartClick = {},
                     onCardClick = {},
-                    onTabClick = {}
+                    onTabClick = {},
+                    onSettingsClick = {},
                 )
             }
         }
@@ -198,7 +199,8 @@ class ContentScreenUiTest {
                     onHeartClick = {},
                     onTopBarHeartClick = {},
                     onCardClick = {},
-                    onTabClick = {}
+                    onTabClick = {},
+                    onSettingsClick = {},
                 )
             }
         }
@@ -219,7 +221,8 @@ class ContentScreenUiTest {
                     onHeartClick = {},
                     onTopBarHeartClick = {},
                     onTabClick = {},
-                    onCardClick = {}
+                    onCardClick = {},
+                    onSettingsClick = {},
                 )
             }
         }

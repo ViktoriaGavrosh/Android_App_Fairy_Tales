@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.repositories
+package com.viktoriagavrosh.repositories.tale
 
 sealed class RequestResult<out T : Any>(open val data: T? = null) {
     class Success<T : Any>(override val data: T) : RequestResult<T>(data)

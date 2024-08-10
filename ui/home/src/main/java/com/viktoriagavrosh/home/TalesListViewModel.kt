@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.model.TaleUiHome
-import com.viktoriagavrosh.repositories.RequestResult
-import com.viktoriagavrosh.repositories.TaleRepository
 import com.viktoriagavrosh.repositories.model.Tale
+import com.viktoriagavrosh.repositories.tale.RequestResult
+import com.viktoriagavrosh.repositories.tale.TaleRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

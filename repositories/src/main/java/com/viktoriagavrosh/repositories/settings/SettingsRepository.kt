@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.repositories
+package com.viktoriagavrosh.repositories.settings
 
 import com.viktoriagavrosh.datastore.PreferencesManager
 import jakarta.inject.Inject

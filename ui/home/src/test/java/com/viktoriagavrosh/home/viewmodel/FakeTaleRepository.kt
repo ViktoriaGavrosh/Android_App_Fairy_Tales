@@ -1,9 +1,9 @@
 package com.viktoriagavrosh.home.viewmodel
 
 import com.viktoriagavrosh.home.fake.FakeSource
-import com.viktoriagavrosh.repositories.RequestResult
-import com.viktoriagavrosh.repositories.TaleRepository
 import com.viktoriagavrosh.repositories.model.Tale
+import com.viktoriagavrosh.repositories.tale.RequestResult
+import com.viktoriagavrosh.repositories.tale.TaleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

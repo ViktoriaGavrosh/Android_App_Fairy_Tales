@@ -4,4 +4,5 @@
     <string name="back">back</string>
     <string name="textsize_title">Памер\nтэксту</string>
     <string name="letters">Aa</string>
+    <string name="textsize_slider">textSize slider</string>
 </resources>

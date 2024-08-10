@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 
 class PreferencesManager @Inject constructor(
     private val dataStore: DataStore<Preferences>
-){
+) {
     private val TEXT_SIZE_KEY = stringPreferencesKey("text_size_key")
 
     fun getTextSize(): Flow<String?> {

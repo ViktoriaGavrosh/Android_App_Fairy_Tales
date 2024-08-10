@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.repositories
+package com.viktoriagavrosh.repositories.tale
 
 import com.viktoriagavrosh.database.TaleAppDatabase
 import com.viktoriagavrosh.database.model.TaleDb

@@ -131,7 +131,7 @@ private fun PuzzleHorizontalContentScreenPreview() {
                 genre = "puzzle",
                 answer = "Answer",
             ),
-            isExpandedScreen = true,textSize = 24.0F,
+            isExpandedScreen = true, textSize = 24.0F,
             onTextSizeUpdate = {},
         )
     }
@@ -147,7 +147,7 @@ private fun GameHorizontalContentScreenPreview() {
                 text = "Text",
                 genre = "game",
             ),
-            isExpandedScreen = true,textSize = 24.0F,
+            isExpandedScreen = true, textSize = 24.0F,
             onTextSizeUpdate = {},
         )
     }

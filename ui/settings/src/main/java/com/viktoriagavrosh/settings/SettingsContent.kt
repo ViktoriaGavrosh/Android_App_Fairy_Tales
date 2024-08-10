@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -50,7 +51,7 @@ private fun TextSizeRow(
     var sliderPosition by remember {
         mutableFloatStateOf(0.0F)
     }
-    if(sliderPosition == 0.0F) sliderPosition = textSize
+    if (sliderPosition == 0.0F) sliderPosition = textSize
 
     Row(
         modifier = modifier,
@@ -80,10 +81,11 @@ private fun TextSizeRow(
             Slider(
                 value = sliderPosition,
                 onValueChange = { sliderPosition = it },
-                modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_medium)),
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
+                    .testTag(stringResource(R.string.textsize_slider)),
                 valueRange = 8F..100F,
                 onValueChangeFinished = { onTextSizeUpdate(sliderPosition) }
-                // colors = SliderDefaults.colors(activeTrackColor и inactiveTrackColor)
             )
         }
     }

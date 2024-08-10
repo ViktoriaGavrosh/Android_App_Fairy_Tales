@@ -19,7 +19,8 @@ internal class TaleViewModelTest {
         runTest {
             val viewModel = TaleViewModel(
                 taleId = 1,
-                taleRepository = FakeTaleRepository()
+                taleRepository = FakeTaleRepository(),
+                settingsRepository = FakeSettingsRepository()
             )
 
             val expectedTale = FakeData.fakeTale.toTaleUiDetail()

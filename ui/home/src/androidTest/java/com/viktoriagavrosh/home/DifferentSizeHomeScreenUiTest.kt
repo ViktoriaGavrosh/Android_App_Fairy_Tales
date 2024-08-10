@@ -59,7 +59,8 @@ class DifferentSizeHomeScreenUiTest {
                     onCardClick = {},
                     onTabClick = {},
                     onTopBarHeartClick = {},
-                    onHeartClick = {}
+                    onHeartClick = {},
+                    onSettingsClick = {},
                 )
             }
         }

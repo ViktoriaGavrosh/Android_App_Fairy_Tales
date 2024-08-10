@@ -7,10 +7,10 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
 import com.viktoriagavrosh.datastore.PreferencesManager
-import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
-import com.viktoriagavrosh.repositories.OfflineTaleRepository
-import com.viktoriagavrosh.repositories.SettingsRepository
-import com.viktoriagavrosh.repositories.TaleRepository
+import com.viktoriagavrosh.repositories.settings.DatastoreSettingsRepository
+import com.viktoriagavrosh.repositories.settings.SettingsRepository
+import com.viktoriagavrosh.repositories.tale.OfflineTaleRepository
+import com.viktoriagavrosh.repositories.tale.TaleRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

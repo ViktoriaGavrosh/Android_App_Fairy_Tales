@@ -37,7 +37,7 @@ fun SettingsScreen(
 }
 
 @Composable
-private fun SettingsScreen(
+internal fun SettingsScreen(
     uiState: SettingsState,
     onTextSizeUpdate: (Float) -> Unit,
     onBackClick: () -> Unit,

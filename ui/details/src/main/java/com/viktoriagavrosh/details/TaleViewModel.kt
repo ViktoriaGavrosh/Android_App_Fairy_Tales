@@ -3,10 +3,10 @@ package com.viktoriagavrosh.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.details.model.TaleUiDetail
-import com.viktoriagavrosh.repositories.RequestResult
-import com.viktoriagavrosh.repositories.SettingsRepository
-import com.viktoriagavrosh.repositories.TaleRepository
 import com.viktoriagavrosh.repositories.model.Tale
+import com.viktoriagavrosh.repositories.settings.SettingsRepository
+import com.viktoriagavrosh.repositories.tale.RequestResult
+import com.viktoriagavrosh.repositories.tale.TaleRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

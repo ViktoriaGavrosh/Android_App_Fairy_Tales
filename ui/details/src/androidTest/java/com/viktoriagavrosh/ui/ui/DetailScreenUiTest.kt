@@ -51,8 +51,11 @@ class DetailScreenUiTest {
             FairyTalesTheme {
                 DetailScreen(
                     screenState = DetailScreenState.Error(),
+                    textSizeFromDataStore = 24.0F,
                     isExpandedScreen = false,
-                    onDetailScreenBackClick = {}
+                    onDetailScreenBackClick = {},
+                    onSettingsClick = {},
+                    onTextSizeUpdate = {},
                 )
             }
         }
@@ -66,8 +69,11 @@ class DetailScreenUiTest {
             FairyTalesTheme {
                 DetailScreen(
                     screenState = DetailScreenState.Error(),
+                    textSizeFromDataStore = 24.0F,
                     isExpandedScreen = true,
-                    onDetailScreenBackClick = {}
+                    onDetailScreenBackClick = {},
+                    onSettingsClick = {},
+                    onTextSizeUpdate = {},
                 )
             }
         }
@@ -80,8 +86,11 @@ class DetailScreenUiTest {
             FairyTalesTheme {
                 DetailScreen(
                     screenState = DetailScreenState.Success(fakeTale),
+                    textSizeFromDataStore = 24.0F,
                     isExpandedScreen = isExpanded,
-                    onDetailScreenBackClick = {}
+                    onDetailScreenBackClick = {},
+                    onSettingsClick = {},
+                    onTextSizeUpdate = {},
                 )
             }
         }
