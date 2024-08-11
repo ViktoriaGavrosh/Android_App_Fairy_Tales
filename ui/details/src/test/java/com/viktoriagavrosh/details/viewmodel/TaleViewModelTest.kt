@@ -3,7 +3,7 @@ package com.viktoriagavrosh.details.viewmodel
 import com.viktoriagavrosh.details.TaleViewModel
 import com.viktoriagavrosh.details.fake.FakeData
 import com.viktoriagavrosh.details.model.TaleUiDetail
-import com.viktoriagavrosh.details.toTaleUiDetail
+import com.viktoriagavrosh.details.utils.toTaleUiDetail
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
