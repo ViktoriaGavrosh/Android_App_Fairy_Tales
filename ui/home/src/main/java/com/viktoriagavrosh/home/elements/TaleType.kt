@@ -8,7 +8,7 @@ import com.viktoriagavrosh.home.R
  */
 enum class TaleType(
     @DrawableRes val iconId: Int,
-    val textId: Int   // TODO рассмтреть возможность заменить на String
+    val textId: Int   // TODO consider changing to String
 ) {
     Story(
         iconId = R.drawable.ic_text,

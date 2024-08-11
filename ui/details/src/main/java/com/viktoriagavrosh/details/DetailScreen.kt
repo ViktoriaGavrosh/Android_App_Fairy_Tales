@@ -182,7 +182,7 @@ private fun DetailsTopBarPreview() {
         )
     }
 }
-/*
+
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -195,9 +195,11 @@ private fun VerticalDetailScreenPreview() {
                     text = "text"
                 )
             ),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = false,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -215,9 +217,11 @@ private fun VerticalPuzzleDetailScreenPreview() {
                     text = "text"
                 )
             ),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = false,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -235,9 +239,11 @@ private fun VerticalStoryDetailScreenPreview() {
                     text = "text"
                 )
             ),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = false,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -254,9 +260,11 @@ private fun HorizontalDetailScreenPreview() {
                     text = "text"
                 )
             ),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = true,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -274,9 +282,11 @@ private fun HorizontalPuzzleDetailScreenPreview() {
                     text = "text"
                 )
             ),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = true,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -294,9 +304,11 @@ private fun HorizontalStoryDetailScreenPreview() {
                     text = "text"
                 )
             ),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = true,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -308,9 +320,11 @@ private fun VerticalErrorScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
             screenState = DetailScreenState.Error(),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = false,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
@@ -322,12 +336,11 @@ private fun HorizontalErrorScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
             screenState = DetailScreenState.Error(),
+            textSizeFromDataStore = 24.0F,
             isExpandedScreen = true,
             onDetailScreenBackClick = {},
             onSettingsClick = {},
+            onTextSizeUpdate = {},
         )
     }
 }
-
-
- */

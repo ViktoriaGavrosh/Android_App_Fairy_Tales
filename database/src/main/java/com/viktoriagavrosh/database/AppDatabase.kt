@@ -12,7 +12,9 @@ interface TaleAppDatabase {
     val taleDao: TaleDao
 }
 
-
+/**
+ * Database class for working with other modules
+ */
 class AppDatabase internal constructor(
     private val database: AppRoomDatabase
 ) : TaleAppDatabase {
@@ -31,6 +33,9 @@ internal abstract class AppRoomDatabase : RoomDatabase() {
     abstract fun taleDao(): TaleDao
 }
 
+/**
+ *  Function build [AppDatabase] object
+ */
 fun getDatabase(context: Context): AppDatabase {
     val appRoomDatabase = Room.databaseBuilder(
         context = context,

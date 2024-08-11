@@ -1,7 +1,7 @@
 package com.viktoriagavrosh.home.model
 
 /**
- * Model represents a single tale
+ * Model represents a single tale on HomeScreen
  */
 data class TaleUiHome(
     val id: Int = 0,

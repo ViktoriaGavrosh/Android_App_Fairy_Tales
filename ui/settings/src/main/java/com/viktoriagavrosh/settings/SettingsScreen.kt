@@ -20,6 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
+/**
+ * Composable to display settings
+ */
 @Composable
 fun SettingsScreen(
     modifier: Modifier = Modifier,

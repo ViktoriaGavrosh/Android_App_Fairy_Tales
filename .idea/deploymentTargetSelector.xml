@@ -5,18 +5,6 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="settingsScreen_moveRightTextSizeSlider_increasedLetters()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="settingsScreen_movLeftTextSizeSlider_decreasedLetters()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="settingsScreen_largeTextSize_verifyLargeLetters()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="settingsScreen_smallTextSize_verifySmallLetters()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="settingsScreen_largeTextSize_verifyRightSlider()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>

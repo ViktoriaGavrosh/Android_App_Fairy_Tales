@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.model.TaleUiHome
-import com.viktoriagavrosh.repositories.model.Tale
-import com.viktoriagavrosh.repositories.tale.RequestResult
+import com.viktoriagavrosh.home.utils.toHomeScreenState
 import com.viktoriagavrosh.repositories.tale.TaleRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -32,7 +31,8 @@ class TalesListViewModel @Inject constructor(
 
     internal val screenState: Flow<HomeScreenState>
         get() = _screenState
-    /*.stateIn(     TODO проверить где меньше ресурсов кушает
+    /* TODO check where resource consumption is less
+    .stateIn(
     viewModelScope,
     SharingStarted.Lazily,
     HomeScreenState.None()
@@ -111,27 +111,4 @@ internal sealed class HomeScreenState(val tales: List<TaleUiHome>? = null) {
     class None : HomeScreenState()
     class Success(tales: List<TaleUiHome>) : HomeScreenState(tales)
     class Error : HomeScreenState()
-}
-
-internal fun RequestResult<List<Tale>>.toHomeScreenState(): HomeScreenState {
-    return when (this) {
-        is RequestResult.Success -> HomeScreenState.Success(
-            tales = data.map { it.toTaleUiHome() }
-        )
-
-        is RequestResult.Error -> HomeScreenState.Error()
-    }
-}
-
-fun Tale.toTaleUiHome(): TaleUiHome {
-    return TaleUiHome(
-        id = id,
-        genre = genre,
-        title = title,
-        text = text,
-        answer = answer,
-        imageUri = imageUri,
-        audioUri = audioUri,
-        isFavorite = isFavorite
-    )
 }

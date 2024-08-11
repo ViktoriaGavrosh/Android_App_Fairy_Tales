@@ -1,5 +1,8 @@
 package com.viktoriagavrosh.repositories.tale
 
+/**
+ * Data source query result
+ */
 sealed class RequestResult<out T : Any>(open val data: T? = null) {
     class Success<T : Any>(override val data: T) : RequestResult<T>(data)
     class Error<T : Any>(val error: Throwable? = null) : RequestResult<T>()

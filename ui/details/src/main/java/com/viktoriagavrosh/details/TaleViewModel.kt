@@ -3,9 +3,8 @@ package com.viktoriagavrosh.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.details.model.TaleUiDetail
-import com.viktoriagavrosh.repositories.model.Tale
+import com.viktoriagavrosh.details.utils.toDetailScreenState
 import com.viktoriagavrosh.repositories.settings.SettingsRepository
-import com.viktoriagavrosh.repositories.tale.RequestResult
 import com.viktoriagavrosh.repositories.tale.TaleRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -36,6 +35,9 @@ class TaleViewModel @AssistedInject constructor(
             DetailScreenState.None()
         )
 
+    /**
+     * TextSize from data source
+     */
     private var _textSize: Flow<Float> = settingsRepository.getTextSize()
     internal val textSize: StateFlow<Float>
         get() = _textSize.stateIn(
@@ -44,6 +46,9 @@ class TaleViewModel @AssistedInject constructor(
             0.0F
         )
 
+    /**
+     * Update the value of textSize in the data source
+     */
     internal fun updateTextSize(textSize: Float) {
         viewModelScope.launch {
             settingsRepository.updateTextSize(textSize)
@@ -60,27 +65,4 @@ internal sealed class DetailScreenState(val tale: TaleUiDetail? = null) {
     class None : DetailScreenState()
     class Success(tale: TaleUiDetail) : DetailScreenState(tale)
     class Error : DetailScreenState()
-}
-
-internal fun RequestResult<Tale>.toDetailScreenState(): DetailScreenState {
-    return when (this) {
-        is RequestResult.Success -> DetailScreenState.Success(
-            tale = data.toTaleUiDetail()
-        )
-
-        is RequestResult.Error -> DetailScreenState.Error()
-    }
-}
-
-fun Tale.toTaleUiDetail(): TaleUiDetail {
-    return TaleUiDetail(
-        id = id,
-        genre = genre,
-        title = title,
-        text = text,
-        answer = answer,
-        imageUri = imageUri,
-        audioUri = audioUri,
-        isFavorite = isFavorite
-    )
 }

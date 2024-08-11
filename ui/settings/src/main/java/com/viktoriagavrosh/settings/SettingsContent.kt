@@ -25,6 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display Settings
+ */
 @Composable
 internal fun SettingsContent(
     textSize: Float,
@@ -42,6 +45,9 @@ internal fun SettingsContent(
     }
 }
 
+/**
+ * Composable to display all about textSize
+ */
 @Composable
 private fun TextSizeRow(
     textSize: Float,
@@ -51,6 +57,8 @@ private fun TextSizeRow(
     var sliderPosition by remember {
         mutableFloatStateOf(0.0F)
     }
+
+    // TODO think about how to fix it
     if (sliderPosition == 0.0F) sliderPosition = textSize
 
     Row(

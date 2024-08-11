@@ -8,6 +8,9 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * Class for working with DataStore<Preferences>. DataStore provides data for Settings
+ */
 class PreferencesManager @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
