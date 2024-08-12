@@ -1,7 +1,7 @@
 "БЕЛАРУСКIЯ КАЗКI"
 
-A small collection of Belarusian folklore 
-for children
+Application for everyone 
+who loves Belarusian folk tales
 
 ● folk tales
 
@@ -14,3 +14,4 @@ for children
 ● lullabies
 
 Belarusian language
+
