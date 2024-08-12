@@ -4,7 +4,7 @@ import com.viktoriagavrosh.home.TalesListViewModel
 import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.fake.FakeSource
 import com.viktoriagavrosh.home.model.TaleUiHome
-import com.viktoriagavrosh.home.toTaleUiHome
+import com.viktoriagavrosh.home.utils.toTaleUiHome
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals

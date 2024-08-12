@@ -22,7 +22,6 @@ class TaleCardTest {
 
     @Test
     fun folkWorkCard_verifyContent() {
-        //val fakeUiState = TalesListUiState().copy(taleType = TaleType.Story)
         composeTestRule.setContent {
             FairyTalesTheme {
                 TaleCard(
