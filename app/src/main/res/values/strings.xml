@@ -18,8 +18,8 @@
     <string name="answer_button">Адгадка</string>
     <string name="favorite">favorite</string>
     <string name="not_favorite">Not favorite</string>
-    <string name="favorite_folk_works">Favorite folk works</string>
-    <string name="all_folk_works">All folk works</string>
+    <string name="favorite_tales">Favorite tales</string>
+    <string name="all_tales">All tales</string>
 
     <string name="expanded_screen_test_tag">expanded screen</string>
     <string name="medium_screen_test_tag">medium screen</string>

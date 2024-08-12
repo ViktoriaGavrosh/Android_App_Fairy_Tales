@@ -9,11 +9,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
+import com.viktoriagavrosh.fairytales.data.TaleType
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
-import com.viktoriagavrosh.fairytales.ui.elements.GridFolkWorks
-import com.viktoriagavrosh.fairytales.ui.elements.ListFolkWorks
+import com.viktoriagavrosh.fairytales.ui.TalesUiState
+import com.viktoriagavrosh.fairytales.ui.elements.GridTales
+import com.viktoriagavrosh.fairytales.ui.elements.ListTales
 import com.viktoriagavrosh.fairytales.ui.elements.bars.ContentTopBar
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
@@ -24,7 +24,7 @@ import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 @Composable
 fun HomeScreen(
     logic: UILogic,
-    uiState: FairyTalesUiState,
+    uiState: TalesUiState,
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -37,27 +37,27 @@ fun HomeScreen(
     ) {
         ContentTopBar(
             text = if (uiState.isShowHomeScreen) {
-                stringResource(id = uiState.folkWorkType.textId)
+                stringResource(id = uiState.taleType.textId)
             } else {
-                uiState.selectedWork.title
+                uiState.selectedTale.title
             },
             isShowHomeScreen = uiState.isShowHomeScreen,
             onDetailScreenBackClick = logic.onDetailScreenBackClick,
-            isFavoriteWorks = uiState.isFavoriteWorks,
+            isFavoriteTales = uiState.isFavoriteTales,
             onTopBarHeartClick = logic.onTopBarHeartClick
         )
         if (isExpandedScreen) {
-            GridFolkWorks(
-                folkWorks = uiState.folkWorks,
-                isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
+            GridTales(
+                tales = uiState.tale,
+                isBlurImage = uiState.taleType == TaleType.Puzzle,
                 onCardClick = logic.onCardClick,
                 onHeartClick = logic.onHeartClick,
                 modifier = Modifier.fillMaxSize()
             )
         } else {
-            ListFolkWorks(
-                folkWorks = uiState.folkWorks,
-                isBlurImage = uiState.folkWorkType == FolkWorkType.Puzzle,
+            ListTales(
+                tales = uiState.tale,
+                isBlurImage = uiState.taleType == TaleType.Puzzle,
                 onCardClick = logic.onCardClick,
                 onHeartClick = logic.onHeartClick,
                 modifier = Modifier
@@ -68,13 +68,13 @@ fun HomeScreen(
 
 @Preview
 @Composable
-fun FairyTalesHomeScreenPreview() {
+fun VerticalHomeScreenPreview() {
     FairyTalesTheme {
         val fakeLogic = UILogic()
         FairyTalesTheme {
             HomeScreen(
                 logic = fakeLogic,
-                uiState = FairyTalesUiState(),
+                uiState = TalesUiState(),
                 isExpandedScreen = false
             )
         }
@@ -83,12 +83,12 @@ fun FairyTalesHomeScreenPreview() {
 
 @Preview(showBackground = true, widthDp = 1000)
 @Composable
-fun FairyTalesHomeScreenTabletPreview() {
+fun HorizontalHomeScreenPreview() {
     val fakeLogic = UILogic()
     FairyTalesTheme {
         HomeScreen(
             logic = fakeLogic,
-            uiState = FairyTalesUiState(),
+            uiState = TalesUiState(),
             isExpandedScreen = true
         )
     }

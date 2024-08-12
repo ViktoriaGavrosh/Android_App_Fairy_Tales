@@ -11,15 +11,15 @@ import kotlinx.coroutines.flow.Flow
  * Database access object to access the App Database
  */
 @Dao
-interface FolkWorkDao {
+interface TaleDao {
     @Query("SELECT * FROM library WHERE genre = :genre")
-    fun getAllWorks(genre: String): Flow<List<FolkWork>>
+    fun getAllTales(genre: String): Flow<List<FolkWork>>
 
     @Query("SELECT * FROM library WHERE genre = :genre AND is_favorite = 1")
-    fun getAllFavoriteWorks(genre: String): Flow<List<FolkWork>>
+    fun getAllFavoriteTales(genre: String): Flow<List<FolkWork>>
 
     @Query("UPDATE library SET is_favorite = :isFavorite WHERE id = :id")
-    suspend fun updateFavoriteWork(id: Int, isFavorite: Int)
+    suspend fun updateFavoriteTale(id: Int, isFavorite: Int)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(folkWork: FolkWork)

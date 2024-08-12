@@ -23,7 +23,7 @@ import com.viktoriagavrosh.fairytales.ui.utils.UILogic
  */
 @Composable
 fun DetailScreen(
-    folkWork: FolkWork,
+    tale: FolkWork,
     logic: UILogic,
     isPuzzleType: Boolean,
     isStoryType: Boolean,
@@ -37,15 +37,15 @@ fun DetailScreen(
         modifier = modifier
     ) {
         ContentTopBar(
-            text = folkWork.title,
+            text = tale.title,
             isShowHomeScreen = false,
             onDetailScreenBackClick = logic.onDetailScreenBackClick,
-            isFavoriteWorks = false,
+            isFavoriteTales = false,
             onTopBarHeartClick = logic.onTopBarHeartClick
         )
         if (isExpandedScreen) {
             HorizontalDetailScreen(
-                folkWork = folkWork,
+                tale = tale,
                 isPuzzleType = isPuzzleType,
                 isStoryType = isStoryType,
                 modifier = Modifier
@@ -55,7 +55,7 @@ fun DetailScreen(
             )
         } else {
             VerticalDetailScreen(
-                folkWork = folkWork,
+                tale = tale,
                 isPuzzleType = isPuzzleType,
                 modifier = Modifier
                     .fillMaxHeight()
@@ -72,7 +72,7 @@ fun DetailScreenPreview() {
         DetailScreen(
             isPuzzleType = true,
             isStoryType = false,
-            folkWork = MockData.fakeFolkWork,
+            tale = MockData.fakeTale,
             logic = UILogic(),
             isExpandedScreen = false
         )
@@ -86,7 +86,7 @@ fun DetailHorizontalScreenPreview() {
         DetailScreen(
             isPuzzleType = false,
             isStoryType = true,
-            folkWork = MockData.fakeFolkWork,
+            tale = MockData.fakeTale,
             logic = UILogic(),
             isExpandedScreen = true
         )

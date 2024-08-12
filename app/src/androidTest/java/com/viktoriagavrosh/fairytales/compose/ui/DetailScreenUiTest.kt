@@ -7,8 +7,8 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.compose.utils.onNodeWithContentDescriptionForStringId
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
-import com.viktoriagavrosh.fairytales.ui.FairyTalesUiState
+import com.viktoriagavrosh.fairytales.data.TaleType
+import com.viktoriagavrosh.fairytales.ui.TalesUiState
 import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
@@ -21,12 +21,12 @@ class DetailScreenUiTest {
 
     @Test
     fun detailScreen_verticalScreen_verifyContent() {
-        val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Story, isShowHomeScreen = false)
+        val fakeUiState = TalesUiState()
+            .copy(taleType = TaleType.Story, isShowHomeScreen = false)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    folkWork = fakeUiState.selectedWork,
+                    tale = fakeUiState.selectedTale,
                     logic = UILogic(),
                     isPuzzleType = false,
                     isStoryType = true,
@@ -36,22 +36,22 @@ class DetailScreenUiTest {
         }
         composeTestRule.onNodeWithContentDescriptionForStringId(R.string.back)
             .assertExists("No back button on topBar")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.title)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.title)
             .assertExists("No title on topBar")
-        composeTestRule.onNodeWithContentDescription(fakeUiState.selectedWork.title)
+        composeTestRule.onNodeWithContentDescription(fakeUiState.selectedTale.title)
             .assertExists("No image")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.text)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.text)
             .assertExists("No text")
     }
 
     @Test
     fun detailScreen_horizontalScreen_verifyContent() {
-        val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Story, isShowHomeScreen = false)
+        val fakeUiState = TalesUiState()
+            .copy(taleType = TaleType.Story, isShowHomeScreen = false)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    folkWork = fakeUiState.selectedWork,
+                    tale = fakeUiState.selectedTale,
                     logic = UILogic(),
                     isPuzzleType = false,
                     isStoryType = true,
@@ -61,22 +61,22 @@ class DetailScreenUiTest {
         }
         composeTestRule.onNodeWithContentDescriptionForStringId(R.string.back)
             .assertExists("No back button on topBar")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.title)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.title)
             .assertExists("No title on topBar")
-        composeTestRule.onNodeWithContentDescription(fakeUiState.selectedWork.title)
+        composeTestRule.onNodeWithContentDescription(fakeUiState.selectedTale.title)
             .assertExists("No image")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.text)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.text)
             .assertExists("No text")
     }
 
     @Test
     fun detailScreen_puzzleTypeVerticalScreen_verifyContent() {
-        val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Puzzle, isShowHomeScreen = false)
+        val fakeUiState = TalesUiState()
+            .copy(taleType = TaleType.Puzzle, isShowHomeScreen = false)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    folkWork = fakeUiState.selectedWork,
+                    tale = fakeUiState.selectedTale,
                     logic = UILogic(),
                     isPuzzleType = true,
                     isStoryType = false,
@@ -86,9 +86,9 @@ class DetailScreenUiTest {
         }
         composeTestRule.onNodeWithContentDescriptionForStringId(R.string.back)
             .assertExists("No back button on topBar")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.title)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.title)
             .assertExists("No title on topBar")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.text)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.text)
             .assertExists("No text")
         composeTestRule.onNodeWithText("Адгадка")
             .assertExists("No button")
@@ -96,12 +96,12 @@ class DetailScreenUiTest {
 
     @Test
     fun detailScreen_puzzleTypeHorizontalScreen_verifyContent() {
-        val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Puzzle, isShowHomeScreen = false)
+        val fakeUiState = TalesUiState()
+            .copy(taleType = TaleType.Puzzle, isShowHomeScreen = false)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    folkWork = fakeUiState.selectedWork,
+                    tale = fakeUiState.selectedTale,
                     logic = UILogic(),
                     isPuzzleType = true,
                     isStoryType = false,
@@ -111,9 +111,9 @@ class DetailScreenUiTest {
         }
         composeTestRule.onNodeWithContentDescriptionForStringId(R.string.back)
             .assertExists("No back button on topBar")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.title)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.title)
             .assertExists("No title on topBar")
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.text)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.text)
             .assertExists("No text")
         composeTestRule.onNodeWithText("Адгадка")
             .assertExists("No button")
@@ -122,12 +122,12 @@ class DetailScreenUiTest {
     @Test
     @Throws(Exception::class)
     fun detailScreen_puzzleType_showAnswer() {
-        val fakeUiState = FairyTalesUiState()
-            .copy(folkWorkType = FolkWorkType.Puzzle, isShowHomeScreen = false)
+        val fakeUiState = TalesUiState()
+            .copy(taleType = TaleType.Puzzle, isShowHomeScreen = false)
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    folkWork = fakeUiState.selectedWork,
+                    tale = fakeUiState.selectedTale,
                     logic = UILogic(),
                     isPuzzleType = true,
                     isStoryType = false,
@@ -138,9 +138,9 @@ class DetailScreenUiTest {
         composeTestRule.onNodeWithText("Адгадка")
             .assertExists("No button")
             .performClick()
-        composeTestRule.onNodeWithText(fakeUiState.selectedWork.answer!!)
+        composeTestRule.onNodeWithText(fakeUiState.selectedTale.answer!!)
             .assertExists("No text answer")
-        composeTestRule.onNodeWithContentDescription(fakeUiState.selectedWork.answer!!)
+        composeTestRule.onNodeWithContentDescription(fakeUiState.selectedTale.answer!!)
             .assertExists("No image answer")
     }
 

@@ -6,7 +6,7 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
  * Object for preview and testing
  */
 object MockData {
-    val fakeFolkWork = FolkWork(
+    val fakeTale = FolkWork(
         id = 0,
         genre = "story",
         title = "Story",

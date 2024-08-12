@@ -19,8 +19,8 @@ import com.viktoriagavrosh.fairytales.ui.utils.MockData
  * Composable to display a grid of [FolkWork]-s on expanded screen
  */
 @Composable
-fun GridFolkWorks(
-    folkWorks: List<FolkWork>,
+fun GridTales(
+    tales: List<FolkWork>,
     isBlurImage: Boolean,
     onCardClick: (FolkWork) -> Unit,
     onHeartClick: (FolkWork) -> Unit,
@@ -32,10 +32,10 @@ fun GridFolkWorks(
         contentPadding = contentPadding,
         modifier = modifier
     ) {
-        items(folkWorks) { folkWork ->
-            FolkWorkCard(
+        items(tales) { tale ->
+            TaleCard(
                 isBlurImage = isBlurImage,
-                folkWork = folkWork,
+                tale = tale,
                 minLineText = 2,
                 onCardClick = onCardClick,
                 onHeartClick = onHeartClick,
@@ -49,15 +49,14 @@ fun GridFolkWorks(
 
 @Preview(showBackground = true, widthDp = 1000)
 @Composable
-fun GridFolkWorksPreview() {
+fun GridTalesPreview() {
     FairyTalesTheme {
-        GridFolkWorks(
+        GridTales(
             isBlurImage = false,
-            folkWorks = listOf(
-                MockData.fakeFolkWork,
-                MockData.fakeFolkWork.copy(title = "Story Story Story Story Story Story Story Story ")
+            tales = listOf(
+                MockData.fakeTale,
+                MockData.fakeTale.copy(title = "Story Story Story Story Story Story Story Story ")
             ),
-            //List(5) {MockData.fakeFolkWork},
             onCardClick = {},
             onHeartClick = {}
         )

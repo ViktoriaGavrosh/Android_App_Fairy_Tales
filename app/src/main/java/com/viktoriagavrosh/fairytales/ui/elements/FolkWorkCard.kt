@@ -29,9 +29,9 @@ import com.viktoriagavrosh.fairytales.ui.utils.MockData
  * Card for display [FolkWork]
  */
 @Composable
-fun FolkWorkCard(
+fun TaleCard(
     modifier: Modifier = Modifier,
-    folkWork: FolkWork,
+    tale: FolkWork,
     isBlurImage: Boolean,
     minLineText: Int = 1,
     onCardClick: (FolkWork) -> Unit,
@@ -40,7 +40,7 @@ fun FolkWorkCard(
     Card(
         modifier = modifier
             .clickable {
-                onCardClick(folkWork)
+                onCardClick(tale)
             },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -57,14 +57,14 @@ fun FolkWorkCard(
                 )
         ) {
             CardText(
-                folkWork = folkWork,
+                tale = tale,
                 onHeartClick = onHeartClick,
                 modifier = Modifier.fillMaxWidth(),
                 minLineText = minLineText
             )
-            FolkWorkImage(
-                title = folkWork.title,
-                imageUri = folkWork.imageUri ?: "",
+            TaleImage(
+                title = tale.title,
+                imageUri = tale.imageUri ?: "",
                 isBlur = isBlurImage,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -74,7 +74,7 @@ fun FolkWorkCard(
 
 @Composable
 private fun CardText(
-    folkWork: FolkWork,
+    tale: FolkWork,
     onHeartClick: (FolkWork) -> Unit,
     minLineText: Int,
     modifier: Modifier = Modifier
@@ -85,22 +85,22 @@ private fun CardText(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = folkWork.title,
+            text = tale.title,
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.weight(1F),
             minLines = minLineText
         )
-        if (folkWork.isFavorite) {
+        if (tale.isFavorite) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_favorite_true),
                 contentDescription = stringResource(R.string.favorite),
-                modifier = Modifier.clickable { onHeartClick(folkWork) }
+                modifier = Modifier.clickable { onHeartClick(tale) }
             )
         } else {
             Icon(
                 painter = painterResource(id = R.drawable.ic_favorite_false),
                 contentDescription = stringResource(R.string.not_favorite),
-                modifier = Modifier.clickable { onHeartClick(folkWork) }
+                modifier = Modifier.clickable { onHeartClick(tale) }
             )
         }
     }
@@ -108,10 +108,10 @@ private fun CardText(
 
 @Preview
 @Composable
-fun CardCompositionPreview() {
-    FolkWorkCard(
+fun CardPreview() {
+    TaleCard(
         isBlurImage = false,
-        folkWork = MockData.fakeFolkWork,
+        tale = MockData.fakeTale,
         onCardClick = {},
         onHeartClick = {}
     )

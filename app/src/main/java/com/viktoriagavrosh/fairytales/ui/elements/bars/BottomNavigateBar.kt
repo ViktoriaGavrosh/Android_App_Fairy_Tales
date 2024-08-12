@@ -13,22 +13,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
+import com.viktoriagavrosh.fairytales.data.TaleType
 
 /**
  * App bar to display tabs on compact screen
  */
 @Composable
 fun BottomNavigateBar(
-    selectedType: FolkWorkType,
-    onTabClick: (FolkWorkType) -> Unit,
+    selectedType: TaleType,
+    onTabClick: (TaleType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val bottomNavigateBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
     NavigationBar(
         modifier = modifier.testTag(bottomNavigateBarTestTag)
     ) {
-        for (item in FolkWorkType.entries) {
+        for (item in TaleType.entries) {
             NavigationBarItem(
                 selected = item == selectedType,
                 onClick = { onTabClick(item) },
@@ -49,7 +49,7 @@ fun BottomNavigateBar(
 @Composable
 fun BottomNavigateBarPreview() {
     BottomNavigateBar(
-        selectedType = FolkWorkType.Story,
+        selectedType = TaleType.Story,
         onTabClick = {}
     )
 }

@@ -22,15 +22,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
+import com.viktoriagavrosh.fairytales.data.TaleType
 
 /**
  * App bar to display tabs on expanded screen
  */
 @Composable
 fun ExpandedScreenVerticalBar(
-    selectedType: FolkWorkType,
-    onTabClick: (FolkWorkType) -> Unit
+    selectedType: TaleType,
+    onTabClick: (TaleType) -> Unit
 ) {
     val expandedScreenVerticalBarTestTag = stringResource(
         id = R.string.expanded_screen_test_tag
@@ -57,8 +57,8 @@ fun ExpandedScreenVerticalBar(
 
 @Composable
 private fun NavigationDrawerContent(
-    selectedType: FolkWorkType,
-    onTabClick: (FolkWorkType) -> Unit,
+    selectedType: TaleType,
+    onTabClick: (TaleType) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -73,7 +73,7 @@ private fun NavigationDrawerContent(
             )
         )
         Spacer(modifier = Modifier.weight(1F))
-        for (item in FolkWorkType.entries) {
+        for (item in TaleType.entries) {
             NavigationDrawerItem(
                 label = { Text(text = stringResource(id = item.textId)) },
                 selected = item == selectedType,
@@ -96,7 +96,7 @@ private fun NavigationDrawerContent(
 @Composable
 fun ExpandedScreenVerticalBarPreview() {
     ExpandedScreenVerticalBar(
-        selectedType = FolkWorkType.Story,
+        selectedType = TaleType.Story,
         onTabClick = {}
     )
 }

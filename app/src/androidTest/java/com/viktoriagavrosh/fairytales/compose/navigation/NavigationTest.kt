@@ -45,10 +45,10 @@ class NavigationTest {
                 FairyTalesApp(windowSize = WindowWidthSizeClass.Compact)
             }
         }
-        composeTestRule.onNodeWithContentDescriptionForStringId(R.string.all_folk_works)
+        composeTestRule.onNodeWithContentDescriptionForStringId(R.string.all_tales)
             .performClick()
         composeTestRule.onNodeWithTag(selectedFolkWorkId).assertIsNotDisplayed()
-        composeTestRule.onNodeWithContentDescriptionForStringId(R.string.favorite_folk_works)
+        composeTestRule.onNodeWithContentDescriptionForStringId(R.string.favorite_tales)
             .performClick()
         composeTestRule.onNodeWithTag(selectedFolkWorkId).assertExists("No card")
     }

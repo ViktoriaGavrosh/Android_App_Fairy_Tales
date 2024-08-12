@@ -14,7 +14,7 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
     version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun folkWorkDao(): FolkWorkDao
+    abstract fun taleDao(): TaleDao
 
     companion object {
         @Volatile

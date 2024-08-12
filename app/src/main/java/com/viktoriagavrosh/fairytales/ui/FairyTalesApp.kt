@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
+import com.viktoriagavrosh.fairytales.data.TaleType
 import com.viktoriagavrosh.fairytales.ui.screens.ContentScreen
 import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
 import com.viktoriagavrosh.fairytales.ui.utils.UILogic
@@ -26,8 +26,8 @@ fun FairyTalesApp(
         onTabClick = viewModel::updateCompositionType,
         onCardClick = viewModel::navigateToDetailScreen,
         onDetailScreenBackClick = viewModel::navigateToHomeScreen,
-        onHeartClick = viewModel::updateWorkFavorite,
-        onTopBarHeartClick = viewModel::updateListFavoriteWorks
+        onHeartClick = viewModel::updateTaleFavorite,
+        onTopBarHeartClick = viewModel::updateListFavoriteTales
     )
 
     if (uiState.isShowHomeScreen) {
@@ -39,10 +39,10 @@ fun FairyTalesApp(
         )
     } else {
         DetailScreen(
-            folkWork = uiState.selectedWork,
+            tale = uiState.selectedTale,
             logic = logic,
-            isPuzzleType = uiState.folkWorkType == FolkWorkType.Puzzle,
-            isStoryType = uiState.folkWorkType == FolkWorkType.Story,
+            isPuzzleType = uiState.taleType == TaleType.Puzzle,
+            isStoryType = uiState.taleType == TaleType.Story,
             isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
             modifier = modifier
         )

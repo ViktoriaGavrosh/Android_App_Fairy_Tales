@@ -24,7 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
+import com.viktoriagavrosh.fairytales.ui.elements.TaleImage
 import com.viktoriagavrosh.fairytales.ui.utils.MockData
 
 /**
@@ -32,7 +32,7 @@ import com.viktoriagavrosh.fairytales.ui.utils.MockData
  */
 @Composable
 fun HorizontalDetailScreen(
-    folkWork: FolkWork,
+    tale: FolkWork,
     isPuzzleType: Boolean,
     isStoryType: Boolean,
     modifier: Modifier = Modifier
@@ -49,8 +49,8 @@ fun HorizontalDetailScreen(
         ) {
             if (!isPuzzleType) {
                 ImageHorizontal(
-                    title = folkWork.title,
-                    imageUri = folkWork.imageUri ?: ""
+                    title = tale.title,
+                    imageUri = tale.imageUri ?: ""
                 )
             }
             Row {
@@ -62,7 +62,7 @@ fun HorizontalDetailScreen(
                     }
                 )
                 TextDetail(
-                    text = folkWork.text,
+                    text = tale.text,
                     modifier = Modifier
                         .weight(3F)
                         .padding(dimensionResource(id = R.dimen.padding_small))
@@ -77,8 +77,8 @@ fun HorizontalDetailScreen(
             }
             if (isPuzzleType) {
                 AnswerHorizontal(
-                    answer = folkWork.answer ?: "",
-                    imageUri = folkWork.imageUri ?: "",
+                    answer = tale.answer ?: "",
+                    imageUri = tale.imageUri ?: "",
                     modifier = Modifier
                         .padding(bottom = dimensionResource(id = R.dimen.padding_small))
                 )
@@ -97,7 +97,7 @@ private fun ImageHorizontal(
         modifier = modifier
     ) {
         Spacer(modifier = Modifier.weight(1F))
-        FolkWorkImage(
+        TaleImage(
             title = title,
             imageUri = imageUri,
             modifier = Modifier
@@ -148,7 +148,7 @@ private fun AnswerHorizontal(
 @Composable
 fun HorizontalDetailScreenPreview() {
     HorizontalDetailScreen(
-        folkWork = MockData.fakeFolkWork,
+        tale = MockData.fakeTale,
         isPuzzleType = true,
         isStoryType = false
     )

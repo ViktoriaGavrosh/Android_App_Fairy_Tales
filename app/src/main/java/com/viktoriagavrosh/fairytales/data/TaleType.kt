@@ -6,7 +6,7 @@ import com.viktoriagavrosh.fairytales.R
 /**
  * Enum class to describe the destination of tab navigation
  */
-enum class FolkWorkType(
+enum class TaleType(
     @DrawableRes val iconId: Int,
     val textId: Int
 ) {

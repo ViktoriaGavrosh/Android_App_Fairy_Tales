@@ -6,18 +6,18 @@ import android.content.Context
  * App container for Dependency injection
  */
 interface AppContainer {
-    val folkWorkRepository: FolkWorkRepository
+    val taleRepository: TaleRepository
 }
 
 /**
- * [AppContainer] implementation that provides instance of [OfflineForkWorkRepository]
+ * [AppContainer] implementation that provides instance of [OfflineTaleRepository]
  */
 class AppDataContainer(private val context: Context) : AppContainer {
 
     /**
-     * Implementation for [FolkWorkRepository]
+     * Implementation for [TaleRepository]
      */
-    override val folkWorkRepository: FolkWorkRepository by lazy {
-        OfflineForkWorkRepository(AppDatabase.getDatabase(context).folkWorkDao())
+    override val taleRepository: TaleRepository by lazy {
+        OfflineTaleRepository(AppDatabase.getDatabase(context).taleDao())
     }
 }

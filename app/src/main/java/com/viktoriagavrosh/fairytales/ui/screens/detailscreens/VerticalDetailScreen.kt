@@ -24,14 +24,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.FolkWork
-import com.viktoriagavrosh.fairytales.ui.elements.FolkWorkImage
+import com.viktoriagavrosh.fairytales.ui.elements.TaleImage
 
 /**
  * Composable to display details of selected [FolkWork] on compact and medium screens
  */
 @Composable
 fun VerticalDetailScreen(
-    folkWork: FolkWork,
+    tale: FolkWork,
     isPuzzleType: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -44,7 +44,7 @@ fun VerticalDetailScreen(
     ) {
         Spacer(modifier = Modifier.weight(1F))
         DetailContent(
-            folkWork = folkWork,
+            tale = tale,
             isPuzzleType = isPuzzleType,
             modifier = Modifier
                 .padding(dimensionResource(id = R.dimen.padding_medium))
@@ -55,7 +55,7 @@ fun VerticalDetailScreen(
 
 @Composable
 private fun DetailContent(
-    folkWork: FolkWork,
+    tale: FolkWork,
     isPuzzleType: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -67,9 +67,9 @@ private fun DetailContent(
         verticalArrangement = Arrangement.Center
     ) {
         if (!isPuzzleType) {
-            FolkWorkImage(
-                title = folkWork.title,
-                imageUri = folkWork.imageUri ?: "",
+            TaleImage(
+                title = tale.title,
+                imageUri = tale.imageUri ?: "",
                 isBlur = false,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -77,7 +77,7 @@ private fun DetailContent(
             )
         }
         TextDetail(
-            text = folkWork.text,
+            text = tale.text,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = dimensionResource(id = R.dimen.padding_medium))
@@ -85,8 +85,8 @@ private fun DetailContent(
         if (isPuzzleType) {
             if (bigCard) {
                 Answer(
-                    answer = folkWork.answer ?: "",
-                    imageUri = folkWork.imageUri ?: "",
+                    answer = tale.answer ?: "",
+                    imageUri = tale.imageUri ?: "",
                     isBigImage = true,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -144,7 +144,7 @@ fun Answer(
     Column(
         modifier = modifier
     ) {
-        FolkWorkImage(
+        TaleImage(
             title = answer,
             imageUri = imageUri,
             modifier = if (isBigImage) {

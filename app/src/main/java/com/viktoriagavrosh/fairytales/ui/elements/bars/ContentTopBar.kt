@@ -26,7 +26,7 @@ import com.viktoriagavrosh.fairytales.R
 fun ContentTopBar(
     text: String,
     isShowHomeScreen: Boolean,
-    isFavoriteWorks: Boolean,
+    isFavoriteTales: Boolean,
     onDetailScreenBackClick: () -> Unit,
     onTopBarHeartClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -44,7 +44,7 @@ fun ContentTopBar(
         } else {
             HomeScreenTopBar(
                 text = text,
-                isFavoriteWorks = isFavoriteWorks,
+                isFavoriteTales = isFavoriteTales,
                 onTopBarHeartClick = onTopBarHeartClick
             )
         }
@@ -54,9 +54,9 @@ fun ContentTopBar(
 @Composable
 private fun HomeScreenTopBar(
     text: String,
-    isFavoriteWorks: Boolean,
+    isFavoriteTales: Boolean,
     onTopBarHeartClick: () -> Unit,
-    //modifier: Modifier = Modifier
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = text,
@@ -69,15 +69,15 @@ private fun HomeScreenTopBar(
 
     )
     Icon(
-        painter = if (isFavoriteWorks) {
+        painter = if (isFavoriteTales) {
             painterResource(id = R.drawable.ic_favorite_true)
         } else {
             painterResource(id = R.drawable.ic_favorite_false)
         },
-        contentDescription = if (isFavoriteWorks) {
-            stringResource(R.string.favorite_folk_works)
+        contentDescription = if (isFavoriteTales) {
+            stringResource(R.string.favorite_tales)
         } else {
-            stringResource(R.string.all_folk_works)
+            stringResource(R.string.all_tales)
         },
         modifier = Modifier
             .clickable {
@@ -128,7 +128,7 @@ fun ContentTopBarHomeScreenPreview() {
         text = "Text",
         isShowHomeScreen = true,
         onDetailScreenBackClick = {},
-        isFavoriteWorks = false,
+        isFavoriteTales = false,
         onTopBarHeartClick = {}
     )
 }
@@ -140,7 +140,7 @@ fun ContentTopBarDetailScreenPreview() {
         text = "Text",
         isShowHomeScreen = false,
         onDetailScreenBackClick = {},
-        isFavoriteWorks = false,
+        isFavoriteTales = false,
         onTopBarHeartClick = {}
     )
 }

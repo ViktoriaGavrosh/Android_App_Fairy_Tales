@@ -16,8 +16,8 @@ import java.io.IOException
 
 
 @RunWith(AndroidJUnit4::class)
-class FolkWorkDaoTest {
-    private lateinit var folkWorkDao: FolkWorkDao
+class TaleDaoTest {
+    private lateinit var folkWorkDao: TaleDao
     private lateinit var appDatabase: AppDatabase
     private val folkWork1 = FolkWork(
         id = 1,
@@ -56,7 +56,7 @@ class FolkWorkDaoTest {
         appDatabase = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        folkWorkDao = appDatabase.folkWorkDao()
+        folkWorkDao = appDatabase.taleDao()
     }
 
     @After
@@ -69,7 +69,7 @@ class FolkWorkDaoTest {
     @Throws(Exception::class)
     fun daoInsert_insertsItemIntoDb() = runBlocking {
         addItemToDb()
-        val allItems = folkWorkDao.getAllWorks("story").first()
+        val allItems = folkWorkDao.getAllTales("story").first()
         assertEquals(allItems[0], folkWork1)
     }
 
@@ -77,7 +77,7 @@ class FolkWorkDaoTest {
     @Throws(Exception::class)
     fun daoGetAllWorks_returnsAllStoriesFromDB() = runBlocking {
         addTwoItemsToDb()
-        val allItems = folkWorkDao.getAllWorks("story").first()
+        val allItems = folkWorkDao.getAllTales("story").first()
         assertEquals(allItems[0], folkWork1)
         assertEquals(allItems[1], folkWork2)
 
@@ -87,7 +87,7 @@ class FolkWorkDaoTest {
     @Throws(Exception::class)
     fun daoGetAllWorks_returnsAllPuzzlesFromDB() = runBlocking {
         addThreeItemsToDb()
-        val allItems = folkWorkDao.getAllWorks("puzzle").first()
+        val allItems = folkWorkDao.getAllTales("puzzle").first()
         assertEquals(allItems[0], folkWork3)
     }
 
@@ -95,7 +95,7 @@ class FolkWorkDaoTest {
     @Throws(Exception::class)
     fun daoGetAllFavoriteWorks_returnsAllFavoriteStoriesFromDb() = runBlocking {
         addTwoItemsToDb()
-        val allItems = folkWorkDao.getAllFavoriteWorks("story").first()
+        val allItems = folkWorkDao.getAllFavoriteTales("story").first()
         assertEquals(allItems[0], folkWork2)
     }
 
@@ -105,8 +105,8 @@ class FolkWorkDaoTest {
         val isTrueFavorite = 1
         val isFavoriteExpected = true
         addItemToDb()
-        folkWorkDao.updateFavoriteWork(1, isTrueFavorite)
-        val allItems = folkWorkDao.getAllFavoriteWorks("story").first()
+        folkWorkDao.updateFavoriteTale(1, isTrueFavorite)
+        val allItems = folkWorkDao.getAllFavoriteTales("story").first()
         assertEquals(allItems[0].isFavorite, isFavoriteExpected)
     }
 

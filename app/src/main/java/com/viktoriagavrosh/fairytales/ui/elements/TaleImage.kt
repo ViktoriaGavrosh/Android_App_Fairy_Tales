@@ -21,7 +21,7 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
  * Composable that represents an image of [FolkWork]
  */
 @Composable
-fun FolkWorkImage(
+fun TaleImage(
     modifier: Modifier = Modifier,
     title: String,
     imageUri: String,

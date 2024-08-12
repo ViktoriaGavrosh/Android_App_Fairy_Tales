@@ -17,8 +17,8 @@ import com.viktoriagavrosh.fairytales.model.FolkWork
  * Composable to display a list of [FolkWork]-s on compact and medium screens
  */
 @Composable
-fun ListFolkWorks(
-    folkWorks: List<FolkWork>,
+fun ListTales(
+    tales: List<FolkWork>,
     isBlurImage: Boolean,
     onCardClick: (FolkWork) -> Unit,
     onHeartClick: (FolkWork) -> Unit,
@@ -29,10 +29,10 @@ fun ListFolkWorks(
         contentPadding = contentPadding,
         modifier = modifier
     ) {
-        items(folkWorks) { folkWork ->
-            FolkWorkCard(
+        items(tales) { folkWork ->
+            TaleCard(
                 isBlurImage = isBlurImage,
-                folkWork = folkWork,
+                tale = folkWork,
                 onCardClick = onCardClick,
                 onHeartClick = onHeartClick,
                 modifier = Modifier.padding(
@@ -46,10 +46,10 @@ fun ListFolkWorks(
 
 @Preview
 @Composable
-fun ListFolkWorksPreview() {
-    ListFolkWorks(
+fun ListTalesPreview() {
+    ListTales(
         isBlurImage = true,
-        folkWorks = emptyList(),
+        tales = emptyList(),
         onCardClick = {},
         onHeartClick = {}
     )

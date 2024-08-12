@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.viktoriagavrosh.fairytales.FairyTalesApplication
-import com.viktoriagavrosh.fairytales.data.FolkWorkRepository
-import com.viktoriagavrosh.fairytales.data.FolkWorkType
+import com.viktoriagavrosh.fairytales.data.TaleRepository
+import com.viktoriagavrosh.fairytales.data.TaleType
 import com.viktoriagavrosh.fairytales.model.FolkWork
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,32 +17,32 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel to retrieve and update item from the [FolkWorkRepository]'s data source
+ * ViewModel to retrieve and update item from the [TaleRepository]'s data source
  */
 class FairyTalesViewModel(
-    private val folkWorkRepository: FolkWorkRepository
+    private val taleRepository: TaleRepository
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow(FairyTalesUiState())
-    val uiState: StateFlow<FairyTalesUiState> = _uiState
+    private val _uiState = MutableStateFlow(TalesUiState())
+    val uiState: StateFlow<TalesUiState> = _uiState
 
     init {
-        updateCompositionType(FolkWorkType.Story)
+        updateCompositionType(TaleType.Story)
     }
 
     /**
-     * Update [FairyTalesUiState] for navigation to DetailScreen
+     * Update [TalesUiState] for navigation to DetailScreen
      */
-    fun navigateToDetailScreen(folkWork: FolkWork) {
+    fun navigateToDetailScreen(tale: FolkWork) {
         _uiState.update {
             it.copy(
-                selectedWork = folkWork,
+                selectedTale = tale,
                 isShowHomeScreen = false
             )
         }
     }
 
     /**
-     * Update [FairyTalesUiState] for navigation to HomeScreen
+     * Update [TalesUiState] for navigation to HomeScreen
      */
     fun navigateToHomeScreen() {
         _uiState.update {
@@ -53,26 +53,26 @@ class FairyTalesViewModel(
     }
 
     /**
-     * Update [FairyTalesUiState] for navigation between tabs
+     * Update [TalesUiState] for navigation between tabs
      */
-    fun updateCompositionType(folkWorkType: FolkWorkType) {
-        val genre = getGenre(folkWorkType)
-        val folkWorks = if (_uiState.value.isFavoriteWorks) {
-            folkWorkRepository.getAllFavoriteWorks(genre)
+    fun updateCompositionType(taleType: TaleType) {
+        val genre = getGenre(taleType)
+        val tale = if (_uiState.value.isFavoriteTales) {
+            taleRepository.getAllFavoriteTales(genre)
         } else {
-            folkWorkRepository.getAllWorks(genre)
+            taleRepository.getAllTales(genre)
         }
 
-        var selectedWork = _uiState.value.selectedWork
+        var selectedTale = _uiState.value.selectedTale
         viewModelScope.launch {
-            if (folkWorks.first().isNotEmpty()) {
-                selectedWork = folkWorks.first().first()
+            if (tale.first().isNotEmpty()) {
+                selectedTale = tale.first().first()
             }
             _uiState.update {
                 it.copy(
-                    folkWorkType = folkWorkType,
-                    folkWorks = folkWorks.first(),
-                    selectedWork = selectedWork,
+                    taleType = taleType,
+                    tale = tale.first(),
+                    selectedTale = selectedTale,
                     isShowHomeScreen = true
                 )
             }
@@ -82,39 +82,39 @@ class FairyTalesViewModel(
     /**
      * Update the value of an item field is_favorite in the data source
      */
-    fun updateWorkFavorite(folkWork: FolkWork) {
-        val changedFavoriteState = !folkWork.isFavorite
-        val folkWorkType = _uiState.value.folkWorkType
+    fun updateTaleFavorite(tale: FolkWork) {
+        val changedFavoriteState = !tale.isFavorite
+        val taleType = _uiState.value.taleType
         viewModelScope.launch {
-            folkWorkRepository.updateFavoriteWork(folkWork.id, changedFavoriteState)
+            taleRepository.updateFavoriteTale(tale.id, changedFavoriteState)
         }
-        updateCompositionType(folkWorkType)
+        updateCompositionType(taleType)
     }
 
     /**
-     * Update [FairyTalesUiState] for navigation to Favorite List
+     * Update [TalesUiState] for navigation to Favorite List
      */
-    fun updateListFavoriteWorks() {
-        val newState = !_uiState.value.isFavoriteWorks
-        changeIsFavoriteWorks(newState)
-        val folkWorkType = _uiState.value.folkWorkType
-        updateCompositionType(folkWorkType)
+    fun updateListFavoriteTales() {
+        val newState = !_uiState.value.isFavoriteTales
+        changeIsFavoriteTales(newState)
+        val taleType = _uiState.value.taleType
+        updateCompositionType(taleType)
     }
 
-    internal fun changeIsFavoriteWorks(isFavoriteWorks: Boolean) {
+    internal fun changeIsFavoriteTales(isFavoriteTales: Boolean) {
         _uiState.update {
             it.copy(
-                isFavoriteWorks = isFavoriteWorks
+                isFavoriteTales = isFavoriteTales
             )
         }
     }
 
-    private fun getGenre(folkWorkType: FolkWorkType): String = when (folkWorkType) {
-        FolkWorkType.Story -> "story"
-        FolkWorkType.Poem -> "poem"
-        FolkWorkType.Puzzle -> "puzzle"
-        FolkWorkType.Game -> "game"
-        FolkWorkType.Lullaby -> "lullaby"
+    private fun getGenre(taleType: TaleType): String = when (taleType) {
+        TaleType.Story -> "story"
+        TaleType.Poem -> "poem"
+        TaleType.Puzzle -> "puzzle"
+        TaleType.Game -> "game"
+        TaleType.Lullaby -> "lullaby"
 
     }
 
@@ -122,7 +122,7 @@ class FairyTalesViewModel(
         val factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as FairyTalesApplication)
-                FairyTalesViewModel(application.container.folkWorkRepository)
+                FairyTalesViewModel(application.container.taleRepository)
             }
         }
     }
@@ -131,9 +131,9 @@ class FairyTalesViewModel(
 /**
  * Holds the UI state.
  */
-data class FairyTalesUiState(
-    val folkWorkType: FolkWorkType = FolkWorkType.Story,
-    val folkWorks: List<FolkWork> = listOf(
+data class TalesUiState(
+    val taleType: TaleType = TaleType.Story,
+    val tale: List<FolkWork> = listOf(
         FolkWork(
             id = 0,
             genre = "story",
@@ -145,8 +145,8 @@ data class FairyTalesUiState(
             isFavorite = false
         )
     ),
-    val selectedWork: FolkWork = folkWorks[0],
+    val selectedTale: FolkWork = tale[0],
     val isShowHomeScreen: Boolean = true,
-    val isFavoriteWorks: Boolean = false
+    val isFavoriteTales: Boolean = false
 )
 
