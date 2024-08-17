@@ -15,22 +15,21 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.model.FolkWork
 
 /**
- * Composable that represents an image of [FolkWork]
+ * Composable that represent image
  */
 @Composable
 fun TaleImage(
-    modifier: Modifier = Modifier,
     title: String,
-    imageUri: String,
-    isBlur: Boolean = false
+    imageUrl: String,
+    modifier: Modifier = Modifier,
+    isBlur: Boolean = false,
 ) {
     AsyncImage(
         model = ImageRequest
             .Builder(context = LocalContext.current)
-            .data(imageUri)
+            .data(imageUrl)
             .crossfade(true)
             .build(),
         contentDescription = title,
@@ -41,7 +40,7 @@ fun TaleImage(
             modifier
                 .aspectRatio(1.5F)
                 .blur(
-                    radiusX = 20.dp,
+                    radiusX = 20.dp,   // TODO add it to strings res
                     radiusY = 20.dp,
                     edgeTreatment = BlurredEdgeTreatment(
                         RoundedCornerShape(dimensionResource(id = R.dimen.corner))
@@ -50,11 +49,7 @@ fun TaleImage(
         } else {
             modifier
                 .aspectRatio(1.5F)
-                .clip(
-                    RoundedCornerShape(
-                        dimensionResource(id = R.dimen.corner)
-                    )
-                )
+                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.corner)))
         }
     )
 }

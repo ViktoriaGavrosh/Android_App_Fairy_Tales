@@ -2,15 +2,10 @@ package com.viktoriagavrosh.fairytales.ui
 
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.viktoriagavrosh.fairytales.data.TaleType
-import com.viktoriagavrosh.fairytales.ui.screens.ContentScreen
-import com.viktoriagavrosh.fairytales.ui.screens.detailscreens.DetailScreen
-import com.viktoriagavrosh.fairytales.ui.utils.UILogic
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 /**
  * Top level composable that represents screens for the application
@@ -18,41 +13,58 @@ import com.viktoriagavrosh.fairytales.ui.utils.UILogic
 @Composable
 fun FairyTalesApp(
     windowSize: WindowWidthSizeClass,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    val viewModel: FairyTalesViewModel = viewModel(factory = FairyTalesViewModel.factory)
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val logic = UILogic(
-        onTabClick = viewModel::updateCompositionType,
-        onCardClick = viewModel::navigateToDetailScreen,
-        onDetailScreenBackClick = viewModel::navigateToHomeScreen,
-        onHeartClick = viewModel::updateTaleFavorite,
-        onTopBarHeartClick = viewModel::updateListFavoriteTales
-    )
+    val navController = rememberNavController()
 
-    if (uiState.isShowHomeScreen) {
-        ContentScreen(
-            uiState = uiState,
-            logic = logic,
-            windowSize = windowSize,
-            modifier = modifier
-        )
-    } else {
-        DetailScreen(
-            tale = uiState.selectedTale,
-            logic = logic,
-            isPuzzleType = uiState.taleType == TaleType.Puzzle,
-            isStoryType = uiState.taleType == TaleType.Story,
-            isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
-            modifier = modifier
-        )
+    NavHost(
+        navController = navController,
+        startDestination = NavigationDestination.HomeScreen.screenName,
+    ) {
+        composable(
+            route = NavigationDestination.HomeScreen.screenName,
+        ) {
+            HomeScreen(
+                windowSize = windowSize,
+                onCardClick = { tale ->
+                    navController.navigate(
+                        route = "${NavigationDestination.DetailScreen.screenName}/${tale.id}"
+                    )
+                },
+                onSettingsClick = {
+                    navController.navigate(NavigationDestination.SettingsScreen.screenName)
+                },
+                modifier = modifier,
+            )
+        }
+        composable(
+            route = "${NavigationDestination.DetailScreen.screenName}/{value}"
+        ) { backStackEntry ->
+            val taleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
+            DetailScreen(
+                taleId = taleId,
+                isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
+                onDetailScreenBackClick = {
+                    navController.navigate(NavigationDestination.HomeScreen.screenName)
+                },
+                onSettingsClick = {
+                    navController.navigate(NavigationDestination.SettingsScreen.screenName)
+                },
+                modifier = modifier,
+            )
+        }
+        composable(
+            route = NavigationDestination.SettingsScreen.screenName
+        ) {
+            SettingsScreen(
+                onBackClick = { navController.navigateUp() }
+            )
+        }
     }
 }
 
-@Preview
-@Composable
-fun FairyTalesAppPreview() {
-    FairyTalesApp(
-        windowSize = WindowWidthSizeClass.Compact
-    )
+enum class NavigationDestination(val screenName: String) {
+    HomeScreen(screenName = "home"),
+    DetailScreen(screenName = "details"),
+    SettingsScreen(screenName = "settings"),
 }

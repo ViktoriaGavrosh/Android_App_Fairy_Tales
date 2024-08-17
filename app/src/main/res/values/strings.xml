@@ -27,4 +27,15 @@
     <string name="back">back</string>
     <string name="horizontal_detail_screen">Horizontal detail screen</string>
     <string name="vertical_detail_screen">Vertical detail screen</string>
+
+    <string name="settings">settings</string>
+    <string name="settings_title">Настройк\u0456</string>
+    <string name="textsize_title">Памер\nтэксту</string>
+    <string name="textsize_slider">textSize slider</string>
+    <string name="letters">Aa</string>
+
+    <string name="detail_error_message">Казк\u0456\nнедзе згуб\u0456л\u0456ся</string>
+    <string name="error_text">Казк\u0456\nнедзе згуб\u0456л\u0456ся</string>
+    <string name="error_button_text">Шукаем</string>
+
 </resources>

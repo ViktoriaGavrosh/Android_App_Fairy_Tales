@@ -9,8 +9,8 @@ import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.fairytales.R
 
 val Popping = FontFamily(
-    Font(R.font.poppins_regular, FontWeight.Normal),
-    Font(R.font.poppins_bold, FontWeight.Bold)
+    Font(R.font.lxgw_wen_kia_mono_tc_regular, FontWeight.Normal),
+    Font(R.font.lxgw_wen_kia_mono_tc_bold, FontWeight.Bold)
 )
 
 val Typography = Typography(
@@ -18,7 +18,7 @@ val Typography = Typography(
         fontFamily = Popping,
         fontWeight = FontWeight.Bold,
         fontSize = 40.sp,
-        lineHeight = 30.sp
+        //lineHeight = 30.sp
     ),
     displaySmall = TextStyle(
         fontFamily = Popping,
@@ -29,14 +29,14 @@ val Typography = Typography(
         fontFamily = Popping,
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
-        lineHeight = 24.sp,
+        //lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
     labelSmall = TextStyle(
         fontFamily = Popping,
         fontWeight = FontWeight.Normal,
         fontSize = 11.sp,
-        lineHeight = 16.sp,
+        //lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     )
 )
