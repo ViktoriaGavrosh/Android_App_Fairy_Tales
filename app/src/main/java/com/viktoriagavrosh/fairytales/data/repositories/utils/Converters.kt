@@ -3,8 +3,8 @@ package com.viktoriagavrosh.fairytales.data.repositories.utils
 import com.viktoriagavrosh.fairytales.model.Tale
 import com.viktoriagavrosh.fairytales.model.TaleDb
 import com.viktoriagavrosh.fairytales.model.TaleUi
-import com.viktoriagavrosh.fairytales.ui.DetailScreenState
-import com.viktoriagavrosh.fairytales.ui.HomeScreenState
+import com.viktoriagavrosh.fairytales.ui.detailscreen.DetailScreenState
+import com.viktoriagavrosh.fairytales.ui.homescreen.HomeScreenState
 
 fun TaleDb.toTale(): Tale {
     return Tale(

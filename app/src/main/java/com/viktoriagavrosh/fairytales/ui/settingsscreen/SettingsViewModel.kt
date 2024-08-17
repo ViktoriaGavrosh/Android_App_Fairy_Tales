@@ -2,7 +2,7 @@ package com.viktoriagavrosh.fairytales.ui.settingsscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.viktoriagavrosh.fairytales.data.SettingsRepository
+import com.viktoriagavrosh.fairytales.data.repositories.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

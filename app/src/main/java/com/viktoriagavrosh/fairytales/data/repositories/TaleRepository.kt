@@ -1,5 +1,8 @@
 package com.viktoriagavrosh.fairytales.data.repositories
 
+import com.viktoriagavrosh.fairytales.data.database.TaleAppDatabase
+import com.viktoriagavrosh.fairytales.data.repositories.utils.RequestResult
+import com.viktoriagavrosh.fairytales.data.repositories.utils.toTale
 import com.viktoriagavrosh.fairytales.model.Tale
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

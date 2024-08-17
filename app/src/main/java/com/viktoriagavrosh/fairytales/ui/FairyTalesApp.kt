@@ -6,6 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.viktoriagavrosh.fairytales.ui.detailscreen.DetailScreen
+import com.viktoriagavrosh.fairytales.ui.homescreen.HomeScreen
+import com.viktoriagavrosh.fairytales.ui.settingsscreen.SettingsScreen
 
 /**
  * Top level composable that represents screens for the application

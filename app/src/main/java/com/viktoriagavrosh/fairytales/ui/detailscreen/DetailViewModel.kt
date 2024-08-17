@@ -2,9 +2,9 @@ package com.viktoriagavrosh.fairytales.ui.detailscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.viktoriagavrosh.fairytales.data.SettingsRepository
-import com.viktoriagavrosh.fairytales.data.TaleRepository
-import com.viktoriagavrosh.fairytales.data.toDetailScreenState
+import com.viktoriagavrosh.fairytales.data.repositories.SettingsRepository
+import com.viktoriagavrosh.fairytales.data.repositories.TaleRepository
+import com.viktoriagavrosh.fairytales.data.repositories.utils.toDetailScreenState
 import com.viktoriagavrosh.fairytales.model.TaleUi
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

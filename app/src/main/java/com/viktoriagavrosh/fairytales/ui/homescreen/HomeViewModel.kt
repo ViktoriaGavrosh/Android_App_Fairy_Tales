@@ -2,8 +2,8 @@ package com.viktoriagavrosh.fairytales.ui.homescreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.viktoriagavrosh.fairytales.data.TaleRepository
-import com.viktoriagavrosh.fairytales.data.toHomeScreenState
+import com.viktoriagavrosh.fairytales.data.repositories.TaleRepository
+import com.viktoriagavrosh.fairytales.data.repositories.utils.toHomeScreenState
 import com.viktoriagavrosh.fairytales.model.TaleUi
 import com.viktoriagavrosh.fairytales.ui.elements.TaleType
 import dagger.hilt.android.lifecycle.HiltViewModel
