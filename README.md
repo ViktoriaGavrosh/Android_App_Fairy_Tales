@@ -1,6 +1,6 @@
 "БЕЛАРУСКIЯ КАЗКI"
 
-Application for everyone 
+Application for everyone
 who loves Belarusian folk tales
 
 ● folk tales

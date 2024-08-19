@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.viktoriagavrosh.fairytales.data.settingsdatabase.PreferencesManager
 import com.viktoriagavrosh.fairytales.data.database.AppDatabase
 import com.viktoriagavrosh.fairytales.data.database.getDatabase
 import com.viktoriagavrosh.fairytales.data.repositories.DatastoreSettingsRepository
 import com.viktoriagavrosh.fairytales.data.repositories.OfflineTaleRepository
 import com.viktoriagavrosh.fairytales.data.repositories.SettingsRepository
 import com.viktoriagavrosh.fairytales.data.repositories.TaleRepository
+import com.viktoriagavrosh.fairytales.data.settingsdatabase.PreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

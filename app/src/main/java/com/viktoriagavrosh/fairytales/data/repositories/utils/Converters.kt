@@ -34,17 +34,18 @@ fun Tale.toTaleUi(): TaleUi {
 
 // TODO two StateScreen need?
 fun RequestResult<Tale>.toDetailScreenState(): DetailScreenState {
-    return when(this) {
+    return when (this) {
         is RequestResult.Success -> DetailScreenState.Success(tale = data.toTaleUi())
         is RequestResult.Error -> DetailScreenState.Error()
     }
 }
 
 fun RequestResult<List<Tale>>.toHomeScreenState(): HomeScreenState {
-    return when(this) {
+    return when (this) {
         is RequestResult.Success -> HomeScreenState.Success(
             tales = data.map { it.toTaleUi() }
         )
+
         is RequestResult.Error -> HomeScreenState.Error()
     }
 }

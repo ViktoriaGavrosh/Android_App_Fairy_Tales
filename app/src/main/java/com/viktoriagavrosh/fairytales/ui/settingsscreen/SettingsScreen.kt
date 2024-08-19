@@ -44,7 +44,8 @@ fun SettingsScreen(
 }
 
 @Composable
-fun SettingsScreen(   // TODO maybe private ?
+fun SettingsScreen(
+    // TODO maybe private ?
     uiState: SettingsState,
     onTextSizeUpdate: (Float) -> Unit,
     onBackClick: () -> Unit,

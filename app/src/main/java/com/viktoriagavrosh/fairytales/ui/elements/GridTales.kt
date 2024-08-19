@@ -32,7 +32,7 @@ fun GridTales(
         contentPadding = contentPadding,
         modifier = modifier,
     ) {
-        items(tales) {tale ->
+        items(tales) { tale ->
             TaleCard(
                 tale = tale,
                 minLineText = 2,    // TODO check it !

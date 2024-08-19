@@ -3,7 +3,7 @@ package com.viktoriagavrosh.fairytales.model
 /**
  * Model represents a single tale for UI
  */
-data class TaleUi (
+data class TaleUi(
     val id: Int = 0,
     val genre: String = "",
     val title: String = "",

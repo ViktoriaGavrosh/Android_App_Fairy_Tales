@@ -82,7 +82,7 @@ class HomeViewModel @Inject constructor(
         updateTaleType(taleType)
     }
 
-    fun changeIsFavoriteTalesList(isFavorite: Boolean) {
+    private fun changeIsFavoriteTalesList(isFavorite: Boolean) {
         _uiState.update {
             it.copy(isFavoriteTalesList = isFavorite)
         }

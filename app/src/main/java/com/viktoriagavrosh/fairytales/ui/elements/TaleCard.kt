@@ -31,10 +31,10 @@ import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
  */
 @Composable
 fun TaleCard(
-    tale:TaleUi,
+    tale: TaleUi,
     onCardClick: (TaleUi) -> Unit,
     onHeartClick: (TaleUi) -> Unit,
-    modifier:Modifier = Modifier,
+    modifier: Modifier = Modifier,
     minLineText: Int = 1,    // TODO check it !
 ) {
     Card(

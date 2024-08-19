@@ -58,12 +58,13 @@ fun DetailScreen(
         onSettingsClick = onSettingsClick,
         onTextSizeUpdate = viewModel::updateTextSize,
         modifier = modifier,
-        )
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(   // TODO private ?
+fun DetailScreen(
+    // TODO private ?
     screenState: DetailScreenState,
     textSizeFromDatastore: Float,
     isExpandedScreen: Boolean,
@@ -116,7 +117,8 @@ fun DetailScreen(   // TODO private ?
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun DetailTopBar(   // TODO maybe to merge with topBar of SettingsScreen and move to file in elements.bars
+private fun DetailTopBar(
+    // TODO maybe to merge with topBar of SettingsScreen and move to file in elements.bars
     text: String,
     onDetailScreenBackClick: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,

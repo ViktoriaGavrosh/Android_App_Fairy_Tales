@@ -49,15 +49,15 @@ class OfflineTaleRepository @Inject constructor(
                 appDatabase.taleDao.getAllTales(genre)
             }
                 .map { tales ->
-                tales.map { taleDb -> taleDb.toTale() }
-            }
+                    tales.map { taleDb -> taleDb.toTale() }
+                }
                 .map<List<Tale>, RequestResult<List<Tale>>> { RequestResult.Success(it) }
         } catch (e: Exception) {   // TODO need concrete exceptions ?
             flow {
                 emit(RequestResult.Error(error = e))
             }
         }
-          return request
+        return request
     }
 
     /**

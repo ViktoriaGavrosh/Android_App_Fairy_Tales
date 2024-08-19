@@ -38,7 +38,8 @@ fun HorizontalDetailScreen(
         modifier = modifier,
     ) {
         if (tale.genre != "puzzle") {      // TODO change String to enum
-            ImageHorizontal(       // TODO may by merge all Image Composable ?
+            ImageHorizontal(
+                // TODO may by merge all Image Composable ?
                 title = tale.title,
                 imageUrl = tale.imageUrl ?: "",  // TODO do something with it
             )
@@ -97,7 +98,8 @@ private fun ImageHorizontal(
 }
 
 @Composable
-private fun AnswerHorizontal(    // TODO maybe treatment answer: String? (= null)  here ???
+private fun AnswerHorizontal(
+    // TODO maybe treatment answer: String? (= null)  here ???
     answer: String,
     imageUrl: String,
     modifier: Modifier = Modifier,

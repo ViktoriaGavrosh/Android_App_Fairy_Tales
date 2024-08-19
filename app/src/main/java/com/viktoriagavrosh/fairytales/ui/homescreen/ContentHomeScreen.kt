@@ -47,7 +47,7 @@ fun ContentHomeScreen(
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val  topAppBarState = rememberTopAppBarState()
+    val topAppBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
 
     Scaffold(
@@ -62,7 +62,7 @@ fun ContentHomeScreen(
                 modifier = Modifier.fillMaxWidth()
             )
         }
-    ){ paddingValues ->
+    ) { paddingValues ->
         when (screenState) {
             is HomeScreenState.Error -> {
                 ErrorHomeScreen(

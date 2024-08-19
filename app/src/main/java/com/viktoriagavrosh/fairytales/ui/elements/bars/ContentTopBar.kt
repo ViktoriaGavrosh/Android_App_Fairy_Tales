@@ -25,7 +25,8 @@ import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContentTopBar(    // TODO mode to HomeScreen and to do private
+fun ContentTopBar(
+    // TODO mode to HomeScreen and to do private
     text: String,
     isHeartShow: Boolean,
     onHeartClick: () -> Unit,

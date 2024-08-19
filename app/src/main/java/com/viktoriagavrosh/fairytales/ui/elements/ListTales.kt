@@ -30,12 +30,13 @@ fun ListTales(
         contentPadding = contentPadding,
         modifier = modifier,
     ) {
-        items(tales) {tale ->
+        items(tales) { tale ->
             TaleCard(
                 tale = tale,
                 onCardClick = onCardClick,
                 onHeartClick = onHeartClick,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+                modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.padding_medium))
                     .testTag(tale.id.toString()),
             )
         }
