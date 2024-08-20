@@ -3,11 +3,13 @@ package com.viktoriagavrosh.fairytales.fake
 import com.viktoriagavrosh.fairytales.data.repositories.TaleRepository
 import com.viktoriagavrosh.fairytales.data.repositories.utils.RequestResult
 import com.viktoriagavrosh.fairytales.model.Tale
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class FakeTaleRepository : TaleRepository {
-    override fun getTales(genre: String, isFavorite: Boolean): Flow<RequestResult<List<Tale>>> {
+    override fun getTales(genre: Genre, isFavorite: Boolean): Flow<RequestResult<List<Tale>>> {
+        if (genre == Genre.Lullaby) throw IllegalArgumentException()
         return flow {
             emit(
                 RequestResult.Success(

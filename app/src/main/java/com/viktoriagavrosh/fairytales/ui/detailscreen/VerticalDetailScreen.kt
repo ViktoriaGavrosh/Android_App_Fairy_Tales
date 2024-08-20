@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.elements.TaleImage
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
@@ -45,8 +46,8 @@ fun VerticalDetailScreen(
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
-    ) {     // TODO extract a few funs
-        if (tale.genre != "puzzle") {
+    ) {
+        if (tale.genre != Genre.Puzzle) {
             TaleImage(
                 title = tale.title,
                 imageUrl = tale.imageUrl ?: "",    // TODO do something with it
@@ -61,23 +62,12 @@ fun VerticalDetailScreen(
 
             )
         }
-        Row(modifier = Modifier.fillMaxWidth()) {
-            if (tale.genre != "story") {
-                Spacer(modifier = Modifier.weight(1F)) // TODO try verticalAlignment instead Spacers
-                TextDetail(
-                    text = tale.text,
-                    fontSize = fontSize,
-                )
-                Spacer(modifier = Modifier.weight(1F))
-            } else {
-                TextDetail(
-                    text = tale.text,
-                    fontSize = fontSize,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        }
-        if (tale.genre == "puzzle") {
+        TaleText(
+            tale = tale,
+            fontSize = fontSize,
+            modifier = Modifier.fillMaxWidth()
+        )
+        if (tale.genre == Genre.Puzzle) {
             if (bigCard) {
                 Answer(
                     answer = tale.answer ?: "",  // TODO do something with it
@@ -100,6 +90,30 @@ fun VerticalDetailScreen(
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun TaleText(
+    tale: TaleUi,
+    fontSize: Float,
+    modifier: Modifier = Modifier,
+) {
+    Row(modifier = modifier) {
+        if (tale.genre == Genre.Story) {
+            TextDetail(
+                text = tale.text,
+                fontSize = fontSize,
+                modifier = Modifier.fillMaxWidth()
+            )
+        } else {
+            Spacer(modifier = Modifier.weight(1F))
+            TextDetail(
+                text = tale.text,
+                fontSize = fontSize,
+            )
+            Spacer(modifier = Modifier.weight(1F))
         }
     }
 }
@@ -186,7 +200,7 @@ private fun StoryVerticalDetailScreenPreview() {
     FairyTalesTheme {
         VerticalDetailScreen(
             tale = TaleUi(
-                genre = "story",
+                genre = Genre.Story,
                 text = "Text",
             ),
             fontSize = 24.0F,
@@ -201,7 +215,7 @@ private fun PuzzleVerticalDetailScreenPreview() {
     FairyTalesTheme {
         VerticalDetailScreen(
             tale = TaleUi(
-                genre = "puzzle",
+                genre = Genre.Puzzle,
                 text = "Text",
                 answer = "answer",
             ),

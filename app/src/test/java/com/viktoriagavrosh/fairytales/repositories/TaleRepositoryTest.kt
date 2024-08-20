@@ -6,6 +6,7 @@ import com.viktoriagavrosh.fairytales.data.repositories.utils.RequestResult
 import com.viktoriagavrosh.fairytales.data.repositories.utils.toTale
 import com.viktoriagavrosh.fairytales.fake.FakeDatabaseSource
 import com.viktoriagavrosh.fairytales.model.Tale
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -24,7 +25,7 @@ class TaleRepositoryTest {
         runTest {
             val expectedList = FakeDatabaseSource.fakeListTaleDb.map { it.toTale() }
             val actualList = repository.getTales(
-                genre = "story",
+                genre = Genre.Story,
                 isFavorite = false
             ).first().data ?: emptyList()
 
@@ -39,7 +40,7 @@ class TaleRepositoryTest {
                 .filter { it.isFavorite }
                 .map { it.toTale() }
             val actualList = repository.getTales(
-                genre = "story",
+                genre = Genre.Story,
                 isFavorite = true
             ).first().data ?: emptyList()
 
@@ -51,7 +52,7 @@ class TaleRepositoryTest {
     fun taleRepository_getTales_returnRequestResultSuccess() {
         runTest {
             val actual = repository.getTales(
-                genre = "story",
+                genre = Genre.Story,
                 isFavorite = false
             ).first() is RequestResult.Success
 
@@ -63,7 +64,7 @@ class TaleRepositoryTest {
     fun taleRepository_getTales_returnRequestResultError() {
         runTest {
             val actual = repository.getTales(
-                genre = "error",
+                genre = Genre.Lullaby,   //That genre only in tests throws IllegalArgumentException
                 isFavorite = false
             ).first() is RequestResult.Error
 
@@ -76,7 +77,7 @@ class TaleRepositoryTest {
         runTest {
             val expectedList = emptyList<Tale>()
             val actualList = repository.getTales(
-                genre = "game",
+                genre = Genre.Game,
                 isFavorite = false
             ).first().data ?: listOf(FakeDatabaseSource.fakeListTaleDb[2])
 

@@ -11,7 +11,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.viktoriagavrosh.fairytales.R
@@ -40,8 +39,8 @@ fun TaleImage(
             modifier
                 .aspectRatio(1.5F)
                 .blur(
-                    radiusX = 20.dp,   // TODO add it to strings res
-                    radiusY = 20.dp,
+                    radiusX = dimensionResource(id = R.dimen.blur_radius),
+                    radiusY = dimensionResource(id = R.dimen.blur_radius),
                     edgeTreatment = BlurredEdgeTreatment(
                         RoundedCornerShape(dimensionResource(id = R.dimen.corner))
                     )

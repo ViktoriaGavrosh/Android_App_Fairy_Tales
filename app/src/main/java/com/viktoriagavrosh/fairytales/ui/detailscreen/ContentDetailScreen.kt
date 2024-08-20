@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 @Composable
@@ -89,7 +90,7 @@ private fun VerticalPuzzleContentScreenPreview() {
         ContentDetailScreen(
             tale = TaleUi(
                 text = "text",
-                genre = "puzzle",
+                genre = Genre.Puzzle,
                 answer = "answer",
             ),
             isExpandedScreen = false,
@@ -107,7 +108,7 @@ private fun HorizontalStoryContentScreenPreview() {
         ContentDetailScreen(
             tale = TaleUi(
                 text = "text",
-                genre = "story",
+                genre = Genre.Story,
             ),
             isExpandedScreen = true,
             textSize = 24.0F,
@@ -124,7 +125,7 @@ private fun HorizontalPuzzleContentScreenPreview() {
         ContentDetailScreen(
             tale = TaleUi(
                 text = "text",
-                genre = "puzzle",
+                genre = Genre.Puzzle,
                 answer = "answer",
             ),
             isExpandedScreen = true,
@@ -142,7 +143,7 @@ private fun HorizontalGameContentScreenPreview() {
         ContentDetailScreen(
             tale = TaleUi(
                 text = "text",
-                genre = "game",
+                genre = Genre.Game,
             ),
             isExpandedScreen = true,
             textSize = 24.0F,

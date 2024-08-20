@@ -35,14 +35,13 @@ internal abstract class AppRoomDatabase : RoomDatabase() {   // TODO maybe priva
 /**
  * Function build [AppDatabase] object
  */
-fun getDatabase(context: Context): AppDatabase {
+internal fun getDatabase(context: Context): AppDatabase {
     val appRoomDatabase = Room.databaseBuilder(
         context = context,
         klass = AppRoomDatabase::class.java,
         name = "fairytales"
     )
         .createFromAsset("database/fairytales2.db")
-        .fallbackToDestructiveMigration()
         .build()
     return AppDatabase(appRoomDatabase)
 }

@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.elements.TaleImage
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
@@ -37,7 +38,7 @@ fun HorizontalDetailScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier,
     ) {
-        if (tale.genre != "puzzle") {      // TODO change String to enum
+        if (tale.genre != Genre.Puzzle) {      // TODO change String to enum
             ImageHorizontal(
                 // TODO may by merge all Image Composable ?
                 title = tale.title,
@@ -46,7 +47,7 @@ fun HorizontalDetailScreen(
         }
         Row {    // TODO extract to fun ?
             Spacer(
-                modifier = if (tale.genre == "story") {
+                modifier = if (tale.genre == Genre.Story) {
                     Modifier.width(dimensionResource(id = R.dimen.padding_small))
                 } else {
                     Modifier.weight(1F)
@@ -60,14 +61,14 @@ fun HorizontalDetailScreen(
                     .padding(dimensionResource(id = R.dimen.padding_small))
             )
             Spacer(
-                modifier = if (tale.genre == "story") {
+                modifier = if (tale.genre == Genre.Story) {
                     Modifier.width(dimensionResource(id = R.dimen.padding_small))
                 } else {
                     Modifier.weight(1F)
                 }
             )
         }
-        if (tale.genre == "puzzle") {
+        if (tale.genre == Genre.Puzzle) {
             AnswerHorizontal(    // TODO merge all answers ?
                 answer = tale.answer ?: "",  // TODO do something with it
                 imageUrl = tale.imageUrl ?: "",  // TODO do something with it
@@ -153,7 +154,7 @@ private fun PuzzleHorizontalDetailScreenPreview() {
     FairyTalesTheme {
         HorizontalDetailScreen(
             tale = TaleUi(
-                genre = "puzzle",
+                genre = Genre.Puzzle,
                 text = "text",
                 answer = "answer",
             ),
@@ -169,7 +170,7 @@ private fun StoryHorizontalDetailScreenPreview() {
     FairyTalesTheme {
         HorizontalDetailScreen(
             tale = TaleUi(
-                genre = "story",
+                genre = Genre.Story,
                 text = "text",
             ),
             fontSize = 24.0F,

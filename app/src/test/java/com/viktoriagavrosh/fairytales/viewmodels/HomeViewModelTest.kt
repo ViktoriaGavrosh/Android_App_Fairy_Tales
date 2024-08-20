@@ -4,7 +4,7 @@ import com.viktoriagavrosh.fairytales.TestDispatcherRule
 import com.viktoriagavrosh.fairytales.data.repositories.utils.toTaleUi
 import com.viktoriagavrosh.fairytales.fake.FakeData
 import com.viktoriagavrosh.fairytales.fake.FakeTaleRepository
-import com.viktoriagavrosh.fairytales.ui.elements.TaleType
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.homescreen.HomeScreenState
 import com.viktoriagavrosh.fairytales.ui.homescreen.HomeViewModel
 import kotlinx.coroutines.flow.first
@@ -23,8 +23,8 @@ class HomeViewModelTest {
         runTest {
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
 
-            val actualType = viewModel.uiState.value.taleType
-            assertEquals(TaleType.Story, actualType)
+            val actualType = viewModel.uiState.value.genre
+            assertEquals(Genre.Story, actualType)
         }
     }
 
@@ -33,7 +33,7 @@ class HomeViewModelTest {
         runTest {
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
 
-            val actualValue = viewModel.uiState.value.isFavoriteTalesList
+            val actualValue = viewModel.uiState.value.isFavoriteTalesShown
             assertEquals(false, actualValue)
         }
     }
@@ -51,10 +51,10 @@ class HomeViewModelTest {
     @Test
     fun homeViewModel_updateTaleType_updateUiStateTaleType() {
         runTest {
-            val expectedType = TaleType.Puzzle
+            val expectedType = Genre.Puzzle
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
-            viewModel.updateTaleType(expectedType)
-            val actualType = viewModel.uiState.value.taleType
+            viewModel.updateGenre(expectedType)
+            val actualType = viewModel.uiState.value.genre
             assertEquals(expectedType, actualType)
         }
     }
@@ -62,12 +62,12 @@ class HomeViewModelTest {
     @Test
     fun homeViewModel_updateTaleType_updateScreenStateTales() {
         runTest {
-            val newType = TaleType.Puzzle
+            val newType = Genre.Puzzle
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
             val expectedTales = FakeData.fakeListTales
-                .filter { it.genre == "puzzle" }
+                .filter { it.genre == Genre.Puzzle }
                 .map { it.toTaleUi() }
-            viewModel.updateTaleType(newType)
+            viewModel.updateGenre(newType)
             val actualTales = viewModel.screenState.first().tales ?: emptyList()
             assertEquals(expectedTales, actualTales)
         }
@@ -79,7 +79,7 @@ class HomeViewModelTest {
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
 
             viewModel.updateFavoriteTalesList()
-            val actualValue = viewModel.uiState.value.isFavoriteTalesList
+            val actualValue = viewModel.uiState.value.isFavoriteTalesShown
             assertEquals(true, actualValue)
         }
     }

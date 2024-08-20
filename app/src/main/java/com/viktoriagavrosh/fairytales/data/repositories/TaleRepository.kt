@@ -4,6 +4,7 @@ import com.viktoriagavrosh.fairytales.data.database.TaleAppDatabase
 import com.viktoriagavrosh.fairytales.data.repositories.utils.RequestResult
 import com.viktoriagavrosh.fairytales.data.repositories.utils.toTale
 import com.viktoriagavrosh.fairytales.model.Tale
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -18,7 +19,7 @@ interface TaleRepository {
     /**
      * Retrieve all items from given data source by genre
      */
-    fun getTales(genre: String, isFavorite: Boolean): Flow<RequestResult<List<Tale>>>
+    fun getTales(genre: Genre, isFavorite: Boolean): Flow<RequestResult<List<Tale>>>
 
     /**
      * Retrieve item from given data source by id
@@ -41,18 +42,18 @@ class OfflineTaleRepository @Inject constructor(
     /**
      * Retrieve all items from database by genre
      */
-    override fun getTales(genre: String, isFavorite: Boolean): Flow<RequestResult<List<Tale>>> {
+    override fun getTales(genre: Genre, isFavorite: Boolean): Flow<RequestResult<List<Tale>>> {
         val request = try {    // TODO change to .catch()
             if (isFavorite) {
-                appDatabase.taleDao.getAllFavoriteTales(genre)
+                appDatabase.taleDao.getAllFavoriteTales(genre.genreName)
             } else {
-                appDatabase.taleDao.getAllTales(genre)
+                appDatabase.taleDao.getAllTales(genre.genreName)
             }
                 .map { tales ->
                     tales.map { taleDb -> taleDb.toTale() }
                 }
                 .map<List<Tale>, RequestResult<List<Tale>>> { RequestResult.Success(it) }
-        } catch (e: Exception) {   // TODO need concrete exceptions ?
+        } catch (e: Exception) {
             flow {
                 emit(RequestResult.Error(error = e))
             }

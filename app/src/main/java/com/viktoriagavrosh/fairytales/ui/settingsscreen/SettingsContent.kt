@@ -22,7 +22,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
@@ -75,10 +74,10 @@ private fun TextSizeRow(
         )
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.width(250.dp),     // TODO fix it !!!
+            modifier = Modifier.width(dimensionResource(id = R.dimen.width_slider_column)),
         ) {
             Box(
-                modifier = Modifier.height(120.dp),      // TODO fix it !!!
+                modifier = Modifier.height(dimensionResource(id = R.dimen.height_letters_box)),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(

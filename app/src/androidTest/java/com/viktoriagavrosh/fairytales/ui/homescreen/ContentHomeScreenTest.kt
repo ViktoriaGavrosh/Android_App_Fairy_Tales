@@ -8,7 +8,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
-import com.viktoriagavrosh.fairytales.ui.elements.TaleType
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.onNodeWithContentDescriptionById
 import com.viktoriagavrosh.fairytales.ui.utils.onNodeWithTextById
@@ -20,7 +20,7 @@ class ContentHomeScreenTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-    private val fakeListTales = listOf(TaleUi(genre = "story", title = "Story"))
+    private val fakeListTales = listOf(TaleUi(genre = Genre.Story, title = "Story"))
 
     @Test
     fun contentHomeScreen_verticalScreen_settingsButtonIsDisplayed() {
@@ -54,7 +54,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_puzzleTypeVerticalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Puzzle)
+        val fakeUiState = TalesUiState(genre = Genre.Puzzle)
         setContentHomeScreen(fakeUiState, isExpandedScreen = false)
         composeTestRule.onNodeWithTextById(R.string.title_puzzle)
             .assertExists("No puzzle title")
@@ -64,7 +64,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_gameTypeVerticalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Game)
+        val fakeUiState = TalesUiState(genre = Genre.Game)
         setContentHomeScreen(fakeUiState, isExpandedScreen = false)
         composeTestRule.onNodeWithTextById(R.string.title_game)
             .assertExists("No game title")
@@ -74,7 +74,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_poemTypeVerticalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Poem)
+        val fakeUiState = TalesUiState(genre = Genre.Poem)
         setContentHomeScreen(fakeUiState, isExpandedScreen = false)
         composeTestRule.onNodeWithTextById(R.string.title_poem)
             .assertExists("No poem title")
@@ -84,7 +84,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_lullabyTypeVerticalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Lullaby)
+        val fakeUiState = TalesUiState(genre = Genre.Lullaby)
         setContentHomeScreen(fakeUiState, isExpandedScreen = false)
         composeTestRule.onNodeWithTextById(R.string.lullaby)
             .assertExists("No lullaby title")
@@ -104,7 +104,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_puzzleTypeHorizontalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Puzzle)
+        val fakeUiState = TalesUiState(genre = Genre.Puzzle)
         setContentHomeScreen(fakeUiState, isExpandedScreen = true)
         composeTestRule.onNodeWithTextById(R.string.title_puzzle)
             .assertExists("No puzzle title")
@@ -114,7 +114,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_gameTypeHorizontalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Game)
+        val fakeUiState = TalesUiState(genre = Genre.Game)
         setContentHomeScreen(fakeUiState, isExpandedScreen = true)
         composeTestRule.onNodeWithTextById(R.string.title_game)
             .assertExists("No game title")
@@ -124,7 +124,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_poemTypeHorizontalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Poem)
+        val fakeUiState = TalesUiState(genre = Genre.Poem)
         setContentHomeScreen(fakeUiState, isExpandedScreen = true)
         composeTestRule.onNodeWithTextById(R.string.title_poem)
             .assertExists("No poem title")
@@ -134,7 +134,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_lullabyTypeHorizontalScreen_titleIsDisplayed() {
-        val fakeUiState = TalesUiState(taleType = TaleType.Lullaby)
+        val fakeUiState = TalesUiState(genre = Genre.Lullaby)
         setContentHomeScreen(fakeUiState, isExpandedScreen = true)
         composeTestRule.onNodeWithTextById(R.string.lullaby)
             .assertExists("No lullaby title")
@@ -184,7 +184,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_verticalScreen_darkHeartIsDisplayedOnTopBar() {
-        val fakeUiState = TalesUiState(isFavoriteTalesList = true)
+        val fakeUiState = TalesUiState(isFavoriteTalesShown = true)
         setContentHomeScreen(fakeUiState, isExpandedScreen = false)
         composeTestRule.onNodeWithContentDescriptionById(R.string.favorite_tales)
             .assertExists("No dark heart on top bar")
@@ -194,7 +194,7 @@ class ContentHomeScreenTest {
 
     @Test
     fun contentHomeScreen_horizontalScreen_darkHeartIsDisplayedOnTopBar() {
-        val fakeUiState = TalesUiState(isFavoriteTalesList = true)
+        val fakeUiState = TalesUiState(isFavoriteTalesShown = true)
         setContentHomeScreen(fakeUiState, isExpandedScreen = true)
         composeTestRule.onNodeWithContentDescriptionById(R.string.favorite_tales)
             .assertExists("No dark heart on top bar")
@@ -207,8 +207,8 @@ class ContentHomeScreenTest {
             FairyTalesTheme {
                 ContentHomeScreen(
                     screenState = HomeScreenState.Success(fakeListTales),
-                    topBarTextId = fakeUiState.taleType.textId,
-                    isFavoriteTalesList = fakeUiState.isFavoriteTalesList,
+                    topBarTextId = fakeUiState.genre.textId,
+                    isFavoriteTalesShown = fakeUiState.isFavoriteTalesShown,
                     isCompactScreen = !isExpandedScreen,
                     onHeartClick = {},
                     onTopBarHeartClick = {},

@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 @HiltViewModel(assistedFactory = DetailViewModel.TaleViewModelFactory::class)
 class DetailViewModel @AssistedInject constructor(
     @Assisted private val taleId: Int,
-    private val taleRepository: TaleRepository,  // TODO change to one repository
+    taleRepository: TaleRepository,  // TODO change to one repository
     private val settingsRepository: SettingsRepository,
 ) : ViewModel() {
 
@@ -64,5 +64,5 @@ class DetailViewModel @AssistedInject constructor(
 sealed class DetailScreenState(val tale: TaleUi? = null) {
     class None : DetailScreenState()
     class Success(tale: TaleUi) : DetailScreenState(tale)
-    class Error() : DetailScreenState()
+    class Error : DetailScreenState()
 }

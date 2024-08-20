@@ -29,6 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
@@ -63,8 +64,7 @@ fun DetailScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
-    // TODO private ?
+internal fun DetailScreen(
     screenState: DetailScreenState,
     textSizeFromDatastore: Float,
     isExpandedScreen: Boolean,
@@ -89,7 +89,7 @@ fun DetailScreen(
                 ErrorDetailScreen(modifier = Modifier.fillMaxSize())
             }
 
-            is DetailScreenState.None -> {}   // TODO default value
+            is DetailScreenState.None -> {}   // default value
 
             is DetailScreenState.Success -> {
                 ContentDetailScreen(
@@ -118,7 +118,6 @@ fun DetailScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DetailTopBar(
-    // TODO maybe to merge with topBar of SettingsScreen and move to file in elements.bars
     text: String,
     onDetailScreenBackClick: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
@@ -209,7 +208,7 @@ private fun VerticalPuzzleDetailScreenPreview() {
         DetailScreen(
             screenState = DetailScreenState.Success(
                 TaleUi(
-                    genre = "puzzle",
+                    genre = Genre.Puzzle,
                     title = "title",
                     text = "text",
                 )
@@ -231,7 +230,7 @@ private fun VerticalStoryDetailScreenPreview() {
         DetailScreen(
             screenState = DetailScreenState.Success(
                 TaleUi(
-                    genre = "story",
+                    genre = Genre.Story,
                     title = "title",
                     text = "text",
                 )
@@ -274,7 +273,7 @@ private fun HorizontalPuzzleDetailScreenPreview() {
         DetailScreen(
             screenState = DetailScreenState.Success(
                 TaleUi(
-                    genre = "puzzle",
+                    genre = Genre.Puzzle,
                     title = "title",
                     text = "text",
                 )
@@ -296,7 +295,7 @@ private fun HorizontalStoryDetailScreenPreview() {
         DetailScreen(
             screenState = DetailScreenState.Success(
                 TaleUi(
-                    genre = "story",
+                    genre = Genre.Story,
                     title = "title",
                     text = "text",
                 )

@@ -24,9 +24,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.elements.GridTales
 import com.viktoriagavrosh.fairytales.ui.elements.ListTales
-import com.viktoriagavrosh.fairytales.ui.elements.TaleType
 import com.viktoriagavrosh.fairytales.ui.elements.bars.ContentTopBar
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
@@ -38,12 +38,12 @@ import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 fun ContentHomeScreen(
     screenState: HomeScreenState,
     @StringRes topBarTextId: Int,  // TODO change to String
-    isFavoriteTalesList: Boolean,
+    isFavoriteTalesShown: Boolean,
     isCompactScreen: Boolean,
     onHeartClick: (TaleUi) -> Unit,
     onTopBarHeartClick: () -> Unit,
     onCardClick: (TaleUi) -> Unit,
-    onTabClick: (TaleType) -> Unit,
+    onTabClick: (Genre) -> Unit,
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -55,7 +55,7 @@ fun ContentHomeScreen(
         topBar = {
             ContentTopBar(
                 text = stringResource(id = topBarTextId),
-                isHeartShow = isFavoriteTalesList,
+                isHeartShow = isFavoriteTalesShown,
                 onHeartClick = onTopBarHeartClick,
                 scrollBehavior = scrollBehavior,
                 onSettingsClick = onSettingsClick,
@@ -101,7 +101,7 @@ fun ContentHomeScreen(
 
 @Composable
 private fun ErrorHomeScreen(
-    onTabClick: (TaleType) -> Unit,
+    onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -115,7 +115,7 @@ private fun ErrorHomeScreen(
             style = MaterialTheme.typography.displaySmall,
         )
         Button(
-            onClick = { onTabClick(TaleType.Story) },  // TODO add different types
+            onClick = { onTabClick(Genre.Story) },  // TODO add different types
             modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_extra_large)),
         ) {
             Text(
@@ -139,7 +139,7 @@ private fun VerticalContentScreenPreview() {
                 }
             ),
             topBarTextId = R.string.title_fairy_tales,
-            isFavoriteTalesList = false,
+            isFavoriteTalesShown = false,
             isCompactScreen = true,
             onHeartClick = {},
             onTopBarHeartClick = {},
@@ -166,7 +166,7 @@ private fun VerticalFavoriteContentScreenPreview() {
                 }
             ),
             topBarTextId = R.string.title_fairy_tales,
-            isFavoriteTalesList = true,
+            isFavoriteTalesShown = true,
             isCompactScreen = true,
             onHeartClick = {},
             onTopBarHeartClick = {},
@@ -189,7 +189,7 @@ private fun HorizontalContentScreenPreview() {
                 }
             ),
             topBarTextId = R.string.title_fairy_tales,
-            isFavoriteTalesList = false,
+            isFavoriteTalesShown = false,
             isCompactScreen = false,
             onHeartClick = {},
             onTopBarHeartClick = {},
@@ -208,7 +208,7 @@ private fun VerticalErrorContentScreenPreview() {
         ContentHomeScreen(
             screenState = HomeScreenState.Error(),
             topBarTextId = R.string.title_fairy_tales,
-            isFavoriteTalesList = false,
+            isFavoriteTalesShown = false,
             isCompactScreen = true,
             onHeartClick = {},
             onTopBarHeartClick = {},
@@ -227,7 +227,7 @@ private fun HorizontalErrorContentScreenPreview() {
         ContentHomeScreen(
             screenState = HomeScreenState.Error(),
             topBarTextId = R.string.title_fairy_tales,
-            isFavoriteTalesList = false,
+            isFavoriteTalesShown = false,
             isCompactScreen = true,
             onHeartClick = {},
             onTopBarHeartClick = {},

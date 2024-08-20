@@ -13,7 +13,7 @@ object FakeDatabaseSource {
             id = it,
             genre = "story",
             title = "Title$it",
-            text = "Text",     // TODO maybe "Text$it"  ?
+            text = "Text",
             answer = null,
             imageUrl = null,
             audioUrl = null,
@@ -27,7 +27,7 @@ object FakeDatabaseSource {
 
     class FakeDao : TaleDao {
         override fun getAllTales(genre: String): Flow<List<TaleDb>> {
-            return if (genre == "error") {
+            return if (genre == "lullaby") {
                 throw IllegalArgumentException()
             } else {
                 flow { emit(fakeListTaleDb.filter { it.genre == genre }) }

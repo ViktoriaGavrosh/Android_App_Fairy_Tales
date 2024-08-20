@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.fairytales.data.repositories.TaleRepository
 import com.viktoriagavrosh.fairytales.data.repositories.utils.toHomeScreenState
 import com.viktoriagavrosh.fairytales.model.TaleUi
-import com.viktoriagavrosh.fairytales.ui.elements.TaleType
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(
     val uiState: StateFlow<TalesUiState> = _uiState
 
     private var _screenState = taleRepository
-        .getTales(getGenre(TaleType.Story), _uiState.value.isFavoriteTalesList)
+        .getTales(Genre.Story, _uiState.value.isFavoriteTalesShown)
         .map { it.toHomeScreenState() }
 
     val screenState: Flow<HomeScreenState>
@@ -41,20 +41,20 @@ class HomeViewModel @Inject constructor(
      */
 
     init {
-        updateTaleType(TaleType.Story)
+        updateGenre(Genre.Story)
     }
+
 
     /**
      * Update [TalesUiState] for navigation between tabs
      */
-    fun updateTaleType(taleType: TaleType) {
-        val genre = getGenre(taleType)
-        _screenState = taleRepository.getTales(genre, _uiState.value.isFavoriteTalesList)
+    fun updateGenre(genre: Genre) {
+        _screenState = taleRepository.getTales(genre, _uiState.value.isFavoriteTalesShown)
             .map { it.toHomeScreenState() }
 
         viewModelScope.launch {
             _uiState.update {
-                it.copy(taleType = taleType)
+                it.copy(genre = genre)
             }
         }
     }
@@ -64,36 +64,27 @@ class HomeViewModel @Inject constructor(
      */
     fun updateTaleFavorite(tale: TaleUi) {
         val changedFavoriteState = !tale.isFavorite
-        val taleType = _uiState.value.taleType
+        val taleType = _uiState.value.genre
 
         viewModelScope.launch {
             taleRepository.updateFavoriteTale(tale.id, changedFavoriteState)
         }
-        updateTaleType(taleType)
+        updateGenre(taleType)
     }
 
     /**
      * Update [TalesUiState] for navigation ti Favorite list
      */
     fun updateFavoriteTalesList() {
-        val newState = !_uiState.value.isFavoriteTalesList
-        changeIsFavoriteTalesList(newState)
-        val taleType = _uiState.value.taleType
-        updateTaleType(taleType)
+        val newState = !_uiState.value.isFavoriteTalesShown
+        changeIsFavoriteTalesShown(newState)
+        updateGenre(_uiState.value.genre)
     }
 
-    private fun changeIsFavoriteTalesList(isFavorite: Boolean) {
+    private fun changeIsFavoriteTalesShown(isFavorite: Boolean) {
         _uiState.update {
-            it.copy(isFavoriteTalesList = isFavorite)
+            it.copy(isFavoriteTalesShown = isFavorite)
         }
-    }
-
-    private fun getGenre(taleType: TaleType): String = when (taleType) {
-        TaleType.Story -> "story"
-        TaleType.Poem -> "poem"
-        TaleType.Puzzle -> "puzzle"
-        TaleType.Game -> "game"
-        TaleType.Lullaby -> "lullaby"
     }
 }
 
@@ -101,8 +92,8 @@ class HomeViewModel @Inject constructor(
  * Holds the Ui state
  */
 data class TalesUiState(
-    val taleType: TaleType = TaleType.Story,
-    val isFavoriteTalesList: Boolean = false,
+    val genre: Genre = Genre.Story,
+    val isFavoriteTalesShown: Boolean = false,
 )
 
 sealed class HomeScreenState(val tales: List<TaleUi>? = null) {

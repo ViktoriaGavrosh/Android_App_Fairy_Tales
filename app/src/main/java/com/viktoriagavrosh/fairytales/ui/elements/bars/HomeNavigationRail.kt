@@ -15,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
-import com.viktoriagavrosh.fairytales.ui.elements.TaleType
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
@@ -23,8 +23,8 @@ import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
  */
 @Composable
 fun HomeNavigationRail(
-    selectedType: TaleType,
-    onTabClick: (TaleType) -> Unit,
+    selectedGenre: Genre,
+    onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     // TODO maybe private ?
@@ -35,9 +35,9 @@ fun HomeNavigationRail(
             .padding(top = dimensionResource(id = R.dimen.padding_double_extra_large))
             .testTag(homeNavigationRailTestTag),
     ) {
-        for (item in TaleType.entries) {
+        for (item in Genre.entries) {
             NavigationRailItem(
-                selected = item == selectedType,
+                selected = item == selectedGenre,
                 onClick = { onTabClick(item) },
                 icon = {
                     Icon(
@@ -58,7 +58,7 @@ fun HomeNavigationRail(
 private fun HomeNavigationRailPreview() {
     FairyTalesTheme {
         HomeNavigationRail(
-            selectedType = TaleType.Puzzle,
+            selectedGenre = Genre.Puzzle,
             onTabClick = {},
         )
     }

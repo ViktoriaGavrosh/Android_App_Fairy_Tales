@@ -10,6 +10,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test
@@ -22,7 +23,7 @@ class VerticalDetailScreenTest {
     @Test
     fun verticalDetailScreen_verifyContent() {
         val fakeTale = TaleUi(
-            genre = "story",
+            genre = Genre.Story,
             title = "title",
             text = "text",
         )
@@ -40,7 +41,7 @@ class VerticalDetailScreenTest {
     @Test
     fun verticalDetailScreen_puzzleType_verifyContent() {
         val fakeTale = TaleUi(
-            genre = "puzzle",
+            genre = Genre.Puzzle,
             title = "puzzleTitle",
             text = "puzzleText",
         )
@@ -59,7 +60,7 @@ class VerticalDetailScreenTest {
     @Throws(Exception::class)
     fun verticalDetailScreen_puzzleType_AnswerNotDisplayed() {
         val fakeTale = TaleUi(
-            genre = "puzzle",
+            genre = Genre.Puzzle,
             title = "puzzleTitle",
             text = "puzzleText",
             answer = "puzzleAnswer",
@@ -75,7 +76,7 @@ class VerticalDetailScreenTest {
     @Throws(Exception::class)
     fun verticalDetailScreen_puzzleType_showAnswer() {
         val fakeTale = TaleUi(
-            genre = "puzzle",
+            genre = Genre.Puzzle,
             title = "puzzleTitle",
             text = "puzzleText",
             answer = "puzzleAnswer",

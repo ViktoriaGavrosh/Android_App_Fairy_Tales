@@ -61,8 +61,8 @@ class ErrorHomeScreenTest {
             FairyTalesTheme {
                 ContentHomeScreen(
                     screenState = HomeScreenState.Error(),
-                    topBarTextId = fakeUiState.taleType.textId,
-                    isFavoriteTalesList = fakeUiState.isFavoriteTalesList,
+                    topBarTextId = fakeUiState.genre.textId,
+                    isFavoriteTalesShown = fakeUiState.isFavoriteTalesShown,
                     isCompactScreen = !isExpandedScreen,
                     onHeartClick = {},
                     onTopBarHeartClick = {},
