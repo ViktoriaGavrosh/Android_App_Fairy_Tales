@@ -62,7 +62,7 @@ fun TaleCard(
             )
             TaleImage(
                 title = tale.title,
-                imageUrl = tale.imageUrl ?: "",   // TODO something with it
+                imageUrl = tale.imageUrl,
                 isBlur = tale.genre == Genre.Puzzle,
                 modifier = Modifier.fillMaxWidth()
             )

@@ -37,5 +37,6 @@
     <string name="detail_error_message">Казк\u0456\nнедзе згуб\u0456л\u0456ся</string>
     <string name="error_text">Казк\u0456\nнедзе згуб\u0456л\u0456ся</string>
     <string name="error_button_text">Шукаем</string>
+    <string name="not_answer_text">А адгадк\u0456 няма.\nМожаш прыдумаць?</string>
 
 </resources>

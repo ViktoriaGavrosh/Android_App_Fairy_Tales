@@ -61,6 +61,7 @@ class TaleRepositoryTest {
     }
 
     @Test
+    @Throws(Exception::class)
     fun taleRepository_getTales_returnRequestResultError() {
         runTest {
             val actual = repository.getTales(

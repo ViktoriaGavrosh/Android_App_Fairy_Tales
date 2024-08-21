@@ -21,7 +21,7 @@ import com.viktoriagavrosh.fairytales.R
 @Composable
 fun TaleImage(
     title: String,
-    imageUrl: String,
+    imageUrl: String?,
     modifier: Modifier = Modifier,
     isBlur: Boolean = false,
 ) {

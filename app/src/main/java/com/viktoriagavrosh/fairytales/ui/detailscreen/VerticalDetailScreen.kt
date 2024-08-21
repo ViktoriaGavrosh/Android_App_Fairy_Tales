@@ -4,8 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -22,13 +20,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Answer
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.elements.TaleImage
+import com.viktoriagavrosh.fairytales.ui.elements.TaleText
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
@@ -50,7 +49,7 @@ fun VerticalDetailScreen(
         if (tale.genre != Genre.Puzzle) {
             TaleImage(
                 title = tale.title,
-                imageUrl = tale.imageUrl ?: "",    // TODO do something with it
+                imageUrl = tale.imageUrl,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -70,8 +69,8 @@ fun VerticalDetailScreen(
         if (tale.genre == Genre.Puzzle) {
             if (bigCard) {
                 Answer(
-                    answer = tale.answer ?: "",  // TODO do something with it
-                    imageUrl = tale.imageUrl ?: "",
+                    answer = tale.answer,
+                    imageUrl = tale.imageUrl,
                     isBigImage = true,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -90,30 +89,6 @@ fun VerticalDetailScreen(
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun TaleText(
-    tale: TaleUi,
-    fontSize: Float,
-    modifier: Modifier = Modifier,
-) {
-    Row(modifier = modifier) {
-        if (tale.genre == Genre.Story) {
-            TextDetail(
-                text = tale.text,
-                fontSize = fontSize,
-                modifier = Modifier.fillMaxWidth()
-            )
-        } else {
-            Spacer(modifier = Modifier.weight(1F))
-            TextDetail(
-                text = tale.text,
-                fontSize = fontSize,
-            )
-            Spacer(modifier = Modifier.weight(1F))
         }
     }
 }
@@ -145,39 +120,6 @@ fun TextDetail(
     }
 }
 
-/**
- * Composable to display answer of puzzle
- */
-@Composable
-fun Answer(
-    answer: String,
-    imageUrl: String,
-    isBigImage: Boolean,
-    modifier: Modifier = Modifier,
-) {
-    Column(modifier = modifier) {
-        TaleImage(
-            title = answer,
-            imageUrl = imageUrl,
-            modifier = if (isBigImage) {
-                Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        start = dimensionResource(id = R.dimen.padding_extra_large),
-                        top = dimensionResource(id = R.dimen.padding_large),
-                        end = dimensionResource(id = R.dimen.padding_extra_large),
-                        bottom = dimensionResource(id = R.dimen.padding_small),
-                    )
-            } else Modifier
-        )
-        Text(
-            text = answer,
-            style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center,
-        )
-    }
-}
 
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)

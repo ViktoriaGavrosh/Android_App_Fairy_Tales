@@ -2,8 +2,10 @@ package com.viktoriagavrosh.fairytales.data.repositories
 
 import com.viktoriagavrosh.fairytales.data.database.TaleAppDatabase
 import com.viktoriagavrosh.fairytales.data.repositories.utils.RequestResult
+import com.viktoriagavrosh.fairytales.data.repositories.utils.map
 import com.viktoriagavrosh.fairytales.data.repositories.utils.toTale
 import com.viktoriagavrosh.fairytales.model.Tale
+import com.viktoriagavrosh.fairytales.model.TaleDb
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -43,21 +45,22 @@ class OfflineTaleRepository @Inject constructor(
      * Retrieve all items from database by genre
      */
     override fun getTales(genre: Genre, isFavorite: Boolean): Flow<RequestResult<List<Tale>>> {
-        val request = try {    // TODO change to .catch()
+
+        val request = try {
             if (isFavorite) {
                 appDatabase.taleDao.getAllFavoriteTales(genre.genreName)
             } else {
                 appDatabase.taleDao.getAllTales(genre.genreName)
             }
-                .map { tales ->
-                    tales.map { taleDb -> taleDb.toTale() }
-                }
-                .map<List<Tale>, RequestResult<List<Tale>>> { RequestResult.Success(it) }
+                .map<List<TaleDb>, RequestResult<List<TaleDb>>> { RequestResult.Success(it) }
         } catch (e: Exception) {
-            flow {
-                emit(RequestResult.Error(error = e))
-            }
+            flow { emit(RequestResult.Error(error = e)) }
         }
+            .map { requestResult ->
+                requestResult.map { listTaleDb ->
+                    listTaleDb.map { it.toTale() }
+                }
+            }
         return request
     }
 

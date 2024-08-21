@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,8 +20,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.elements.Answer
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.elements.TaleImage
+import com.viktoriagavrosh.fairytales.ui.elements.TaleText
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
 /**
@@ -38,40 +39,21 @@ fun HorizontalDetailScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier,
     ) {
-        if (tale.genre != Genre.Puzzle) {      // TODO change String to enum
+        if (tale.genre != Genre.Puzzle) {
             ImageHorizontal(
-                // TODO may by merge all Image Composable ?
                 title = tale.title,
-                imageUrl = tale.imageUrl ?: "",  // TODO do something with it
+                imageUrl = tale.imageUrl,
             )
         }
-        Row {    // TODO extract to fun ?
-            Spacer(
-                modifier = if (tale.genre == Genre.Story) {
-                    Modifier.width(dimensionResource(id = R.dimen.padding_small))
-                } else {
-                    Modifier.weight(1F)
-                }
-            )
-            TextDetail(
-                text = tale.text,
-                fontSize = fontSize,
-                modifier = Modifier
-                    .weight(3F)
-                    .padding(dimensionResource(id = R.dimen.padding_small))
-            )
-            Spacer(
-                modifier = if (tale.genre == Genre.Story) {
-                    Modifier.width(dimensionResource(id = R.dimen.padding_small))
-                } else {
-                    Modifier.weight(1F)
-                }
-            )
-        }
+        TaleText(
+            tale = tale,
+            fontSize = fontSize,
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small))
+        )
         if (tale.genre == Genre.Puzzle) {
-            AnswerHorizontal(    // TODO merge all answers ?
-                answer = tale.answer ?: "",  // TODO do something with it
-                imageUrl = tale.imageUrl ?: "",  // TODO do something with it
+            AnswerContent(
+                answer = tale.answer,
+                imageUrl = tale.imageUrl,
                 modifier = Modifier
                     .padding(bottom = dimensionResource(id = R.dimen.padding_small))
             )
@@ -82,10 +64,10 @@ fun HorizontalDetailScreen(
 @Composable
 private fun ImageHorizontal(
     title: String,
-    imageUrl: String,
+    imageUrl: String?,
     modifier: Modifier = Modifier,
 ) {
-    Row(modifier = modifier) {   // TODO try verticalAlignment instead Spacers
+    Row(modifier = modifier) {
         Spacer(modifier = Modifier.weight(1F))
         TaleImage(
             title = title,
@@ -99,28 +81,20 @@ private fun ImageHorizontal(
 }
 
 @Composable
-private fun AnswerHorizontal(
-    // TODO maybe treatment answer: String? (= null)  here ???
-    answer: String,
-    imageUrl: String,
+private fun AnswerContent(
+    answer: String?,
+    imageUrl: String?,
     modifier: Modifier = Modifier,
 ) {
     var bigCard by remember {
         mutableStateOf(false)
     }
-    if (bigCard) {   // TODO extract 2 funs
-        Row {          // TODO try verticalAlignment instead Spacers
-            Spacer(modifier = Modifier.weight(1F))
-            Answer(
-                answer = answer,
-                imageUrl = imageUrl,
-                isBigImage = false,
-                modifier = modifier   // TODO maybe Modifier, but modifier up to row ?
-                    .weight(2F)
-                    .padding(dimensionResource(id = R.dimen.padding_small))
-            )
-            Spacer(modifier = Modifier.weight(1F))
-        }
+    if (bigCard) {
+        AnswerImage(
+            answer = answer,
+            imageUrl = imageUrl,
+            modifier = modifier,
+        )
     } else {
         Button(
             onClick = { bigCard = true },
@@ -132,6 +106,26 @@ private fun AnswerHorizontal(
                 style = MaterialTheme.typography.bodyLarge,
             )
         }
+    }
+}
+
+@Composable
+private fun AnswerImage(
+    answer: String?,
+    imageUrl: String?,
+    modifier: Modifier
+) {
+    Row(modifier = modifier) {
+        Spacer(modifier = Modifier.weight(1F))
+        Answer(
+            answer = answer,
+            imageUrl = imageUrl,
+            isBigImage = false,
+            modifier = Modifier
+                .weight(2F)
+                .padding(dimensionResource(id = R.dimen.padding_small))
+        )
+        Spacer(modifier = Modifier.weight(1F))
     }
 }
 
