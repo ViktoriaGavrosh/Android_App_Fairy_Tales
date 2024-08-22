@@ -1,10 +1,10 @@
 package com.viktoriagavrosh.fairytales.viewmodels
 
 import com.viktoriagavrosh.fairytales.TestDispatcherRule
-import com.viktoriagavrosh.fairytales.data.repositories.utils.ScreenState
 import com.viktoriagavrosh.fairytales.data.repositories.utils.toTaleUi
 import com.viktoriagavrosh.fairytales.fake.FakeData
 import com.viktoriagavrosh.fairytales.fake.FakeTaleRepository
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.homescreen.HomeViewModel
 import kotlinx.coroutines.flow.first
