@@ -8,6 +8,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.onNodeWithContentDescriptionById
 import com.viktoriagavrosh.fairytales.ui.utils.onNodeWithTextById
@@ -84,7 +85,7 @@ class DetailScreenTest {
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    screenState = DetailScreenState.Error(),
+                    screenState = ScreenState.Error(),
                     textSizeFromDatastore = 24.0F,
                     isExpandedScreen = false,
                     onDetailScreenBackClick = {},
@@ -104,7 +105,7 @@ class DetailScreenTest {
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    screenState = DetailScreenState.Error(),
+                    screenState = ScreenState.Error(),
                     textSizeFromDatastore = 24.0F,
                     isExpandedScreen = true,
                     onDetailScreenBackClick = {},
@@ -123,7 +124,7 @@ class DetailScreenTest {
         composeTestRule.setContent {
             FairyTalesTheme {
                 DetailScreen(
-                    screenState = DetailScreenState.Success(fakeTale),
+                    screenState = ScreenState.Success(fakeTale),
                     textSizeFromDatastore = 24.0F,
                     isExpandedScreen = isExpanded,
                     onDetailScreenBackClick = {},

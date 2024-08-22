@@ -1,11 +1,11 @@
 package com.viktoriagavrosh.fairytales.viewmodels
 
 import com.viktoriagavrosh.fairytales.TestDispatcherRule
+import com.viktoriagavrosh.fairytales.data.repositories.utils.ScreenState
 import com.viktoriagavrosh.fairytales.data.repositories.utils.toTaleUi
 import com.viktoriagavrosh.fairytales.fake.FakeData
 import com.viktoriagavrosh.fairytales.fake.FakeTaleRepository
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
-import com.viktoriagavrosh.fairytales.ui.homescreen.HomeScreenState
 import com.viktoriagavrosh.fairytales.ui.homescreen.HomeViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -43,7 +43,7 @@ class HomeViewModelTest {
         runTest {
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
 
-            val actual = viewModel.screenState.first() is HomeScreenState.Success
+            val actual = viewModel.screenState.first() is ScreenState.Success
             assert(actual)
         }
     }
@@ -68,7 +68,7 @@ class HomeViewModelTest {
                 .filter { it.genre == Genre.Puzzle }
                 .map { it.toTaleUi() }
             viewModel.updateGenre(newType)
-            val actualTales = viewModel.screenState.first().tales ?: emptyList()
+            val actualTales = viewModel.screenState.first().data ?: emptyList()
             assertEquals(expectedTales, actualTales)
         }
     }

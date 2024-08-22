@@ -29,6 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 
@@ -65,7 +66,7 @@ fun DetailScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun DetailScreen(
-    screenState: DetailScreenState,
+    screenState: ScreenState<TaleUi>,
     textSizeFromDatastore: Float,
     isExpandedScreen: Boolean,
     onDetailScreenBackClick: () -> Unit,
@@ -78,22 +79,22 @@ internal fun DetailScreen(
 
     Column(modifier = modifier) {
         DetailTopBar(
-            text = screenState.tale?.title ?: "",
+            text = screenState.data?.title ?: "",
             onDetailScreenBackClick = onDetailScreenBackClick,
             scrollBehavior = scrollBehavior,
             onSettingsClick = onSettingsClick,
             modifier = Modifier.fillMaxWidth()
         )
         when (screenState) {
-            is DetailScreenState.Error -> {
+            is ScreenState.Error -> {
                 ErrorDetailScreen(modifier = Modifier.fillMaxSize())
             }
 
-            is DetailScreenState.None -> {}   // default value
+            is ScreenState.None -> {}   // default value
 
-            is DetailScreenState.Success -> {
+            is ScreenState.Success -> {
                 ContentDetailScreen(
-                    tale = screenState.tale ?: TaleUi(),
+                    tale = screenState.data ?: TaleUi(),
                     isExpandedScreen = isExpandedScreen,
                     textSize = textSizeFromDatastore,
                     onTextSizeUpdate = onTextSizeUpdate,
@@ -185,7 +186,7 @@ private fun DetailTopBarPreview() {
 private fun VerticalDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Success(
+            screenState = ScreenState.Success(
                 TaleUi(
                     title = "title",
                     text = "text",
@@ -206,7 +207,7 @@ private fun VerticalDetailScreenPreview() {
 private fun VerticalPuzzleDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Success(
+            screenState = ScreenState.Success(
                 TaleUi(
                     genre = Genre.Puzzle,
                     title = "title",
@@ -228,7 +229,7 @@ private fun VerticalPuzzleDetailScreenPreview() {
 private fun VerticalStoryDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Success(
+            screenState = ScreenState.Success(
                 TaleUi(
                     genre = Genre.Story,
                     title = "title",
@@ -250,7 +251,7 @@ private fun VerticalStoryDetailScreenPreview() {
 private fun HorizontalDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Success(
+            screenState = ScreenState.Success(
                 TaleUi(
                     title = "title",
                     text = "text",
@@ -271,7 +272,7 @@ private fun HorizontalDetailScreenPreview() {
 private fun HorizontalPuzzleDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Success(
+            screenState = ScreenState.Success(
                 TaleUi(
                     genre = Genre.Puzzle,
                     title = "title",
@@ -293,7 +294,7 @@ private fun HorizontalPuzzleDetailScreenPreview() {
 private fun HorizontalStoryDetailScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Success(
+            screenState = ScreenState.Success(
                 TaleUi(
                     genre = Genre.Story,
                     title = "title",
@@ -315,7 +316,7 @@ private fun HorizontalStoryDetailScreenPreview() {
 private fun VerticalErrorScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Error(),
+            screenState = ScreenState.Error(),
             textSizeFromDatastore = 24.0F,
             isExpandedScreen = false,
             onDetailScreenBackClick = {},
@@ -331,7 +332,7 @@ private fun VerticalErrorScreenPreview() {
 private fun HorizontalErrorScreenPreview() {
     FairyTalesTheme {
         DetailScreen(
-            screenState = DetailScreenState.Error(),
+            screenState = ScreenState.Error(),
             textSizeFromDatastore = 24.0F,
             isExpandedScreen = true,
             onDetailScreenBackClick = {},

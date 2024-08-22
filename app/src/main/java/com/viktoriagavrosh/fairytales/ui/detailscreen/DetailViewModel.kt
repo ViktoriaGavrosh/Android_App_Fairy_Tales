@@ -4,8 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.fairytales.data.repositories.SettingsRepository
 import com.viktoriagavrosh.fairytales.data.repositories.TaleRepository
-import com.viktoriagavrosh.fairytales.data.repositories.utils.toDetailScreenState
+import com.viktoriagavrosh.fairytales.data.repositories.utils.map
+import com.viktoriagavrosh.fairytales.data.repositories.utils.toScreenState
+import com.viktoriagavrosh.fairytales.data.repositories.utils.toTaleUi
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -27,12 +30,15 @@ class DetailViewModel @AssistedInject constructor(
     private val settingsRepository: SettingsRepository,
 ) : ViewModel() {
 
-    val tales: StateFlow<DetailScreenState> = taleRepository.getTaleById(taleId)
-        .map { it.toDetailScreenState() }
+    val tales: StateFlow<ScreenState<TaleUi>> = taleRepository.getTaleById(taleId)
+        .map { requestResult ->
+            requestResult.map { it.toTaleUi() }
+        }
+        .map { it.toScreenState() }
         .stateIn(
             viewModelScope,
             SharingStarted.Lazily,
-            DetailScreenState.None()
+            ScreenState.None()
         )
 
     /**
@@ -61,8 +67,11 @@ class DetailViewModel @AssistedInject constructor(
     }
 }
 
+/*
 sealed class DetailScreenState(val tale: TaleUi? = null) {
     class None : DetailScreenState()
     class Success(tale: TaleUi) : DetailScreenState(tale)
     class Error : DetailScreenState()
 }
+
+ */

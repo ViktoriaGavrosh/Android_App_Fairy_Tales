@@ -28,7 +28,7 @@ class DetailViewModelTest {
             )
 
             val expectedTale = FakeData.fakeListTales.first().toTaleUi()
-            val actualTale = viewModel.tales.first().tale ?: TaleUi()
+            val actualTale = viewModel.tales.first().data ?: TaleUi()
             assertEquals(expectedTale, actualTale)
         }
     }

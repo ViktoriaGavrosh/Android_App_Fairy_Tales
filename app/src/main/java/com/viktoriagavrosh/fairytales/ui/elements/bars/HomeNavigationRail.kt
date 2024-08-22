@@ -27,7 +27,6 @@ fun HomeNavigationRail(
     onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // TODO maybe private ?
     val homeNavigationRailTestTag = stringResource(id = R.string.expanded_screen_test_tag)
 
     NavigationRail(

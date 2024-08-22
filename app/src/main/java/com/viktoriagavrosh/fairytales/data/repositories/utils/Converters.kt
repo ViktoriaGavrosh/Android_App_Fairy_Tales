@@ -3,9 +3,10 @@ package com.viktoriagavrosh.fairytales.data.repositories.utils
 import com.viktoriagavrosh.fairytales.model.Tale
 import com.viktoriagavrosh.fairytales.model.TaleDb
 import com.viktoriagavrosh.fairytales.model.TaleUi
-import com.viktoriagavrosh.fairytales.ui.detailscreen.DetailScreenState
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
-import com.viktoriagavrosh.fairytales.ui.homescreen.HomeScreenState
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import java.util.Locale
 
 fun TaleDb.toTale(): Tale {
@@ -37,20 +38,17 @@ fun Tale.toTaleUi(): TaleUi {
     )
 }
 
-// TODO two StateScreen need?
-fun RequestResult<Tale>.toDetailScreenState(): DetailScreenState {
+fun <T : Any> RequestResult<T>.toScreenState(): ScreenState<T> {
     return when (this) {
-        is RequestResult.Success -> DetailScreenState.Success(tale = data.toTaleUi())
-        is RequestResult.Error -> DetailScreenState.Error()
+        is RequestResult.Success -> ScreenState.Success(data = data)
+        is RequestResult.Error -> ScreenState.Error()
     }
 }
 
-fun RequestResult<List<Tale>>.toHomeScreenState(): HomeScreenState {
-    return when (this) {
-        is RequestResult.Success -> HomeScreenState.Success(
-            tales = data.map { it.toTaleUi() }
-        )
-
-        is RequestResult.Error -> HomeScreenState.Error()
+fun Flow<RequestResult<List<Tale>>>.toFlowRequestResultTalesUi(): Flow<RequestResult<List<TaleUi>>> {
+    return this.map { requestResult ->
+        requestResult.map { listTales ->
+            listTales.map { it.toTaleUi() }
+        }
     }
 }

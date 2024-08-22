@@ -27,7 +27,6 @@ fun HomeBottomNavigationBar(
     onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // TODO maybe private ?
     val bottomNavigationBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
 
     NavigationBar(

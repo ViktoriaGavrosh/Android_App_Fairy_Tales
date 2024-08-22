@@ -5,6 +5,7 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.viktoriagavrosh.fairytales.R
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.utils.onNodeWithTagById
 import org.junit.Rule
 import org.junit.Test
@@ -45,7 +46,7 @@ class DifferentSizeHomeScreen {
         composeTestRule.setContent {
             HomeScreen(
                 uiState = fakeUiState,
-                screenState = HomeScreenState.Error(),
+                screenState = ScreenState.Error(),
                 windowSize = windowSize,
                 onCardClick = {},
                 onTabClick = {},

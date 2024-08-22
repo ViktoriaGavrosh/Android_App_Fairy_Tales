@@ -3,8 +3,10 @@ package com.viktoriagavrosh.fairytales.ui.homescreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.fairytales.data.repositories.TaleRepository
-import com.viktoriagavrosh.fairytales.data.repositories.utils.toHomeScreenState
+import com.viktoriagavrosh.fairytales.data.repositories.utils.toFlowRequestResultTalesUi
+import com.viktoriagavrosh.fairytales.data.repositories.utils.toScreenState
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -27,9 +29,10 @@ class HomeViewModel @Inject constructor(
 
     private var _screenState = taleRepository
         .getTales(Genre.Story, _uiState.value.isFavoriteTalesShown)
-        .map { it.toHomeScreenState() }
+        .toFlowRequestResultTalesUi()
+        .map { it.toScreenState() }
 
-    val screenState: Flow<HomeScreenState>
+    val screenState: Flow<ScreenState<List<TaleUi>>>
         get() = _screenState
     /*
     TODO  check where resource consumption is less
@@ -50,7 +53,8 @@ class HomeViewModel @Inject constructor(
      */
     fun updateGenre(genre: Genre) {
         _screenState = taleRepository.getTales(genre, _uiState.value.isFavoriteTalesShown)
-            .map { it.toHomeScreenState() }
+            .toFlowRequestResultTalesUi()
+            .map { it.toScreenState() }
 
         viewModelScope.launch {
             _uiState.update {
@@ -95,9 +99,11 @@ data class TalesUiState(
     val genre: Genre = Genre.Story,
     val isFavoriteTalesShown: Boolean = false,
 )
-
+/*
 sealed class HomeScreenState(val tales: List<TaleUi>? = null) {
     class None : HomeScreenState()
     class Success(tales: List<TaleUi>) : HomeScreenState(tales)
     class Error : HomeScreenState()
 }
+
+ */

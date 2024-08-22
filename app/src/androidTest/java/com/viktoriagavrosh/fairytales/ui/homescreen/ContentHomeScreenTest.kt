@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.fairytales.ui.homescreen
 
 import androidx.activity.ComponentActivity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertHasNoClickAction
 import androidx.compose.ui.test.assertIsDisplayed
@@ -8,6 +9,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import com.viktoriagavrosh.fairytales.R
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.theme.FairyTalesTheme
 import com.viktoriagavrosh.fairytales.ui.utils.onNodeWithContentDescriptionById
@@ -206,8 +208,8 @@ class ContentHomeScreenTest {
         composeTestRule.setContent {
             FairyTalesTheme {
                 ContentHomeScreen(
-                    screenState = HomeScreenState.Success(fakeListTales),
-                    topBarTextId = fakeUiState.genre.textId,
+                    screenState = ScreenState.Success(fakeListTales),
+                    topBarText = stringResource(id = fakeUiState.genre.textId),
                     isFavoriteTalesShown = fakeUiState.isFavoriteTalesShown,
                     isCompactScreen = !isExpandedScreen,
                     onHeartClick = {},

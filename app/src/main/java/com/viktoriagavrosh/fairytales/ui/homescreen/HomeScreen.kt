@@ -10,10 +10,12 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.fairytales.model.TaleUi
+import com.viktoriagavrosh.fairytales.ui.ScreenState
 import com.viktoriagavrosh.fairytales.ui.elements.Genre
 import com.viktoriagavrosh.fairytales.ui.elements.bars.HomeBottomNavigationBar
 import com.viktoriagavrosh.fairytales.ui.elements.bars.HomeNavigationRail
@@ -31,7 +33,8 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val screenState by viewModel.screenState.collectAsStateWithLifecycle(HomeScreenState.None())
+    val screenState by viewModel.screenState
+        .collectAsStateWithLifecycle(ScreenState.None())
 
     HomeScreen(
         uiState = uiState,
@@ -49,7 +52,7 @@ fun HomeScreen(
 @Composable
 internal fun HomeScreen(
     uiState: TalesUiState,
-    screenState: HomeScreenState,
+    screenState: ScreenState<List<TaleUi>>,
     windowSize: WindowWidthSizeClass,
     onCardClick: (TaleUi) -> Unit,
     onTabClick: (Genre) -> Unit,
@@ -60,11 +63,11 @@ internal fun HomeScreen(
 ) {
     if (windowSize == WindowWidthSizeClass.Compact) {
         Column(
-            modifier = modifier.fillMaxSize(),   // TODO change to modifier
+            modifier = modifier.fillMaxSize(),
         ) {
             ContentHomeScreen(
                 screenState = screenState,
-                topBarTextId = uiState.genre.textId,
+                topBarText = stringResource(id = uiState.genre.textId),
                 isFavoriteTalesShown = uiState.isFavoriteTalesShown,
                 isCompactScreen = true,
                 onHeartClick = onHeartClick,
@@ -89,7 +92,7 @@ internal fun HomeScreen(
             )
             ContentHomeScreen(
                 screenState = screenState,
-                topBarTextId = uiState.genre.textId,
+                topBarText = stringResource(id = uiState.genre.textId),
                 isFavoriteTalesShown = uiState.isFavoriteTalesShown,
                 isCompactScreen = false,
                 onHeartClick = onHeartClick,
@@ -109,7 +112,7 @@ private fun CompactHomeScreenPreview() {
     FairyTalesTheme {
         HomeScreen(
             uiState = TalesUiState(),
-            screenState = HomeScreenState.Success(
+            screenState = ScreenState.Success(
                 List(4) { TaleUi(id = it, title = "title") }
             ),
             windowSize = WindowWidthSizeClass.Compact,
@@ -129,7 +132,7 @@ private fun MediumHomeScreenPreview() {
     FairyTalesTheme {
         HomeScreen(
             uiState = TalesUiState(),
-            screenState = HomeScreenState.Success(
+            screenState = ScreenState.Success(
                 List(4) { TaleUi(id = it, title = "title") }
             ),
             windowSize = WindowWidthSizeClass.Medium,
@@ -149,7 +152,7 @@ private fun ExpandedHomeScreenPreview() {
     FairyTalesTheme {
         HomeScreen(
             uiState = TalesUiState(),
-            screenState = HomeScreenState.Success(
+            screenState = ScreenState.Success(
                 List(4) { TaleUi(id = it, title = "title") }
             ),
             windowSize = WindowWidthSizeClass.Expanded,
