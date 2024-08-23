@@ -32,4 +32,34 @@ class DetailViewModelTest {
             assertEquals(expectedTale, actualTale)
         }
     }
+
+    @Test
+    fun detailViewModel_init_initTextSizeSuccess() {
+        runTest {
+            val viewModel = DetailViewModel(
+                taleId = 0,
+                taleRepository = FakeTaleRepository(),
+                settingsRepository = FakeSettingsRepository()
+            )
+
+            val expectedTextSize = FakeData.fakeSettingsState.textSize
+            val actualTextSize = viewModel.textSize.first()
+            assertEquals(expectedTextSize, actualTextSize)
+        }
+    }
+
+    @Test
+    fun detailViewModel_updateTestSize_textSizeUpdated() {
+        runTest {
+            val viewModel = DetailViewModel(
+                taleId = 0,
+                taleRepository = FakeTaleRepository(),
+                settingsRepository = FakeSettingsRepository()
+            )
+            val expectedTextSize = 70.0F
+            viewModel.updateTextSize(expectedTextSize)
+            val actualTextSize = viewModel.textSize.first()
+            assertEquals(expectedTextSize, actualTextSize)
+        }
+    }
 }

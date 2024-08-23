@@ -6,13 +6,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class FakeSettingsRepository(
-    private val fakeSettingsState: SettingsState = FakeData.fakeSettingsState
+    fakeSettingsState: SettingsState = FakeData.fakeSettingsState
 ) : SettingsRepository {
+
+    private var fakeTextSize = fakeSettingsState.textSize
+
     override fun getTextSize(): Flow<Float> {
-        return flow { emit(fakeSettingsState.textSize) }
+        return flow { emit(fakeTextSize) }
     }
 
     override suspend fun updateTextSize(textSize: Float) {
-        TODO("Not yet implemented")
+        fakeTextSize = textSize
     }
 }

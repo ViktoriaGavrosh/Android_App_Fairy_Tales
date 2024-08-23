@@ -116,4 +116,16 @@ class TaleRepositoryTest {
             assert(actual)
         }
     }
+
+    @Test
+    fun taleRepository_updateFavoriteTale_updateTale() {
+        runTest {
+            val expectedTale = FakeDatabaseSource.fakeListTaleDb[1].copy(isFavorite = true).toTale()
+            repository.updateFavoriteTale(1, true)
+            val actualTale = repository.getTaleById(1).first().data
+                ?: FakeDatabaseSource.fakeListTaleDb.first().toTale()
+
+            assertEquals(expectedTale, actualTale)
+        }
+    }
 }

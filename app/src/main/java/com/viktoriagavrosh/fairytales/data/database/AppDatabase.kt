@@ -14,7 +14,7 @@ interface TaleAppDatabase {
 /**
  * Database class
  */
-class AppDatabase internal constructor(      // TODO maybe delete?
+class AppDatabase internal constructor(
     private val database: AppRoomDatabase
 ) : TaleAppDatabase {
     override val taleDao: TaleDao
@@ -28,7 +28,7 @@ class AppDatabase internal constructor(      // TODO maybe delete?
     entities = [TaleDb::class],
     version = 2
 )
-internal abstract class AppRoomDatabase : RoomDatabase() {   // TODO maybe private ?
+internal abstract class AppRoomDatabase : RoomDatabase() {
     abstract fun taleDao(): TaleDao
 }
 

@@ -49,25 +49,25 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun homeViewModel_updateTaleType_updateUiStateTaleType() {
+    fun homeViewModel_updateGenre_updateUiStateTaleType() {
         runTest {
-            val expectedType = Genre.Puzzle
+            val expectedGenre = Genre.Puzzle
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
-            viewModel.updateGenre(expectedType)
-            val actualType = viewModel.uiState.value.genre
-            assertEquals(expectedType, actualType)
+            viewModel.updateGenre(expectedGenre)
+            val actualGenre = viewModel.uiState.value.genre
+            assertEquals(expectedGenre, actualGenre)
         }
     }
 
     @Test
-    fun homeViewModel_updateTaleType_updateScreenStateTales() {
+    fun homeViewModel_updateGenre_updateScreenStateTales() {
         runTest {
-            val newType = Genre.Puzzle
+            val newGenre = Genre.Puzzle
             val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
             val expectedTales = FakeData.fakeListTales
                 .filter { it.genre == Genre.Puzzle }
                 .map { it.toTaleUi() }
-            viewModel.updateGenre(newType)
+            viewModel.updateGenre(newGenre)
             val actualTales = viewModel.screenState.first().data ?: emptyList()
             assertEquals(expectedTales, actualTales)
         }
@@ -81,6 +81,21 @@ class HomeViewModelTest {
             viewModel.updateFavoriteTalesList()
             val actualValue = viewModel.uiState.value.isFavoriteTalesShown
             assertEquals(true, actualValue)
+        }
+    }
+
+    @Test
+    fun homeViewModel_updateTaleFavorite_updateUiStateListFavorite() {
+        runTest {
+            val viewModel = HomeViewModel(taleRepository = FakeTaleRepository())
+            val expectedFavoriteList = listOf(
+                FakeData.fakeListTales[1].copy(isFavorite = true).toTaleUi()
+            )
+            viewModel.updateGenre(Genre.Puzzle)
+            viewModel.updateFavoriteTalesList()
+            viewModel.updateTaleFavorite(FakeData.fakeListTales[1].toTaleUi())
+            val actualFavoriteTales = viewModel.screenState.first().data ?: emptyList()
+            assertEquals(expectedFavoriteList, actualFavoriteTales)
         }
     }
 }

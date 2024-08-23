@@ -45,6 +45,7 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             settingsRepository.updateTextSize(textSize)
         }
+        getSettingsState()
     }
 
     private fun convertToValidTextSize(textSize: Float): Float {

@@ -66,12 +66,3 @@ class DetailViewModel @AssistedInject constructor(
         fun create(taleId: Int): DetailViewModel
     }
 }
-
-/*
-sealed class DetailScreenState(val tale: TaleUi? = null) {
-    class None : DetailScreenState()
-    class Success(tale: TaleUi) : DetailScreenState(tale)
-    class Error : DetailScreenState()
-}
-
- */

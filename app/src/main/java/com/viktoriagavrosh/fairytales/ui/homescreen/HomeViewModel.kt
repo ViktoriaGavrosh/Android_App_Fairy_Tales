@@ -99,11 +99,4 @@ data class TalesUiState(
     val genre: Genre = Genre.Story,
     val isFavoriteTalesShown: Boolean = false,
 )
-/*
-sealed class HomeScreenState(val tales: List<TaleUi>? = null) {
-    class None : HomeScreenState()
-    class Success(tales: List<TaleUi>) : HomeScreenState(tales)
-    class Error : HomeScreenState()
-}
 
- */

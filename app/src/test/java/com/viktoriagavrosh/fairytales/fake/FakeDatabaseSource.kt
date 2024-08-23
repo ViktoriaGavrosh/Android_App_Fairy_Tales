@@ -26,28 +26,32 @@ object FakeDatabaseSource {
     }
 
     class FakeDao : TaleDao {
+
+        private val fakeList = fakeListTaleDb.toMutableList()
+
         override fun getAllTales(genre: String): Flow<List<TaleDb>> {
             return if (genre == "lullaby") {
                 throw IllegalArgumentException()
             } else {
-                flow { emit(fakeListTaleDb.filter { it.genre == genre }) }
+                flow { emit(fakeList.filter { it.genre == genre }) }
             }
         }
 
         override fun getAllFavoriteTales(genre: String): Flow<List<TaleDb>> {
-            return flow { emit(fakeListTaleDb.filter { it.isFavorite }) }
+            return flow { emit(fakeList.filter { it.isFavorite }) }
         }
 
         override fun getTaleById(id: Int): Flow<TaleDb> {
-            return flow { emit(fakeListTaleDb.first { it.id == id }) }
+            return flow { emit(fakeList.first { it.id == id }) }
         }
 
         override suspend fun insert(tale: TaleDb) {
-            TODO("Not yet implemented")
+            fakeList.add(tale)
         }
 
         override suspend fun updateFavoriteTale(id: Int, isFavorite: Int) {
-            TODO("Not yet implemented")
+            val isFavoriteValue = isFavorite == 1
+            fakeList[id] = fakeList[id].copy(isFavorite = isFavoriteValue)
         }
     }
 }

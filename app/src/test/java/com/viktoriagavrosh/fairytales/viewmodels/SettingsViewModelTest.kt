@@ -51,4 +51,17 @@ class SettingsViewModelTest {
             assertEquals(expectedTextSize, actualTextSize)
         }
     }
+
+    @Test
+    fun settingsViewModel_updateTestSize_textSizeUpdated() {
+        runTest {
+            val viewModel = SettingsViewModel(
+                settingsRepository = FakeSettingsRepository()
+            )
+            val expectedTextSize = 100.0F
+            viewModel.updateTextSize(expectedTextSize)
+            val actualTextSize = viewModel.uiState.value.textSize
+            assertEquals(expectedTextSize, actualTextSize)
+        }
+    }
 }
