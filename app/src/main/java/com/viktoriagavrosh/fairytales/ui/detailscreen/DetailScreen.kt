@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +23,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -83,7 +83,6 @@ internal fun DetailScreen(
             onDetailScreenBackClick = onDetailScreenBackClick,
             scrollBehavior = scrollBehavior,
             onSettingsClick = onSettingsClick,
-            modifier = Modifier.fillMaxWidth()
         )
         when (screenState) {
             is ScreenState.Error -> {
@@ -129,6 +128,8 @@ private fun DetailTopBar(
         title = {
             Text(
                 text = text,
+                overflow = TextOverflow.Ellipsis,   // TODO ellipsis are on top of the line
+                maxLines = 1,
                 style = MaterialTheme.typography.displaySmall,
             )
         },
@@ -136,9 +137,6 @@ private fun DetailTopBar(
         navigationIcon = {
             IconButton(
                 onClick = { onDetailScreenBackClick() },
-                modifier = Modifier.padding(
-                    start = dimensionResource(id = R.dimen.padding_medium),
-                ),
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_back),
@@ -172,7 +170,7 @@ private fun DetailTopBar(
 private fun DetailTopBarPreview() {
     FairyTalesTheme {
         DetailTopBar(
-            text = "top bar",
+            text = "This is the title of the tale on the top bar",
             onDetailScreenBackClick = {},
             scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
             onSettingsClick = {}

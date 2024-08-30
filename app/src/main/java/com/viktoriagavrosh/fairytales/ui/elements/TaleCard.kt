@@ -35,7 +35,7 @@ fun TaleCard(
     onCardClick: (TaleUi) -> Unit,
     onHeartClick: (TaleUi) -> Unit,
     modifier: Modifier = Modifier,
-    minLineText: Int = 1,    // TODO check it !
+    minLineText: Int = 1,
 ) {
     Card(
         onClick = { onCardClick(tale) },

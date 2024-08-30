@@ -17,14 +17,14 @@ fun TaleText(
     Row(modifier = modifier) {
         if (tale.genre == Genre.Story) {
             TextDetail(
-                text = tale.text,
+                tale = tale,
                 fontSize = fontSize,
                 modifier = Modifier.fillMaxWidth()
             )
         } else {
             Spacer(modifier = Modifier.weight(1F))
             TextDetail(
-                text = tale.text,
+                tale = tale,
                 fontSize = fontSize,
             )
             Spacer(modifier = Modifier.weight(1F))

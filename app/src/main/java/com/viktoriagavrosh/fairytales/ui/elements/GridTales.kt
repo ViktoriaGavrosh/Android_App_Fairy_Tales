@@ -35,7 +35,7 @@ fun GridTales(
         items(tales) { tale ->
             TaleCard(
                 tale = tale,
-                minLineText = 2,    // TODO check it !
+                minLineText = 2,
                 onCardClick = onCardClick,
                 onHeartClick = onHeartClick,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
