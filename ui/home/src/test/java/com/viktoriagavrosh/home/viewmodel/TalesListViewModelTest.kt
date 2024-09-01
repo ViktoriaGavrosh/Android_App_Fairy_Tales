@@ -81,21 +81,4 @@ class TalesListViewModelTest {
         }
     }
 
-    /*   TODO 111
-    @Test
-    fun homeViewModel_updateTaleFavorite_updateUiStateListFavorite() {
-        runTest {
-            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
-            val expectedFavoriteList = listOf(
-                FakeSource().fakeListTales[1].copy(isFavorite = true).toTaleUiHome()
-            )
-            viewModel.updateGenre(Genre.Puzzle)
-            viewModel.updateFavoriteTalesList()
-            viewModel.updateTaleFavorite(FakeSource().fakeListTales[1].toTaleUiHome())
-            val actualFavoriteTales = viewModel.screenState.first().tales ?: emptyList()
-            assertEquals(expectedFavoriteList, actualFavoriteTales)
-        }
-    }
-
-     */
 }
