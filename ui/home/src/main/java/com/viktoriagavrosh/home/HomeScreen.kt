@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.viktoriagavrosh.home.elements.TaleType
+import com.viktoriagavrosh.home.elements.Genre
 import com.viktoriagavrosh.home.elements.bars.BottomNavigateBar
 import com.viktoriagavrosh.home.elements.bars.HomeNavigationRail
 import com.viktoriagavrosh.home.model.TaleUiHome
@@ -38,7 +38,7 @@ fun HomeScreen(
         screenState = screenState,
         windowSize = windowSize,
         onCardClick = onCardClick,
-        onTabClick = viewModel::updateTaleType,
+        onTabClick = viewModel::updateGenre,
         onTopBarHeartClick = viewModel::updateFavoriteTalesList,
         onHeartClick = viewModel::updateTaleFavorite,
         onSettingsClick = onSettingsClick,
@@ -52,7 +52,7 @@ internal fun HomeScreen(
     screenState: HomeScreenState,
     windowSize: WindowWidthSizeClass,
     onCardClick: (TaleUiHome) -> Unit,
-    onTabClick: (TaleType) -> Unit,
+    onTabClick: (Genre) -> Unit,
     onTopBarHeartClick: () -> Unit,
     onHeartClick: (TaleUiHome) -> Unit,
     onSettingsClick: () -> Unit,
@@ -64,8 +64,8 @@ internal fun HomeScreen(
         ) {
             ContentScreen(
                 screenState = screenState,
-                topBarTextId = uiState.taleType.textId,
-                isFavoriteTalesList = uiState.isFavoriteTalesList,
+                topBarTextId = uiState.genre.textId,
+                isFavoriteTalesList = uiState.isFavoriteTalesShown,
                 onHeartClick = onHeartClick,
                 onTopBarHeartClick = onTopBarHeartClick,
                 isCompactScreen = true,
@@ -75,7 +75,7 @@ internal fun HomeScreen(
                 modifier = Modifier.weight(1F)
             )
             BottomNavigateBar(
-                selectedType = uiState.taleType,
+                selectedType = uiState.genre,
                 onTabClick = onTabClick,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -83,14 +83,14 @@ internal fun HomeScreen(
     } else {
         Row(modifier = modifier) {
             HomeNavigationRail(
-                selectedType = uiState.taleType,
+                selectedType = uiState.genre,
                 onTabClick = onTabClick,
                 modifier = Modifier.fillMaxHeight()
             )
             ContentScreen(
                 screenState = screenState,
-                topBarTextId = uiState.taleType.textId,
-                isFavoriteTalesList = uiState.isFavoriteTalesList,
+                topBarTextId = uiState.genre.textId,
+                isFavoriteTalesList = uiState.isFavoriteTalesShown,
                 onHeartClick = onHeartClick,
                 onTopBarHeartClick = onTopBarHeartClick,
                 onCardClick = onCardClick,

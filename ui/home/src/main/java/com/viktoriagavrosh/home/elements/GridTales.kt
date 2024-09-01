@@ -32,9 +32,9 @@ internal fun GridTales(
         contentPadding = contentPadding,
         modifier = modifier
     ) {
-        items(tales) { folkWork ->
+        items(tales) { tale ->
             TaleCard(
-                tale = folkWork,
+                tale = tale,
                 minLineText = 2,
                 onCardClick = onCardClick,
                 onHeartClick = onHeartClick,
@@ -53,7 +53,7 @@ private fun GridTalesPreview() {
     FairyTalesTheme {
         GridTales(
             tales = List(5) {
-                TaleUiHome().copy(
+                TaleUiHome(
                     title = "Story"
                 )
             },

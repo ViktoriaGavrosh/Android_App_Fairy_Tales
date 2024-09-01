@@ -48,10 +48,8 @@ internal fun TaleCard(
     onHeartClick: (TaleUiHome) -> Unit
 ) {
     Card(
-        modifier = modifier
-            .clickable {
-                onCardClick(tale)
-            },
+        modifier = modifier,
+        onClick = { onCardClick(tale) },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
@@ -166,7 +164,7 @@ private fun TaleImage(
 private fun ShortTitleCardPreview() {
     FairyTalesTheme {
         TaleCard(
-            tale = TaleUiHome().copy(
+            tale = TaleUiHome(
                 title = "Story"
             ),
             onCardClick = {},
@@ -180,7 +178,7 @@ private fun ShortTitleCardPreview() {
 private fun MiddleTitleCardPreview() {
     FairyTalesTheme {
         TaleCard(
-            tale = TaleUiHome().copy(
+            tale = TaleUiHome(
                 title = "This is the name of the story"
             ),
             onCardClick = {},
@@ -194,9 +192,9 @@ private fun MiddleTitleCardPreview() {
 private fun FavoriteCardPreview() {
     FairyTalesTheme {
         TaleCard(
-            tale = TaleUiHome().copy(
+            tale = TaleUiHome(
                 title = "Story",
-                isFavorite = true
+                isFavorite = true,
             ),
             onCardClick = {},
             onHeartClick = {}

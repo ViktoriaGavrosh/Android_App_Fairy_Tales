@@ -38,10 +38,10 @@ internal fun ContentTopBar(
 
     if (isFavoriteTalesList) {
         painterId = R.drawable.ic_favorite_true
-        contentDescriptionId = R.string.favorite_folk_works
+        contentDescriptionId = R.string.favorite_tales
     } else {
         painterId = R.drawable.ic_favorite_false
-        contentDescriptionId = R.string.all_folk_works
+        contentDescriptionId = R.string.all_tales
     }
     TopAppBar(
         title = {

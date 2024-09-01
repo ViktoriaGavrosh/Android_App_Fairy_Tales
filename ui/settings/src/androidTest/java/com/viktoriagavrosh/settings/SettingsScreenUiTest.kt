@@ -38,7 +38,7 @@ class SettingsScreenUiTest {
 
         composeTestRule.onNodeWithTextById(R.string.settings_title)
             .assertExists("No settings topBar title ")
-            .assertHasNoClickAction()
+            .assertIsDisplayed()
             .assertHasNoClickAction()
     }
 

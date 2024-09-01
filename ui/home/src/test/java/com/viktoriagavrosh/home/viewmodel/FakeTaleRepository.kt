@@ -13,7 +13,16 @@ class FakeTaleRepository : TaleRepository {
 
     override fun getTales(genre: String, isFavorite: Boolean): Flow<RequestResult<List<Tale>>> =
         flow {
-            emit(RequestResult.Success(fakeListTales.filter { it.genre == genre }))
+            emit(
+                if (isFavorite) {
+                    RequestResult.Success(
+                        fakeListTales.filter { it.genre == genre }
+                            .filter { it.isFavorite }
+                    )
+                } else {
+                    RequestResult.Success(fakeListTales.filter { it.genre == genre })
+                }
+            )
         }
 
     override fun getTaleById(id: Int): Flow<RequestResult<Tale>> = flow {

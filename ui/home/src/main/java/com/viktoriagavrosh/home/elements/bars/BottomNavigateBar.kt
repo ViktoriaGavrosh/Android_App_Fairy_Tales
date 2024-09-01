@@ -15,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.home.R
-import com.viktoriagavrosh.home.elements.TaleType
+import com.viktoriagavrosh.home.elements.Genre
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
@@ -23,8 +23,8 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun BottomNavigateBar(
-    selectedType: TaleType,
-    onTabClick: (TaleType) -> Unit,
+    selectedType: Genre,
+    onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val bottomNavigateBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
@@ -33,7 +33,7 @@ internal fun BottomNavigateBar(
             .testTag(bottomNavigateBarTestTag)
             .sizeIn(maxHeight = dimensionResource(id = R.dimen.max_bottom_navigation_bar_height))
     ) {
-        for (item in TaleType.entries) {
+        for (item in Genre.entries) {
             NavigationBarItem(
                 selected = item == selectedType,
                 onClick = { onTabClick(item) },
@@ -56,7 +56,7 @@ internal fun BottomNavigateBar(
 private fun BottomNavigateBarPreview() {
     FairyTalesTheme {
         BottomNavigateBar(
-            selectedType = TaleType.Puzzle,
+            selectedType = Genre.Puzzle,
             onTabClick = {}
         )
     }

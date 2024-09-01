@@ -24,6 +24,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -84,7 +85,7 @@ internal fun DetailScreen(
             onSettingsClick = onSettingsClick,
             modifier = Modifier.fillMaxWidth(),
         )
-        when (screenState) {       //when (uiState.screenState) {
+        when (screenState) {
             is DetailScreenState.Error -> {
                 ErrorScreen(modifier = Modifier.fillMaxSize())
             }
@@ -93,10 +94,8 @@ internal fun DetailScreen(
 
             is DetailScreenState.Success -> {
                 ContentDetailScreen(
-                    //tale = uiState.screenState.tale ?: TaleUiDetail(),
                     tale = screenState.tale ?: TaleUiDetail(),
                     isExpandedScreen = isExpandedScreen,
-                    //textSize = uiState.textSize,
                     textSize = textSizeFromDataStore,
                     onTextSizeUpdate = onTextSizeUpdate,
                     modifier = if (isExpandedScreen) {
@@ -131,15 +130,14 @@ private fun DetailsTopBar(
             Text(
                 text = text,
                 style = MaterialTheme.typography.displaySmall,
+                overflow = TextOverflow.Ellipsis,  // TODO ellipsis are on top of the line
+                maxLines = 1,
             )
         },
         modifier = modifier,
         navigationIcon = {
             IconButton(
                 onClick = { onDetailScreenBackClick() },
-                modifier = Modifier.padding(
-                    start = dimensionResource(id = R.dimen.padding_medium)
-                )
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_back),
@@ -175,7 +173,7 @@ private fun DetailsTopBar(
 private fun DetailsTopBarPreview() {
     FairyTalesTheme {
         DetailsTopBar(
-            text = "Top bar",
+            text = "This text is on the top bar of the detail screen",
             onDetailScreenBackClick = {},
             scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
             onSettingsClick = {},

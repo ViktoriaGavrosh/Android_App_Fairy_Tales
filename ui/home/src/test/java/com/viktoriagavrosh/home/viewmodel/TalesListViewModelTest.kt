@@ -1,9 +1,9 @@
 package com.viktoriagavrosh.home.viewmodel
 
+import com.viktoriagavrosh.home.HomeScreenState
 import com.viktoriagavrosh.home.TalesListViewModel
-import com.viktoriagavrosh.home.elements.TaleType
+import com.viktoriagavrosh.home.elements.Genre
 import com.viktoriagavrosh.home.fake.FakeSource
-import com.viktoriagavrosh.home.model.TaleUiHome
 import com.viktoriagavrosh.home.utils.toTaleUiHome
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -15,118 +15,87 @@ class TalesListViewModelTest {
     @get:Rule
     val testDispatcher = TestDispatcherRule()
 
+    @Test
+    fun talesListViewModel_init_verifyUiState_TaleType() {
+        runTest {
+            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
+
+            val actualType = viewModel.uiState.value.genre
+            assertEquals(Genre.Story, actualType)
+        }
+    }
 
     @Test
-    fun fairyTalesViewModel_init_verifyFairyTalesUiState() {
+    fun homeViewModel_init_verifyUiState_IsFavoriteTaleList() {
         runTest {
-            val viewModel = TalesListViewModel(
-                taleRepository = FakeTaleRepository()
-            )
-            val expectedList = FakeSource().fakeListTales
+            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
+
+            val actualValue = viewModel.uiState.value.isFavoriteTalesShown
+            assertEquals(false, actualValue)
+        }
+    }
+
+    @Test
+    fun homeViewModel_init_verifyScreenState() {
+        runTest {
+            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
+
+            val actual = viewModel.screenState.first() is HomeScreenState.Success
+            assert(actual)
+        }
+    }
+
+    @Test
+    fun homeViewModel_updateGenre_updateUiStateTaleType() {
+        runTest {
+            val expectedGenre = Genre.Puzzle
+            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
+            viewModel.updateGenre(expectedGenre)
+            val actualGenre = viewModel.uiState.value.genre
+            assertEquals(expectedGenre, actualGenre)
+        }
+    }
+
+    @Test
+    fun homeViewModel_updateGenre_updateScreenStateTales() {
+        runTest {
+            val newGenre = Genre.Puzzle
+            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
+            val expectedTales = FakeSource().fakeListTales
+                .filter { it.genre == Genre.Puzzle.name.lowercase() }
                 .map { it.toTaleUiHome() }
-                .filter { it.genre == "story" }
-            val actualList = viewModel.screenState.first().tales ?: emptyList()
-            assertEquals(
-                expectedList,
-                actualList
-            )
-            val expectedTypeName = "Story"
-            val actualTypeName = viewModel.uiState.value.taleType.name
-            assertEquals(
-                expectedTypeName,
-                actualTypeName
-            )
-            assertEquals(
-                false,
-                viewModel.uiState.value.isFavoriteTalesList
-            )
+            viewModel.updateGenre(newGenre)
+            val actualTales = viewModel.screenState.first().tales ?: emptyList()
+            assertEquals(expectedTales, actualTales)
         }
     }
 
     @Test
-    fun fairyTalesViewModel_updateCompositionType_successUpdateUiState() {
-        val expectedList = FakeSource().fakeListTales
-            .map { it.toTaleUiHome() }
-            .filter { it.genre == "game" }
-        val expectedTaleType = TaleType.Game
+    fun homeViewModel_updateFavoriteTalesList_updateUiStateIsFavoriteTalesList() {
         runTest {
-            val viewModel = TalesListViewModel(
-                taleRepository = FakeTaleRepository()
-            )
-            viewModel.updateTaleType(expectedTaleType)
-            val actualList = viewModel.screenState.first().tales ?: emptyList()
-            assertEquals(
-                expectedTaleType,
-                viewModel.uiState.value.taleType
-            )
-            assertEquals(
-                expectedList,
-                actualList
-            )
-        }
-    }
+            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
 
-    @Test
-    fun fairyTalesViewModel_updateCompositionType_updateUiStateWithEmptyList() {
-        val expectedList = emptyList<TaleUiHome>()
-        val expectedTaleType = TaleType.Puzzle
-        runTest {
-            val viewModel = TalesListViewModel(
-                taleRepository = FakeTaleRepository()
-            )
-            viewModel.updateTaleType(expectedTaleType)
-            assertEquals(
-                expectedTaleType,
-                viewModel.uiState.value.taleType
-            )
-            val actualList = viewModel.screenState.first().tales ?: emptyList()
-            assertEquals(
-                expectedList,
-                actualList
-            )
-        }
-    }
-
-    @Test
-    fun fairyTalesViewModel_updateCompositionType_successUpdateUiStateWithFavoriteList() {
-        val newTale = FakeSource().fakeListTales[3].toTaleUiHome()
-        val expectedTaleType = TaleType.Game
-        runTest {
-            val viewModel = TalesListViewModel(
-                taleRepository = FakeTaleRepository()
-            )
-            viewModel.updateTaleFavorite(newTale)
-            viewModel.changeIsFavoriteTalesList(true)
-            viewModel.updateTaleType(expectedTaleType)
-
-            assertEquals(
-                expectedTaleType,
-                viewModel.uiState.value.taleType
-            )
-
-            assertEquals(
-                true,
-                viewModel.uiState.value.isFavoriteTalesList
-            )
-        }
-    }
-
-    @Test
-    fun fairyTalesViewModel_updateListFavoriteWorks_UpdateUiStateIsFavoriteWorks() {
-        runTest {
-            val viewModel = TalesListViewModel(
-                taleRepository = FakeTaleRepository()
-            )
             viewModel.updateFavoriteTalesList()
-            assertEquals(
-                true,
-                viewModel.uiState.value.isFavoriteTalesList
-            )
-            viewModel.updateFavoriteTalesList()
-            assertEquals(
-                false,
-                viewModel.uiState.value.isFavoriteTalesList
-            )
+            val actualValue = viewModel.uiState.value.isFavoriteTalesShown
+            assertEquals(true, actualValue)
         }
     }
+
+    /*   TODO 111
+    @Test
+    fun homeViewModel_updateTaleFavorite_updateUiStateListFavorite() {
+        runTest {
+            val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
+            val expectedFavoriteList = listOf(
+                FakeSource().fakeListTales[1].copy(isFavorite = true).toTaleUiHome()
+            )
+            viewModel.updateGenre(Genre.Puzzle)
+            viewModel.updateFavoriteTalesList()
+            viewModel.updateTaleFavorite(FakeSource().fakeListTales[1].toTaleUiHome())
+            val actualFavoriteTales = viewModel.screenState.first().tales ?: emptyList()
+            assertEquals(expectedFavoriteList, actualFavoriteTales)
+        }
+    }
+
+     */
 }

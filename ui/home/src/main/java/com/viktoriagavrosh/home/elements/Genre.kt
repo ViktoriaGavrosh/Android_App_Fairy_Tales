@@ -6,7 +6,7 @@ import com.viktoriagavrosh.home.R
 /**
  * Enum class to describe the destination of tab navigation
  */
-enum class TaleType(
+enum class Genre(
     @DrawableRes val iconId: Int,
     val textId: Int   // TODO consider changing to String
 ) {

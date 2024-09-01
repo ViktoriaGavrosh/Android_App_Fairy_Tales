@@ -31,7 +31,7 @@ class SettingsViewModel @Inject constructor(
     private fun getSettingsState() {
         viewModelScope.launch {
             val actualTextSize = settingsRepository.getTextSize()
-                .map { checkTextSize(it) }
+                .map { convertToValidTextSize(it) }
                 .first()
             _uiState.update {
                 it.copy(
@@ -50,7 +50,7 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    private fun checkTextSize(textSize: Float): Float {
+    private fun convertToValidTextSize(textSize: Float): Float {
         return when {
             textSize > 100 -> 100.0F
             textSize < 8 -> 8.0F

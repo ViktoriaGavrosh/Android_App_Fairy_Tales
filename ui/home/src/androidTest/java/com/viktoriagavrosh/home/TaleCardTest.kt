@@ -21,7 +21,7 @@ class TaleCardTest {
     )
 
     @Test
-    fun folkWorkCard_verifyContent() {
+    fun taleCard_verifyContent() {
         composeTestRule.setContent {
             FairyTalesTheme {
                 TaleCard(
@@ -39,7 +39,7 @@ class TaleCardTest {
     }
 
     @Test
-    fun folkWorkCard_verifyDarkHeart() {
+    fun taleCard_verifyDarkHeart() {
         val fakeTale = fakeList[0].copy(isFavorite = true)
         composeTestRule.setContent {
             FairyTalesTheme {

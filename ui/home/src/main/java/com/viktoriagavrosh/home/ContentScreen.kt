@@ -22,9 +22,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.home.elements.Genre
 import com.viktoriagavrosh.home.elements.GridTales
 import com.viktoriagavrosh.home.elements.ListTales
-import com.viktoriagavrosh.home.elements.TaleType
 import com.viktoriagavrosh.home.elements.bars.ContentTopBar
 import com.viktoriagavrosh.home.model.TaleUiHome
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -42,7 +42,7 @@ internal fun ContentScreen(
     onHeartClick: (TaleUiHome) -> Unit,
     onTopBarHeartClick: () -> Unit,
     onCardClick: (TaleUiHome) -> Unit,
-    onTabClick: (TaleType) -> Unit,
+    onTabClick: (Genre) -> Unit,
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -99,7 +99,7 @@ internal fun ContentScreen(
 
 @Composable
 private fun ErrorHomeScreen(
-    onTabClick: (TaleType) -> Unit,
+    onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -113,7 +113,7 @@ private fun ErrorHomeScreen(
             style = MaterialTheme.typography.displaySmall
         )
         Button(
-            onClick = { onTabClick(TaleType.Story) },
+            onClick = { onTabClick(Genre.Story) },
             modifier = Modifier
                 .padding(top = dimensionResource(id = R.dimen.padding_extra_large))
         ) {
