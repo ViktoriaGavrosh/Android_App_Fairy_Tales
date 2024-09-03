@@ -2,15 +2,15 @@ package com.viktoriagavrosh.details
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -63,13 +64,13 @@ internal fun VerticalDetailScreen(
             if (tale.genre != "story") {
                 Spacer(modifier = Modifier.weight(1F))
                 TextDetail(
-                    text = tale.text,
+                    tale = tale,
                     fontSize = fontSize,
                 )
                 Spacer(modifier = Modifier.weight(1F))
             } else {
                 TextDetail(
-                    text = tale.text,
+                    tale = tale,
                     fontSize = fontSize,
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -107,24 +108,34 @@ internal fun VerticalDetailScreen(
  */
 @Composable
 internal fun TextDetail(
-    text: String,
+    tale: TaleUiDetail,
     fontSize: Float,
     modifier: Modifier = Modifier
 ) {
-    Card(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onPrimary
-        ),
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .padding(dimensionResource(id = R.dimen.padding_small))
+            .clip(RoundedCornerShape(dimensionResource(id = R.dimen.corner)))
+            .background(color = MaterialTheme.colorScheme.onPrimary),
     ) {
+        if (tale.genre == "story") {
+            Text(
+                text = tale.title,
+                style = MaterialTheme.typography.displaySmall,
+                fontSize = fontSize.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.padding_small)),
+            )
+        }
         Text(
-            text = text,
+            text = tale.text,
             fontSize = fontSize.sp,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .padding(dimensionResource(id = R.dimen.padding_small))
-                .animateContentSize()
+                .animateContentSize(),
         )
     }
 }
@@ -174,6 +185,7 @@ private fun VerticalDetailScreenPreview() {
     FairyTalesTheme {
         VerticalDetailScreen(
             tale = TaleUiDetail(
+                title = "Title",
                 text = "Text",
             ),
             fontSize = 24.0F,
@@ -188,6 +200,7 @@ private fun StoryVerticalDetailScreenPreview() {
     FairyTalesTheme {
         VerticalDetailScreen(
             tale = TaleUiDetail(
+                title = "Title",
                 text = "Text",
                 genre = "story"
             ),
@@ -203,6 +216,7 @@ private fun PuzzleVerticalDetailScreenPreview() {
     FairyTalesTheme {
         VerticalDetailScreen(
             tale = TaleUiDetail(
+                title = "Title",
                 text = "Text",
                 genre = "puzzle",
                 answer = "Answer",

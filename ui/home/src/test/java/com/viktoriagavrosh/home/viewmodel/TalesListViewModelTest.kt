@@ -62,7 +62,7 @@ class TalesListViewModelTest {
             val newGenre = Genre.Puzzle
             val viewModel = TalesListViewModel(taleRepository = FakeTaleRepository())
             val expectedTales = FakeSource().fakeListTales
-                .filter { it.genre == Genre.Puzzle.name.lowercase() }
+                .filter { it.genre == Genre.Puzzle.genreName }
                 .map { it.toTaleUiHome() }
             viewModel.updateGenre(newGenre)
             val actualTales = viewModel.screenState.first().tales ?: emptyList()

@@ -26,7 +26,7 @@ class TalesListViewModel @Inject constructor(
     val uiState: StateFlow<TalesListUiState> = _uiState
 
     private var _screenState = taleRepository
-        .getTales(Genre.Story.name.lowercase(), _uiState.value.isFavoriteTalesShown)
+        .getTales(Genre.Story.genreName, _uiState.value.isFavoriteTalesShown)
         .map { it.toHomeScreenState() }
 
     internal val screenState: Flow<HomeScreenState>
@@ -48,7 +48,7 @@ class TalesListViewModel @Inject constructor(
      */
     fun updateGenre(genre: Genre) {
         _screenState = taleRepository
-            .getTales(genre.name.lowercase(), _uiState.value.isFavoriteTalesShown)
+            .getTales(genre.genreName, _uiState.value.isFavoriteTalesShown)
             .map { it.toHomeScreenState() }
 
         viewModelScope.launch {

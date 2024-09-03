@@ -23,7 +23,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun BottomNavigateBar(
-    selectedType: Genre,
+    selectedGenre: Genre,
     onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -35,7 +35,7 @@ internal fun BottomNavigateBar(
     ) {
         for (item in Genre.entries) {
             NavigationBarItem(
-                selected = item == selectedType,
+                selected = item == selectedGenre,
                 onClick = { onTabClick(item) },
                 icon = {
                     Icon(
@@ -56,7 +56,7 @@ internal fun BottomNavigateBar(
 private fun BottomNavigateBarPreview() {
     FairyTalesTheme {
         BottomNavigateBar(
-            selectedType = Genre.Puzzle,
+            selectedGenre = Genre.Puzzle,
             onTabClick = {}
         )
     }

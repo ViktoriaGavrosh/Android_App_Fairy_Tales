@@ -61,7 +61,7 @@ internal fun HorizontalDetailScreen(
                 }
             )
             TextDetail(
-                text = tale.text,
+                tale = tale,
                 fontSize = fontSize,
                 modifier = Modifier
                     .weight(3F)

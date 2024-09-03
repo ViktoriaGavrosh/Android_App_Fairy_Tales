@@ -23,7 +23,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun HomeNavigationRail(
-    selectedType: Genre,
+    selectedGenre: Genre,
     onTabClick: (Genre) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -37,7 +37,7 @@ internal fun HomeNavigationRail(
     ) {
         for (item in Genre.entries) {
             NavigationRailItem(
-                selected = item == selectedType,
+                selected = item == selectedGenre,
                 onClick = { onTabClick(item) },
                 icon = {
                     Icon(
@@ -58,7 +58,7 @@ internal fun HomeNavigationRail(
 private fun VerticalNavigationRailPreview() {
     FairyTalesTheme {
         HomeNavigationRail(
-            selectedType = Genre.Puzzle,
+            selectedGenre = Genre.Puzzle,
             onTabClick = {}
         )
     }

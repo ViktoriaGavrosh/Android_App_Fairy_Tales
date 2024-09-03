@@ -75,7 +75,7 @@ internal fun HomeScreen(
                 modifier = Modifier.weight(1F)
             )
             BottomNavigateBar(
-                selectedType = uiState.genre,
+                selectedGenre = uiState.genre,
                 onTabClick = onTabClick,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -83,7 +83,7 @@ internal fun HomeScreen(
     } else {
         Row(modifier = modifier) {
             HomeNavigationRail(
-                selectedType = uiState.genre,
+                selectedGenre = uiState.genre,
                 onTabClick = onTabClick,
                 modifier = Modifier.fillMaxHeight()
             )
