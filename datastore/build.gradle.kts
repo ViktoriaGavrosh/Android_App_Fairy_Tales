@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 java {
@@ -10,7 +10,7 @@ java {
 
 dependencies {
     //Datastore
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    api(libs.datastore.preferences)
 
-    implementation("jakarta.inject:jakarta.inject-api:2.0.1")
+    implementation(libs.jakarta.inject.api)
 }
