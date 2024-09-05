@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.10"
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin.plugin.compose)
 }
 
 android {
@@ -38,15 +38,15 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.13.1")
+    implementation(libs.core.ktx)
 
     //Compose
-    implementation(platform("androidx.compose:compose-bom:2024.08.00"))
-    api("androidx.compose.ui:ui")
-    api("androidx.compose.ui:ui-graphics")
-    api("androidx.compose.ui:ui-tooling-preview")
-    api("androidx.compose.material3:material3")
+    implementation(platform(libs.compose.bom))
+    api(libs.androidx.ui)
+    api(libs.androidx.ui.graphics)
+    api(libs.androidx.ui.tooling.preview)
+    api(libs.androidx.material3)
 
-    debugApi("androidx.compose.ui:ui-test-manifest")
-    debugApi("androidx.compose.ui:ui-tooling")
+    debugApi(libs.androidx.ui.test.manifest)
+    debugApi(libs.androidx.ui.tooling)
 }

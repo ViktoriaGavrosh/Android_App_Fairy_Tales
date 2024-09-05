@@ -62,7 +62,7 @@ class SettingsContentUiTest {
 
     @Test
     fun settingsScreen_moveLeftTextSizeSlider_decreasedLetters() {
-        setContentScreen(textSize = 100.0F)
+        setContentScreen(textSize = 90.0F)
 
         composeTestRule.onNodeWithTagForStringId(R.string.textsize_slider)
             .performTouchInput { swipeLeft() }

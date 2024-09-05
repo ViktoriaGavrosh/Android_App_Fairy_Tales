@@ -90,7 +90,10 @@ private fun TextSizeRow(
                 value = sliderPosition,
                 onValueChange = { sliderPosition = it },
                 modifier = Modifier
-                    .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
+                    .padding(
+                        start = dimensionResource(id = R.dimen.padding_medium),
+                        end = dimensionResource(id = R.dimen.padding_extra_large)
+                    )
                     .testTag(stringResource(R.string.textsize_slider)),
                 valueRange = 8F..100F,
                 onValueChangeFinished = { onTextSizeUpdate(sliderPosition) }
