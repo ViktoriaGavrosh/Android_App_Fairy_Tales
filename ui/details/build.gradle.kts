@@ -54,8 +54,8 @@ dependencies {
     implementation(libs.material3.window.size)
 
     // Modules
-    implementation(project(":repositories"))
-    implementation(project(":uitheme"))
+    implementation(projects.repositories)
+    implementation(projects.uitheme)
 
     // Dagger
     implementation(libs.hilt.android)

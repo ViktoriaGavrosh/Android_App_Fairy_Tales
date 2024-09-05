@@ -38,8 +38,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.jakarta.inject.api)
 
-    implementation(project(":database"))
-    implementation(project(":datastore"))
+    implementation(projects.database)
+    implementation(projects.datastore)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

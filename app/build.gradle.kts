@@ -55,14 +55,14 @@ dependencies {
     implementation(libs.coil.compose)
 
     // Modules
-    implementation(project(":database"))
-    implementation(project(":datastore"))
-    implementation(project(":repositories"))
-    implementation(project(":ui:navigation"))
-    implementation(project(":ui:home"))
-    implementation(project(":ui:details"))
-    implementation(project(":ui:settings"))
-    implementation(project(":uitheme"))
+    implementation(projects.database)
+    implementation(projects.datastore)
+    implementation(projects.repositories)
+    implementation(projects.ui.navigation)
+    implementation(projects.ui.home)
+    implementation(projects.ui.details)
+    implementation(projects.ui.settings)
+    implementation(projects.uitheme)
 
     // Dagger
     implementation(libs.hilt.android)
