@@ -22,8 +22,8 @@ fun Tale.toTaleUiDetail(): TaleUiDetail {
         title = title,
         text = text,
         answer = answer,
-        imageUri = imageUri,
-        audioUri = audioUri,
+        imageUri = imageUrl,
+        audioUri = audioUrl,
         isFavorite = isFavorite
     )
 }

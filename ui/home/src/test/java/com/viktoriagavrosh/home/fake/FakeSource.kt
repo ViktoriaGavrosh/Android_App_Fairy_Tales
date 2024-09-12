@@ -10,8 +10,8 @@ class FakeSource(
             title = "title",
             text = "text",
             answer = null,
-            imageUri = null,
-            audioUri = null,
+            imageUrl = null,
+            audioUrl = null,
             isFavorite = false
         )
     }

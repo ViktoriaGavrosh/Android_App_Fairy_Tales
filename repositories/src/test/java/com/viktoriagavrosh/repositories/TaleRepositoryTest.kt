@@ -1,7 +1,6 @@
 package com.viktoriagavrosh.repositories
 
 import com.viktoriagavrosh.repositories.model.Tale
-import com.viktoriagavrosh.repositories.tale.OfflineTaleRepository
 import com.viktoriagavrosh.repositories.tale.RequestResult
 import com.viktoriagavrosh.repositories.tale.toTale
 import kotlinx.coroutines.Dispatchers
@@ -23,13 +22,13 @@ class TaleRepositoryTest {
     @get:Rule
     val testDispatcher = RepositoryTestDispatcherRule()
 
-    private val repository = OfflineTaleRepository(FakeSource.FakeDb())
+    private val repository = OfflineShelfRepository(FakeSource.FakeDb())
 
     @Test
     fun taleRepository_getTales_returnAllTales() {
         runTest {
             val expectedList = FakeSource.fakeListTaleDb.map { it.toTale() }
-            val actualList = repository.getTales(
+            val actualList = repository.getItems(
                 genre = "story",
                 isFavorite = false
             ).first().data ?: emptyList()
@@ -47,7 +46,7 @@ class TaleRepositoryTest {
             val expectedList = FakeSource.fakeListTaleDb
                 .filter { it.isFavorite }
                 .map { it.toTale() }
-            val actualList = repository.getTales(
+            val actualList = repository.getItems(
                 genre = "story",
                 isFavorite = true
             ).first().data ?: emptyList()
@@ -62,7 +61,7 @@ class TaleRepositoryTest {
     @Test
     fun taleRepository_getTales_returnRequestResultSuccess() {
         runTest {
-            val actual = repository.getTales(
+            val actual = repository.getItems(
                 genre = "story",
                 isFavorite = false
             ).first() is RequestResult.Success
@@ -74,7 +73,7 @@ class TaleRepositoryTest {
     @Test
     fun taleRepository_getTales_returnRequestResultError() {
         runTest {
-            val actual = repository.getTales(
+            val actual = repository.getItems(
                 genre = "error",
                 isFavorite = false
             ).first() is RequestResult.Error
@@ -87,7 +86,7 @@ class TaleRepositoryTest {
     fun taleRepository_getTales_returnEmptyList() {
         runTest {
             val expectedList = emptyList<Tale>()
-            val actualList = repository.getTales(
+            val actualList = repository.getItems(
                 genre = "game",
                 isFavorite = false
             ).first().data ?: listOf(FakeSource.fakeListTaleDb[2])
@@ -103,7 +102,7 @@ class TaleRepositoryTest {
     fun taleRepository_getTaleById_returnTale() {
         runTest {
             val expectedTale = FakeSource.fakeListTaleDb[1].toTale()
-            val actualTale = repository.getTaleById(id = 1)
+            val actualTale = repository.getItemById(id = 1)
                 .first().data ?: FakeSource.fakeListTaleDb[0].toTale()
 
             assertEquals(
@@ -116,7 +115,7 @@ class TaleRepositoryTest {
     @Test
     fun taleRepository_getTaleById_returnRequestResultSuccess() {
         runTest {
-            val actual = repository.getTaleById(id = 1)
+            val actual = repository.getItemById(id = 1)
                 .first() is RequestResult.Success
 
             assert(actual)
@@ -126,7 +125,7 @@ class TaleRepositoryTest {
     @Test
     fun taleRepository_getTaleById_returnRequestResultError() {
         runTest {
-            val actual = repository.getTaleById(id = 7)
+            val actual = repository.getItemById(id = 7)
                 .first() is RequestResult.Error
 
             assert(actual)

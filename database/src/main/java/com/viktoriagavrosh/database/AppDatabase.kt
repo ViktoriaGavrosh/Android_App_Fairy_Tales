@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.viktoriagavrosh.database.dao.TaleDao
+import com.viktoriagavrosh.database.dao.AppDao
+import com.viktoriagavrosh.database.model.FolkDb
+import com.viktoriagavrosh.database.model.RiddleDb
 import com.viktoriagavrosh.database.model.TaleDb
 
 // Database interface for testing
 interface TaleAppDatabase {
-    val taleDao: TaleDao
+    val taleDao: AppDao
 }
 
 /**
@@ -18,7 +20,7 @@ interface TaleAppDatabase {
 class AppDatabase internal constructor(
     private val database: AppRoomDatabase
 ) : TaleAppDatabase {
-    override val taleDao: TaleDao
+    override val taleDao: AppDao
         get() = database.taleDao()
 }
 
@@ -26,11 +28,11 @@ class AppDatabase internal constructor(
  * Database class with a singleton Instance object.
  */
 @Database(
-    entities = [TaleDb::class],
-    version = 2
+    entities = [TaleDb::class, FolkDb::class, RiddleDb::class],
+    version = 3
 )
 internal abstract class AppRoomDatabase : RoomDatabase() {
-    abstract fun taleDao(): TaleDao
+    abstract fun taleDao(): AppDao
 }
 
 /**
@@ -42,7 +44,8 @@ fun getDatabase(context: Context): AppDatabase {
         klass = AppRoomDatabase::class.java,
         name = "fairytales"
     )
-        .createFromAsset("database/fairytales2.db")
+        .createFromAsset("database/fairytales3.db")
+        .fallbackToDestructiveMigration()  // TODO 111
         .build()
 
     return AppDatabase(appRoomDatabase)

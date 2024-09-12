@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.repositories.tale
+package com.viktoriagavrosh.repositories.utils
 
 /**
  * Data source query result
