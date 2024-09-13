@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.home.elements
+package com.viktoriagavrosh.shelf.elements
 
 import androidx.annotation.DrawableRes
 import com.viktoriagavrosh.home.R

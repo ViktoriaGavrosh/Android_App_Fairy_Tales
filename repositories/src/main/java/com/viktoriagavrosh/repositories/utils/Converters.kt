@@ -9,7 +9,7 @@ import com.viktoriagavrosh.repositories.model.Riddle
 import com.viktoriagavrosh.repositories.model.Settings
 import com.viktoriagavrosh.repositories.model.Tale
 
-fun TaleDb.toTale(): Tale {
+internal fun TaleDb.toTale(): Tale {
     return Tale(
         id = id,
         genre = genre.toShelfGenre(),
@@ -25,7 +25,7 @@ fun TaleDb.toTale(): Tale {
     )
 }
 
-fun Tale.toTaleDb(): TaleDb {
+internal fun Tale.toTaleDb(): TaleDb {
     return TaleDb(
         id = id,
         genre = genre.genreName,
@@ -41,7 +41,7 @@ fun Tale.toTaleDb(): TaleDb {
     )
 }
 
-fun FolkDb.toFolk(): Folk {
+internal fun FolkDb.toFolk(): Folk {
     return Folk(
         id = id,
         genre = genre.toShelfGenre(),
@@ -51,7 +51,7 @@ fun FolkDb.toFolk(): Folk {
     )
 }
 
-fun RiddleDb.toRiddle(): Riddle {
+internal fun RiddleDb.toRiddle(): Riddle {
     return Riddle(
         id = id,
         title = title,
@@ -61,14 +61,14 @@ fun RiddleDb.toRiddle(): Riddle {
     )
 }
 
-fun SettingsDs.toSettings(): Settings {
+internal fun SettingsDs.toSettings(): Settings {
     return Settings(
         textSize = textSize,
         lastTaleId = lastTaleId,
     )
 }
 
-private fun String.toShelfGenre(): ShelfGenre {
+fun String.toShelfGenre(): ShelfGenre {
     return when(this) {
         "animal" -> ShelfGenre.Tales.Animal
         "fairy" -> ShelfGenre.Tales.Fairy
@@ -76,6 +76,9 @@ private fun String.toShelfGenre(): ShelfGenre {
         "poem" -> ShelfGenre.Folks.Poem
         "counting" -> ShelfGenre.Folks.Counting
         "lullaby" -> ShelfGenre.Folks.Lullaby
-        else -> throw IllegalArgumentException("Wrong word for genre in DB - $this")
+        "night" -> ShelfGenre.Nights
+        "favorite" -> ShelfGenre.Favorites
+        "riddle" -> ShelfGenre.Riddles
+        else -> ShelfGenre.Riddles             // TODO change it ???
     }
 }

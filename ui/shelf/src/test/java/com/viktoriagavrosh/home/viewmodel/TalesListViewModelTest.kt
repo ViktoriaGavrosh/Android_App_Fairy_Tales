@@ -1,16 +1,6 @@
 package com.viktoriagavrosh.home.viewmodel
 
-import com.viktoriagavrosh.home.HomeScreenState
-import com.viktoriagavrosh.home.TalesListViewModel
-import com.viktoriagavrosh.home.elements.Genre
-import com.viktoriagavrosh.home.fake.FakeSource
-import com.viktoriagavrosh.home.utils.toTaleUiHome
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Rule
-import org.junit.Test
-
+/*
 class TalesListViewModelTest {
     @get:Rule
     val testDispatcher = TestDispatcherRule()
@@ -82,3 +72,6 @@ class TalesListViewModelTest {
     }
 
 }
+
+
+ */

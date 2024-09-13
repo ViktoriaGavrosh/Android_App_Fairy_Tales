@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.details.utils.toDetailScreenState
-import com.viktoriagavrosh.repositories.settings.SettingsRepository
-import com.viktoriagavrosh.repositories.tale.TaleRepository
+import com.viktoriagavrosh.repositories.DetailRepository
+import com.viktoriagavrosh.repositories.SettingsRepository
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -13,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -23,11 +25,11 @@ import kotlinx.coroutines.launch
 @HiltViewModel(assistedFactory = TaleViewModel.TaleViewModelFactory::class)
 class TaleViewModel @AssistedInject constructor(
     @Assisted private val taleId: Int,
-    private val taleRepository: TaleRepository,
+    private val taleRepository: DetailRepository,
     private val settingsRepository: SettingsRepository,
 ) : ViewModel() {
 
-    internal val tales: StateFlow<DetailScreenState> = taleRepository.getTaleById(taleId)
+    internal val tales: StateFlow<DetailScreenState> = taleRepository.getItemById(taleId, ShelfGenre.Tales.Fairy)  // TODO 111
         .map { it.toDetailScreenState() }
         .stateIn(
             viewModelScope,
@@ -38,7 +40,7 @@ class TaleViewModel @AssistedInject constructor(
     /**
      * TextSize from data source
      */
-    private var _textSize: Flow<Float> = settingsRepository.getTextSize()
+    private var _textSize: Flow<Float> = flow { emit(5.0F) }//settingsRepository.getTextSize()   TODO 111
     internal val textSize: StateFlow<Float>
         get() = _textSize.stateIn(
             viewModelScope,

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.viktoriagavrosh.home"
+    namespace = "com.viktoriagavrosh.shelf"
     compileSdk = 34
 
     defaultConfig {
@@ -54,6 +54,7 @@ dependencies {
 
     // Modules
     implementation(projects.repositories)
+    implementation(project(":ui:uikit"))   // TODO 111
     implementation(projects.uitheme)
 
     // Dagger

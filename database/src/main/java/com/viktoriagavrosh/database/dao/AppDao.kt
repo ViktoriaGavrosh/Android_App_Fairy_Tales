@@ -18,8 +18,11 @@ interface AppDao {
     @Query("SELECT * FROM tale WHERE genre = :genre")
     fun getAllTales(genre: String): Flow<List<TaleDb>>
 
-    @Query("SELECT * FROM tale WHERE genre = :genre AND is_favorite = 1")
-    fun getAllFavoriteTales(genre: String): Flow<List<TaleDb>>
+    @Query("SELECT * FROM tale WHERE is_favorite = 1")
+    fun getFavoriteTales(): Flow<List<TaleDb>>
+
+    @Query("SELECT * FROM tale WHERE is_night = 1")
+    fun getNightTales(): Flow<List<TaleDb>>
 
     @Query("SELECT * FROM tale WHERE id = :id")
     fun getTaleById(id: Int): Flow<TaleDb>

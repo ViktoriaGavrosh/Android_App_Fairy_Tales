@@ -1,11 +1,10 @@
-package com.viktoriagavrosh.home
+package com.viktoriagavrosh.shelf
 
 import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -22,15 +21,14 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.home.elements.Genre
-import com.viktoriagavrosh.home.elements.GridTales
-import com.viktoriagavrosh.home.elements.ListTales
-import com.viktoriagavrosh.home.elements.bars.ContentTopBar
-import com.viktoriagavrosh.home.model.TaleUiHome
+import com.viktoriagavrosh.shelf.elements.Genre
+import com.viktoriagavrosh.shelf.elements.GridTales
+import com.viktoriagavrosh.shelf.elements.ListTales
+import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display [TaleUiHome] list or grid screen
+ * Composable to display [Book] list or grid screen
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,9 +37,9 @@ internal fun ContentScreen(
     @StringRes topBarTextId: Int,
     isFavoriteTalesList: Boolean,
     isCompactScreen: Boolean,
-    onHeartClick: (TaleUiHome) -> Unit,
+    onHeartClick: (Book) -> Unit,
     onTopBarHeartClick: () -> Unit,
-    onCardClick: (TaleUiHome) -> Unit,
+    onCardClick: (Book) -> Unit,
     onTabClick: (Genre) -> Unit,
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -51,6 +49,7 @@ internal fun ContentScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
+            /*
             ContentTopBar(
                 text = stringResource(id = topBarTextId),
                 isFavoriteTalesList = isFavoriteTalesList,
@@ -59,6 +58,8 @@ internal fun ContentScreen(
                 onSettingsClick = onSettingsClick,
                 modifier = Modifier.fillMaxWidth()
             )
+
+             */
         }
     ) { paddingValues ->
         when (screenState) {
@@ -135,7 +136,7 @@ private fun VerticalContentScreenPreview() {
         ContentScreen(
             screenState = HomeScreenState.Success(
                 List(4) {
-                    TaleUiHome(
+                    Book(
                         id = it,
                         title = "title",
                     )
@@ -161,7 +162,7 @@ private fun VerticalFavoriteContentScreenPreview() {
         ContentScreen(
             screenState = HomeScreenState.Success(
                 List(2) {
-                    TaleUiHome(
+                    Book(
                         id = it,
                         title = "title",
                         isFavorite = true
@@ -188,7 +189,7 @@ private fun HorizontalContentScreenPreview() {
         ContentScreen(
             screenState = HomeScreenState.Success(
                 List(4) {
-                    TaleUiHome(
+                    Book(
                         id = it,
                         title = "title",
                     )

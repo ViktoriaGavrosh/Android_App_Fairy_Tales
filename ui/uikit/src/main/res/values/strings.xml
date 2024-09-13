@@ -3,5 +3,7 @@
     <string name="favorite">favorite</string>
     <string name="not_favorite">Not favorite</string>
 
+    <string name="settings">settings</string>
+    <string name="back">back</string>
 
 </resources>

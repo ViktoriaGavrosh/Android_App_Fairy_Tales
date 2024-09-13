@@ -48,6 +48,8 @@ class OfflineDetailRepository @Inject constructor(
         return when (genre) {
             ShelfGenre.Riddles -> getRiddleById(id)
 
+            ShelfGenre.Favorites,
+            ShelfGenre.Nights,
             ShelfGenre.Tales.Animal,
             ShelfGenre.Tales.Fairy,
             ShelfGenre.Tales.People -> getTaleById(id)

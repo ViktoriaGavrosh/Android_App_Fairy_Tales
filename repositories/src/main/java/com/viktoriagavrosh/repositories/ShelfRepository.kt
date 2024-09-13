@@ -24,8 +24,7 @@ interface ShelfRepository {
      * Retrieve all the items from the given data source by genre
      */
     fun getItems(
-        genre: ShelfGenre,
-        isFavorite: Boolean = false
+        genre: ShelfGenre
     ): Flow<RequestResult<List<Retaining>>>
 
     /**
@@ -45,15 +44,16 @@ class OfflineShelfRepository @Inject constructor(
      * Retrieve all the items from db by genre
      */
     override fun getItems(
-        genre: ShelfGenre,
-        isFavorite: Boolean
+        genre: ShelfGenre
     ): Flow<RequestResult<List<Retaining>>> {
         return when (genre) {
             ShelfGenre.Riddles -> getAllRiddles()
+            ShelfGenre.Favorites -> getFavoriteTales()
+            ShelfGenre.Nights -> getNightTales()
 
             ShelfGenre.Tales.Animal,
             ShelfGenre.Tales.Fairy,
-            ShelfGenre.Tales.People -> getAllTales(genre, isFavorite)
+            ShelfGenre.Tales.People -> getAllTales(genre)
 
             ShelfGenre.Folks.Poem,
             ShelfGenre.Folks.Counting,
@@ -77,15 +77,24 @@ class OfflineShelfRepository @Inject constructor(
     }
 
     private fun getAllTales(
-        genre: ShelfGenre,
-        isFavorite: Boolean
+        genre: ShelfGenre
     ): Flow<RequestResult<List<Tale>>> {
         return getDataFromDb(
-            getFun = if (isFavorite) {
-                { appDatabase.taleDao.getAllFavoriteTales(genre.genreName) }
-            } else {
-                { appDatabase.taleDao.getAllTales(genre.genreName) }
-            },
+            getFun = { appDatabase.taleDao.getAllTales(genre.genreName) },
+            mapFun = { it.map { taleDb -> taleDb.toTale() } }
+        )
+    }
+
+    private fun getFavoriteTales(): Flow<RequestResult<List<Tale>>> {
+        return getDataFromDb(
+            getFun = { appDatabase.taleDao.getFavoriteTales() },
+            mapFun = { it.map { taleDb -> taleDb.toTale() } }
+        )
+    }
+
+    private fun getNightTales(): Flow<RequestResult<List<Tale>>> {
+        return getDataFromDb(
+            getFun = { appDatabase.taleDao.getNightTales() },
             mapFun = { it.map { taleDb -> taleDb.toTale() } }
         )
     }

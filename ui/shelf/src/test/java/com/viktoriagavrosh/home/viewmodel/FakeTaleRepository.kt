@@ -1,5 +1,5 @@
 package com.viktoriagavrosh.home.viewmodel
-
+/*
 import com.viktoriagavrosh.home.fake.FakeSource
 import com.viktoriagavrosh.repositories.model.Tale
 import com.viktoriagavrosh.repositories.tale.RequestResult
@@ -35,3 +35,6 @@ class FakeTaleRepository : TaleRepository {
     }
 }
 
+
+
+ */

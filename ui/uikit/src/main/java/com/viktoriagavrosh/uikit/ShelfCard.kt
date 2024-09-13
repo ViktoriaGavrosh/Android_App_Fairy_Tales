@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.settings
+package com.viktoriagavrosh.uikit
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize

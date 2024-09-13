@@ -1,8 +1,7 @@
-package com.viktoriagavrosh.home.elements
+package com.viktoriagavrosh.shelf.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -12,17 +11,17 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.home.R
-import com.viktoriagavrosh.home.model.TaleUiHome
+import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display a grid of [TaleUiHome]-s on expanded screen
+ * Composable to display a grid of [Book]-s on expanded screen
  */
 @Composable
 internal fun GridTales(
-    tales: List<TaleUiHome>,
-    onCardClick: (TaleUiHome) -> Unit,
-    onHeartClick: (TaleUiHome) -> Unit,
+    tales: List<Book>,
+    onCardClick: (Book) -> Unit,
+    onHeartClick: (Book) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -33,6 +32,7 @@ internal fun GridTales(
         modifier = modifier
     ) {
         items(tales) { tale ->
+            /*   TODO 111
             TaleCard(
                 tale = tale,
                 minLineText = 2,
@@ -42,6 +42,8 @@ internal fun GridTales(
                     dimensionResource(id = R.dimen.padding_medium)
                 )
             )
+
+             */
         }
     }
 }
@@ -53,7 +55,7 @@ private fun GridTalesPreview() {
     FairyTalesTheme {
         GridTales(
             tales = List(5) {
-                TaleUiHome(
+                Book(
                     title = "Story"
                 )
             },

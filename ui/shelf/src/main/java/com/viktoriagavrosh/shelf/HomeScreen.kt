@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.home
+package com.viktoriagavrosh.shelf
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
@@ -13,10 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.viktoriagavrosh.home.elements.Genre
-import com.viktoriagavrosh.home.elements.bars.BottomNavigateBar
-import com.viktoriagavrosh.home.elements.bars.HomeNavigationRail
-import com.viktoriagavrosh.home.model.TaleUiHome
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.shelf.elements.Genre
+import com.viktoriagavrosh.shelf.elements.bars.BottomNavigateBar
+import com.viktoriagavrosh.shelf.elements.bars.HomeNavigationRail
+import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
@@ -25,11 +26,16 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 fun HomeScreen(
     windowSize: WindowWidthSizeClass,
-    onCardClick: (TaleUiHome) -> Unit,
+    onCardClick: (Book) -> Unit,
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: TalesListViewModel = hiltViewModel(),
+    viewModel: ShelfViewModel = hiltViewModel(
+        creationCallback = { factory: ShelfViewModel.ShelfViewModelFactory ->
+            factory.create(genreName = "fairy")  // TODO 111
+        }
+    ),
 ) {
+    /*  TODO 111
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val screenState by viewModel.screenState.collectAsStateWithLifecycle(HomeScreenState.None())
 
@@ -38,23 +44,25 @@ fun HomeScreen(
         screenState = screenState,
         windowSize = windowSize,
         onCardClick = onCardClick,
-        onTabClick = viewModel::updateGenre,
+        onTabClick = viewModel::updateScreenState,
         onTopBarHeartClick = viewModel::updateFavoriteTalesList,
         onHeartClick = viewModel::updateTaleFavorite,
         onSettingsClick = onSettingsClick,
         modifier = modifier,
     )
-}
 
+     */
+}
+/*
 @Composable
 internal fun HomeScreen(
     uiState: TalesListUiState,
     screenState: HomeScreenState,
     windowSize: WindowWidthSizeClass,
-    onCardClick: (TaleUiHome) -> Unit,
+    onCardClick: (Book) -> Unit,
     onTabClick: (Genre) -> Unit,
     onTopBarHeartClick: () -> Unit,
-    onHeartClick: (TaleUiHome) -> Unit,
+    onHeartClick: (Book) -> Unit,
     onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -111,7 +119,7 @@ private fun CompactHomeScreenPreview() {
             uiState = TalesListUiState(),
             screenState = HomeScreenState.Success(
                 List(4) {
-                    TaleUiHome(
+                    Book(
                         id = it,
                         title = "title",
                     )
@@ -136,7 +144,7 @@ private fun MediumHomeScreenPreview() {
             uiState = TalesListUiState(),
             screenState = HomeScreenState.Success(
                 List(4) {
-                    TaleUiHome(
+                    Book(
                         id = it,
                         title = "title",
                     )
@@ -161,7 +169,7 @@ private fun ExpandedHomeScreenPreview() {
             uiState = TalesListUiState(),
             screenState = HomeScreenState.Success(
                 List(4) {
-                    TaleUiHome(
+                    Book(
                         id = it,
                         title = "title",
                     )
@@ -176,3 +184,6 @@ private fun ExpandedHomeScreenPreview() {
         )
     }
 }
+
+
+ */

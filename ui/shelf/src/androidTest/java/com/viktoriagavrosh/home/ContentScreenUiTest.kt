@@ -8,8 +8,11 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.viktoriagavrosh.home.elements.Genre
-import com.viktoriagavrosh.home.model.TaleUiHome
+import com.viktoriagavrosh.shelf.elements.Genre
+import com.viktoriagavrosh.shelf.model.Book
+import com.viktoriagavrosh.shelf.ContentScreen
+import com.viktoriagavrosh.shelf.HomeScreenState
+import com.viktoriagavrosh.shelf.TalesListUiState
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test
@@ -18,7 +21,7 @@ class ContentScreenUiTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-    private val fakeList: List<TaleUiHome> = listOf(TaleUiHome(title = "Story"))
+    private val fakeList: List<Book> = listOf(Book(title = "Story"))
 
     @Test
     fun contentScreen_storyTypeVerticalScreen_verifyContent() {

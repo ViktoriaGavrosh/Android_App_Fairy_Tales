@@ -8,6 +8,9 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.viktoriagavrosh.shelf.HomeScreen
+import com.viktoriagavrosh.shelf.HomeScreenState
+import com.viktoriagavrosh.shelf.TalesListUiState
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test

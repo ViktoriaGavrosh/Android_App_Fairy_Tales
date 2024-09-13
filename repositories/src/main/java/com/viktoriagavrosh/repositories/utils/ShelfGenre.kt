@@ -24,6 +24,16 @@ sealed interface ShelfGenre {
             get() = "riddle"
     }
 
+    data object Nights : ShelfGenre {
+        override val genreName: String
+            get() = "night"
+    }
+
+    data object Favorites : ShelfGenre {
+        override val genreName: String
+            get() = "favorite"
+    }
+
     enum class Folks : ShelfGenre {
         Poem {
             override val genreName: String
