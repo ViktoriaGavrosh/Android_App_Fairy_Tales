@@ -2,7 +2,7 @@ package com.viktoriagavrosh.repositories.utils
 
 sealed interface ShelfGenre {
 
-    abstract val genreName: String
+    val genreName: String
 
     enum class Tales : ShelfGenre {
         Animal {

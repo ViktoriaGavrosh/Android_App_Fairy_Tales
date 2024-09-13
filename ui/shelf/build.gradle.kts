@@ -42,7 +42,6 @@ dependencies {
 
     implementation(libs.core.ktx)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.coil.compose)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.lifecycle.viewmodel.compose)

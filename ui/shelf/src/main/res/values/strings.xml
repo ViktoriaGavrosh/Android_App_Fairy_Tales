@@ -16,8 +16,6 @@
 
     <string name="answer">answer</string>
     <string name="answer_button">Адгадка</string>
-    <string name="favorite">favorite</string>
-    <string name="not_favorite">Not favorite</string>
     <string name="favorite_tales">Favorite folk works</string>
     <string name="all_tales">All folk works</string>
 

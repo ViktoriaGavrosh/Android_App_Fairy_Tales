@@ -59,7 +59,7 @@ dependencies {
     implementation(projects.datastore)
     implementation(projects.repositories)
     implementation(projects.ui.navigation)
-    implementation(projects.ui.home)
+    implementation(projects.ui.shelf)
     implementation(projects.ui.details)
     implementation(projects.ui.settings)
     implementation(projects.uitheme)

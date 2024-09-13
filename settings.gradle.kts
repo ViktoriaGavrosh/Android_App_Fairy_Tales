@@ -21,10 +21,11 @@ include(":app")
 include(":database")
 include(":datastore")
 include(":repositories")
-include(":ui:home")
+include(":ui:shelf")
 include(":ui:navigation")
 include(":ui:details")
 include(":ui:settings")
+include(":ui:uikit")
 include(":uitheme")
 
 
