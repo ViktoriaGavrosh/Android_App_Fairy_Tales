@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.home.elements
+package com.viktoriagavrosh.settings
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
@@ -32,24 +32,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.viktoriagavrosh.home.R
-import com.viktoriagavrosh.home.model.TaleUiHome
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Card for display [TaleUiHome]
+ * Card for display one item
  */
 @Composable
-internal fun TaleCard(
+internal fun ShelfCard(
     modifier: Modifier = Modifier,
-    tale: TaleUiHome,
+    itemId: Int,
+    title: String,
+    imageUrl: String?,
+    isFavorite: Boolean = false,
+    isHeartShow: Boolean = false,
+    isBlur: Boolean = false,
     minLineText: Int = 1,
-    onCardClick: (TaleUiHome) -> Unit,
-    onHeartClick: (TaleUiHome) -> Unit
+    onCardClick: (Int) -> Unit,
+    onHeartClick: (Int) -> Unit
 ) {
     Card(
         modifier = modifier,
-        onClick = { onCardClick(tale) },
+        onClick = { onCardClick(itemId) },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
@@ -65,56 +69,74 @@ internal fun TaleCard(
                 )
         ) {
             CardText(
-                tale = tale,
+                itemId = itemId,
+                title = title,
+                isFavorite = isFavorite,
+                isHeartShow = isHeartShow,
                 onHeartClick = onHeartClick,
                 modifier = Modifier.fillMaxWidth(),
                 minLineText = minLineText
             )
-            TaleImage(
-                title = tale.title,
-                imageUri = tale.imageUri ?: "",
-                isBlur = tale.genre == Genre.Puzzle,
-                modifier = Modifier.fillMaxWidth()
-            )
+            if (imageUrl != null) {
+                TaleImage(
+                    title = title,
+                    imageUrl = imageUrl,
+                    isBlur = isBlur,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }
 
 @Composable
 private fun CardText(
-    tale: TaleUiHome,
-    onHeartClick: (TaleUiHome) -> Unit,
+    itemId: Int,
+    title: String,
+    isFavorite: Boolean,
+    isHeartShow: Boolean,
+    onHeartClick: (Int) -> Unit,
     minLineText: Int,
     modifier: Modifier = Modifier
 ) {
-    val painterId: Int
-    val contentDescriptionId: Int
-
-    if (tale.isFavorite) {
-        painterId = R.drawable.ic_favorite_true
-        contentDescriptionId = R.string.favorite
-    } else {
-        painterId = R.drawable.ic_favorite_false
-        contentDescriptionId = R.string.not_favorite
-    }
-
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = tale.title,
+            text = title,
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier.weight(1F),
             minLines = minLineText
         )
+        if (isHeartShow) {
+            HeartIcon(
+                isFavorite = isFavorite,
+                modifier = Modifier
+                    .clickable { onHeartClick(itemId) }
+                    .padding(start = dimensionResource(id = R.dimen.padding_small))
+            )
+        }
+    }
+}
+
+@Composable
+private fun HeartIcon(
+    isFavorite: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    if (isFavorite) {
         Icon(
-            painter = painterResource(id = painterId),
-            contentDescription = stringResource(id = contentDescriptionId),
-            modifier = Modifier
-                .clickable { onHeartClick(tale) }
-                .padding(start = dimensionResource(id = R.dimen.padding_small))
+            painter = painterResource(id = R.drawable.ic_favorite_true),
+            contentDescription = stringResource(id = R.string.favorite),
+            modifier = modifier
+        )
+    } else {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_favorite_false),
+            contentDescription = stringResource(id = R.string.not_favorite),
+            modifier = modifier
         )
     }
 }
@@ -123,13 +145,13 @@ private fun CardText(
 private fun TaleImage(
     modifier: Modifier = Modifier,
     title: String,
-    imageUri: String,
+    imageUrl: String,
     isBlur: Boolean = false
 ) {
     AsyncImage(
         model = ImageRequest
             .Builder(context = LocalContext.current)
-            .data(imageUri)
+            .data(imageUrl)
             .crossfade(true)
             .build(),
         contentDescription = title,
@@ -163,10 +185,26 @@ private fun TaleImage(
 @Composable
 private fun ShortTitleCardPreview() {
     FairyTalesTheme {
-        TaleCard(
-            tale = TaleUiHome(
-                title = "Story"
-            ),
+        ShelfCard(
+            itemId = 1,
+            title = "Title",
+            imageUrl = "",
+            onCardClick = {},
+            onHeartClick = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun WithHeartCardPreview() {
+    FairyTalesTheme {
+        ShelfCard(
+            itemId = 1,
+            title = "Title",
+            imageUrl = "",
+            isHeartShow = true,
+            isFavorite = false,
             onCardClick = {},
             onHeartClick = {}
         )
@@ -177,10 +215,12 @@ private fun ShortTitleCardPreview() {
 @Composable
 private fun MiddleTitleCardPreview() {
     FairyTalesTheme {
-        TaleCard(
-            tale = TaleUiHome(
-                title = "This is the name of the story"
-            ),
+        ShelfCard(
+            itemId = 1,
+            title = "This is the title of the card",
+            imageUrl = "",
+            isHeartShow = true,
+            isFavorite = false,
             onCardClick = {},
             onHeartClick = {}
         )
@@ -191,11 +231,42 @@ private fun MiddleTitleCardPreview() {
 @Composable
 private fun FavoriteCardPreview() {
     FairyTalesTheme {
-        TaleCard(
-            tale = TaleUiHome(
-                title = "Story",
-                isFavorite = true,
-            ),
+        ShelfCard(
+            itemId = 1,
+            title = "Title",
+            imageUrl = "",
+            isFavorite = true,
+            isHeartShow = true,
+            onCardClick = {},
+            onHeartClick = {}
+        )
+    }
+}
+
+
+@Preview
+@Composable
+private fun BlurCardPreview() {
+    FairyTalesTheme {
+        ShelfCard(
+            itemId = 1,
+            title = "Title",
+            imageUrl = "",
+            isBlur = true,
+            onCardClick = {},
+            onHeartClick = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun WithoutImageCardPreview() {
+    FairyTalesTheme {
+        ShelfCard(
+            itemId = 1,
+            title = "This is the title of the card",
+            imageUrl = null,
             onCardClick = {},
             onHeartClick = {}
         )
