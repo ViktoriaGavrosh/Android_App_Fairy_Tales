@@ -2,7 +2,7 @@ package com.viktoriagavrosh.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.viktoriagavrosh.repositories.settings.SettingsRepository
+import com.viktoriagavrosh.repositories.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,12 +30,15 @@ class SettingsViewModel @Inject constructor(
 
     private fun getSettingsState() {
         viewModelScope.launch {
+            /*
             val actualTextSize = settingsRepository.getTextSize()
                 .map { convertToValidTextSize(it) }
                 .first()
+
+             */
             _uiState.update {
                 it.copy(
-                    textSize = actualTextSize
+                    textSize = 2.4F   //actualTextSize   TODO заглушка
                 )
             }
         }

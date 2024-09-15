@@ -1,0 +1,239 @@
+package com.viktoriagavrosh.shelf.elements
+
+import android.content.res.Configuration
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.shelf.R
+import com.viktoriagavrosh.shelf.model.Book
+import com.viktoriagavrosh.shelf.utils.Tabs
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
+
+/**
+ * Composable to display [Book] list or grid screen
+ */
+@Composable
+internal fun ContentScreen(
+    books: List<Book>,
+    genre: ShelfGenre,
+    tabs: List<Tabs>,
+    isVerticalScreen: Boolean,
+    onCardClick: (Int) -> Unit,
+    onTabClick: (ShelfGenre) -> Unit,
+    onBackClick: () -> Unit,
+    onHeartClick: (Book) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val topBarTitle = stringResource(getTitleId(genre))
+
+    val isTabsShow = (genre is ShelfGenre.Tales) || (genre is ShelfGenre.Folks)   // TODO check how it works 111
+    val isHeartShow = genre is ShelfGenre.Tales
+
+    if (isVerticalScreen) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+
+        ) {
+            Bookshelf(
+                books = books,
+                topBarTitle = topBarTitle,
+                isVerticalScreen = true,
+                isHeartShow = isHeartShow,
+                onCardClick = onCardClick,
+                onBackClick = onBackClick,
+                onHeartClick = onHeartClick,
+                modifier = Modifier.weight(1F)
+            )
+            if (isTabsShow) {
+                BottomTabBar(
+                    tabs = tabs,
+                    selectedTab = genre,
+                    onTabClick = onTabClick,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+        }
+    } else {
+        Row(modifier = modifier) {
+            if (isTabsShow) {
+                LeftTabRail(
+                    tabs = tabs,
+                    selectedTab = genre,
+                    onTabClick = onTabClick,
+                    modifier = Modifier.fillMaxHeight()
+                )
+            }
+            Bookshelf(
+                books = books,
+                topBarTitle = topBarTitle,
+                isVerticalScreen = false,
+                isHeartShow = isHeartShow,
+                onCardClick = onCardClick,
+                onBackClick = onBackClick,
+                onHeartClick = onHeartClick,
+               // modifier = Modifier.weight(1F)
+            )
+        }
+    }
+}
+
+private fun getTitleId(genre: ShelfGenre): Int {
+    return when (genre) {
+        ShelfGenre.Tales.Animal -> Tabs.TaleTab.Animal.textId
+        ShelfGenre.Tales.Fairy -> Tabs.TaleTab.Fairy.textId
+        ShelfGenre.Tales.People -> Tabs.TaleTab.People.textId
+        ShelfGenre.Folks.Poem -> Tabs.FolkTab.Poem.textId
+        ShelfGenre.Folks.Counting -> Tabs.FolkTab.Counting.textId
+        ShelfGenre.Folks.Lullaby -> Tabs.FolkTab.Lullaby.textId
+        ShelfGenre.Riddles -> R.string.title_riddles
+        ShelfGenre.Nights -> R.string.title_night
+        ShelfGenre.Favorites -> R.string.title_favorite
+    }
+}
+/* TODO 111 ErrorScreen
+@Composable
+private fun ErrorHomeScreen(
+    onTabClick: (Genre) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.error_text),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.displaySmall
+        )
+        Button(
+            onClick = { onTabClick(Genre.Story) },
+            modifier = Modifier
+                .padding(top = dimensionResource(id = R.dimen.padding_extra_large))
+        ) {
+            Text(
+                text = stringResource(R.string.error_button_text),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.displaySmall,
+
+                )
+        }
+    }
+}
+
+ */
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            books = List(4) {
+                Book(
+                    title = "Poem"
+                )
+            },
+            genre = ShelfGenre.Folks.Poem,
+            tabs = Tabs.FolkTab.entries,
+            isVerticalScreen = true,
+            onCardClick = {},
+            onTabClick = {},
+            onBackClick = {},
+            onHeartClick = {},
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 700)
+@Preview(name = "Dark", widthDp = 700, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalFavoriteContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            books = List(4) {
+                Book(
+                    title = "Tale"
+                )
+            },
+            genre = ShelfGenre.Tales.Animal,
+            tabs = Tabs.TaleTab.entries,
+            isVerticalScreen = true,
+            onCardClick = {},
+            onTabClick = {},
+            onBackClick = {},
+            onHeartClick = {},
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            books = List(4) {
+                Book(
+                    title = "Poem"
+                )
+            },
+            genre = ShelfGenre.Folks.Poem,
+            tabs = Tabs.FolkTab.entries,
+            isVerticalScreen = false,
+            onCardClick = {},
+            onTabClick = {},
+            onBackClick = {},
+            onHeartClick = {},
+        )
+    }
+}
+/*
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalErrorContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            screenState = HomeScreenState.Error(),
+            topBarTextId = R.string.title_fairy_tales,
+            isFavoriteTalesList = false,
+            isCompactScreen = true,
+            onHeartClick = {},
+            onTopBarHeartClick = {},
+            onTabClick = {},
+            onCardClick = {},
+            onSettingsClick = {},
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalErrorContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            screenState = HomeScreenState.Error(),
+            topBarTextId = R.string.title_fairy_tales,
+            isFavoriteTalesList = false,
+            isCompactScreen = true,
+            onHeartClick = {},
+            onTopBarHeartClick = {},
+            onTabClick = {},
+            onCardClick = {},
+            onSettingsClick = {},
+        )
+    }
+}
+
+
+ */

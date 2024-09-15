@@ -1,5 +1,5 @@
 package com.viktoriagavrosh.home
-
+/*
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -74,3 +74,6 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     @StringRes id: Int
 ): SemanticsNodeInteraction =
     onNodeWithTag(activity.getString(id))
+
+
+ */

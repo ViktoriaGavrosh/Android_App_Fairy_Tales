@@ -32,28 +32,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Card for display one item
  */
 @Composable
-internal fun ShelfCard(
+fun ItemCard(
     modifier: Modifier = Modifier,
-    itemId: Int,
     title: String,
     imageUrl: String?,
     isFavorite: Boolean = false,
     isHeartShow: Boolean = false,
     isBlur: Boolean = false,
     minLineText: Int = 1,
-    onCardClick: (Int) -> Unit,
-    onHeartClick: (Int) -> Unit
+    onCardClick: () -> Unit,
+    onHeartClick: () -> Unit
 ) {
     Card(
         modifier = modifier,
-        onClick = { onCardClick(itemId) },
+        onClick = { onCardClick() },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
@@ -69,7 +67,6 @@ internal fun ShelfCard(
                 )
         ) {
             CardText(
-                itemId = itemId,
                 title = title,
                 isFavorite = isFavorite,
                 isHeartShow = isHeartShow,
@@ -91,11 +88,10 @@ internal fun ShelfCard(
 
 @Composable
 private fun CardText(
-    itemId: Int,
     title: String,
     isFavorite: Boolean,
     isHeartShow: Boolean,
-    onHeartClick: (Int) -> Unit,
+    onHeartClick: () -> Unit,
     minLineText: Int,
     modifier: Modifier = Modifier
 ) {
@@ -114,7 +110,7 @@ private fun CardText(
             HeartIcon(
                 isFavorite = isFavorite,
                 modifier = Modifier
-                    .clickable { onHeartClick(itemId) }
+                    .clickable { onHeartClick() }
                     .padding(start = dimensionResource(id = R.dimen.padding_small))
             )
         }
@@ -185,8 +181,7 @@ private fun TaleImage(
 @Composable
 private fun ShortTitleCardPreview() {
     FairyTalesTheme {
-        ShelfCard(
-            itemId = 1,
+        ItemCard(
             title = "Title",
             imageUrl = "",
             onCardClick = {},
@@ -199,8 +194,7 @@ private fun ShortTitleCardPreview() {
 @Composable
 private fun WithHeartCardPreview() {
     FairyTalesTheme {
-        ShelfCard(
-            itemId = 1,
+        ItemCard(
             title = "Title",
             imageUrl = "",
             isHeartShow = true,
@@ -215,8 +209,7 @@ private fun WithHeartCardPreview() {
 @Composable
 private fun MiddleTitleCardPreview() {
     FairyTalesTheme {
-        ShelfCard(
-            itemId = 1,
+        ItemCard(
             title = "This is the title of the card",
             imageUrl = "",
             isHeartShow = true,
@@ -231,8 +224,7 @@ private fun MiddleTitleCardPreview() {
 @Composable
 private fun FavoriteCardPreview() {
     FairyTalesTheme {
-        ShelfCard(
-            itemId = 1,
+        ItemCard(
             title = "Title",
             imageUrl = "",
             isFavorite = true,
@@ -248,8 +240,7 @@ private fun FavoriteCardPreview() {
 @Composable
 private fun BlurCardPreview() {
     FairyTalesTheme {
-        ShelfCard(
-            itemId = 1,
+        ItemCard(
             title = "Title",
             imageUrl = "",
             isBlur = true,
@@ -263,8 +254,7 @@ private fun BlurCardPreview() {
 @Composable
 private fun WithoutImageCardPreview() {
     FairyTalesTheme {
-        ShelfCard(
-            itemId = 1,
+        ItemCard(
             title = "This is the title of the card",
             imageUrl = null,
             onCardClick = {},

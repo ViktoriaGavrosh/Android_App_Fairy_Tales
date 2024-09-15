@@ -7,7 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.viktoriagavrosh.details.DetailScreen
-import com.viktoriagavrosh.shelf.HomeScreen
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.shelf.ShelfScreen
 import com.viktoriagavrosh.settings.SettingsScreen
 
 /**
@@ -27,17 +28,16 @@ fun FairyTalesApp(
         composable(
             route = NavigationDestination.HomeScreen.screen
         ) {
-            HomeScreen(
-                windowSize = windowSize,
-                onCardClick = { tale ->
+            ShelfScreen(
+                genreName = ShelfGenre.Tales.Fairy.genreName,  // TODO 111 заглушка
+                isVerticalScreen = windowSize == WindowWidthSizeClass.Compact,
+                onCardClick = { id ->
                     navController.navigate(
-                        route = "${NavigationDestination.DetailScreen.screen}/${tale.id}"
+                        route = "${NavigationDestination.DetailScreen.screen}/${id}"
                     )
                 },
-                onSettingsClick = {
-                    navController.navigate(NavigationDestination.SettingsScreen.screen)
-                },
-                modifier = modifier
+                onBackClick = { navController.navigateUp() },
+                modifier = modifier,
             )
         }
         composable(

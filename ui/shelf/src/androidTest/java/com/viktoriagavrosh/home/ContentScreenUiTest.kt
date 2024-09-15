@@ -1,5 +1,5 @@
 package com.viktoriagavrosh.home
-
+/*
 import androidx.activity.ComponentActivity
 import androidx.annotation.StringRes
 import androidx.compose.ui.test.SemanticsNodeInteraction
@@ -241,3 +241,6 @@ internal fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule
     @StringRes id: Int
 ): SemanticsNodeInteraction =
     onNodeWithText(activity.getString(id))
+
+
+ */

@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.shelf.elements.bars
+package com.viktoriagavrosh.shelf.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.sizeIn
@@ -14,29 +14,32 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.home.R
-import com.viktoriagavrosh.shelf.elements.Genre
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.shelf.R
+import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * App bar to display tabs on compact screen
  */
 @Composable
-internal fun BottomNavigateBar(
-    selectedGenre: Genre,
-    onTabClick: (Genre) -> Unit,
+internal fun BottomTabBar(
+    tabs: List<Tabs>,
+    selectedTab: ShelfGenre,
+    onTabClick: (ShelfGenre) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val bottomNavigateBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
+
     NavigationBar(
         modifier = modifier
             .testTag(bottomNavigateBarTestTag)
             .sizeIn(maxHeight = dimensionResource(id = R.dimen.max_bottom_navigation_bar_height))
     ) {
-        for (item in Genre.entries) {
+        for (item in tabs) {
             NavigationBarItem(
-                selected = item == selectedGenre,
-                onClick = { onTabClick(item) },
+                selected = item == selectedTab,
+                onClick = { onTabClick(item.genre) },
                 icon = {
                     Icon(
                         painter = painterResource(id = item.iconId),
@@ -55,8 +58,9 @@ internal fun BottomNavigateBar(
 @Composable
 private fun BottomNavigateBarPreview() {
     FairyTalesTheme {
-        BottomNavigateBar(
-            selectedGenre = Genre.Puzzle,
+        BottomTabBar(
+            tabs = Tabs.FolkTab.entries,
+            selectedTab = ShelfGenre.Folks.Poem,
             onTabClick = {}
         )
     }

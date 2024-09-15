@@ -6,6 +6,7 @@ import com.viktoriagavrosh.repositories.ShelfRepository
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.repositories.utils.toShelfGenre
 import com.viktoriagavrosh.shelf.model.Book
+import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.shelf.utils.toBook
 import com.viktoriagavrosh.shelf.utils.toScreenState
 import com.viktoriagavrosh.uikit.utils.ScreenState
@@ -16,6 +17,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -31,16 +33,20 @@ class ShelfViewModel @AssistedInject constructor(
 
     private lateinit var _screenState: Flow<ScreenState<List<Book>>>
 
+    internal lateinit var tabs: List<Tabs>
+
     init {
-        updateScreenState(genreName.toShelfGenre())
+        val genre = genreName.toShelfGenre()
+        updateScreenState(genre)
+        initTabs(genre)
     }
 
     internal val screenState: StateFlow<ScreenState<List<Book>>> = _screenState
-            .stateIn(
-                viewModelScope,
-                SharingStarted.Lazily,
-                ScreenState.None()
-            )
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            ScreenState.None()
+        )
 
     /**
      * Update [ScreenState] for navigation between tabs
@@ -62,9 +68,17 @@ class ShelfViewModel @AssistedInject constructor(
      */
     fun updateBookFavorite(book: Book) {
         viewModelScope.launch {
-            shelfRepository.updateFavoriteTale(book.id, book.isFavorite)
+            shelfRepository.updateFavoriteTale(book.id, !book.isFavorite)
         }
         updateScreenState(book.genre)   // TODO check : uiState might update without it ???
+    }
+
+    private fun initTabs(genre: ShelfGenre) {
+        tabs = when (genre) {
+            in ShelfGenre.Folks.entries -> Tabs.FolkTab.entries
+            in ShelfGenre.Tales.entries -> Tabs.TaleTab.entries
+            else -> emptyList()
+        }
     }
 
     @AssistedFactory

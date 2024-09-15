@@ -7,10 +7,13 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
 import com.viktoriagavrosh.datastore.PreferencesManager
-import com.viktoriagavrosh.repositories.settings.DatastoreSettingsRepository
-import com.viktoriagavrosh.repositories.settings.SettingsRepository
-import com.viktoriagavrosh.repositories.tale.OfflineTaleRepository
-import com.viktoriagavrosh.repositories.tale.TaleRepository
+import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
+import com.viktoriagavrosh.repositories.DetailRepository
+import com.viktoriagavrosh.repositories.OfflineDetailRepository
+import com.viktoriagavrosh.repositories.OfflineShelfRepository
+import com.viktoriagavrosh.repositories.SettingsRepository
+import com.viktoriagavrosh.repositories.ShelfRepository
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,12 +41,31 @@ object AppModule {
         )
     }
 
+    /*
+        @Provides
+        @Singleton
+        fun provideTaleRepository(
+            appDatabase: AppDatabase
+        ): TaleRepository {
+            return OfflineTaleRepository(appDatabase)
+        }
+
+     */
     @Provides
     @Singleton
-    fun provideTaleRepository(
+    fun provideShelfRepository(
         appDatabase: AppDatabase
-    ): TaleRepository {
-        return OfflineTaleRepository(appDatabase)
+    ): ShelfRepository {
+        return OfflineShelfRepository(appDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDetailRepository(
+        appDatabase: AppDatabase,
+        preferencesManager: PreferencesManager
+    ): DetailRepository {
+        return OfflineDetailRepository(appDatabase, preferencesManager)
     }
 
     @Provides

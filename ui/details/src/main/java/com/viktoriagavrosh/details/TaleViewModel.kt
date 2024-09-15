@@ -29,13 +29,25 @@ class TaleViewModel @AssistedInject constructor(
     private val settingsRepository: SettingsRepository,
 ) : ViewModel() {
 
-    internal val tales: StateFlow<DetailScreenState> = taleRepository.getItemById(taleId, ShelfGenre.Tales.Fairy)  // TODO 111
+    internal val tales: StateFlow<DetailScreenState> =
+        flow { emit(DetailScreenState.Error()) }   // TODO тут і 4 строчкі ніже - заглушка
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            DetailScreenState.None()
+        )
+
+        /*  TODO 111
+        taleRepository
+        .getItemById(taleId, ShelfGenre.Tales.Fairy)  // TODO 111
         .map { it.toDetailScreenState() }
         .stateIn(
             viewModelScope,
             SharingStarted.Lazily,
             DetailScreenState.None()
         )
+
+         */
 
     /**
      * TextSize from data source

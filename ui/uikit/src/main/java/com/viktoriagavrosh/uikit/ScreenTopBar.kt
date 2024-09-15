@@ -25,7 +25,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ScreenTopBar(
+fun ScreenTopBar(
     text: String,
     scrollBehavior: TopAppBarScrollBehavior,
     modifier: Modifier = Modifier,

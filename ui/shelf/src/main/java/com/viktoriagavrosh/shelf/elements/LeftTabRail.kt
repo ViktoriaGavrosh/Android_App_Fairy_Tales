@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.shelf.elements.bars
+package com.viktoriagavrosh.shelf.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.padding
@@ -14,17 +14,19 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.home.R
-import com.viktoriagavrosh.shelf.elements.Genre
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.shelf.R
+import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * App bar to display tabs on medium screen
  */
 @Composable
-internal fun HomeNavigationRail(
-    selectedGenre: Genre,
-    onTabClick: (Genre) -> Unit,
+internal fun LeftTabRail(
+    tabs: List<Tabs>,
+    selectedTab: ShelfGenre,
+    onTabClick: (ShelfGenre) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val verticalNavigationRailTestTag = stringResource(
@@ -35,10 +37,10 @@ internal fun HomeNavigationRail(
             .padding(top = dimensionResource(id = R.dimen.padding_double_extra_large))
             .testTag(verticalNavigationRailTestTag)
     ) {
-        for (item in Genre.entries) {
+        for (item in tabs) {
             NavigationRailItem(
-                selected = item == selectedGenre,
-                onClick = { onTabClick(item) },
+                selected = item == selectedTab,
+                onClick = { onTabClick(item.genre) },
                 icon = {
                     Icon(
                         painter = painterResource(id = item.iconId),
@@ -57,8 +59,9 @@ internal fun HomeNavigationRail(
 @Composable
 private fun VerticalNavigationRailPreview() {
     FairyTalesTheme {
-        HomeNavigationRail(
-            selectedGenre = Genre.Puzzle,
+        LeftTabRail(
+            tabs = Tabs.FolkTab.entries,
+            selectedTab = ShelfGenre.Folks.Poem,
             onTabClick = {}
         )
     }

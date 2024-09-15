@@ -3,7 +3,7 @@ package com.viktoriagavrosh.details.utils
 import com.viktoriagavrosh.details.DetailScreenState
 import com.viktoriagavrosh.details.model.TaleUiDetail
 import com.viktoriagavrosh.repositories.model.Tale
-import com.viktoriagavrosh.repositories.tale.RequestResult
+import com.viktoriagavrosh.repositories.utils.RequestResult
 
 internal fun RequestResult<Tale>.toDetailScreenState(): DetailScreenState {
     return when (this) {
@@ -18,10 +18,10 @@ internal fun RequestResult<Tale>.toDetailScreenState(): DetailScreenState {
 fun Tale.toTaleUiDetail(): TaleUiDetail {
     return TaleUiDetail(
         id = id,
-        genre = genre,
+        genre = genre.genreName,    //genre,   TODO 111
         title = title,
         text = text,
-        answer = answer,
+        answer = title,   //  answer,   TODO 111
         imageUri = imageUrl,
         audioUri = audioUrl,
         isFavorite = isFavorite
