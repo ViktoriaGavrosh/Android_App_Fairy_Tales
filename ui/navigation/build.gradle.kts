@@ -55,6 +55,7 @@ dependencies {
     // Modules
     implementation(projects.repositories)
     implementation(projects.ui.shelf)
+    //implementation(project(":ui:shelf"))  // TODO  111
     implementation(projects.ui.details)
     implementation(projects.ui.settings)
     implementation(projects.uitheme)

@@ -139,7 +139,8 @@ private fun VerticalContentScreenPreview() {
         ContentScreen(
             books = List(4) {
                 Book(
-                    title = "Poem"
+                    title = "Poem",
+                    imageUrl = "",
                 )
             },
             genre = ShelfGenre.Folks.Poem,
@@ -161,7 +162,8 @@ private fun VerticalFavoriteContentScreenPreview() {
         ContentScreen(
             books = List(4) {
                 Book(
-                    title = "Tale"
+                    title = "Tale",
+                    imageUrl = "",
                 )
             },
             genre = ShelfGenre.Tales.Animal,
@@ -183,7 +185,8 @@ private fun HorizontalContentScreenPreview() {
         ContentScreen(
             books = List(4) {
                 Book(
-                    title = "Poem"
+                    title = "Poem",
+                    imageUrl = "",
                 )
             },
             genre = ShelfGenre.Folks.Poem,

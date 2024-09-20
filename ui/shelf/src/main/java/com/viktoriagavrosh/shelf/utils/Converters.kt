@@ -9,6 +9,7 @@ import com.viktoriagavrosh.repositories.utils.RequestResult
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.uikit.utils.ScreenState
 
+// TODO move ti uikit 111
 internal fun <T: Any, S: Any> RequestResult<T>.toScreenState(convertData: (T) -> S): ScreenState<S> {
     return when (this) {
         is RequestResult.Success -> ScreenState.Success(

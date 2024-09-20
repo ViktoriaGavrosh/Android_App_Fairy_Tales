@@ -1,8 +1,10 @@
 package com.viktoriagavrosh.shelf
 
+import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
@@ -11,6 +13,7 @@ import com.viktoriagavrosh.shelf.elements.ContentScreen
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uikit.utils.ScreenState
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Composable to display different screens depending on window size
@@ -76,53 +79,29 @@ internal fun ShelfScreen(
         }
     }
 }
-/*
+
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CompactHomeScreenPreview() {
     FairyTalesTheme {
-        HomeScreen(
-            uiState = TalesListUiState(),
-            screenState = HomeScreenState.Success(
+        ShelfScreen(
+            screenState = ScreenState.Success(
                 List(4) {
                     Book(
                         id = it,
                         title = "title",
+                        imageUrl = "",
                     )
                 }
             ),
-            windowSize = WindowWidthSizeClass.Compact,
+            genre = ShelfGenre.Folks.Poem,
+            tabs = Tabs.FolkTab.entries,
+            isVerticalScreen = true,
             onCardClick = {},
             onTabClick = {},
-            onTopBarHeartClick = {},
+            onBackClick = {},
             onHeartClick = {},
-            onSettingsClick = {},
-        )
-    }
-}
-
-@Preview(name = "Light", widthDp = 700)
-@Preview(name = "Dark", widthDp = 700, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun MediumHomeScreenPreview() {
-    FairyTalesTheme {
-        HomeScreen(
-            uiState = TalesListUiState(),
-            screenState = HomeScreenState.Success(
-                List(4) {
-                    Book(
-                        id = it,
-                        title = "title",
-                    )
-                }
-            ),
-            windowSize = WindowWidthSizeClass.Medium,
-            onCardClick = {},
-            onTabClick = {},
-            onTopBarHeartClick = {},
-            onHeartClick = {},
-            onSettingsClick = {},
         )
     }
 }
@@ -132,25 +111,23 @@ private fun MediumHomeScreenPreview() {
 @Composable
 private fun ExpandedHomeScreenPreview() {
     FairyTalesTheme {
-        HomeScreen(
-            uiState = TalesListUiState(),
-            screenState = HomeScreenState.Success(
+        ShelfScreen(
+            screenState = ScreenState.Success(
                 List(4) {
                     Book(
                         id = it,
                         title = "title",
+                        imageUrl = "",
                     )
                 }
             ),
-            windowSize = WindowWidthSizeClass.Expanded,
+            genre = ShelfGenre.Folks.Poem,
+            tabs = Tabs.FolkTab.entries,
+            isVerticalScreen = false,
             onCardClick = {},
             onTabClick = {},
-            onTopBarHeartClick = {},
+            onBackClick = {},
             onHeartClick = {},
-            onSettingsClick = {},
         )
     }
 }
-
-
- */

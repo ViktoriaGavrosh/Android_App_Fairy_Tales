@@ -105,7 +105,8 @@ private fun VerticalListTalesPreview() {
         Bookshelf(
             books = List(4) {
                 Book(
-                    title = "Story"
+                    title = "Story",
+                    imageUrl = "",
                 )
             },
             topBarTitle = "Title",
@@ -127,7 +128,8 @@ private fun HorizontalListTalesPreview() {
         Bookshelf(
             books = List(4) {
                 Book(
-                    title = "Story"
+                    title = "Story",
+                    imageUrl = "",
                 )
             },
             topBarTitle = "Title",
