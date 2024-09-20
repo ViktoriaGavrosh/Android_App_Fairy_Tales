@@ -104,6 +104,7 @@ class SettingsContentUiTest {
             FairyTalesTheme {
                 SettingsContent(
                     textSize = textSize,
+                    isVerticalScreen = true,
                     onTextSizeUpdate = {}
                 )
             }
