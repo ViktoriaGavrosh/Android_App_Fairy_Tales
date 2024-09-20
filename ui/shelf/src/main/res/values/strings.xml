@@ -24,6 +24,4 @@
     <string name="compact_screen_test_tag">compact screen</string>
     <string name="horizontal_detail_screen">Horizontal detail screen</string>
     <string name="vertical_detail_screen">Vertical detail screen</string>
-    <string name="error_text">Казк\u0456\nнедзе згуб\u0456л\u0456ся</string>
-    <string name="error_button_text">Шукаем</string>
 </resources>

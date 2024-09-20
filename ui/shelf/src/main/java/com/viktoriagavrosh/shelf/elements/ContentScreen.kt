@@ -79,7 +79,7 @@ internal fun ContentScreen(
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
-               // modifier = Modifier.weight(1F)
+               // modifier = Modifier.weight(1F)    TODO 111
             )
         }
     }
@@ -98,43 +98,11 @@ private fun getTitleId(genre: ShelfGenre): Int {
         ShelfGenre.Favorites -> R.string.title_favorite
     }
 }
-/* TODO 111 ErrorScreen
-@Composable
-private fun ErrorHomeScreen(
-    onTabClick: (Genre) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = stringResource(R.string.error_text),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.displaySmall
-        )
-        Button(
-            onClick = { onTabClick(Genre.Story) },
-            modifier = Modifier
-                .padding(top = dimensionResource(id = R.dimen.padding_extra_large))
-        ) {
-            Text(
-                text = stringResource(R.string.error_button_text),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.displaySmall,
-
-                )
-        }
-    }
-}
-
- */
 
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun VerticalContentScreenPreview() {
+private fun TabsVerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
             books = List(4) {
@@ -154,10 +122,10 @@ private fun VerticalContentScreenPreview() {
     }
 }
 
-@Preview(name = "Light", widthDp = 700)
-@Preview(name = "Dark", widthDp = 700, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun VerticalFavoriteContentScreenPreview() {
+private fun VerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
             books = List(4) {
@@ -166,9 +134,32 @@ private fun VerticalFavoriteContentScreenPreview() {
                     imageUrl = "",
                 )
             },
-            genre = ShelfGenre.Tales.Animal,
-            tabs = Tabs.TaleTab.entries,
+            genre = ShelfGenre.Nights,
+            tabs = emptyList(),
             isVerticalScreen = true,
+            onCardClick = {},
+            onTabClick = {},
+            onBackClick = {},
+            onHeartClick = {},
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun TabsHorizontalContentScreenPreview() {
+    FairyTalesTheme {
+        ContentScreen(
+            books = List(4) {
+                Book(
+                    title = "Poem",
+                    imageUrl = "",
+                )
+            },
+            genre = ShelfGenre.Nights,
+            tabs = emptyList(),
+            isVerticalScreen = false,
             onCardClick = {},
             onTabClick = {},
             onBackClick = {},
@@ -199,44 +190,3 @@ private fun HorizontalContentScreenPreview() {
         )
     }
 }
-/*
-@Preview(name = "Light")
-@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun VerticalErrorContentScreenPreview() {
-    FairyTalesTheme {
-        ContentScreen(
-            screenState = HomeScreenState.Error(),
-            topBarTextId = R.string.title_fairy_tales,
-            isFavoriteTalesList = false,
-            isCompactScreen = true,
-            onHeartClick = {},
-            onTopBarHeartClick = {},
-            onTabClick = {},
-            onCardClick = {},
-            onSettingsClick = {},
-        )
-    }
-}
-
-@Preview(name = "Light", widthDp = 1000)
-@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun HorizontalErrorContentScreenPreview() {
-    FairyTalesTheme {
-        ContentScreen(
-            screenState = HomeScreenState.Error(),
-            topBarTextId = R.string.title_fairy_tales,
-            isFavoriteTalesList = false,
-            isCompactScreen = true,
-            onHeartClick = {},
-            onTopBarHeartClick = {},
-            onTabClick = {},
-            onCardClick = {},
-            onSettingsClick = {},
-        )
-    }
-}
-
-
- */

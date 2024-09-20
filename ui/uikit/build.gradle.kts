@@ -31,9 +31,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
@@ -44,7 +41,7 @@ dependencies {
     // Compose
     implementation(platform(libs.compose.bom))
 
-    // Modules
+    //Modules
     implementation(projects.uitheme)
 
     testImplementation(libs.junit)

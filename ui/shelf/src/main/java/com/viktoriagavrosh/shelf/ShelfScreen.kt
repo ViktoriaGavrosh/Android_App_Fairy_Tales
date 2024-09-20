@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.shelf
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -12,6 +13,7 @@ import com.viktoriagavrosh.repositories.utils.toShelfGenre
 import com.viktoriagavrosh.shelf.elements.ContentScreen
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
+import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uikit.utils.ScreenState
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -43,6 +45,7 @@ fun ShelfScreen(
         onTabClick = viewModel::updateScreenState,
         onBackClick = onBackClick,
         onHeartClick = viewModel::updateBookFavorite,
+        onErrorButtonClick = viewModel::updateScreenState,
         modifier = modifier,
     )
 }
@@ -57,12 +60,16 @@ internal fun ShelfScreen(
     onTabClick: (ShelfGenre) -> Unit,
     onBackClick: () -> Unit,
     onHeartClick: (Book) -> Unit,
+    onErrorButtonClick: (ShelfGenre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     when(screenState) {
         is ScreenState.None -> {}
         is ScreenState.Error -> {
-            // ErrorScreen (from uikit)
+            ErrorScreen(
+                onButtonClick = { onErrorButtonClick(genre) },
+                modifier = modifier,
+            )
         }
         is ScreenState.Success -> {
             ContentScreen(
@@ -102,6 +109,7 @@ private fun CompactHomeScreenPreview() {
             onTabClick = {},
             onBackClick = {},
             onHeartClick = {},
+            onErrorButtonClick = {},
         )
     }
 }
@@ -128,6 +136,47 @@ private fun ExpandedHomeScreenPreview() {
             onTabClick = {},
             onBackClick = {},
             onHeartClick = {},
+            onErrorButtonClick = {},
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun VerticalErrorShelfScreenPreview() {
+    FairyTalesTheme {
+        ShelfScreen(
+            screenState = ScreenState.Error(),
+            genre = ShelfGenre.Folks.Poem,
+            tabs = emptyList(),
+            isVerticalScreen = true,
+            onCardClick = {},
+            onTabClick = {},
+            onBackClick = {},
+            onHeartClick = {},
+            onErrorButtonClick = {},
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+}
+
+@Preview(name = "Light", widthDp = 1000)
+@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun HorizontalErrorContentScreenPreview() {
+    FairyTalesTheme {
+        ShelfScreen(
+            screenState = ScreenState.Error(),
+            genre = ShelfGenre.Folks.Poem,
+            tabs = emptyList(),
+            isVerticalScreen = true,
+            onCardClick = {},
+            onTabClick = {},
+            onBackClick = {},
+            onHeartClick = {},
+            onErrorButtonClick = {},
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }

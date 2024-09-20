@@ -55,7 +55,6 @@ dependencies {
     // Modules
     implementation(projects.repositories)
     implementation(projects.ui.uikit)
-    //implementation(project(":ui:uikit"))   // TODO 111
     implementation(projects.uitheme)
 
     // Dagger

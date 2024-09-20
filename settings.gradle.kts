@@ -27,5 +27,3 @@ include(":ui:details")
 include(":ui:settings")
 include(":ui:uikit")
 include(":uitheme")
-
-
