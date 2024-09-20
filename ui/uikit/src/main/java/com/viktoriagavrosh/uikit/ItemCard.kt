@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.viktoriagavrosh.uikit.utils.FairyTaleColors
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
@@ -53,7 +54,7 @@ fun ItemCard(
         modifier = modifier,
         onClick = { onCardClick() },
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = FairyTaleColors.getRandomColor()
         )
     ) {
         Column(
@@ -103,6 +104,7 @@ private fun CardText(
         Text(
             text = title,
             style = MaterialTheme.typography.displaySmall,
+            color = FairyTaleColors.textColor,
             modifier = Modifier.weight(1F),
             minLines = minLineText
         )
