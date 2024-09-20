@@ -13,7 +13,7 @@ sealed interface ShelfGenre {
             override val genreName: String
                 get() = "fairy"
         },
-        People  {
+        People {
             override val genreName: String
                 get() = "people"
         },

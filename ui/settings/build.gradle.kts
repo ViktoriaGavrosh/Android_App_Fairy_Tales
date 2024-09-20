@@ -50,6 +50,7 @@ dependencies {
     // Modules
     implementation(projects.repositories)
     implementation(projects.uitheme)
+    implementation(projects.ui.uikit)
 
     // Dagger
     implementation(libs.hilt.android)

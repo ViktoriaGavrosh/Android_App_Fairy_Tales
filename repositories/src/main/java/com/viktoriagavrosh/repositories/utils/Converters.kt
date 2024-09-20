@@ -69,7 +69,7 @@ internal fun SettingsDs.toSettings(): Settings {
 }
 
 fun String.toShelfGenre(): ShelfGenre {
-    return when(this) {
+    return when (this) {
         "animal" -> ShelfGenre.Tales.Animal
         "fairy" -> ShelfGenre.Tales.Fairy
         "people" -> ShelfGenre.Tales.People

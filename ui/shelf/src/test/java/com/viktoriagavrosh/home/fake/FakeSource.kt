@@ -1,6 +1,5 @@
 package com.viktoriagavrosh.home.fake
 
-import com.viktoriagavrosh.repositories.model.Tale
 /*
 class FakeSource(
     val fakeListTales: MutableList<Tale> = MutableList(4) {

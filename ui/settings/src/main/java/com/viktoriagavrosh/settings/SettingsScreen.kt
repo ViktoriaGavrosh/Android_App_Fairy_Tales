@@ -1,118 +1,106 @@
 package com.viktoriagavrosh.settings
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.viktoriagavrosh.settings.elements.SettingsContent
+import com.viktoriagavrosh.uikit.ErrorScreen
+import com.viktoriagavrosh.uikit.ScreenTopBar
+import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
  * Composable to display settings
  */
 @Composable
 fun SettingsScreen(
-    modifier: Modifier = Modifier,
+    isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
+    modifier: Modifier = Modifier,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     SettingsScreen(
-        uiState = uiState,
+        textSize = uiState.textSize,
+        isError = uiState.isError,
+        isVerticalScreen = isVerticalScreen,
         onTextSizeUpdate = viewModel::updateTextSize,
         onBackClick = onBackClick,
+        onErrorButtonClick = viewModel::initSettingsState,
         modifier = modifier,
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsScreen(
-    uiState: SettingsState,
+    textSize: Float,
+    isError: Boolean,
+    isVerticalScreen: Boolean,
     onTextSizeUpdate: (Float) -> Unit,
     onBackClick: () -> Unit,
+    onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            SettingsTopBar(
-                text = stringResource(id = R.string.settings_title),
-                onBackClick = onBackClick,
-                modifier = Modifier.fillMaxWidth()
+    if (isError) {
+        ErrorScreen(
+            onButtonClick = onErrorButtonClick,
+            modifier = modifier,
+        )
+    } else {
+
+        val topAppBarState = rememberTopAppBarState()
+        val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
+
+        Scaffold(
+            modifier = modifier,
+            topBar = {
+                ScreenTopBar(
+                    text = stringResource(id = R.string.settings_title),
+                    scrollBehavior = scrollBehavior,
+                    onBackClick = onBackClick,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        ) { paddingValues ->
+            SettingsContent(
+                textSize = textSize,
+                isVerticalScreen = isVerticalScreen,
+                onTextSizeUpdate = onTextSizeUpdate,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = dimensionResource(id = R.dimen.padding_medium)),
             )
         }
-    ) { paddingValues ->
-        SettingsContent(
-            textSize = uiState.textSize,
-            onTextSizeUpdate = onTextSizeUpdate,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = dimensionResource(id = R.dimen.padding_medium)),
-        )
     }
 }
 
-/**
- * App bar to display title and  conditionally display the back navigation
- */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun SettingsTopBar(
-    text: String,
-    onBackClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    TopAppBar(
-        title = {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.displaySmall,
-            )
-        },
-        modifier = modifier,
-        navigationIcon = {
-            IconButton(
-                onClick = { onBackClick() },
-                modifier = Modifier.padding(
-                    start = dimensionResource(id = R.dimen.padding_medium)
-                )
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_back),
-                    contentDescription = stringResource(R.string.back),
-                    modifier = Modifier.size(dimensionResource(id = R.dimen.top_bar_icon_size))
-                )
-            }
-        },
-    )
-}
-/*
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun VerticalSettingsScreenPreview() {
     FairyTalesTheme {
         SettingsScreen(
-            uiState = SettingsState(
-                textSize = 24.0,
-            ),
+            textSize = 24.0F,
+            isError = false,
+            isVerticalScreen = true,
             onTextSizeUpdate = {},
-            onBackClick = {}
+            onBackClick = {},
+            onErrorButtonClick = {},
         )
     }
 }
@@ -123,13 +111,13 @@ private fun VerticalSettingsScreenPreview() {
 private fun HorizontalSettingsScreenPreview() {
     FairyTalesTheme {
         SettingsScreen(
-            uiState = SettingsState(
-                textSize = 24.0,
-            ),
+            textSize = 24.0F,
+            isError = false,
+            isVerticalScreen = false,
             onTextSizeUpdate = {},
-            onBackClick = {}
+            onBackClick = {},
+            onErrorButtonClick = {},
         )
     }
 }
 
- */

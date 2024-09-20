@@ -3,10 +3,8 @@ package com.viktoriagavrosh.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.details.model.TaleUiDetail
-import com.viktoriagavrosh.details.utils.toDetailScreenState
 import com.viktoriagavrosh.repositories.DetailRepository
 import com.viktoriagavrosh.repositories.SettingsRepository
-import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -15,7 +13,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -31,28 +28,29 @@ class TaleViewModel @AssistedInject constructor(
 
     internal val tales: StateFlow<DetailScreenState> =
         flow { emit(DetailScreenState.Error()) }   // TODO тут і 4 строчкі ніже - заглушка
-        .stateIn(
-            viewModelScope,
-            SharingStarted.Lazily,
-            DetailScreenState.None()
-        )
+            .stateIn(
+                viewModelScope,
+                SharingStarted.Lazily,
+                DetailScreenState.None()
+            )
 
-        /*  TODO 111
-        taleRepository
-        .getItemById(taleId, ShelfGenre.Tales.Fairy)  // TODO 111
-        .map { it.toDetailScreenState() }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.Lazily,
-            DetailScreenState.None()
-        )
+    /*  TODO 111
+    taleRepository
+    .getItemById(taleId, ShelfGenre.Tales.Fairy)  // TODO 111
+    .map { it.toDetailScreenState() }
+    .stateIn(
+        viewModelScope,
+        SharingStarted.Lazily,
+        DetailScreenState.None()
+    )
 
-         */
+     */
 
     /**
      * TextSize from data source
      */
-    private var _textSize: Flow<Float> = flow { emit(5.0F) }//settingsRepository.getTextSize()   TODO 111
+    private var _textSize: Flow<Float> =
+        flow { emit(5.0F) }//settingsRepository.getTextSize()   TODO 111
     internal val textSize: StateFlow<Float>
         get() = _textSize.stateIn(
             viewModelScope,

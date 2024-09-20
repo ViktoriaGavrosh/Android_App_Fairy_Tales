@@ -3,14 +3,14 @@ package com.viktoriagavrosh.shelf.utils
 import com.viktoriagavrosh.repositories.model.Folk
 import com.viktoriagavrosh.repositories.model.Retaining
 import com.viktoriagavrosh.repositories.model.Riddle
-import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.repositories.model.Tale
 import com.viktoriagavrosh.repositories.utils.RequestResult
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.uikit.utils.ScreenState
 
 // TODO move ti uikit 111
-internal fun <T: Any, S: Any> RequestResult<T>.toScreenState(convertData: (T) -> S): ScreenState<S> {
+internal fun <T : Any, S : Any> RequestResult<T>.toScreenState(convertData: (T) -> S): ScreenState<S> {
     return when (this) {
         is RequestResult.Success -> ScreenState.Success(
             data = convertData(data)
@@ -21,19 +21,21 @@ internal fun <T: Any, S: Any> RequestResult<T>.toScreenState(convertData: (T) ->
 }
 
 fun Retaining.toBook(): Book {
-    return when(this) {
+    return when (this) {
         is Folk -> Book(
             id = id,
             genre = genre,
             title = title,
             imageUrl = imageUrl,
         )
+
         is Riddle -> Book(
             id = id,
             genre = ShelfGenre.Riddles,
             title = title,
             imageUrl = imageUrl,
         )
+
         is Tale -> Book(
             id = id,
             genre = genre,
@@ -41,6 +43,7 @@ fun Retaining.toBook(): Book {
             imageUrl = imageUrl,
             isFavorite = isFavorite,
         )
+
         else -> Book()
     }
 }

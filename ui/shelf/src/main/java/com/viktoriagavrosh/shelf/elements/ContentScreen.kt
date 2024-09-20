@@ -33,7 +33,8 @@ internal fun ContentScreen(
 ) {
     val topBarTitle = stringResource(getTitleId(genre))
 
-    val isTabsShow = (genre is ShelfGenre.Tales) || (genre is ShelfGenre.Folks)   // TODO check how it works 111
+    val isTabsShow =
+        (genre is ShelfGenre.Tales) || (genre is ShelfGenre.Folks)   // TODO check how it works 111
     val isHeartShow = genre is ShelfGenre.Tales
 
     if (isVerticalScreen) {
@@ -79,7 +80,7 @@ internal fun ContentScreen(
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
-               // modifier = Modifier.weight(1F)    TODO 111
+                // modifier = Modifier.weight(1F)    TODO 111
             )
         }
     }

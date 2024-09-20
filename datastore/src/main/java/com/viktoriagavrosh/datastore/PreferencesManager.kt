@@ -27,13 +27,13 @@ class PreferencesManager @Inject constructor(
     }
 
     suspend fun updateTextSize(textSize: String) {
-        dataStore.edit { preferences : MutablePreferences ->
+        dataStore.edit { preferences: MutablePreferences ->
             preferences[TEXT_SIZE_KEY] = textSize
         }
     }
 
     suspend fun updateLastTaleId(lastTaleId: String) {
-        dataStore.edit { preferences : MutablePreferences ->
+        dataStore.edit { preferences: MutablePreferences ->
             preferences[LAST_TALE_KEY] = lastTaleId
         }
     }

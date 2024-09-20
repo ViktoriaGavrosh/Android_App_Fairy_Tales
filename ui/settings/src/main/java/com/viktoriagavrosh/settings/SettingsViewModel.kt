@@ -3,11 +3,11 @@ package com.viktoriagavrosh.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.repositories.SettingsRepository
+import com.viktoriagavrosh.repositories.utils.RequestResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,21 +25,25 @@ class SettingsViewModel @Inject constructor(
         get() = _uiState
 
     init {
-        getSettingsState()
+        initSettingsState()
     }
 
-    private fun getSettingsState() {
+    internal fun initSettingsState() {
         viewModelScope.launch {
-            /*
-            val actualTextSize = settingsRepository.getTextSize()
-                .map { convertToValidTextSize(it) }
-                .first()
-
-             */
-            _uiState.update {
-                it.copy(
-                    textSize = 2.4F   //actualTextSize   TODO заглушка
-                )
+            val requestResult = settingsRepository.getSettings().first()
+            if (requestResult is RequestResult.Error) {
+                _uiState.update {
+                    it.copy(
+                        isError = true
+                    )
+                }
+            } else {
+                val textSize = requestResult.data?.textSize ?: 8.0F
+                _uiState.update {
+                    it.copy(
+                        textSize = convertToValidTextSize(textSize)
+                    )
+                }
             }
         }
     }
@@ -64,4 +68,5 @@ class SettingsViewModel @Inject constructor(
 
 data class SettingsState(
     val textSize: Float = 0.0F,
+    val isError: Boolean = false,
 )

@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tale")
 data class TaleDb(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")val id: Int = 0,
+    @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "genre") val genre: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "text") val text: String,

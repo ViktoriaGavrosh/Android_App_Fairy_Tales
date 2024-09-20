@@ -63,7 +63,7 @@ internal fun ShelfScreen(
     onErrorButtonClick: (ShelfGenre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    when(screenState) {
+    when (screenState) {
         is ScreenState.None -> {}
         is ScreenState.Error -> {
             ErrorScreen(
@@ -71,6 +71,7 @@ internal fun ShelfScreen(
                 modifier = modifier,
             )
         }
+
         is ScreenState.Success -> {
             ContentScreen(
                 books = screenState.data ?: emptyList(),

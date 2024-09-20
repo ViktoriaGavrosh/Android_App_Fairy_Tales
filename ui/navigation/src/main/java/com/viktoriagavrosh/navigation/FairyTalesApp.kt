@@ -8,8 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.viktoriagavrosh.details.DetailScreen
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
-import com.viktoriagavrosh.shelf.ShelfScreen
 import com.viktoriagavrosh.settings.SettingsScreen
+import com.viktoriagavrosh.shelf.ShelfScreen
 
 /**
  * Top level composable that represents screens for the application
@@ -21,6 +21,8 @@ fun FairyTalesApp(
 ) {
     val navController = rememberNavController()
 
+    val isVerticalScreen = windowSize == WindowWidthSizeClass.Compact
+
     NavHost(
         navController = navController,
         startDestination = NavigationDestination.HomeScreen.screen,
@@ -30,7 +32,7 @@ fun FairyTalesApp(
         ) {
             ShelfScreen(
                 genreName = ShelfGenre.Tales.Fairy.genreName,  // TODO 111 заглушка
-                isVerticalScreen = windowSize == WindowWidthSizeClass.Compact,
+                isVerticalScreen = isVerticalScreen,
                 onCardClick = { id ->
                     navController.navigate(
                         route = "${NavigationDestination.DetailScreen.screen}/${id}"
@@ -60,9 +62,11 @@ fun FairyTalesApp(
             route = NavigationDestination.SettingsScreen.screen
         ) {
             SettingsScreen(
+                isVerticalScreen = isVerticalScreen,
                 onBackClick = {
                     navController.navigateUp()
-                }
+                },
+                modifier = modifier,
             )
         }
     }
