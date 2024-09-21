@@ -27,13 +27,9 @@ fun TextCard(
     text: String,
     textSize: Float,
     modifier: Modifier = Modifier,
+    isTitleShow: Boolean = false,
     title: String = "",
 ) {
-    var fontSize by remember {
-        mutableFloatStateOf(0.0F)
-    }
-    if (fontSize == 0.0F) fontSize = textSize
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -41,11 +37,11 @@ fun TextCard(
             .clip(RoundedCornerShape(dimensionResource(id = R.dimen.corner)))
             .background(color = MaterialTheme.colorScheme.onPrimary),
     ) {
-        if (title.isNotEmpty()) {
+        if (isTitleShow) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.displaySmall,
-                fontSize = fontSize.sp,
+                fontSize = textSize.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small)),
@@ -53,11 +49,10 @@ fun TextCard(
         }
         Text(
             text = text,
-            fontSize = fontSize.sp,
+            fontSize = textSize.sp,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.padding_small))
-                .animateContentSize(),
+                .padding(dimensionResource(id = R.dimen.padding_small)),
         )
     }
 }
@@ -83,6 +78,7 @@ private fun WithTitleTextCardPreview() {
             text = "Text",
             textSize = 24.0F,
             title = "Title",
+            isTitleShow = true,
         )
     }
 }

@@ -16,6 +16,7 @@ fun TextRow(
     textSize: Float,
     isNotFullScreen: Boolean,
     modifier: Modifier = Modifier,
+    isTitleShow: Boolean = false,
 ) {
     Row(
         modifier = modifier
@@ -25,6 +26,7 @@ fun TextRow(
             TextCard(
                 text = text,
                 textSize = textSize,
+                isTitleShow = isTitleShow,
             )
             Spacer(modifier = Modifier.weight(1F))
         } else {
@@ -32,6 +34,7 @@ fun TextRow(
                 text = text,
                 title = title,
                 textSize = textSize,
+                isTitleShow = isTitleShow,
                 modifier = Modifier.fillMaxWidth(),
             )
         }

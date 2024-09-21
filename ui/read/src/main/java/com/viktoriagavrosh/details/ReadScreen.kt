@@ -79,12 +79,34 @@ internal fun ReadScreen(
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
+private fun FolkVerticalReadScreenPreview() {
+    FairyTalesTheme {
+        ReadScreen(
+            book = ReadBook(
+                title = "title",
+                text = "text",
+                genre = ShelfGenre.Folks.Poem,
+            ),
+            textSize = 24.0F,
+            isError = false,
+            isVerticalScreen = true,
+            onBackClick = {},
+            onSettingsClick = {},
+            onInfoClick = {},
+            onErrorButtonClick = {},
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
 private fun VerticalReadScreenPreview() {
     FairyTalesTheme {
         ReadScreen(
             book = ReadBook(
                 title = "title",
-                text = "text"
+                text = "text",
             ),
             textSize = 24.0F,
             isError = false,
@@ -100,28 +122,7 @@ private fun VerticalReadScreenPreview() {
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun VerticalTaleReadScreenPreview() {
-    FairyTalesTheme {
-        ReadScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text"
-            ),
-            textSize = 24.0F,
-            isError = false,
-            isVerticalScreen = true,
-            onBackClick = {},
-            onSettingsClick = {},
-            onInfoClick = {},
-            onErrorButtonClick = {},
-        )
-    }
-}
-
-@Preview(name = "Light")
-@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun VerticalErrorReadScreenPreview() {
+private fun ErrorVerticalReadScreenPreview() {
     FairyTalesTheme {
         ReadScreen(
             book = ReadBook(
@@ -163,16 +164,17 @@ private fun HorizontalReadScreenPreview() {
 @Preview(name = "Light", widthDp = 1000)
 @Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun HorizontalInfoReadScreenPreview() {
+private fun FolkHorizontalReadScreenPreview() {
     FairyTalesTheme {
         ReadScreen(
             book = ReadBook(
                 title = "title",
-                text = "text"
+                text = "text",
+                genre = ShelfGenre.Folks.Poem,
             ),
             textSize = 24.0F,
             isError = false,
-            isVerticalScreen = true,
+            isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},
             onInfoClick = {},
@@ -184,7 +186,7 @@ private fun HorizontalInfoReadScreenPreview() {
 @Preview(name = "Light", widthDp = 1000)
 @Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun HorizontalErrorReadScreenPreview() {
+private fun ErrorHorizontalReadScreenPreview() {
     FairyTalesTheme {
         ReadScreen(
             book = ReadBook(
@@ -193,7 +195,7 @@ private fun HorizontalErrorReadScreenPreview() {
             ),
             textSize = 24.0F,
             isError = true,
-            isVerticalScreen = true,
+            isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},
             onInfoClick = {},

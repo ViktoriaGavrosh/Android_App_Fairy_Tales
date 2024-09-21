@@ -1,10 +1,12 @@
 package com.viktoriagavrosh.details.elements
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,23 +28,91 @@ internal fun HorizontalReadContent(
     textSize: Float,
     modifier: Modifier = Modifier
 ) {
+    if (book.genre is ShelfGenre.Folks) {
+        FolkContent(
+            book = book,
+            textSize = textSize,
+            modifier = modifier
+        )
+    } else {
+        TaleContent(
+            book = book,
+            textSize = textSize,
+            modifier = modifier
+        )
+    }
+}
+
+@Composable
+private fun FolkContent(
+    book: ReadBook,
+    textSize: Float,
+    modifier: Modifier = Modifier,
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier,
     ) {
         Row(
-            modifier = Modifier
+            modifier = Modifier,
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
-            Spacer(modifier = Modifier.weight(1F))
             BookImage(
                 title = book.title,
                 imageUrl = book.imageUrl ?: "",
                 modifier = Modifier
-                    .weight(2F)
-                    .padding(top = dimensionResource(id = R.dimen.padding_small)),
-                isBlur = true,
+                    .weight(1F)
+                    .padding(vertical = dimensionResource(id = R.dimen.padding_small))
+                    .padding(horizontal = dimensionResource(R.dimen.padding_double_extra_large)),
             )
-            Spacer(modifier = Modifier.weight(1F))
+            TextRow(
+                text = book.text,
+                title = book.title,
+                textSize = textSize,
+                isNotFullScreen = book.genre is ShelfGenre.Folks,
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(R.dimen.padding_small)
+                )
+                    .weight(1F)
+            )
+        }
+    }
+}
+
+@Composable
+private fun TaleContent(
+    book: ReadBook,
+    textSize: Float,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier,
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize(),          // TODO 111
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            BookImage(
+                title = book.title,
+                imageUrl = book.imageUrl ?: "",
+                modifier = Modifier
+                    .weight(1F)
+                    .padding(top = dimensionResource(id = R.dimen.padding_small))
+                    .width(dimensionResource(R.dimen.image_width)),
+            )
+            TextRow(
+                text = book.text,
+                title = book.title,
+                textSize = textSize,
+                isNotFullScreen = true,
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(R.dimen.padding_small)
+                )
+                    .weight(1F)
+            )
         }
         TextRow(
             text = book.text,

@@ -40,12 +40,12 @@ internal fun VerticalReadContent(
                     end = dimensionResource(id = R.dimen.padding_extra_large),
                     bottom = dimensionResource(id = R.dimen.padding_small)
                 ),
-            isBlur = true,
         )
         TextRow(
             text = book.text,
             title = book.title,
             textSize = textSize,
+            isTitleShow = book.genre is ShelfGenre.Folks,
             isNotFullScreen = book.genre is ShelfGenre.Folks,
             modifier = Modifier.fillMaxWidth(),
         )
