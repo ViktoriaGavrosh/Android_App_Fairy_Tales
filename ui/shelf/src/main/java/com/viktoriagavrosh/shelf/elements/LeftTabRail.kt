@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.shelf.elements
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -34,10 +35,9 @@ internal fun LeftTabRail(
     )
     NavigationRail(
         modifier = modifier
-            .padding(top = dimensionResource(id = R.dimen.padding_double_extra_large))
             .testTag(verticalNavigationRailTestTag),
-        containerColor = MaterialTheme.colorScheme.secondaryContainer
     ) {
+        Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_double_extra_large)))
         for (item in tabs) {
             NavigationRailItem(
                 selected = item == selectedTab,
