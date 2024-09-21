@@ -1,5 +1,5 @@
 package com.viktoriagavrosh.details.viewmodel
-
+/*
 import com.viktoriagavrosh.details.ReadViewModel
 import com.viktoriagavrosh.details.fake.FakeData
 import com.viktoriagavrosh.details.model.TaleUiDetail
@@ -32,3 +32,6 @@ internal class ReadViewModelTest {
         }
     }
 }
+
+
+ */

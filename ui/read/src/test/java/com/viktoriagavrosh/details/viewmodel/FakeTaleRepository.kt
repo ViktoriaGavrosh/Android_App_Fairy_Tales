@@ -1,5 +1,5 @@
 package com.viktoriagavrosh.details.viewmodel
-
+/*
 import com.viktoriagavrosh.details.fake.FakeData
 import com.viktoriagavrosh.repositories.model.Tale
 import com.viktoriagavrosh.repositories.tale.RequestResult
@@ -21,3 +21,5 @@ internal class FakeTaleRepository : TaleRepository {
         TODO("Not yet implemented")
     }
 }
+
+ */

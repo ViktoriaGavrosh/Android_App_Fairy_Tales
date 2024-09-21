@@ -1,5 +1,5 @@
 package com.viktoriagavrosh.details.fake
-
+/*
 import com.viktoriagavrosh.repositories.model.Tale
 
 internal object FakeData {
@@ -14,3 +14,5 @@ internal object FakeData {
         isFavorite = false
     )
 }
+
+ */

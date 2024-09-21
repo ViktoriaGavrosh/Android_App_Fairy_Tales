@@ -48,13 +48,15 @@ fun FairyTalesApp(
             val taleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
             ReadScreen(
                 bookId = taleId,
-                isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
+                genre = ShelfGenre.Nights,   // TODO  заглушка
+                isVerticalScreen = isVerticalScreen,
                 onBackClick = {
                     navController.navigate(NavigationDestination.HomeScreen.screen)
                 },
                 onSettingsClick = {
                     navController.navigate(NavigationDestination.SettingsScreen.screen)
                 },
+                onInfoClick = {},   // TODO  заглушка
                 modifier = modifier,
             )
         }
