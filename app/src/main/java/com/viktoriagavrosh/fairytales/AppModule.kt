@@ -60,7 +60,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideDetailRepository(
+    fun provideReadRepository(
         appDatabase: AppDatabase,
         preferencesManager: PreferencesManager
     ): ReadRepository {

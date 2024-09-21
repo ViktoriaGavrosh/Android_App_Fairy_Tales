@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.details.elements
+package com.viktoriagavrosh.read.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.details.R
-import com.viktoriagavrosh.details.model.ReadBook
+import com.viktoriagavrosh.read.R
+import com.viktoriagavrosh.read.model.ReadBook
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.uikit.BookImage
 import com.viktoriagavrosh.uikit.TextRow

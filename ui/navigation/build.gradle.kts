@@ -57,6 +57,8 @@ dependencies {
     implementation(projects.ui.shelf)
     //implementation(projects.ui.read)   TODO 111
     implementation(project(":ui:read"))
+    //implementation(projects.ui.riddle)   TODO 111
+    implementation(project(":ui:riddle"))
     implementation(projects.ui.settings)
     implementation(projects.uitheme)
 

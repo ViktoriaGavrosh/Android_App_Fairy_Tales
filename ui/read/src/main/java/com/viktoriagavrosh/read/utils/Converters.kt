@@ -1,6 +1,6 @@
-package com.viktoriagavrosh.details.utils
+package com.viktoriagavrosh.read.utils
 
-import com.viktoriagavrosh.details.model.ReadBook
+import com.viktoriagavrosh.read.model.ReadBook
 import com.viktoriagavrosh.repositories.model.Folk
 import com.viktoriagavrosh.repositories.model.Retaining
 import com.viktoriagavrosh.repositories.model.Tale

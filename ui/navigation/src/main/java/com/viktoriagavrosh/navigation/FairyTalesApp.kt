@@ -6,8 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.viktoriagavrosh.details.ReadScreen
+import com.viktoriagavrosh.read.ReadScreen
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.riddle.RiddleScreen
 import com.viktoriagavrosh.settings.SettingsScreen
 import com.viktoriagavrosh.shelf.ShelfScreen
 
@@ -35,7 +36,7 @@ fun FairyTalesApp(
                 isVerticalScreen = isVerticalScreen,
                 onCardClick = { id ->
                     navController.navigate(
-                        route = "${NavigationDestination.DetailScreen.screen}/${id}"
+                        route = "${NavigationDestination.ReadScreen.screen}/${id}"
                     )
                 },
                 onBackClick = { navController.navigateUp() },
@@ -43,7 +44,7 @@ fun FairyTalesApp(
             )
         }
         composable(
-            route = "${NavigationDestination.DetailScreen.screen}/{value}"
+            route = "${NavigationDestination.ReadScreen.screen}/{value}"
         ) { backStackEntry ->
             val taleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
             ReadScreen(
@@ -57,6 +58,22 @@ fun FairyTalesApp(
                     navController.navigate(NavigationDestination.SettingsScreen.screen)
                 },
                 onInfoClick = {},   // TODO  заглушка
+                modifier = modifier,
+            )
+        }
+        composable(
+            route = "${NavigationDestination.RiddleScreen.screen}/{value}"
+        ) { backStackEntry ->
+            val riddleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
+            RiddleScreen(
+                riddleId = riddleId,
+                isVerticalScreen = isVerticalScreen,
+                onBackClick = {
+                    navController.navigate(NavigationDestination.HomeScreen.screen)
+                },
+                onSettingsClick = {
+                    navController.navigate(NavigationDestination.SettingsScreen.screen)
+                },
                 modifier = modifier,
             )
         }
@@ -76,6 +93,7 @@ fun FairyTalesApp(
 
 enum class NavigationDestination(val screen: String) {
     HomeScreen(screen = "home"),
-    DetailScreen(screen = "details"),
-    SettingsScreen(screen = "settings")
+    ReadScreen(screen = "read"),
+    SettingsScreen(screen = "settings"),
+    RiddleScreen(screen = "riddle"),
 }

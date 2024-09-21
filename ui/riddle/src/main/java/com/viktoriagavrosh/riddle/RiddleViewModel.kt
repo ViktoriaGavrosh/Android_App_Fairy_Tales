@@ -1,12 +1,12 @@
-package com.viktoriagavrosh.details
+package com.viktoriagavrosh.riddle
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.viktoriagavrosh.details.model.ReadBook
-import com.viktoriagavrosh.details.utils.toReadBook
 import com.viktoriagavrosh.repositories.ReadRepository
 import com.viktoriagavrosh.repositories.utils.RequestResult
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.riddle.model.ReadRiddle
+import com.viktoriagavrosh.riddle.utils.toReadRiddle
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -20,15 +20,14 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel to retrieve and update item from the [ReadRepository]'s data source
  */
-@HiltViewModel(assistedFactory = ReadViewModel.ReadViewModelFactory::class)
-class ReadViewModel @AssistedInject constructor(
-    @Assisted private val bookId: Int,
-    @Assisted private val genre: ShelfGenre,
+@HiltViewModel(assistedFactory = RiddleViewModel.RiddleViewModelFactory::class)
+class RiddleViewModel @AssistedInject constructor(
+    @Assisted private val riddleId: Int,
     private val repository: ReadRepository,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ReadUiState())
-    internal val uiState: StateFlow<ReadUiState>
+    private val _uiState = MutableStateFlow(RiddleUiState())
+    internal val uiState: StateFlow<RiddleUiState>
         get() = _uiState
 
     init {
@@ -37,22 +36,22 @@ class ReadViewModel @AssistedInject constructor(
 
     internal fun initUiState() {
         viewModelScope.launch {
-            val requestResultBook = repository.getBookById(bookId, genre).first()
+            val requestResultRiddle = repository.getBookById(riddleId, ShelfGenre.Riddles).first()
             val requestResultTextSize = repository.getTextSize().first()
 
-            if (requestResultBook is RequestResult.Error || requestResultTextSize is RequestResult.Error) {
+            if (requestResultRiddle is RequestResult.Error || requestResultTextSize is RequestResult.Error) {
                 _uiState.update {
                     it.copy(
                         isError = true
                     )
                 }
             } else {
-                val book = requestResultBook.data?.toReadBook() ?: ReadBook()
+                val riddle = requestResultRiddle.data?.toReadRiddle() ?: ReadRiddle()
                 val textSize = requestResultTextSize.data ?: 8.0F
 
                 _uiState.update {
                     it.copy(
-                        book = book,
+                        riddle = riddle,
                         textSize = textSize
                     )
                 }
@@ -61,13 +60,13 @@ class ReadViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface ReadViewModelFactory {
-        fun create(bookId: Int, genre: ShelfGenre): ReadViewModel
+    interface RiddleViewModelFactory {
+        fun create(bookId: Int): RiddleViewModel
     }
 }
 
-internal data class ReadUiState(
-    val book: ReadBook = ReadBook(),
+internal data class RiddleUiState(
+    val riddle: ReadRiddle = ReadRiddle(),
     val isError: Boolean = false,
     val textSize: Float = 0.0F,
 )

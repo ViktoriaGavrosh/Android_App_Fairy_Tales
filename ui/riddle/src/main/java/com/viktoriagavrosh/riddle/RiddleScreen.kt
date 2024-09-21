@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.details
+package com.viktoriagavrosh.riddle
 
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
@@ -7,54 +7,49 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.viktoriagavrosh.details.elements.ContentReadScreen
-import com.viktoriagavrosh.details.model.ReadBook
-import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.riddle.elements.ContentRiddleScreen
+import com.viktoriagavrosh.riddle.model.ReadRiddle
 import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [ReadBook]
+ * Composable to display details of selected [ReadRiddle]
  */
 @Composable
-fun ReadScreen(
-    bookId: Int,
-    genre: ShelfGenre,
+fun RiddleScreen(
+    riddleId: Int,
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    onInfoClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val viewModel: ReadViewModel = hiltViewModel(
-        creationCallback = { factory: ReadViewModel.ReadViewModelFactory ->
-            factory.create(bookId, genre)
+    val viewModel: RiddleViewModel = hiltViewModel(
+        creationCallback = { factory: RiddleViewModel.RiddleViewModelFactory ->
+            factory.create(riddleId)
         }
     )
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    ReadScreen(
-        book = uiState.book,
+    RiddleScreen(
+        riddle = uiState.riddle,
         textSize = uiState.textSize,
         isError = uiState.isError,
         isVerticalScreen = isVerticalScreen,
         onBackClick = onBackClick,
         onSettingsClick = onSettingsClick,
-        onInfoClick = onInfoClick,
         onErrorButtonClick = viewModel::initUiState,
         modifier = modifier
     )
 }
 
 @Composable
-internal fun ReadScreen(
-    book: ReadBook,
+internal fun RiddleScreen(
+    riddle: ReadRiddle,
     textSize: Float,
     isError: Boolean,
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    onInfoClick: (Int) -> Unit,
     onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -64,13 +59,12 @@ internal fun ReadScreen(
             modifier = modifier,
         )
     } else {
-        ContentReadScreen(
-            book = book,
+        ContentRiddleScreen(
+            riddle = riddle,
             textSize = textSize,
             isVerticalScreen = isVerticalScreen,
             onBackClick = onBackClick,
             onSettingsClick = onSettingsClick,
-            onInfoClick = onInfoClick,
             modifier = modifier,
         )
     }
@@ -79,20 +73,19 @@ internal fun ReadScreen(
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun FolkVerticalReadScreenPreview() {
+private fun VerticalRiddleScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
-            book = ReadBook(
+        RiddleScreen(
+            riddle = ReadRiddle(
                 title = "title",
                 text = "text",
-                genre = ShelfGenre.Folks.Poem,
+                answer = "answer",
             ),
             textSize = 24.0F,
             isError = false,
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {},
-            onInfoClick = {},
             onErrorButtonClick = {},
         )
     }
@@ -101,40 +94,15 @@ private fun FolkVerticalReadScreenPreview() {
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun VerticalReadScreenPreview() {
+private fun ErrorVerticalRiddleScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text",
-            ),
-            textSize = 24.0F,
-            isError = false,
-            isVerticalScreen = true,
-            onBackClick = {},
-            onSettingsClick = {},
-            onInfoClick = {},
-            onErrorButtonClick = {},
-        )
-    }
-}
-
-@Preview(name = "Light")
-@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun ErrorVerticalReadScreenPreview() {
-    FairyTalesTheme {
-        ReadScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text"
-            ),
+        RiddleScreen(
+            riddle = ReadRiddle(),
             textSize = 24.0F,
             isError = true,
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {},
-            onInfoClick = {},
             onErrorButtonClick = {},
         )
     }
@@ -143,41 +111,19 @@ private fun ErrorVerticalReadScreenPreview() {
 @Preview(name = "Light", widthDp = 1000)
 @Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun HorizontalReadScreenPreview() {
+private fun HorizontalRiddleScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text"
-            ),
-            textSize = 24.0F,
-            isError = false,
-            isVerticalScreen = false,
-            onBackClick = {},
-            onSettingsClick = {},
-            onInfoClick = {},
-            onErrorButtonClick = {},
-        )
-    }
-}
-
-@Preview(name = "Light", widthDp = 1000)
-@Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun FolkHorizontalReadScreenPreview() {
-    FairyTalesTheme {
-        ReadScreen(
-            book = ReadBook(
+        RiddleScreen(
+            riddle = ReadRiddle(
                 title = "title",
                 text = "text",
-                genre = ShelfGenre.Folks.Poem,
+                answer = "answer",
             ),
             textSize = 24.0F,
             isError = false,
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},
-            onInfoClick = {},
             onErrorButtonClick = {},
         )
     }
@@ -186,19 +132,15 @@ private fun FolkHorizontalReadScreenPreview() {
 @Preview(name = "Light", widthDp = 1000)
 @Preview(name = "Dark", widthDp = 1000, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun ErrorHorizontalReadScreenPreview() {
+private fun ErrorHorizontalRiddleScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text"
-            ),
+        RiddleScreen(
+            riddle = ReadRiddle(),
             textSize = 24.0F,
             isError = true,
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},
-            onInfoClick = {},
             onErrorButtonClick = {},
         )
     }
