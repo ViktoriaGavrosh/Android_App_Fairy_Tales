@@ -8,8 +8,8 @@ import com.viktoriagavrosh.repositories.utils.toShelfGenre
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.shelf.utils.toBook
-import com.viktoriagavrosh.shelf.utils.toScreenState
 import com.viktoriagavrosh.uikit.utils.ScreenState
+import com.viktoriagavrosh.uikit.utils.toScreenState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

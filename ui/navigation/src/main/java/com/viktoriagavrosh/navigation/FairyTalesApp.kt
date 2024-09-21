@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.viktoriagavrosh.details.DetailScreen
+import com.viktoriagavrosh.details.ReadScreen
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.settings.SettingsScreen
 import com.viktoriagavrosh.shelf.ShelfScreen
@@ -46,10 +46,10 @@ fun FairyTalesApp(
             route = "${NavigationDestination.DetailScreen.screen}/{value}"
         ) { backStackEntry ->
             val taleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
-            DetailScreen(
-                taleId = taleId,
+            ReadScreen(
+                bookId = taleId,
                 isExpandedScreen = windowSize == WindowWidthSizeClass.Expanded,
-                onDetailScreenBackClick = {
+                onBackClick = {
                     navController.navigate(NavigationDestination.HomeScreen.screen)
                 },
                 onSettingsClick = {

@@ -8,10 +8,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -20,18 +18,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.BlurredEdgeTreatment
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.viktoriagavrosh.uikit.utils.FairyTaleColors
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -67,7 +57,7 @@ fun ItemCard(
                     )
                 )
         ) {
-            CardText(
+            CardTitle(
                 title = title,
                 isFavorite = isFavorite,
                 isHeartShow = isHeartShow,
@@ -76,7 +66,7 @@ fun ItemCard(
                 minLineText = minLineText
             )
             if (imageUrl != null) {
-                TaleImage(
+                BookImage(
                     title = title,
                     imageUrl = imageUrl,
                     isBlur = isBlur,
@@ -88,7 +78,7 @@ fun ItemCard(
 }
 
 @Composable
-private fun CardText(
+private fun CardTitle(
     title: String,
     isFavorite: Boolean,
     isHeartShow: Boolean,
@@ -137,45 +127,6 @@ private fun HeartIcon(
             modifier = modifier
         )
     }
-}
-
-@Composable
-private fun TaleImage(
-    modifier: Modifier = Modifier,
-    title: String,
-    imageUrl: String,
-    isBlur: Boolean = false
-) {
-    AsyncImage(
-        model = ImageRequest
-            .Builder(context = LocalContext.current)
-            .data(imageUrl)
-            .crossfade(true)
-            .build(),
-        contentDescription = title,
-        error = painterResource(id = R.drawable.error),
-        placeholder = painterResource(id = R.drawable.placeholder),
-        contentScale = ContentScale.Crop,
-        modifier = if (isBlur) {
-            modifier
-                .aspectRatio(1.5F)
-                .blur(
-                    radiusX = 20.dp,
-                    radiusY = 20.dp,
-                    edgeTreatment = BlurredEdgeTreatment(
-                        RoundedCornerShape(dimensionResource(id = R.dimen.corner))
-                    )
-                )
-        } else {
-            modifier
-                .aspectRatio(1.5F)
-                .clip(
-                    RoundedCornerShape(
-                        dimensionResource(id = R.dimen.corner)
-                    )
-                )
-        }
-    )
 }
 
 @Preview(name = "Light")

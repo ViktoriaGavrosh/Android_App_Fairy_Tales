@@ -48,7 +48,6 @@ dependencies {
     implementation(platform(libs.compose.bom))
 
     // Modules
-    implementation(projects.repositories)
     implementation(projects.uitheme)
     implementation(projects.ui.uikit)
 

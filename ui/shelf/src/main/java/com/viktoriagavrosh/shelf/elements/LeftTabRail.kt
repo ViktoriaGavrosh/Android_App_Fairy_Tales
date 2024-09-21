@@ -35,7 +35,8 @@ internal fun LeftTabRail(
     NavigationRail(
         modifier = modifier
             .padding(top = dimensionResource(id = R.dimen.padding_double_extra_large))
-            .testTag(verticalNavigationRailTestTag)
+            .testTag(verticalNavigationRailTestTag),
+        containerColor = MaterialTheme.colorScheme.secondaryContainer
     ) {
         for (item in tabs) {
             NavigationRailItem(

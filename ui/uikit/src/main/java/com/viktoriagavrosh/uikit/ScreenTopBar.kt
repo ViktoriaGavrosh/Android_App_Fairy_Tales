@@ -31,8 +31,10 @@ fun ScreenTopBar(
     modifier: Modifier = Modifier,
     isSettingsIconShow: Boolean = false,
     isBackIconShow: Boolean = true,
+    isInfoShow: Boolean = false,
     onSettingsClick: () -> Unit = {},
     onBackClick: () -> Unit = {},
+    onInfoClick: () -> Unit = {},
 ) {
     TopAppBar(
         title = {
@@ -58,6 +60,21 @@ fun ScreenTopBar(
             }
         },
         actions = {
+            if (isInfoShow) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_info),
+                    contentDescription = stringResource(R.string.info),
+                    modifier = Modifier
+                        .clickable {
+                            onInfoClick()
+                        }
+                        .padding(
+                            start = dimensionResource(id = R.dimen.padding_small),
+                            bottom = dimensionResource(id = R.dimen.padding_small)
+                        )
+                        .size(dimensionResource(id = R.dimen.top_bar_icon_size))
+                )
+            }
             if (isSettingsIconShow) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_settings),
@@ -102,6 +119,21 @@ private fun FullTopBarPreview() {
         ScreenTopBar(
             text = "Text",
             isSettingsIconShow = true,
+            isInfoShow = true,
+            scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+            onSettingsClick = {},
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+private fun WithSettingsTopBarPreview() {
+    FairyTalesTheme {
+        ScreenTopBar(
+            text = "Text",
+            isSettingsIconShow = true,
             scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
             onSettingsClick = {},
         )
@@ -116,6 +148,20 @@ private fun WithBackTopBarPreview() {
         ScreenTopBar(
             text = "Text",
             scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+            onSettingsClick = {},
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Preview
+@Composable
+private fun WithInfoTopBarPreview() {
+    FairyTalesTheme {
+        ScreenTopBar(
+            text = "Text",
+            scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+            isInfoShow = true,
             onSettingsClick = {},
         )
     }

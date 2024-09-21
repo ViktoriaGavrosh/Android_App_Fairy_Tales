@@ -34,7 +34,8 @@ internal fun BottomTabBar(
     NavigationBar(
         modifier = modifier
             .testTag(bottomNavigateBarTestTag)
-            .sizeIn(maxHeight = dimensionResource(id = R.dimen.max_bottom_navigation_bar_height))
+            .sizeIn(maxHeight = dimensionResource(id = R.dimen.max_bottom_navigation_bar_height)),
+        containerColor = MaterialTheme.colorScheme.secondaryContainer
     ) {
         for (item in tabs) {
             NavigationBarItem(

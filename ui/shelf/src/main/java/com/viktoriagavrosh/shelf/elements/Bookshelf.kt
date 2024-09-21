@@ -14,6 +14,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,7 +56,7 @@ internal fun Bookshelf(
         if (isVerticalScreen) {
             LazyColumn(
                 contentPadding = paddingValues,
-                modifier = Modifier
+                modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
             ) {
                 items(books) { book ->
                     ItemCard(
@@ -76,7 +77,7 @@ internal fun Bookshelf(
                 columns = GridCells
                     .Adaptive(minSize = dimensionResource(id = R.dimen.card_min_size_in_grid)),
                 contentPadding = paddingValues,
-                modifier = modifier
+                modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
             ) {
                 items(books) { book ->
                     ItemCard(

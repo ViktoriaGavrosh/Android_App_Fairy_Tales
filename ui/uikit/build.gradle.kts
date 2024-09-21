@@ -43,6 +43,7 @@ dependencies {
 
     //Modules
     implementation(projects.uitheme)
+    api(projects.repositories)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

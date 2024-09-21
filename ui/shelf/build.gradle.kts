@@ -53,7 +53,6 @@ dependencies {
     implementation(libs.material3.window.size)
 
     // Modules
-    implementation(projects.repositories)
     implementation(projects.ui.uikit)
     implementation(projects.uitheme)
 

@@ -8,12 +8,11 @@ import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
 import com.viktoriagavrosh.datastore.PreferencesManager
 import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
-import com.viktoriagavrosh.repositories.DetailRepository
-import com.viktoriagavrosh.repositories.OfflineDetailRepository
+import com.viktoriagavrosh.repositories.OfflineReadRepository
 import com.viktoriagavrosh.repositories.OfflineShelfRepository
+import com.viktoriagavrosh.repositories.ReadRepository
 import com.viktoriagavrosh.repositories.SettingsRepository
 import com.viktoriagavrosh.repositories.ShelfRepository
-
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,8 +63,8 @@ object AppModule {
     fun provideDetailRepository(
         appDatabase: AppDatabase,
         preferencesManager: PreferencesManager
-    ): DetailRepository {
-        return OfflineDetailRepository(appDatabase, preferencesManager)
+    ): ReadRepository {
+        return OfflineReadRepository(appDatabase, preferencesManager)
     }
 
     @Provides
