@@ -8,4 +8,9 @@
 
     <dimen name="corner">16dp</dimen>
     <dimen name="top_bar_icon_size">36dp</dimen>
+
+    <dimen name="design_button_height">48dp</dimen>
+    <dimen name="design_button_width">100dp</dimen>
+    <dimen name="button_height">64dp</dimen>
+    <dimen name="button_width">82dp</dimen>
 </resources>

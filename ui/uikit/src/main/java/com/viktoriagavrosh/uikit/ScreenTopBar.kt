@@ -40,7 +40,7 @@ fun ScreenTopBar(
         title = {
             Text(
                 text = text,
-                style = MaterialTheme.typography.displayLarge,
+                style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier
                     .padding(start = dimensionResource(id = R.dimen.padding_large))
             )

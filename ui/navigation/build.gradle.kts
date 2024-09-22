@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.plugin.compose)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.kotlin.plugin.serialization)
 }
 
 android {
@@ -47,6 +48,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.activity.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 
     // Compose
     implementation(platform(libs.compose.bom))
@@ -59,6 +61,7 @@ dependencies {
     implementation(project(":ui:read"))
     //implementation(projects.ui.riddle)   TODO 111
     implementation(project(":ui:riddle"))
+    implementation(project(":ui:startmenu"))
     implementation(projects.ui.settings)
     implementation(projects.uitheme)
 

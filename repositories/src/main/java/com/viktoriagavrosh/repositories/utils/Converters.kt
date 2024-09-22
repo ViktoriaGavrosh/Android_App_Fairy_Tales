@@ -68,7 +68,7 @@ internal fun SettingsDs.toSettings(): Settings {
     )
 }
 
-fun String.toShelfGenre(): ShelfGenre {
+fun String.toShelfGenre(): ShelfGenre {   // TODO delete it
     return when (this) {
         "animal" -> ShelfGenre.Tales.Animal
         "fairy" -> ShelfGenre.Tales.Fairy

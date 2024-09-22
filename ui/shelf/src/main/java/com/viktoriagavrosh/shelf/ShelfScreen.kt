@@ -9,7 +9,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
-import com.viktoriagavrosh.repositories.utils.toShelfGenre
 import com.viktoriagavrosh.shelf.elements.ContentScreen
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
@@ -22,7 +21,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 fun ShelfScreen(
-    genreName: String,
+    genre: ShelfGenre,
     isVerticalScreen: Boolean,
     onCardClick: (Int) -> Unit,
     onBackClick: () -> Unit,
@@ -30,7 +29,7 @@ fun ShelfScreen(
 ) {
     val viewModel: ShelfViewModel = hiltViewModel(
         creationCallback = { factory: ShelfViewModel.ShelfViewModelFactory ->
-            factory.create(genreName = genreName)
+            factory.create(genre = genre)
         }
     )
 
@@ -38,7 +37,7 @@ fun ShelfScreen(
 
     ShelfScreen(
         screenState = screenState,
-        genre = genreName.toShelfGenre(),
+        genre = genre,
         tabs = viewModel.tabs,
         isVerticalScreen = isVerticalScreen,
         onCardClick = onCardClick,

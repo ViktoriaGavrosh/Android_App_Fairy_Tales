@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.repositories.ShelfRepository
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
-import com.viktoriagavrosh.repositories.utils.toShelfGenre
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.shelf.utils.toBook
@@ -26,7 +25,7 @@ import kotlinx.coroutines.launch
  */
 @HiltViewModel(assistedFactory = ShelfViewModel.ShelfViewModelFactory::class)
 class ShelfViewModel @AssistedInject constructor(
-    @Assisted private val genreName: String,
+    @Assisted private val genre: ShelfGenre,
     private val shelfRepository: ShelfRepository
 ) : ViewModel() {
 
@@ -35,7 +34,7 @@ class ShelfViewModel @AssistedInject constructor(
     internal lateinit var tabs: List<Tabs>
 
     init {
-        val genre = genreName.toShelfGenre()
+        val genre = genre
         updateScreenState(genre)
         initTabs(genre)
     }
@@ -82,6 +81,6 @@ class ShelfViewModel @AssistedInject constructor(
 
     @AssistedFactory
     interface ShelfViewModelFactory {
-        fun create(genreName: String): ShelfViewModel
+        fun create(genre: ShelfGenre): ShelfViewModel
     }
 }

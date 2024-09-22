@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="cover_title">Беларуск\u0456я\nказк\u0456</string>
     <string name="favorite">favorite</string>
     <string name="not_favorite">Not favorite</string>
 

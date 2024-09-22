@@ -8,6 +8,8 @@ import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
 import com.viktoriagavrosh.datastore.PreferencesManager
 import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
+import com.viktoriagavrosh.repositories.MenuRepository
+import com.viktoriagavrosh.repositories.OfflineMenuRepository
 import com.viktoriagavrosh.repositories.OfflineReadRepository
 import com.viktoriagavrosh.repositories.OfflineShelfRepository
 import com.viktoriagavrosh.repositories.ReadRepository
@@ -65,6 +67,15 @@ object AppModule {
         preferencesManager: PreferencesManager
     ): ReadRepository {
         return OfflineReadRepository(appDatabase, preferencesManager)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMenuRepository(
+        appDatabase: AppDatabase,
+        preferencesManager: PreferencesManager
+    ): MenuRepository {
+        return OfflineMenuRepository(appDatabase, preferencesManager)
     }
 
     @Provides

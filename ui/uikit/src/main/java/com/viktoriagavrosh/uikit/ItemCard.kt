@@ -93,7 +93,7 @@ private fun CardTitle(
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.displaySmall,
+            style = MaterialTheme.typography.headlineMedium,
             color = FairyTaleColors.textColor,
             modifier = Modifier.weight(1F),
             minLines = minLineText

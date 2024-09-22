@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.uikit
 
 import android.content.res.Configuration
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -47,7 +48,8 @@ fun TextCard(
             fontSize = textSize.sp,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.padding_small)),
+                .padding(dimensionResource(id = R.dimen.padding_small))
+                .animateContentSize(),
         )
     }
 }

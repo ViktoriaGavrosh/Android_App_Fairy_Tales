@@ -23,7 +23,7 @@ fun ReadScreen(
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    onInfoClick: (Int) -> Unit,
+    onInfoClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: ReadViewModel = hiltViewModel(
@@ -54,7 +54,7 @@ internal fun ReadScreen(
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    onInfoClick: (Int) -> Unit,
+    onInfoClick: () -> Unit,
     onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {

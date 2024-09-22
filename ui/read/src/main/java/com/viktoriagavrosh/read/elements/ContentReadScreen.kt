@@ -27,7 +27,7 @@ internal fun ContentReadScreen(
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    onInfoClick: (Int) -> Unit,
+    onInfoClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val topAppBarState = rememberTopAppBarState()
@@ -44,7 +44,7 @@ internal fun ContentReadScreen(
                 isInfoShow = book.genre !is ShelfGenre.Folks,
                 onSettingsClick = onSettingsClick,
                 onBackClick = onBackClick,
-                onInfoClick = { onInfoClick(book.id) },
+                onInfoClick = { onInfoClick() },
                 modifier = Modifier.fillMaxWidth(),
             )
         }

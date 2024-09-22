@@ -99,7 +99,7 @@ fun FairyTalesTheme(
 
     MaterialTheme(
         colorScheme = colors,
-        typography = Typography,
+        typography = AppTypography,
         content = content
     )
 }
