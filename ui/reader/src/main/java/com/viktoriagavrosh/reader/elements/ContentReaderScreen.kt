@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.read.elements
+package com.viktoriagavrosh.reader.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -14,14 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.read.model.ReadBook
+import com.viktoriagavrosh.reader.model.ReadBook
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ContentReadScreen(
+internal fun ContentReaderScreen(
     book: ReadBook,
     textSize: Float,
     isVerticalScreen: Boolean,
@@ -50,7 +50,7 @@ internal fun ContentReadScreen(
         }
     ) { paddingValues ->
         if (isVerticalScreen) {
-            VerticalReadContent(
+            VerticalReaderContent(
                 book = book,
                 textSize = textSize,
                 modifier = Modifier
@@ -59,7 +59,7 @@ internal fun ContentReadScreen(
                     .nestedScroll(scrollBehavior.nestedScrollConnection),
             )
         } else {
-            HorizontalReadContent(
+            HorizontalReaderContent(
                 book = book,
                 textSize = textSize,
                 modifier = Modifier
@@ -123,7 +123,7 @@ internal fun ContentReadScreen(
 @Composable
 private fun VerticalContentScreenPreview() {
     FairyTalesTheme {
-        ContentReadScreen(
+        ContentReaderScreen(
             book = ReadBook(
                 text = "Text",
                 title = "Title",
@@ -143,7 +143,7 @@ private fun VerticalContentScreenPreview() {
 @Composable
 private fun FolkVerticalContentScreenPreview() {
     FairyTalesTheme {
-        ContentReadScreen(
+        ContentReaderScreen(
             book = ReadBook(
                 text = "Text",
                 title = "Title",
@@ -163,7 +163,7 @@ private fun FolkVerticalContentScreenPreview() {
 @Composable
 private fun HorizontalContentScreenPreview() {
     FairyTalesTheme {
-        ContentReadScreen(
+        ContentReaderScreen(
             book = ReadBook(
                 text = "Text",
                 title = "Title",
@@ -183,7 +183,7 @@ private fun HorizontalContentScreenPreview() {
 @Composable
 private fun FolkHorizontalContentScreenPreview() {
     FairyTalesTheme {
-        ContentReadScreen(
+        ContentReaderScreen(
             book = ReadBook(
                 text = "Text",
                 title = "Title",

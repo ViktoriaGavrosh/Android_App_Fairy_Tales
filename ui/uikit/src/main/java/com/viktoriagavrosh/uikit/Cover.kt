@@ -28,7 +28,7 @@ fun Cover(
         FlowersRow()
         Text(
             text = stringResource(R.string.cover_title),
-            style = MaterialTheme.typography.displaySmall,
+            style = MaterialTheme.typography.displayMedium,
             textAlign = TextAlign.Center,
             modifier = Modifier
         )

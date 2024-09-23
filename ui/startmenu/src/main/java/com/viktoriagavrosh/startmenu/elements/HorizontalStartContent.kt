@@ -15,8 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.startmenu.R
 import com.viktoriagavrosh.uikit.Cover
-import com.viktoriagavrosh.uikit.DesignMenuButton
-import com.viktoriagavrosh.uikit.MenuButton
+import com.viktoriagavrosh.uikit.buttons.DesignMenuButton
+import com.viktoriagavrosh.uikit.buttons.MenuButton
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
@@ -41,7 +41,7 @@ internal fun HorizontalStartContent(
         ) {
             DesignMenuButton(
                 iconId = R.drawable.ic_favorite,
-                text = stringResource(R.string.favorite_tales),
+                text = stringResource(R.string.favorite_tales_title),
                 onClick = onFavoriteClick,
             )
             DesignMenuButton(

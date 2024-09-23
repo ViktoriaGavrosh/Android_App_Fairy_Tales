@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.viktoriagavrosh.read.ReadScreen
+import com.viktoriagavrosh.reader.ReaderScreen
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.riddle.RiddleScreen
 import com.viktoriagavrosh.settings.SettingsScreen
@@ -92,7 +92,7 @@ internal fun AppNavHost(
         }
         composable<Reader> { backStackEntry ->
             val reader = backStackEntry.toRoute<Reader>()
-            ReadScreen(
+            ReaderScreen(
                 bookId = reader.bookId,
                 genre = reader.navGenre.genre,
                 isVerticalScreen = isVerticalScreen,

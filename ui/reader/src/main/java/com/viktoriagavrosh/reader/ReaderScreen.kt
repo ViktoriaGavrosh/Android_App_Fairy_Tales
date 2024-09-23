@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.read
+package com.viktoriagavrosh.reader
 
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.viktoriagavrosh.read.elements.ContentReadScreen
-import com.viktoriagavrosh.read.model.ReadBook
+import com.viktoriagavrosh.reader.elements.ContentReaderScreen
+import com.viktoriagavrosh.reader.model.ReadBook
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -17,7 +17,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  * Composable to display details of selected [ReadBook]
  */
 @Composable
-fun ReadScreen(
+fun ReaderScreen(
     bookId: Int,
     genre: ShelfGenre,
     isVerticalScreen: Boolean,
@@ -26,14 +26,14 @@ fun ReadScreen(
     onInfoClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val viewModel: ReadViewModel = hiltViewModel(
-        creationCallback = { factory: ReadViewModel.ReadViewModelFactory ->
+    val viewModel: ReaderViewModel = hiltViewModel(
+        creationCallback = { factory: ReaderViewModel.ReaderViewModelFactory ->
             factory.create(bookId, genre)
         }
     )
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    ReadScreen(
+    ReaderScreen(
         book = uiState.book,
         textSize = uiState.textSize,
         isError = uiState.isError,
@@ -47,7 +47,7 @@ fun ReadScreen(
 }
 
 @Composable
-internal fun ReadScreen(
+internal fun ReaderScreen(
     book: ReadBook,
     textSize: Float,
     isError: Boolean,
@@ -64,7 +64,7 @@ internal fun ReadScreen(
             modifier = modifier,
         )
     } else {
-        ContentReadScreen(
+        ContentReaderScreen(
             book = book,
             textSize = textSize,
             isVerticalScreen = isVerticalScreen,
@@ -81,7 +81,7 @@ internal fun ReadScreen(
 @Composable
 private fun FolkVerticalReadScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
+        ReaderScreen(
             book = ReadBook(
                 title = "title",
                 text = "text",
@@ -103,7 +103,7 @@ private fun FolkVerticalReadScreenPreview() {
 @Composable
 private fun VerticalReadScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
+        ReaderScreen(
             book = ReadBook(
                 title = "title",
                 text = "text",
@@ -124,7 +124,7 @@ private fun VerticalReadScreenPreview() {
 @Composable
 private fun ErrorVerticalReadScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
+        ReaderScreen(
             book = ReadBook(
                 title = "title",
                 text = "text"
@@ -145,7 +145,7 @@ private fun ErrorVerticalReadScreenPreview() {
 @Composable
 private fun HorizontalReadScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
+        ReaderScreen(
             book = ReadBook(
                 title = "title",
                 text = "text"
@@ -166,7 +166,7 @@ private fun HorizontalReadScreenPreview() {
 @Composable
 private fun FolkHorizontalReadScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
+        ReaderScreen(
             book = ReadBook(
                 title = "title",
                 text = "text",
@@ -188,7 +188,7 @@ private fun FolkHorizontalReadScreenPreview() {
 @Composable
 private fun ErrorHorizontalReadScreenPreview() {
     FairyTalesTheme {
-        ReadScreen(
+        ReaderScreen(
             book = ReadBook(
                 title = "title",
                 text = "text"

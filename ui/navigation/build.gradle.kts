@@ -57,8 +57,8 @@ dependencies {
     // Modules
     implementation(projects.repositories)
     implementation(projects.ui.shelf)
+    implementation(project(":ui:reader"))
     //implementation(projects.ui.read)   TODO 111
-    implementation(project(":ui:read"))
     //implementation(projects.ui.riddle)   TODO 111
     implementation(project(":ui:riddle"))
     implementation(project(":ui:startmenu"))

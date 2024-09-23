@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.read.model
+package com.viktoriagavrosh.reader.model
 
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 

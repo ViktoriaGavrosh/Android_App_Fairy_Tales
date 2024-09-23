@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.read.elements
+package com.viktoriagavrosh.reader.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.read.R
-import com.viktoriagavrosh.read.model.ReadBook
+import com.viktoriagavrosh.reader.R
+import com.viktoriagavrosh.reader.model.ReadBook
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.uikit.BookImage
 import com.viktoriagavrosh.uikit.TextRow
@@ -20,7 +20,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  * Composable to display details of selected [ReadBook] on compact and medium screens
  */
 @Composable
-internal fun VerticalReadContent(
+internal fun VerticalReaderContent(
     book: ReadBook,
     textSize: Float,
     modifier: Modifier = Modifier
@@ -160,7 +160,7 @@ Column(
 @Composable
 private fun VerticalReadContentPreview() {
     FairyTalesTheme {
-        VerticalReadContent(
+        VerticalReaderContent(
             book = ReadBook(
                 title = "Title",
                 text = "Text",
@@ -176,7 +176,7 @@ private fun VerticalReadContentPreview() {
 @Composable
 private fun FullScreenVerticalReadContentPreview() {
     FairyTalesTheme {
-        VerticalReadContent(
+        VerticalReaderContent(
             book = ReadBook(
                 title = "Title",
                 text = "Text",

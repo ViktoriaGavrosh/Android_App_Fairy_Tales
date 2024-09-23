@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.uikit
+package com.viktoriagavrosh.uikit.buttons
 
 import android.content.res.Configuration
 import androidx.annotation.DrawableRes
@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
@@ -37,10 +39,11 @@ fun DesignMenuButton(
             Icon(
                 painter = painterResource(iconId),
                 contentDescription = text,
+                modifier = Modifier.size(dimensionResource(R.dimen.top_bar_icon_size))
             )
             Text(
                 text = text,
-                style = MaterialTheme.typography.displaySmall,
+                style = MaterialTheme.typography.headlineMedium,
             )
         }
     }

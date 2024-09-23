@@ -1,9 +1,10 @@
-package com.viktoriagavrosh.uikit
+package com.viktoriagavrosh.uikit.buttons
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
@@ -19,7 +21,7 @@ fun MenuButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Button(
+    FilledTonalButton(
         onClick = onClick,
         modifier = modifier
             .heightIn(min = dimensionResource(R.dimen.button_height))
@@ -27,7 +29,7 @@ fun MenuButton(
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.displaySmall,
+            style = MaterialTheme.typography.headlineMedium,
             textAlign = TextAlign.Center,
             modifier = Modifier
         )

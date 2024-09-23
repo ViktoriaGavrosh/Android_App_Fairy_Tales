@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.viktoriagavrosh.read"
+    namespace = "com.viktoriagavrosh.reader"
     compileSdk = 34
 
     defaultConfig {

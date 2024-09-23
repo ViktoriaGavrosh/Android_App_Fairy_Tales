@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.read.elements
+package com.viktoriagavrosh.reader.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -13,8 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.read.R
-import com.viktoriagavrosh.read.model.ReadBook
+import com.viktoriagavrosh.reader.R
+import com.viktoriagavrosh.reader.model.ReadBook
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.uikit.BookImage
 import com.viktoriagavrosh.uikit.TextRow
@@ -24,7 +24,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  * Composable to display details of selected [ReadBook] on expanded screen
  */
 @Composable
-internal fun HorizontalReadContent(
+internal fun HorizontalReaderContent(
     book: ReadBook,
     textSize: Float,
     modifier: Modifier = Modifier
@@ -141,7 +141,7 @@ private fun TaleContent(
 @Composable
 private fun HorizontalReadContentPreview() {
     FairyTalesTheme {
-        HorizontalReadContent(
+        HorizontalReaderContent(
             book = ReadBook(
                 text = "Text",
                 title = "Title",
@@ -157,7 +157,7 @@ private fun HorizontalReadContentPreview() {
 @Composable
 private fun FullScreenHorizontalReadContentPreview() {
     FairyTalesTheme {
-        HorizontalReadContent(
+        HorizontalReaderContent(
             book = ReadBook(
                 text = "Text",
                 title = "Title",
