@@ -76,7 +76,7 @@ class StartViewModel @Inject constructor(
                 val randomTaleId = requestResultRandomTale.data ?: 1
                 _uiState.update {
                     it.copy(
-                        randomTaleId =randomTaleId,
+                        randomTaleId = randomTaleId,
                     )
                 }
             }

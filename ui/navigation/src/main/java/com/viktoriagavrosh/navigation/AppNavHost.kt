@@ -44,7 +44,7 @@ internal fun AppNavHost(
         }
         composable<LibraryMenu> {
             Column(modifier = modifier) { Text("Hi") }   // TODO заглушка
-        // TODO 111
+            // TODO 111
             /*
             LibraryScreen(
                 isVerticalScreen = isVerticalScreen,

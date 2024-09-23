@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +17,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.viktoriagavrosh.uikit.decor.DecorHorizontalEmptyDivider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
@@ -33,6 +35,9 @@ fun TextCard(
             .clip(RoundedCornerShape(dimensionResource(id = R.dimen.corner)))
             .background(color = MaterialTheme.colorScheme.onPrimary),
     ) {
+        DecorHorizontalEmptyDivider(
+            modifier = Modifier.fillMaxWidth()
+        )
         if (isTitleShow) {
             Text(
                 text = title,
@@ -40,7 +45,7 @@ fun TextCard(
                 fontSize = textSize.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .padding(dimensionResource(id = R.dimen.padding_small)),
+                    .padding(bottom = dimensionResource(id = R.dimen.padding_small)),
             )
         }
         Text(
@@ -48,8 +53,11 @@ fun TextCard(
             fontSize = textSize.sp,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
-                .padding(dimensionResource(id = R.dimen.padding_small))
+                .padding(horizontal = dimensionResource(id = R.dimen.padding_small))
                 .animateContentSize(),
+        )
+        DecorHorizontalEmptyDivider(
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }

@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -43,7 +44,8 @@ fun DesignMenuButton(
             )
             Text(
                 text = text,
-                style = MaterialTheme.typography.headlineMedium,
+                textAlign = TextAlign.End,
+                style = MaterialTheme.typography.headlineSmall,
             )
         }
     }
