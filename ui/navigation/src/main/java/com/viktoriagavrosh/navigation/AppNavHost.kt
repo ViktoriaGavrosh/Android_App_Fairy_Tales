@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.viktoriagavrosh.librarymenu.LibraryScreen
 import com.viktoriagavrosh.reader.ReaderScreen
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.riddle.RiddleScreen
@@ -43,22 +44,18 @@ internal fun AppNavHost(
             )
         }
         composable<LibraryMenu> {
-            Column(modifier = modifier) { Text("Hi") }   // TODO заглушка
-            // TODO 111
-            /*
             LibraryScreen(
                 isVerticalScreen = isVerticalScreen,
-                onTaleClick = { navController.navigate(Shelf(ShelfGenre.Tales.Fairy)) },
-                onRiddleClick = { navController.navigate(Shelf(ShelfGenre.Riddle)) },
-                onFolkClick = { navController.navigate(Shelf(ShelfGenre.Folk.Poem) },
+                onTaleClick = { navController.navigate(Shelf(NavGenre.Fairy)) },
+                onRiddleClick = { navController.navigate(Shelf(NavGenre.Riddle)) },
+                onFolkClick = { navController.navigate(Shelf(NavGenre.Poem)) },
                 onRandomClick = { id: Int ->
-                    navController.navigate(Read(id, ShelfGenre.Tales.Fairy))
+                    navController.navigate(Reader(id, NavGenre.Fairy))
                 },
                 onAddTaleClick = { navController.navigate(AddTale) },
                 onBackClick = { navController.navigateUp() },
                 modifier = modifier,
             )
-             */
         }
         composable<Shelf> { backStackEntry ->
             val shelf = backStackEntry.toRoute<Shelf>()

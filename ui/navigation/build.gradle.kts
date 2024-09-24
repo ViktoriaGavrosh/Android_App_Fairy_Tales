@@ -62,6 +62,7 @@ dependencies {
     //implementation(projects.ui.riddle)   TODO 111
     implementation(project(":ui:riddle"))
     implementation(project(":ui:startmenu"))
+    implementation(project(":ui:librarymenu"))
     implementation(projects.ui.settings)
     implementation(projects.uitheme)
 

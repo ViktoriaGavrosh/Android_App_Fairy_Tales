@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.viktoriagavrosh.startmenu"
+    namespace = "com.viktoriagavrosh.librarymenu"
     compileSdk = 34
 
     defaultConfig {

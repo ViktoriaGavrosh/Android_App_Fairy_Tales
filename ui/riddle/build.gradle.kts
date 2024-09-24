@@ -47,7 +47,6 @@ dependencies {
 
     // Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.material3.window.size)
 
     // Modules
     implementation(projects.ui.uikit)

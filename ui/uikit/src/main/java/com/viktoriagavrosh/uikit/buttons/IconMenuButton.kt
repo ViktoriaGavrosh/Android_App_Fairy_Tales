@@ -22,7 +22,7 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
-fun DesignMenuButton(
+fun IconMenuButton(
     @DrawableRes iconId: Int,
     text: String,
     onClick: () -> Unit,
@@ -56,7 +56,7 @@ fun DesignMenuButton(
 @Composable
 private fun DesignMenuButtonPreview() {
     FairyTalesTheme {
-        DesignMenuButton(
+        IconMenuButton(
             iconId = R.drawable.ic_favorite_false,
             text = "Text",
             onClick = {},

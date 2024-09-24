@@ -15,11 +15,16 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 fun DecorIcon(
     modifier: Modifier = Modifier,
+    isWhite: Boolean = false,
 ) {
     Icon(
         painter = painterResource(R.drawable.ic_decor),
         contentDescription = null,
-        tint = MaterialTheme.colorScheme.primary,
+        tint = if (isWhite) {
+            MaterialTheme.colorScheme.onPrimary
+        } else {
+            MaterialTheme.colorScheme.primary
+        },
         modifier = modifier.size(36.dp),   // TODO 111
     )
 }
