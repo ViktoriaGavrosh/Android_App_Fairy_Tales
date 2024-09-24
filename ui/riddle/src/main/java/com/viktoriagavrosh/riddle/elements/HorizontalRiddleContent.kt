@@ -29,13 +29,14 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun HorizontalRiddleContent(
-    riddle: ReadRiddle,
-    textSize: Float,
+    riddleProvider: () -> ReadRiddle,
+    textSizeProvider: () -> Float,
     modifier: Modifier = Modifier
 ) {
     var bigCard by remember {
         mutableStateOf(false)
     }
+    val riddle = riddleProvider()
 
     Row(
         modifier = modifier,
@@ -44,7 +45,7 @@ internal fun HorizontalRiddleContent(
         TextRow(
             text = riddle.text,
             title = riddle.title,
-            textSize = textSize,
+            textSizeProvider = textSizeProvider,
             isNotFullScreen = true,
             modifier = Modifier.weight(1F),
         )
@@ -88,12 +89,14 @@ internal fun HorizontalRiddleContent(
 private fun HorizontalRiddleContentPreview() {
     FairyTalesTheme {
         HorizontalRiddleContent(
-            riddle = ReadRiddle(
-                text = "Text",
-                title = "Title",
-                answer = "answer",
-            ),
-            textSize = 24.0F,
+            riddleProvider = {
+                ReadRiddle(
+                    text = "Text",
+                    title = "Title",
+                    answer = "answer",
+                )
+            },
+            textSizeProvider = { 24.0F },
         )
     }
 }

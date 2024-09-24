@@ -14,6 +14,7 @@ import com.viktoriagavrosh.repositories.utils.toTale
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 /**
@@ -64,12 +65,15 @@ class OfflineReadRepository @Inject constructor(
      * Retrieve the item from the given data source
      */
     override fun getTextSize(): Flow<RequestResult<Float>> {
-        return preferencesManager.getSettings()
-            .map { it.textSize }
-            .map<Float, RequestResult<Float>> { RequestResult.Success(it) }
-            .catch {
-                emit(RequestResult.Error(error = it))
+        return try {
+            preferencesManager.getSettings()
+                .map { it.textSize }
+                .map<Float, RequestResult<Float>> { RequestResult.Success(it) }
+        } catch (e: Exception) {
+            flow {
+                emit(RequestResult.Error(error = e))
             }
+        }
     }
 
     private fun getRiddleById(id: Int): Flow<RequestResult<Riddle>> {

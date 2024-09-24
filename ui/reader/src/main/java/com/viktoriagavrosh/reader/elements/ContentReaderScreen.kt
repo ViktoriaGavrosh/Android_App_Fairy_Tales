@@ -1,7 +1,6 @@
 package com.viktoriagavrosh.reader.elements
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,8 +21,8 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ContentReaderScreen(
-    book: ReadBook,
-    textSize: Float,
+    bookProvider: () -> ReadBook,
+    textSizeProvider: () -> Float,
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
@@ -33,26 +32,34 @@ internal fun ContentReaderScreen(
     val topAppBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
 
+    val title = bookProvider().title
+    val topBarTitle = if (isVerticalScreen) {
+        "${title.take(8)}..."
+    } else {
+        title
+    }
+
     Scaffold(
-        modifier = modifier.background(color = MaterialTheme.colorScheme.surfaceContainerHigh),
+        modifier = modifier,
         topBar = {
             ScreenTopBar(
-                text = book.title,
+                text = topBarTitle,
                 scrollBehavior = scrollBehavior,
                 isSettingsIconShow = true,
                 isBackIconShow = true,
-                isInfoShow = book.genre !is ShelfGenre.Folks,
+                isInfoShow = bookProvider().genre !is ShelfGenre.Folks,
                 onSettingsClick = onSettingsClick,
                 onBackClick = onBackClick,
                 onInfoClick = { onInfoClick() },
                 modifier = Modifier.fillMaxWidth(),
             )
-        }
+        },
+        containerColor = MaterialTheme.colorScheme.surfaceContainer,
     ) { paddingValues ->
         if (isVerticalScreen) {
             VerticalReaderContent(
-                book = book,
-                textSize = textSize,
+                bookProvider = bookProvider,
+                textSizeProvider = textSizeProvider,
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(paddingValues)
@@ -60,8 +67,8 @@ internal fun ContentReaderScreen(
             )
         } else {
             HorizontalReaderContent(
-                book = book,
-                textSize = textSize,
+                bookProvider = bookProvider,
+                textSizeProvider = textSizeProvider,
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(paddingValues)
@@ -70,53 +77,6 @@ internal fun ContentReaderScreen(
         }
     }
 }
-/*
-
-
-
-
-    // States are only here, otherwise scroll disappears
-    val scrollState = rememberScrollState()
-    var fontSize by remember {
-        mutableFloatStateOf(0.0F)
-    }
-    if (fontSize == 0.0F) fontSize = textSize
-    Column(
-        modifier = modifier
-            .background(color = MaterialTheme.colorScheme.surfaceContainerHigh)
-            .pointerInput(Unit) {
-                detectTransformGestures { _, _, zoom, _ ->
-                    fontSize *= zoom
-                    if (fontSize < 8) fontSize = 8.0F
-                    if (fontSize > 100) fontSize = 100.0F
-                    onTextSizeUpdate(fontSize)
-                }
-            }
-            .verticalScroll(scrollState)
-    ) {
-
-        if (isExpandedScreen) {
-
-            HorizontalDetailScreen(
-                tale = tale,
-                fontSize = fontSize,
-                modifier = Modifier
-                    .testTag(stringResource(R.string.horizontal_detail_screen))
-            )
-
-        } else {
-            VerticalDetailScreen(
-                tale = tale,
-                fontSize = fontSize,
-                modifier = Modifier
-
-                    .testTag(stringResource(R.string.vertical_detail_screen))
-            )
-        }
-    }
-}
-
- */
 
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -124,12 +84,14 @@ internal fun ContentReaderScreen(
 private fun VerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentReaderScreen(
-            book = ReadBook(
-                text = "Text",
-                title = "Title",
-                genre = ShelfGenre.Nights
-            ),
-            textSize = 24.0F,
+            bookProvider = {
+                ReadBook(
+                    text = "Text",
+                    title = "Title",
+                    genre = ShelfGenre.Nights
+                )
+            },
+            textSizeProvider = { 24.0F },
             isVerticalScreen = true,
             onBackClick = {},
             onInfoClick = {},
@@ -144,12 +106,14 @@ private fun VerticalContentScreenPreview() {
 private fun FolkVerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentReaderScreen(
-            book = ReadBook(
-                text = "Text",
-                title = "Title",
-                genre = ShelfGenre.Folks.Poem
-            ),
-            textSize = 24.0F,
+            bookProvider = {
+                ReadBook(
+                    text = "Text",
+                    title = "Title",
+                    genre = ShelfGenre.Folks.Poem
+                )
+            },
+            textSizeProvider = { 24.0F },
             isVerticalScreen = true,
             onBackClick = {},
             onInfoClick = {},
@@ -164,12 +128,14 @@ private fun FolkVerticalContentScreenPreview() {
 private fun HorizontalContentScreenPreview() {
     FairyTalesTheme {
         ContentReaderScreen(
-            book = ReadBook(
-                text = "Text",
-                title = "Title",
-                genre = ShelfGenre.Nights
-            ),
-            textSize = 24.0F,
+            bookProvider = {
+                ReadBook(
+                    text = "Text",
+                    title = "Title",
+                    genre = ShelfGenre.Nights
+                )
+            },
+            textSizeProvider = { 24.0F },
             isVerticalScreen = false,
             onBackClick = {},
             onInfoClick = {},
@@ -184,12 +150,14 @@ private fun HorizontalContentScreenPreview() {
 private fun FolkHorizontalContentScreenPreview() {
     FairyTalesTheme {
         ContentReaderScreen(
-            book = ReadBook(
-                text = "Text",
-                title = "Title",
-                genre = ShelfGenre.Folks.Poem,
-            ),
-            textSize = 24.0F,
+            bookProvider = {
+                ReadBook(
+                    text = "Text",
+                    title = "Title",
+                    genre = ShelfGenre.Folks.Poem,
+                )
+            },
+            textSizeProvider = { 24.0F },
             isVerticalScreen = false,
             onBackClick = {},
             onInfoClick = {},

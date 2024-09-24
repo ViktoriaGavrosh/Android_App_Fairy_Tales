@@ -30,7 +30,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun Bookshelf(
-    books: List<Book>,
+    booksProvider: () -> List<Book>,
     topBarTitle: String,
     isVerticalScreen: Boolean,
     isHeartShow: Boolean,
@@ -41,6 +41,7 @@ internal fun Bookshelf(
 ) {
     val topAppBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
+    val books = booksProvider()
 
     Scaffold(
         modifier = modifier,
@@ -104,11 +105,13 @@ internal fun Bookshelf(
 private fun VerticalListTalesPreview() {
     FairyTalesTheme {
         Bookshelf(
-            books = List(4) {
-                Book(
-                    title = "Story",
-                    imageUrl = "",
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        title = "Story",
+                        imageUrl = "",
+                    )
+                }
             },
             topBarTitle = "Title",
             isVerticalScreen = true,
@@ -127,11 +130,13 @@ private fun VerticalListTalesPreview() {
 private fun HorizontalListTalesPreview() {
     FairyTalesTheme {
         Bookshelf(
-            books = List(4) {
-                Book(
-                    title = "Story",
-                    imageUrl = "",
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        title = "Story",
+                        imageUrl = "",
+                    )
+                }
             },
             topBarTitle = "Title",
             isVerticalScreen = false,

@@ -21,8 +21,8 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ContentRiddleScreen(
-    riddle: ReadRiddle,
-    textSize: Float,
+    riddleProvider: () -> ReadRiddle,
+    textSizeProvider: () -> Float,
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
@@ -35,7 +35,7 @@ internal fun ContentRiddleScreen(
         modifier = modifier.background(color = MaterialTheme.colorScheme.surfaceContainerHigh),
         topBar = {
             ScreenTopBar(
-                text = riddle.title,
+                text = riddleProvider().title,
                 scrollBehavior = scrollBehavior,
                 isSettingsIconShow = true,
                 isBackIconShow = true,
@@ -47,8 +47,8 @@ internal fun ContentRiddleScreen(
     ) { paddingValues ->
         if (isVerticalScreen) {
             VerticalRiddleContent(
-                riddle = riddle,
-                textSize = textSize,
+                riddleProvider = riddleProvider,
+                textSizeProvider = textSizeProvider,
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(paddingValues)
@@ -56,8 +56,8 @@ internal fun ContentRiddleScreen(
             )
         } else {
             HorizontalRiddleContent(
-                riddle = riddle,
-                textSize = textSize,
+                riddleProvider = riddleProvider,
+                textSizeProvider = textSizeProvider,
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(paddingValues)
@@ -73,12 +73,14 @@ internal fun ContentRiddleScreen(
 private fun VerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentRiddleScreen(
-            riddle = ReadRiddle(
-                text = "Text",
-                title = "Title",
-                answer = "answer",
-            ),
-            textSize = 24.0F,
+            riddleProvider = {
+                ReadRiddle(
+                    text = "Text",
+                    title = "Title",
+                    answer = "answer",
+                )
+            },
+            textSizeProvider = { 24.0F },
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {}
@@ -92,12 +94,14 @@ private fun VerticalContentScreenPreview() {
 private fun HorizontalContentScreenPreview() {
     FairyTalesTheme {
         ContentRiddleScreen(
-            riddle = ReadRiddle(
-                text = "Text",
-                title = "Title",
-                answer = "answer",
-            ),
-            textSize = 24.0F,
+            riddleProvider = {
+                ReadRiddle(
+                    text = "Text",
+                    title = "Title",
+                    answer = "answer",
+                )
+            },
+            textSizeProvider = { 24.0F },
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {}

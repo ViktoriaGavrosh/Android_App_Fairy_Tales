@@ -13,7 +13,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 fun TextRow(
     text: String,
     title: String,
-    textSize: Float,
+    textSizeProvider: () -> Float,
     isNotFullScreen: Boolean,
     modifier: Modifier = Modifier,
     isTitleShow: Boolean = false,
@@ -25,7 +25,7 @@ fun TextRow(
             Spacer(modifier = Modifier.weight(1F))
             TextCard(
                 text = text,
-                textSize = textSize,
+                textSizeProvider = textSizeProvider,
                 isTitleShow = isTitleShow,
             )
             Spacer(modifier = Modifier.weight(1F))
@@ -33,7 +33,7 @@ fun TextRow(
             TextCard(
                 text = text,
                 title = title,
-                textSize = textSize,
+                textSizeProvider = textSizeProvider,
                 isTitleShow = isTitleShow,
                 modifier = Modifier.fillMaxWidth(),
             )
@@ -49,7 +49,7 @@ private fun FullScreenTextRowPreview() {
         TextRow(
             text = "Text",
             title = "Title",
-            textSize = 24.0F,
+            textSizeProvider = { 24.0F },
             isNotFullScreen = false,
         )
     }
@@ -63,7 +63,7 @@ private fun TextRowPreview() {
         TextRow(
             text = "Text",
             title = "Title",
-            textSize = 24.0F,
+            textSizeProvider = { 24.0F },
             isNotFullScreen = true,
         )
     }

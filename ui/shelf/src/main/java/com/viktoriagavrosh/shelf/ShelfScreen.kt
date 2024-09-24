@@ -3,7 +3,6 @@ package com.viktoriagavrosh.shelf
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -33,10 +32,10 @@ fun ShelfScreen(
         }
     )
 
-    val screenState by viewModel.screenState.collectAsStateWithLifecycle()
+    val screenState = viewModel.screenState.collectAsStateWithLifecycle()
 
     ShelfScreen(
-        screenState = screenState,
+        screenStateProvider = { screenState.value },
         genre = genre,
         tabs = viewModel.tabs,
         isVerticalScreen = isVerticalScreen,
@@ -51,7 +50,7 @@ fun ShelfScreen(
 
 @Composable
 internal fun ShelfScreen(
-    screenState: ScreenState<List<Book>>,
+    screenStateProvider: () -> ScreenState<List<Book>>,
     genre: ShelfGenre,
     tabs: List<Tabs>,
     isVerticalScreen: Boolean,
@@ -62,7 +61,7 @@ internal fun ShelfScreen(
     onErrorButtonClick: (ShelfGenre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    when (screenState) {
+    when (screenStateProvider()) {
         is ScreenState.None -> {}
         is ScreenState.Error -> {
             ErrorScreen(
@@ -73,7 +72,7 @@ internal fun ShelfScreen(
 
         is ScreenState.Success -> {
             ContentScreen(
-                books = screenState.data ?: emptyList(),
+                booksProvider = { screenStateProvider().data ?: emptyList() },
                 genre = genre,
                 tabs = tabs,
                 isVerticalScreen = isVerticalScreen,
@@ -93,15 +92,17 @@ internal fun ShelfScreen(
 private fun CompactHomeScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenState = ScreenState.Success(
-                List(4) {
-                    Book(
-                        id = it,
-                        title = "title",
-                        imageUrl = "",
-                    )
-                }
-            ),
+            screenStateProvider = {
+                ScreenState.Success(
+                    List(4) {
+                        Book(
+                            id = it,
+                            title = "title",
+                            imageUrl = "",
+                        )
+                    }
+                )
+            },
             genre = ShelfGenre.Folks.Poem,
             tabs = Tabs.FolkTab.entries,
             isVerticalScreen = true,
@@ -120,15 +121,17 @@ private fun CompactHomeScreenPreview() {
 private fun ExpandedHomeScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenState = ScreenState.Success(
-                List(4) {
-                    Book(
-                        id = it,
-                        title = "title",
-                        imageUrl = "",
-                    )
-                }
-            ),
+            screenStateProvider = {
+                ScreenState.Success(
+                    List(4) {
+                        Book(
+                            id = it,
+                            title = "title",
+                            imageUrl = "",
+                        )
+                    }
+                )
+            },
             genre = ShelfGenre.Folks.Poem,
             tabs = Tabs.FolkTab.entries,
             isVerticalScreen = false,
@@ -147,7 +150,9 @@ private fun ExpandedHomeScreenPreview() {
 private fun VerticalErrorShelfScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenState = ScreenState.Error(),
+            screenStateProvider = {
+                ScreenState.Error()
+            },
             genre = ShelfGenre.Folks.Poem,
             tabs = emptyList(),
             isVerticalScreen = true,
@@ -167,7 +172,9 @@ private fun VerticalErrorShelfScreenPreview() {
 private fun HorizontalErrorContentScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenState = ScreenState.Error(),
+            screenStateProvider = {
+                ScreenState.Error()
+            },
             genre = ShelfGenre.Folks.Poem,
             tabs = emptyList(),
             isVerticalScreen = true,

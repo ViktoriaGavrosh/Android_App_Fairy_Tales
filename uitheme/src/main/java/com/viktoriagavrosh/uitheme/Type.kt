@@ -4,6 +4,7 @@ import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 
 val bodyFontFamily = FontFamily(
     Font(
@@ -19,7 +20,6 @@ val displayFontFamily = FontFamily(
     )
 )
 
-
 // Default Material 3 typography values
 val baseline = Typography()
 
@@ -33,7 +33,10 @@ val AppTypography = Typography(
     titleLarge = baseline.titleLarge.copy(fontFamily = displayFontFamily),
     titleMedium = baseline.titleMedium.copy(fontFamily = displayFontFamily),
     titleSmall = baseline.titleSmall.copy(fontFamily = displayFontFamily),
-    bodyLarge = baseline.bodyLarge.copy(fontFamily = bodyFontFamily),
+    bodyLarge = baseline.bodyLarge.copy(
+        fontFamily = bodyFontFamily,
+        lineHeight = TextUnit.Unspecified  // needs so that lines don`t stick together when textSize changes
+    ),
     bodyMedium = baseline.bodyMedium.copy(fontFamily = bodyFontFamily),
     bodySmall = baseline.bodySmall.copy(fontFamily = bodyFontFamily),
     labelLarge = baseline.labelLarge.copy(fontFamily = bodyFontFamily),

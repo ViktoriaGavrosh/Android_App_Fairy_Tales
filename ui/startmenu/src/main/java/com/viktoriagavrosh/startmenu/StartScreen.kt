@@ -30,7 +30,7 @@ fun StartScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     StartScreen(
-        isError = uiState.isError,
+        isErrorProvider = { uiState.isError },
         isVerticalScreen = isVerticalScreen,
         onFavoriteClick = onFavoriteClick,
         onNightClick = onNightClick,
@@ -49,7 +49,7 @@ fun StartScreen(
 
 @Composable
 internal fun StartScreen(
-    isError: Boolean,
+    isErrorProvider: () -> Boolean,
     isVerticalScreen: Boolean,
     onFavoriteClick: () -> Unit,
     onNightClick: () -> Unit,
@@ -60,7 +60,7 @@ internal fun StartScreen(
     onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    if (isError) {
+    if (isErrorProvider()) {
         ErrorScreen(
             onButtonClick = onErrorButtonClick,
             modifier = modifier
@@ -85,7 +85,7 @@ internal fun StartScreen(
 private fun VerticalStartScreenPreview() {
     FairyTalesTheme {
         StartScreen(
-            isError = false,
+            isErrorProvider = { false },
             isVerticalScreen = true,
             onSettingsClick = {},
             onErrorButtonClick = {},
@@ -104,7 +104,7 @@ private fun VerticalStartScreenPreview() {
 private fun HorizontalStartScreenPreview() {
     FairyTalesTheme {
         StartScreen(
-            isError = false,
+            isErrorProvider = { false },
             isVerticalScreen = false,
             onSettingsClick = {},
             onErrorButtonClick = {},
@@ -123,7 +123,7 @@ private fun HorizontalStartScreenPreview() {
 private fun ErrorVerticalStartScreenPreview() {
     FairyTalesTheme {
         StartScreen(
-            isError = true,
+            isErrorProvider = { true },
             isVerticalScreen = true,
             onSettingsClick = {},
             onErrorButtonClick = {},
@@ -142,7 +142,7 @@ private fun ErrorVerticalStartScreenPreview() {
 private fun ErrorHorizontalStartScreenPreview() {
     FairyTalesTheme {
         StartScreen(
-            isError = true,
+            isErrorProvider = { true },
             isVerticalScreen = false,
             onSettingsClick = {},
             onErrorButtonClick = {},

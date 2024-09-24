@@ -11,9 +11,13 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -31,16 +35,39 @@ class ReaderViewModel @AssistedInject constructor(
     internal val uiState: StateFlow<ReaderUiState>
         get() = _uiState
 
+    private var _textSize: Flow<Float> = repository.getTextSize()
+        .map {
+            it.data ?: 0.0F
+            /*
+            if (requestResult is RequestResult.Error) {
+                _uiState.update {
+                    it.copy(isError = true)
+                }
+                8.0F
+            } else {
+                requestResult.data ?: 8.0F
+            }
+
+             */
+        }
+
     init {
         initUiState()
     }
 
+    internal val textSize: StateFlow<Float>
+        get() = _textSize.stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            0.0F
+        )
+
+
     internal fun initUiState() {
         viewModelScope.launch {
             val requestResultBook = repository.getBookById(bookId, genre).first()
-            val requestResultTextSize = repository.getTextSize().first()
 
-            if (requestResultBook is RequestResult.Error || requestResultTextSize is RequestResult.Error) {
+            if (requestResultBook is RequestResult.Error) {
                 _uiState.update {
                     it.copy(
                         isError = true
@@ -48,12 +75,11 @@ class ReaderViewModel @AssistedInject constructor(
                 }
             } else {
                 val book = requestResultBook.data?.toReadBook() ?: ReadBook()
-                val textSize = requestResultTextSize.data ?: 8.0F
 
                 _uiState.update {
                     it.copy(
                         book = book,
-                        textSize = textSize
+                        //textSize = textSize   TODO 111
                     )
                 }
             }
@@ -69,5 +95,5 @@ class ReaderViewModel @AssistedInject constructor(
 internal data class ReaderUiState(
     val book: ReadBook = ReadBook(),
     val isError: Boolean = false,
-    val textSize: Float = 0.0F,
+    // val textSize: Float = 0.0F,    TODO 111
 )

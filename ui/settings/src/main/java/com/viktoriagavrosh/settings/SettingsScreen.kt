@@ -35,8 +35,8 @@ fun SettingsScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     SettingsScreen(
-        textSize = uiState.textSize,
-        isError = uiState.isError,
+        textSizeProvider = { uiState.textSize },
+        isErrorProvider = { uiState.isError },
         isVerticalScreen = isVerticalScreen,
         onTextSizeUpdate = viewModel::updateTextSize,
         onBackClick = onBackClick,
@@ -48,15 +48,15 @@ fun SettingsScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsScreen(
-    textSize: Float,
-    isError: Boolean,
+    textSizeProvider: () -> Float,
+    isErrorProvider: () -> Boolean,
     isVerticalScreen: Boolean,
     onTextSizeUpdate: (Float) -> Unit,
     onBackClick: () -> Unit,
     onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    if (isError) {
+    if (isErrorProvider()) {
         ErrorScreen(
             onButtonClick = onErrorButtonClick,
             modifier = modifier,
@@ -78,7 +78,7 @@ internal fun SettingsScreen(
             }
         ) { paddingValues ->
             SettingsContent(
-                textSize = textSize,
+                textSizeProvider = textSizeProvider,
                 isVerticalScreen = isVerticalScreen,
                 onTextSizeUpdate = onTextSizeUpdate,
                 modifier = Modifier
@@ -97,8 +97,8 @@ internal fun SettingsScreen(
 private fun VerticalSettingsScreenPreview() {
     FairyTalesTheme {
         SettingsScreen(
-            textSize = 24.0F,
-            isError = false,
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = true,
             onTextSizeUpdate = {},
             onBackClick = {},
@@ -113,8 +113,8 @@ private fun VerticalSettingsScreenPreview() {
 private fun HorizontalSettingsScreenPreview() {
     FairyTalesTheme {
         SettingsScreen(
-            textSize = 24.0F,
-            isError = false,
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = false,
             onTextSizeUpdate = {},
             onBackClick = {},

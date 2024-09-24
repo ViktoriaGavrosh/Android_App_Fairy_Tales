@@ -15,7 +15,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
 internal fun HorizontalSettingsContent(
-    textSize: Float,
+    textSizeProvider: () -> Float,
     onTextSizeUpdate: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -30,7 +30,7 @@ internal fun HorizontalSettingsContent(
                 ),
         ) {
             TextSizeRow(
-                textSize = textSize,
+                textSizeProvider = textSizeProvider,
                 onTextSizeUpdate = onTextSizeUpdate,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -50,7 +50,7 @@ internal fun HorizontalSettingsContent(
 private fun HorizontalSettingsContentPreview() {
     FairyTalesTheme {
         HorizontalSettingsContent(
-            textSize = 24.0F,
+            textSizeProvider = { 24.0F },
             onTextSizeUpdate = {},
             modifier = Modifier.fillMaxSize()
         )

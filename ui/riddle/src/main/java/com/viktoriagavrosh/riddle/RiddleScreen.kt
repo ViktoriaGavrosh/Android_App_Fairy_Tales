@@ -2,7 +2,6 @@ package com.viktoriagavrosh.riddle
 
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,12 +27,12 @@ fun RiddleScreen(
             factory.create(riddleId)
         }
     )
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
     RiddleScreen(
-        riddle = uiState.riddle,
-        textSize = uiState.textSize,
-        isError = uiState.isError,
+        riddleProvider = { uiState.value.riddle },
+        textSizeProvider = { uiState.value.textSize },
+        isErrorProvider = { uiState.value.isError },
         isVerticalScreen = isVerticalScreen,
         onBackClick = onBackClick,
         onSettingsClick = onSettingsClick,
@@ -44,24 +43,24 @@ fun RiddleScreen(
 
 @Composable
 internal fun RiddleScreen(
-    riddle: ReadRiddle,
-    textSize: Float,
-    isError: Boolean,
+    riddleProvider: () -> ReadRiddle,
+    textSizeProvider: () -> Float,
+    isErrorProvider: () -> Boolean,
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
     onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    if (isError) {
+    if (isErrorProvider()) {
         ErrorScreen(
             onButtonClick = onErrorButtonClick,
             modifier = modifier,
         )
     } else {
         ContentRiddleScreen(
-            riddle = riddle,
-            textSize = textSize,
+            riddleProvider = riddleProvider,
+            textSizeProvider = textSizeProvider,
             isVerticalScreen = isVerticalScreen,
             onBackClick = onBackClick,
             onSettingsClick = onSettingsClick,
@@ -76,13 +75,15 @@ internal fun RiddleScreen(
 private fun VerticalRiddleScreenPreview() {
     FairyTalesTheme {
         RiddleScreen(
-            riddle = ReadRiddle(
-                title = "title",
-                text = "text",
-                answer = "answer",
-            ),
-            textSize = 24.0F,
-            isError = false,
+            riddleProvider = {
+                ReadRiddle(
+                    title = "title",
+                    text = "text",
+                    answer = "answer",
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {},
@@ -97,9 +98,9 @@ private fun VerticalRiddleScreenPreview() {
 private fun ErrorVerticalRiddleScreenPreview() {
     FairyTalesTheme {
         RiddleScreen(
-            riddle = ReadRiddle(),
-            textSize = 24.0F,
-            isError = true,
+            riddleProvider = { ReadRiddle() },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { true },
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {},
@@ -114,13 +115,15 @@ private fun ErrorVerticalRiddleScreenPreview() {
 private fun HorizontalRiddleScreenPreview() {
     FairyTalesTheme {
         RiddleScreen(
-            riddle = ReadRiddle(
-                title = "title",
-                text = "text",
-                answer = "answer",
-            ),
-            textSize = 24.0F,
-            isError = false,
+            riddleProvider = {
+                ReadRiddle(
+                    title = "title",
+                    text = "text",
+                    answer = "answer",
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},
@@ -135,9 +138,9 @@ private fun HorizontalRiddleScreenPreview() {
 private fun ErrorHorizontalRiddleScreenPreview() {
     FairyTalesTheme {
         RiddleScreen(
-            riddle = ReadRiddle(),
-            textSize = 24.0F,
-            isError = true,
+            riddleProvider = { ReadRiddle() },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { true },
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},

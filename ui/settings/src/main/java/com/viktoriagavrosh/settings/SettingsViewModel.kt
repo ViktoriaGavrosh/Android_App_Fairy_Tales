@@ -59,7 +59,7 @@ class SettingsViewModel @Inject constructor(
 
     private fun convertToValidTextSize(textSize: Float): Float {
         return when {
-            textSize > 100 -> 100.0F
+            textSize > 60 -> 60.0F
             textSize < 8 -> 8.0F
             else -> textSize
         }

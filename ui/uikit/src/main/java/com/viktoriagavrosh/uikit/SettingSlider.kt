@@ -25,7 +25,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 fun SettingSlider(
     text: String,
-    settingSize: Float,
+    settingSizeProvider: () -> Float,
     onSettingSizeUpdate: (Float) -> Unit,
     testTag: String,
 ) {
@@ -33,14 +33,14 @@ fun SettingSlider(
         mutableFloatStateOf(0.0F)
     }
 
-    if (sliderPosition == 0.0F) sliderPosition = settingSize
+    if (sliderPosition == 0.0F) sliderPosition = settingSizeProvider()
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.width(250.dp)
+        modifier = Modifier.width(250.dp)    // TODO 111
     ) {
         Box(
-            modifier = Modifier.height(120.dp),
+            modifier = Modifier.height(120.dp),   // TODO 111
             contentAlignment = Alignment.Center,
         ) {
             Text(
@@ -57,7 +57,7 @@ fun SettingSlider(
                     end = dimensionResource(id = R.dimen.padding_extra_large)
                 )
                 .testTag(testTag),
-            valueRange = 8F..100F,
+            valueRange = 8F..60F,
             onValueChangeFinished = { onSettingSizeUpdate(sliderPosition) }
         )
     }
@@ -70,7 +70,7 @@ private fun ShortTitleCardPreview() {
     FairyTalesTheme {
         SettingSlider(
             text = "Setting",
-            settingSize = 28.0F,
+            settingSizeProvider = { 24.0F },
             onSettingSizeUpdate = {},
             testTag = ""
         )

@@ -21,7 +21,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun ContentScreen(
-    books: List<Book>,
+    booksProvider: () -> List<Book>,
     genre: ShelfGenre,
     tabs: List<Tabs>,
     isVerticalScreen: Boolean,
@@ -43,7 +43,7 @@ internal fun ContentScreen(
 
         ) {
             Bookshelf(
-                books = books,
+                booksProvider = booksProvider,
                 topBarTitle = topBarTitle,
                 isVerticalScreen = true,
                 isHeartShow = isHeartShow,
@@ -73,14 +73,14 @@ internal fun ContentScreen(
                 )
             }
             Bookshelf(
-                books = books,
+                booksProvider = booksProvider,
                 topBarTitle = topBarTitle,
                 isVerticalScreen = false,
                 isHeartShow = isHeartShow,
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
-                // modifier = Modifier.weight(1F)    TODO 111
+                // modifier = Modifier.weight(1F)   TODO 111
             )
         }
     }
@@ -106,11 +106,13 @@ private fun getTitleId(genre: ShelfGenre): Int {
 private fun TabsVerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
-            books = List(4) {
-                Book(
-                    title = "Poem",
-                    imageUrl = "",
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        title = "Poem",
+                        imageUrl = "",
+                    )
+                }
             },
             genre = ShelfGenre.Folks.Poem,
             tabs = Tabs.FolkTab.entries,
@@ -129,11 +131,13 @@ private fun TabsVerticalContentScreenPreview() {
 private fun VerticalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
-            books = List(4) {
-                Book(
-                    title = "Tale",
-                    imageUrl = "",
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        title = "Tale",
+                        imageUrl = "",
+                    )
+                }
             },
             genre = ShelfGenre.Nights,
             tabs = emptyList(),
@@ -152,11 +156,13 @@ private fun VerticalContentScreenPreview() {
 private fun TabsHorizontalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
-            books = List(4) {
-                Book(
-                    title = "Poem",
-                    imageUrl = "",
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        title = "Poem",
+                        imageUrl = "",
+                    )
+                }
             },
             genre = ShelfGenre.Nights,
             tabs = emptyList(),
@@ -175,11 +181,13 @@ private fun TabsHorizontalContentScreenPreview() {
 private fun HorizontalContentScreenPreview() {
     FairyTalesTheme {
         ContentScreen(
-            books = List(4) {
-                Book(
-                    title = "Poem",
-                    imageUrl = "",
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        title = "Poem",
+                        imageUrl = "",
+                    )
+                }
             },
             genre = ShelfGenre.Folks.Poem,
             tabs = Tabs.FolkTab.entries,

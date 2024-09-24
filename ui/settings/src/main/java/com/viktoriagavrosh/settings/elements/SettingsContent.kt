@@ -12,20 +12,20 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun SettingsContent(
-    textSize: Float,
+    textSizeProvider: () -> Float,
     isVerticalScreen: Boolean,
     onTextSizeUpdate: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     if (isVerticalScreen) {
         VerticalSettingsContent(
-            textSize = textSize,
+            textSizeProvider = textSizeProvider,
             onTextSizeUpdate = onTextSizeUpdate,
             modifier = modifier,
         )
     } else {
         HorizontalSettingsContent(
-            textSize = textSize,
+            textSizeProvider = textSizeProvider,
             onTextSizeUpdate = onTextSizeUpdate,
             modifier = modifier,
         )
@@ -38,7 +38,7 @@ internal fun SettingsContent(
 private fun VerticalSettingsContentPreview() {
     FairyTalesTheme {
         SettingsContent(
-            textSize = 24.0F,
+            textSizeProvider = { 24.0F },
             isVerticalScreen = true,
             onTextSizeUpdate = {},
             modifier = Modifier.fillMaxSize()
@@ -52,7 +52,7 @@ private fun VerticalSettingsContentPreview() {
 private fun HorizontalSettingsContentPreview() {
     FairyTalesTheme {
         SettingsContent(
-            textSize = 24.0F,
+            textSizeProvider = { 24.0F },
             isVerticalScreen = false,
             onTextSizeUpdate = {},
             modifier = Modifier.fillMaxSize()

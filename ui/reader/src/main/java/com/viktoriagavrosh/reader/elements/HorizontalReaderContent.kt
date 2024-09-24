@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,31 +27,35 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun HorizontalReaderContent(
-    book: ReadBook,
-    textSize: Float,
+    bookProvider: () -> ReadBook,
+    textSizeProvider: () -> Float,
     modifier: Modifier = Modifier
 ) {
-    if (book.genre is ShelfGenre.Folks) {
+    val scrollState = rememberScrollState()
+
+    if (bookProvider().genre is ShelfGenre.Folks) {
         FolkContent(
-            book = book,
-            textSize = textSize,
-            modifier = modifier
+            bookProvider = bookProvider,
+            textSizeProvider = textSizeProvider,
+            modifier = modifier.verticalScroll(scrollState)
         )
     } else {
         TaleContent(
-            book = book,
-            textSize = textSize,
-            modifier = modifier
+            bookProvider = bookProvider,
+            textSizeProvider = textSizeProvider,
+            modifier = modifier.verticalScroll(scrollState)
         )
     }
 }
 
 @Composable
 private fun FolkContent(
-    book: ReadBook,
-    textSize: Float,
+    bookProvider: () -> ReadBook,
+    textSizeProvider: () -> Float,
     modifier: Modifier = Modifier,
 ) {
+    val book = bookProvider()
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -71,7 +77,7 @@ private fun FolkContent(
             TextRow(
                 text = book.text,
                 title = book.title,
-                textSize = textSize,
+                textSizeProvider = textSizeProvider,
                 isNotFullScreen = book.genre is ShelfGenre.Folks,
                 modifier = Modifier
                     .padding(
@@ -85,10 +91,12 @@ private fun FolkContent(
 
 @Composable
 private fun TaleContent(
-    book: ReadBook,
-    textSize: Float,
+    bookProvider: () -> ReadBook,
+    textSizeProvider: () -> Float,
     modifier: Modifier = Modifier,
 ) {
+    val book = bookProvider()
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -113,10 +121,10 @@ private fun TaleContent(
                 )
             }
             TextRow(
-                text = book.text,
+                text = book.title,
                 title = book.title,
-                textSize = textSize,
-                isNotFullScreen = true,
+                textSizeProvider = textSizeProvider,
+                isNotFullScreen = false,
                 modifier = Modifier
                     .padding(
                         horizontal = dimensionResource(R.dimen.padding_small)
@@ -127,7 +135,7 @@ private fun TaleContent(
         TextRow(
             text = book.text,
             title = book.title,
-            textSize = textSize,
+            textSizeProvider = textSizeProvider,
             isNotFullScreen = book.genre is ShelfGenre.Folks,
             modifier = Modifier.padding(
                 horizontal = dimensionResource(R.dimen.padding_small)
@@ -142,12 +150,14 @@ private fun TaleContent(
 private fun HorizontalReadContentPreview() {
     FairyTalesTheme {
         HorizontalReaderContent(
-            book = ReadBook(
-                text = "Text",
-                title = "Title",
-                genre = ShelfGenre.Nights,
-            ),
-            textSize = 24.0F,
+            bookProvider = {
+                ReadBook(
+                    text = "Text",
+                    title = "Title",
+                    genre = ShelfGenre.Nights,
+                )
+            },
+            textSizeProvider = { 24.0F },
         )
     }
 }
@@ -158,12 +168,14 @@ private fun HorizontalReadContentPreview() {
 private fun FullScreenHorizontalReadContentPreview() {
     FairyTalesTheme {
         HorizontalReaderContent(
-            book = ReadBook(
-                text = "Text",
-                title = "Title",
-                genre = ShelfGenre.Folks.Poem,
-            ),
-            textSize = 24.0F,
+            bookProvider = {
+                ReadBook(
+                    text = "Text",
+                    title = "Title",
+                    genre = ShelfGenre.Folks.Poem,
+                )
+            },
+            textSizeProvider = { 24.0F },
         )
     }
 }

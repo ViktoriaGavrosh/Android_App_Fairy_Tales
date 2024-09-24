@@ -23,7 +23,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 fun TextCard(
     text: String,
-    textSize: Float,
+    textSizeProvider: () -> Float,
     modifier: Modifier = Modifier,
     isTitleShow: Boolean = false,
     title: String = "",
@@ -42,7 +42,7 @@ fun TextCard(
             Text(
                 text = title,
                 style = MaterialTheme.typography.displaySmall,
-                fontSize = textSize.sp,
+                fontSize = textSizeProvider().sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(bottom = dimensionResource(id = R.dimen.padding_small)),
@@ -50,7 +50,7 @@ fun TextCard(
         }
         Text(
             text = text,
-            fontSize = textSize.sp,
+            fontSize = textSizeProvider().sp,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .padding(horizontal = dimensionResource(id = R.dimen.padding_small))
@@ -69,7 +69,7 @@ private fun TextCardPreview() {
     FairyTalesTheme {
         TextCard(
             text = "Text",
-            textSize = 24.0F,
+            textSizeProvider = { 24.0F },
         )
     }
 }
@@ -81,7 +81,7 @@ private fun WithTitleTextCardPreview() {
     FairyTalesTheme {
         TextCard(
             text = "Text",
-            textSize = 24.0F,
+            textSizeProvider = { 24.0F },
             title = "Title",
             isTitleShow = true,
         )

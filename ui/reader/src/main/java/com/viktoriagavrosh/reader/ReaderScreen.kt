@@ -2,7 +2,6 @@ package com.viktoriagavrosh.reader
 
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -31,12 +30,13 @@ fun ReaderScreen(
             factory.create(bookId, genre)
         }
     )
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    val textSize = viewModel.textSize.collectAsStateWithLifecycle()
 
     ReaderScreen(
-        book = uiState.book,
-        textSize = uiState.textSize,
-        isError = uiState.isError,
+        bookProvider = { uiState.value.book },
+        textSizeProvider = { textSize.value },
+        isErrorProvider = { uiState.value.isError },
         isVerticalScreen = isVerticalScreen,
         onBackClick = onBackClick,
         onSettingsClick = onSettingsClick,
@@ -48,9 +48,9 @@ fun ReaderScreen(
 
 @Composable
 internal fun ReaderScreen(
-    book: ReadBook,
-    textSize: Float,
-    isError: Boolean,
+    bookProvider: () -> ReadBook,
+    textSizeProvider: () -> Float,
+    isErrorProvider: () -> Boolean,
     isVerticalScreen: Boolean,
     onBackClick: () -> Unit,
     onSettingsClick: () -> Unit,
@@ -58,15 +58,15 @@ internal fun ReaderScreen(
     onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    if (isError) {
+    if (isErrorProvider()) {
         ErrorScreen(
             onButtonClick = onErrorButtonClick,
             modifier = modifier,
         )
     } else {
         ContentReaderScreen(
-            book = book,
-            textSize = textSize,
+            bookProvider = bookProvider,
+            textSizeProvider = textSizeProvider,
             isVerticalScreen = isVerticalScreen,
             onBackClick = onBackClick,
             onSettingsClick = onSettingsClick,
@@ -82,13 +82,15 @@ internal fun ReaderScreen(
 private fun FolkVerticalReadScreenPreview() {
     FairyTalesTheme {
         ReaderScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text",
-                genre = ShelfGenre.Folks.Poem,
-            ),
-            textSize = 24.0F,
-            isError = false,
+            bookProvider = {
+                ReadBook(
+                    title = "title",
+                    text = "text",
+                    genre = ShelfGenre.Folks.Poem,
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {},
@@ -104,12 +106,14 @@ private fun FolkVerticalReadScreenPreview() {
 private fun VerticalReadScreenPreview() {
     FairyTalesTheme {
         ReaderScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text",
-            ),
-            textSize = 24.0F,
-            isError = false,
+            bookProvider = {
+                ReadBook(
+                    title = "title",
+                    text = "text",
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {},
@@ -125,12 +129,14 @@ private fun VerticalReadScreenPreview() {
 private fun ErrorVerticalReadScreenPreview() {
     FairyTalesTheme {
         ReaderScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text"
-            ),
-            textSize = 24.0F,
-            isError = true,
+            bookProvider = {
+                ReadBook(
+                    title = "title",
+                    text = "text"
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { true },
             isVerticalScreen = true,
             onBackClick = {},
             onSettingsClick = {},
@@ -146,12 +152,14 @@ private fun ErrorVerticalReadScreenPreview() {
 private fun HorizontalReadScreenPreview() {
     FairyTalesTheme {
         ReaderScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text"
-            ),
-            textSize = 24.0F,
-            isError = false,
+            bookProvider = {
+                ReadBook(
+                    title = "title",
+                    text = "text"
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},
@@ -167,13 +175,15 @@ private fun HorizontalReadScreenPreview() {
 private fun FolkHorizontalReadScreenPreview() {
     FairyTalesTheme {
         ReaderScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text",
-                genre = ShelfGenre.Folks.Poem,
-            ),
-            textSize = 24.0F,
-            isError = false,
+            bookProvider = {
+                ReadBook(
+                    title = "title",
+                    text = "text",
+                    genre = ShelfGenre.Folks.Poem,
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { false },
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},
@@ -189,12 +199,14 @@ private fun FolkHorizontalReadScreenPreview() {
 private fun ErrorHorizontalReadScreenPreview() {
     FairyTalesTheme {
         ReaderScreen(
-            book = ReadBook(
-                title = "title",
-                text = "text"
-            ),
-            textSize = 24.0F,
-            isError = true,
+            bookProvider = {
+                ReadBook(
+                    title = "title",
+                    text = "text"
+                )
+            },
+            textSizeProvider = { 24.0F },
+            isErrorProvider = { true },
             isVerticalScreen = false,
             onBackClick = {},
             onSettingsClick = {},

@@ -20,7 +20,7 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun TextSizeRow(
-    textSize: Float,
+    textSizeProvider: () -> Float,
     onTextSizeUpdate: (Float) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -38,7 +38,7 @@ internal fun TextSizeRow(
         )
         SettingSlider(
             text = stringResource(R.string.letters),
-            settingSize = textSize,
+            settingSizeProvider = textSizeProvider,
             onSettingSizeUpdate = onTextSizeUpdate,
             testTag = stringResource(R.string.textsize_slider),
         )
@@ -51,7 +51,7 @@ internal fun TextSizeRow(
 private fun TextSizeRowPreview() {
     FairyTalesTheme {
         TextSizeRow(
-            textSize = 80.0F,
+            textSizeProvider = { 25.0F },
             onTextSizeUpdate = {}
         )
     }
