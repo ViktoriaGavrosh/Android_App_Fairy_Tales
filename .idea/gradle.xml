@@ -15,8 +15,10 @@
             <option value="$PROJECT_DIR$/datastore" />
             <option value="$PROJECT_DIR$/repositories" />
             <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/infomenu" />
+            <option value="$PROJECT_DIR$/ui/librarymenu" />
             <option value="$PROJECT_DIR$/ui/navigation" />
-            <option value="$PROJECT_DIR$/ui/read" />
+            <option value="$PROJECT_DIR$/ui/reader" />
             <option value="$PROJECT_DIR$/ui/riddle" />
             <option value="$PROJECT_DIR$/ui/settings" />
             <option value="$PROJECT_DIR$/ui/shelf" />

@@ -11,4 +11,7 @@
     <string name="error_button_text">Шукаем</string>
     <string name="info">info</string>
     <string name="actions">actions</string>
+
+    <string name="read_button">Чытаць</string>
+    <string name="tale_top_bar_title">Казка</string>
 </resources>

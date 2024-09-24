@@ -2,7 +2,10 @@ package com.viktoriagavrosh.repositories
 
 import com.viktoriagavrosh.database.TaleAppDatabase
 import com.viktoriagavrosh.datastore.PreferencesManager
+import com.viktoriagavrosh.repositories.model.Retaining
+import com.viktoriagavrosh.repositories.model.Tale
 import com.viktoriagavrosh.repositories.utils.RequestResult
+import com.viktoriagavrosh.repositories.utils.toTale
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -33,6 +36,11 @@ interface MenuRepository {
      * Retrieve id of random item from the given data source
      */
     fun getRandomTaleId(): Flow<RequestResult<Int>>
+
+    /**
+     * Retrieve the item from the given data source by id
+     */
+    fun getTaleById(id: Int): Flow<RequestResult<Retaining>>
 }
 
 /**
@@ -81,6 +89,19 @@ class OfflineMenuRepository @Inject constructor(
     override suspend fun updateLastTaleId(id: Int) {
         val idString = id.toString()
         preferencesManager.updateLastTaleId(idString)
+    }
+
+    /**
+     * Retrieve the item from the given data source by id
+     */
+    override fun getTaleById(id: Int): Flow<RequestResult<Tale>> {
+        val request = appDatabase.taleDao.getTaleById(id)
+            .map { it.toTale() }
+            .map<Tale, RequestResult<Tale>> { RequestResult.Success(it) }
+            .catch {
+                emit(RequestResult.Error(error = it))
+            }
+        return request
     }
 
 }

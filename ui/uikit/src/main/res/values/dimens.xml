@@ -13,4 +13,6 @@
     <dimen name="design_button_width">100dp</dimen>
     <dimen name="button_height">48dp</dimen>
     <dimen name="button_width">82dp</dimen>
+
+    <dimen name="info_button_width">300dp</dimen>
 </resources>

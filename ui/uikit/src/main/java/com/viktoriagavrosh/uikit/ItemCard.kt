@@ -12,15 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.utils.FairyTaleColors
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -106,26 +103,6 @@ private fun CardTitle(
                     .padding(start = dimensionResource(id = R.dimen.padding_small))
             )
         }
-    }
-}
-
-@Composable
-private fun HeartIcon(
-    isFavorite: Boolean,
-    modifier: Modifier = Modifier,
-) {
-    if (isFavorite) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_favorite_true),
-            contentDescription = stringResource(id = R.string.favorite),
-            modifier = modifier
-        )
-    } else {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_favorite_false),
-            contentDescription = stringResource(id = R.string.not_favorite),
-            modifier = modifier
-        )
     }
 }
 

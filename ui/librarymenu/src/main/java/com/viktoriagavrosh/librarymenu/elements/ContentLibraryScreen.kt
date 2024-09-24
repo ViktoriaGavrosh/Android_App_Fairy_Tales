@@ -92,7 +92,7 @@ private fun VerticalContentScreenPreview() {
 private fun HorizontalContentScreenPreview() {
     FairyTalesTheme {
         ContentLibraryScreen(
-            isVerticalScreen = true,
+            isVerticalScreen = false,
             onRiddleClick = {},
             onBackClick = {},
             onFolkClick = {},

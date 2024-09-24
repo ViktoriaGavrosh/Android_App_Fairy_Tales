@@ -15,7 +15,7 @@ internal data class Shelf(
 )
 
 @Serializable
-internal data class Info(
+internal data class BookInfo(
     val bookId: Int = 0,
     val navGenre: NavGenre = NavGenre.Night,
 )
@@ -37,7 +37,7 @@ internal object Settings
 @Serializable
 internal object AddTale
 
-internal enum class NavGenre(val genre: ShelfGenre) {   // TODO delete it
+internal enum class NavGenre(val genre: ShelfGenre) {
     Animal(ShelfGenre.Tales.Animal),
     Fairy(ShelfGenre.Tales.Fairy),
     People(ShelfGenre.Tales.People),
@@ -49,7 +49,7 @@ internal enum class NavGenre(val genre: ShelfGenre) {   // TODO delete it
     Riddle(ShelfGenre.Riddles),
 }
 
-/*
+/*   TODO 111
 internal enum class NavigationDestination(val screen: String) {
     HomeScreen(screen = "home"),
     ReadScreen(screen = "read"),

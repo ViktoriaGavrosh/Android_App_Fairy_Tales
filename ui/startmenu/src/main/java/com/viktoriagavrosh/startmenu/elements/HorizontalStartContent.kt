@@ -38,6 +38,7 @@ internal fun HorizontalStartContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Cover(
+            text = stringResource(com.viktoriagavrosh.uikit.R.string.cover_title),   // TODO 111
             modifier = Modifier.padding(
                 top = dimensionResource(R.dimen.padding_double_extra_large),
                 bottom = dimensionResource(R.dimen.padding_double_extra_large)

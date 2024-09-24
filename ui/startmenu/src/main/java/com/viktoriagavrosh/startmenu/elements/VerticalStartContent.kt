@@ -36,6 +36,7 @@ internal fun VerticalStartContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Cover(
+            text = stringResource(com.viktoriagavrosh.uikit.R.string.cover_title),   // TODO 111
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(

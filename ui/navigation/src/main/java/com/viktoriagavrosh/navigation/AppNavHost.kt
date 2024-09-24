@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.viktoriagavrosh.infomenu.InfoScreen
 import com.viktoriagavrosh.librarymenu.LibraryScreen
 import com.viktoriagavrosh.reader.ReaderScreen
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
@@ -66,7 +67,7 @@ internal fun AppNavHost(
                 onCardClick = { id ->
                     when (genre) {
                         is ShelfGenre.Riddles -> navController.navigate(Riddle(id))
-                        is ShelfGenre.Tales -> navController.navigate(Info(id, shelf.navGenre))
+                        is ShelfGenre.Tales -> navController.navigate(BookInfo(id, shelf.navGenre))
                         else -> navController.navigate(Reader(id, shelf.navGenre))
                     }
                 },
@@ -74,18 +75,15 @@ internal fun AppNavHost(
                 modifier = modifier,
             )
         }
-        composable<Info> {
-            Column(modifier = modifier) { Text("Hi") }   // TODO заглушка
-            // TODO 111
-            /*
-            val info = backStackEntry.toRoute<Info>()
+        composable<BookInfo> { backStackEntry ->
+            val info = backStackEntry.toRoute<BookInfo>()
             InfoScreen(
+                taleId = info.bookId,
                 isVerticalScreen = isVerticalScreen,
-                onReadClick = { navController.navigate(Read(info.id, info.genre)) }
+                onReadClick = { navController.navigate(Reader(info.bookId, info.navGenre)) },
                 onBackClick = { navController.navigateUp() },
                 modifier = modifier,
             )
-             */
         }
         composable<Reader> { backStackEntry ->
             val reader = backStackEntry.toRoute<Reader>()
@@ -95,7 +93,7 @@ internal fun AppNavHost(
                 isVerticalScreen = isVerticalScreen,
                 onBackClick = { navController.navigateUp() },
                 onSettingsClick = { navController.navigate(Settings) },
-                onInfoClick = { navController.navigate(Info(reader.bookId, reader.navGenre)) },
+                onInfoClick = { navController.navigate(BookInfo(reader.bookId, reader.navGenre)) },
                 modifier = modifier,
             )
         }
@@ -128,74 +126,4 @@ internal fun AppNavHost(
              */
         }
     }
-
-    /*
-    NavHost(
-        navController = navController,
-        startDestination = NavigationDestination.HomeScreen.screen,
-    ) {
-        composable(
-            route = NavigationDestination.HomeScreen.screen
-        ) {
-            ShelfScreen(
-                genreName = ShelfGenre.Tales.Fairy.genreName,  // TODO 111 заглушка
-                isVerticalScreen = isVerticalScreen,
-                onCardClick = { id ->
-                    navController.navigate(
-                        route = "${NavigationDestination.ReadScreen.screen}/${id}"
-                    )
-                },
-                onBackClick = { navController.navigateUp() },
-                modifier = modifier,
-            )
-        }
-        composable(
-            route = "${NavigationDestination.ReadScreen.screen}/{value}"
-        ) { backStackEntry ->
-            val taleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
-            ReadScreen(
-                bookId = taleId,
-                genre = ShelfGenre.Nights,   // TODO  заглушка
-                isVerticalScreen = isVerticalScreen,
-                onBackClick = {
-                    navController.navigate(NavigationDestination.HomeScreen.screen)
-                },
-                onSettingsClick = {
-                    navController.navigate(NavigationDestination.SettingsScreen.screen)
-                },
-                onInfoClick = {},   // TODO  заглушка
-                modifier = modifier,
-            )
-        }
-        composable(
-            route = "${NavigationDestination.RiddleScreen.screen}/{value}"
-        ) { backStackEntry ->
-            val riddleId = backStackEntry.arguments?.getString("value")?.toInt() ?: 0
-            RiddleScreen(
-                riddleId = riddleId,
-                isVerticalScreen = isVerticalScreen,
-                onBackClick = {
-                    navController.navigate(NavigationDestination.HomeScreen.screen)
-                },
-                onSettingsClick = {
-                    navController.navigate(NavigationDestination.SettingsScreen.screen)
-                },
-                modifier = modifier,
-            )
-        }
-        composable(
-            route = NavigationDestination.SettingsScreen.screen
-        ) {
-            SettingsScreen(
-                isVerticalScreen = isVerticalScreen,
-                onBackClick = {
-                    navController.navigateUp()
-                },
-                modifier = modifier,
-            )
-        }
-    }
-
-     */
 }
-

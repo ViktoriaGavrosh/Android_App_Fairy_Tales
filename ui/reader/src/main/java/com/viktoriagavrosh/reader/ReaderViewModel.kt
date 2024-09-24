@@ -38,7 +38,7 @@ class ReaderViewModel @AssistedInject constructor(
     private var _textSize: Flow<Float> = repository.getTextSize()
         .map {
             it.data ?: 0.0F
-            /*
+            /*   TODO 11111111
             if (requestResult is RequestResult.Error) {
                 _uiState.update {
                     it.copy(isError = true)
@@ -79,7 +79,6 @@ class ReaderViewModel @AssistedInject constructor(
                 _uiState.update {
                     it.copy(
                         book = book,
-                        //textSize = textSize   TODO 111
                     )
                 }
             }
@@ -95,5 +94,4 @@ class ReaderViewModel @AssistedInject constructor(
 internal data class ReaderUiState(
     val book: ReadBook = ReadBook(),
     val isError: Boolean = false,
-    // val textSize: Float = 0.0F,    TODO 111
 )
