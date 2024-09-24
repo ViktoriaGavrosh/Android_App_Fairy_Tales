@@ -56,18 +56,6 @@ class InfoViewModel @AssistedInject constructor(
         }
     }
 
-    /**
-     * Update the value of an item field is_favorite in the data source
-     */
-    internal fun updateTaleFavorite() {
-        viewModelScope.launch {
-            val tale = uiState.first().tale
-            repository.updateFavoriteTale(tale.id, !tale.isFavorite)
-        }
-
-        updateUiState()          // TODO check : uiState might update without it ???
-    }
-
     internal fun updateLastTale() {
         viewModelScope.launch {
             val tale = uiState.first().tale
