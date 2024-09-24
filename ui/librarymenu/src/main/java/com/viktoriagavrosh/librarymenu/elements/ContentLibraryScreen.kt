@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.librarymenu.R
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -36,7 +36,7 @@ internal fun ContentLibraryScreen(
         modifier = modifier,
         topBar = {
             ScreenTopBar(
-                text = stringResource(R.string.library_title),
+                text = stringResource(R.string.library),
                 scrollBehavior = scrollBehavior,
                 onBackClick = onBackClick,
                 modifier = Modifier.fillMaxWidth(),

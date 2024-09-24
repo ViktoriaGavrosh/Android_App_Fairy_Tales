@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.startmenu.R
 import com.viktoriagavrosh.uikit.Cover
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.buttons.MenuButton
 import com.viktoriagavrosh.uikit.decor.DecorVerticalDivider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -38,7 +38,7 @@ internal fun HorizontalStartContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Cover(
-            text = stringResource(com.viktoriagavrosh.uikit.R.string.cover_title),   // TODO 111
+            text = stringResource(R.string.cover_title),
             modifier = Modifier.padding(
                 top = dimensionResource(R.dimen.padding_double_extra_large),
                 bottom = dimensionResource(R.dimen.padding_double_extra_large)
@@ -76,7 +76,7 @@ internal fun HorizontalStartContent(
                     modifier = Modifier
                 )
                 MenuButton(
-                    text = stringResource(R.string.settings_button),
+                    text = stringResource(R.string.settings_title),
                     onClick = onSettingsClick,
                     modifier = Modifier.padding(dimensionResource(R.dimen.padding_double_extra_large))
                 )

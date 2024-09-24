@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.librarymenu.R
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.buttons.MenuButton
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -25,7 +25,7 @@ internal fun AdditionalButtons(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         MenuButton(
-            text = stringResource(R.string.random_button),
+            text = stringResource(R.string.random_tale),
             onClick = onRandomClick,
             modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_large))
         )

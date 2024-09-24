@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.startmenu.R
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.buttons.IconMenuButton
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -24,8 +24,8 @@ internal fun MainButtonColumn(
         modifier = modifier
     ) {
         IconMenuButton(
-            iconId = R.drawable.ic_favorite,
-            text = stringResource(R.string.favorite_tales_title),
+            iconId = R.drawable.ic_favorite_false,
+            text = stringResource(R.string.title_favorite),
             onClick = onFavoriteClick,
             modifier = Modifier
                 .fillMaxWidth()
@@ -33,7 +33,7 @@ internal fun MainButtonColumn(
         )
         IconMenuButton(
             iconId = R.drawable.ic_night,
-            text = stringResource(R.string.night_tales),
+            text = stringResource(R.string.title_night),
             onClick = onNightClick,
             modifier = Modifier
                 .fillMaxWidth()

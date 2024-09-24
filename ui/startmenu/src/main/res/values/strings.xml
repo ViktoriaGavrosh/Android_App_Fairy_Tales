@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="favorite_tales_title">Люб\u0456мыя казк\u0456</string>
-    <string name="night_tales">Казк\u0456 на ноч</string>
-    <string name="library">Б\u0456бл\u0456ятэка</string>
-    <string name="settings_button">Настройк\u0456</string>
-    <string name="last_tale">Апошняя казка</string>
-    <string name="random_tale">Выпадковая казка</string>
-</resources>

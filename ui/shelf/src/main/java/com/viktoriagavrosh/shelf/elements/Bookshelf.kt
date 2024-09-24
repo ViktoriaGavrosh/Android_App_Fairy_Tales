@@ -18,9 +18,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.shelf.R
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.uikit.ItemCard
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 

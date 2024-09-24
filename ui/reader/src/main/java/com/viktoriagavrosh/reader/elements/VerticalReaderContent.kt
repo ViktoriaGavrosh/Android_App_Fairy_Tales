@@ -11,10 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.reader.R
 import com.viktoriagavrosh.reader.model.ReadBook
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.uikit.BookImage
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.TextRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 

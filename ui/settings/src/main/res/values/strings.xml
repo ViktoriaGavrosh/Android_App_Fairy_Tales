@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="settings_title">Настройк\u0456</string>
-    <string name="back">back</string>
-    <string name="textsize_title">Памер\nтэксту</string>
-    <string name="letters">Aa</string>
-    <string name="textsize_slider">textSize slider</string>
-</resources>

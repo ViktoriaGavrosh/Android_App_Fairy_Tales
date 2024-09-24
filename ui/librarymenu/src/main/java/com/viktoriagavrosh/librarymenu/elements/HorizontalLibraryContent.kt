@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.librarymenu.R
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
@@ -35,7 +35,8 @@ internal fun HorizontalLibraryContent(
                 onTaleClick = onTaleClick,
                 onFolkClick = onFolkClick,
                 onRiddleClick = onRiddleClick,
-                modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_double_extra_large)),
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(R.dimen.padding_double_extra_large)),
             )
         }
         Box(

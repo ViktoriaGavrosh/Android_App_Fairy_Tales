@@ -19,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.viktoriagavrosh.settings.elements.SettingsContent
 import com.viktoriagavrosh.uikit.ErrorScreen
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
