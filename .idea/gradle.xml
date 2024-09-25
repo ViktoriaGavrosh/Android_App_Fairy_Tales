@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/datastore" />
             <option value="$PROJECT_DIR$/repositories" />
             <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/addtale" />
             <option value="$PROJECT_DIR$/ui/infomenu" />
             <option value="$PROJECT_DIR$/ui/librarymenu" />
             <option value="$PROJECT_DIR$/ui/navigation" />

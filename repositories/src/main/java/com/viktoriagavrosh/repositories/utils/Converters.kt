@@ -33,6 +33,7 @@ internal fun Tale.toTaleDb(): TaleDb {
         text = text,
         isFavorite = isFavorite,
         isNight = isNight,
+        isChangeable = isChangeable,
         imageUrl = imageUrl,
         audioUrl = audioUrl,
         quizUrl = quizUrl,

@@ -7,8 +7,10 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
 import com.viktoriagavrosh.datastore.PreferencesManager
+import com.viktoriagavrosh.repositories.AddRepository
 import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
 import com.viktoriagavrosh.repositories.MenuRepository
+import com.viktoriagavrosh.repositories.OfflineAddRepository
 import com.viktoriagavrosh.repositories.OfflineMenuRepository
 import com.viktoriagavrosh.repositories.OfflineReadRepository
 import com.viktoriagavrosh.repositories.OfflineShelfRepository
@@ -42,22 +44,20 @@ object AppModule {
         )
     }
 
-    /*
-        @Provides
-        @Singleton
-        fun provideTaleRepository(
-            appDatabase: AppDatabase
-        ): TaleRepository {
-            return OfflineTaleRepository(appDatabase)
-        }
-
-     */
     @Provides
     @Singleton
     fun provideShelfRepository(
         appDatabase: AppDatabase
     ): ShelfRepository {
         return OfflineShelfRepository(appDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAddRepository(
+        appDatabase: AppDatabase
+    ): AddRepository {
+        return OfflineAddRepository(appDatabase)
     }
 
     @Provides

@@ -68,6 +68,7 @@ dependencies {
     implementation(project(":ui:startmenu"))
     implementation(project(":ui:librarymenu"))
     implementation(project(":ui:infomenu"))
+    implementation(project(":ui:addtale"))
     implementation(projects.ui.settings)
     implementation(projects.uitheme)
 

@@ -12,6 +12,7 @@ data class Tale(
     val text: String = "",
     val isFavorite: Boolean = false,
     val isNight: Boolean = false,
+    val isChangeable: Boolean = false,
     val imageUrl: String? = null,
     val audioUrl: String? = null,
     val quizUrl: String? = null,

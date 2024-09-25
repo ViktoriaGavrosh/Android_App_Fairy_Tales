@@ -16,6 +16,7 @@ data class TaleDb(
     @ColumnInfo(name = "text") val text: String,
     @ColumnInfo(name = "is_favorite") val isFavorite: Boolean,
     @ColumnInfo(name = "is_night") val isNight: Boolean,
+    @ColumnInfo(name = "is_changeable") val isChangeable: Boolean,
     @ColumnInfo(name = "image_url") val imageUrl: String?,
     @ColumnInfo(name = "audio_url") val audioUrl: String?,
     @ColumnInfo(name = "quiz_url") val quizUrl: String?,
