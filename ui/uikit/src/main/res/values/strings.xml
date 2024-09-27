@@ -48,6 +48,12 @@
     <string name="tale_button">Казк\u0456</string>
     <string name="riddle_button">Загадк\u0456</string>
     <string name="folk_button">Л\u0456чылк\u0456\nЗаба\u045Eлянк\u0456</string>
-    <string name="add_tale_button">Дабав\u0456ць сваю казку</string>
+    <string name="add_tale_button">Дадаць сваю казку</string>
 
+    <!-- AddTaleScreen -->
+    <string name="add_tale">Новая казка</string>
+    <string name="add_tale_title">Назва</string>
+    <string name="add_tale_text">Тэкст</string>
+    <string name="night">Казка на ноч</string>
+    <string name="add_tale_button_text">Дадаць</string>
 </resources>

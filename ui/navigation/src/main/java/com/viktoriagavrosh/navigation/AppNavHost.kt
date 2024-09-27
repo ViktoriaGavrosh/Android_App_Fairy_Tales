@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.viktoriagavrosh.addtale.AddTaleScreen
 import com.viktoriagavrosh.infomenu.InfoScreen
 import com.viktoriagavrosh.librarymenu.LibraryScreen
 import com.viktoriagavrosh.reader.ReaderScreen
@@ -115,15 +116,11 @@ internal fun AppNavHost(
             )
         }
         composable<AddTale> {
-            Column(modifier = modifier) { Text("Hi") }   // TODO заглушка
-            // TODO 111
-            /*
             AddTaleScreen(
                 isVerticalScreen = isVerticalScreen,
                 onBackClick = { navController.navigateUp() },
                 modifier = modifier,
             )
-             */
         }
     }
 }

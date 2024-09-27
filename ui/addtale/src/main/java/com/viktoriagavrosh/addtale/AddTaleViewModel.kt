@@ -1,13 +1,21 @@
 package com.viktoriagavrosh.addtale
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.addtale.model.NewTale
+import com.viktoriagavrosh.addtale.utils.TaleGenre
+import com.viktoriagavrosh.addtale.utils.TaleGenre.Animal
+import com.viktoriagavrosh.addtale.utils.TaleGenre.Fairy
+import com.viktoriagavrosh.addtale.utils.TaleGenre.People
+import com.viktoriagavrosh.addtale.utils.toTale
 import com.viktoriagavrosh.repositories.AddRepository
 import com.viktoriagavrosh.repositories.ShelfRepository
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -19,51 +27,86 @@ class AddTaleViewModel @Inject constructor(
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow(AddTaleUiState())
-
-    init {
-
-    }
-
     internal val uiState: StateFlow<AddTaleUiState>
         get() = _uiState
-/*
-    /**
-     * Update [ScreenState] for navigation between tabs
-     */
-    internal fun updateScreenState(genre: ShelfGenre) {
-        _uiState = repository
-            .getItems(genre)
-            .map { requestResult ->
-                requestResult.toScreenState(
-                    convertData = { list ->
-                        list.map { it.toBook() }
-                    }
+
+    internal fun addTale() {
+        viewModelScope.launch {
+            val newTale = uiState.first().newTale
+            repository.addTale(newTale.toTale())
+        }
+    }
+
+    internal fun updateTitle(title: String) {
+        viewModelScope.launch {
+            val newTale = uiState.first().newTale.copy(
+                title = title,
+            )
+            val isTaleValid = checkTaleValid(newTale)
+            updateUiState(newTale, isTaleValid)
+        }
+    }
+
+    internal fun updateText(text: String) {
+        viewModelScope.launch {
+            val newTale = uiState.first().newTale.copy(
+                text = text,
+            )
+            val isTaleValid = checkTaleValid(newTale)
+            updateUiState(newTale, isTaleValid)
+        }
+    }
+
+    internal fun updateGenre(genreTitle: String) {
+        val genre = getGenreByTitle(genreTitle)
+        viewModelScope.launch {
+            val newTale = uiState.first().newTale.copy(
+                taleGenre = genre,
+            )
+            updateUiState(newTale)
+        }
+    }
+
+    internal fun updateIsNight(isNight: Boolean) {
+        viewModelScope.launch {
+            val newTale = uiState.first().newTale.copy(
+                isNight = isNight,
+            )
+            updateUiState(newTale)
+        }
+    }
+
+    private fun updateUiState(newTale: NewTale, isTaleValid: Boolean? = null) {
+        _uiState.update {
+            if (isTaleValid == null) {
+                it.copy(
+                    newTale = newTale,
+                )
+            } else {
+                it.copy(
+                    newTale = newTale,
+                    isTaleValid = isTaleValid,
                 )
             }
-    }
-
-    /**
-     * Update the value of an item field is_favorite in the data source
-     */
-    fun updateBookFavorite(book: Book) {
-        viewModelScope.launch {
-            repository.updateFavoriteTale(book.id, !book.isFavorite)
-        }
-        updateScreenState(book.genre)   // TODO check : uiState might update without it ???
-    }
-
-    private fun initTabs(genre: ShelfGenre) {
-        tabs = when (genre) {
-            in ShelfGenre.Folks.entries -> Tabs.FolkTab.entries
-            in ShelfGenre.Tales.entries -> Tabs.TaleTab.entries
-            else -> emptyList()
         }
     }
 
- */
+    private fun checkTaleValid(newTale: NewTale): Boolean {
+        return newTale.title.isNotEmpty() && newTale.text.isNotEmpty()
+    }
+
+    private fun getGenreByTitle(title: String): TaleGenre {
+        return when (title) {
+            Animal.title -> Animal
+            Fairy.title -> Fairy
+            People.title -> People
+            else -> People
+        }
+    }
 }
 
 internal data class AddTaleUiState(
     val newTale: NewTale = NewTale(),
     val isError: Boolean = false,
+    val isTaleValid: Boolean = false,
 )

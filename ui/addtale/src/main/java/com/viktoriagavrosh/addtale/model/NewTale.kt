@@ -1,11 +1,12 @@
 package com.viktoriagavrosh.addtale.model
 
-import com.viktoriagavrosh.repositories.utils.ShelfGenre
+import com.viktoriagavrosh.addtale.utils.TaleGenre
 
-data class NewTale(
+internal data class NewTale(
     val id: Int = 0,
     val title: String = "",
     val text: String = "",
-    val genre: ShelfGenre = ShelfGenre.Tales.Animal,
+    val taleGenre: TaleGenre = TaleGenre.Animal,
     val isNight: Boolean = false,
+    val isChangeable: Boolean = true,
 )

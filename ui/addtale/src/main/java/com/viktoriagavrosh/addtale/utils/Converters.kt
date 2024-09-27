@@ -6,10 +6,10 @@ import com.viktoriagavrosh.repositories.model.Tale
 internal fun NewTale.toTale(): Tale {
     return Tale(
         id = id,
-        genre = genre,
+        genre = taleGenre.genre,
         title = title,
         text = text,
         isNight = isNight,
-        isChangeable = true,
+        isChangeable = isChangeable,
     )
 }
