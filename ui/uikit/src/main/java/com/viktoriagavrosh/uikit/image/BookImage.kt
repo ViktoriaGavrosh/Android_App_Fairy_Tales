@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.uikit
+package com.viktoriagavrosh.uikit.image
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.aspectRatio

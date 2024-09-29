@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.uikit
+package com.viktoriagavrosh.uikit.text
 
 import android.content.res.Configuration
 import androidx.compose.material3.MaterialTheme

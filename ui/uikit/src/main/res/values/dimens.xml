@@ -14,8 +14,8 @@
     <dimen name="button_height">48dp</dimen>
     <dimen name="button_width">82dp</dimen>
 
-    <dimen name="slider_column_width">250dp</dimen>
     <dimen name="slider_box_height">100dp</dimen>
+    <dimen name="slider_column_width">250dp</dimen>
 
     <!-- InfoScreen -->
     <dimen name="info_button_width">300dp</dimen>
