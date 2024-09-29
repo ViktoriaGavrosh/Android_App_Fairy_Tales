@@ -1,8 +1,11 @@
 package com.viktoriagavrosh.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.viktoriagavrosh.database.model.FolkDb
+import com.viktoriagavrosh.database.model.TaleDb
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -17,4 +20,6 @@ interface FolkDao {
     @Query("SELECT * FROM folk WHERE id = :id")
     fun getFolkById(id: Int): Flow<FolkDb>
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(folkDb: FolkDb)
 }

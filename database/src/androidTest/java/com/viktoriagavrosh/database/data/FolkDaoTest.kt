@@ -6,7 +6,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.viktoriagavrosh.database.AppRoomDatabase
 import com.viktoriagavrosh.database.dao.FolkDao
-import com.viktoriagavrosh.database.model.TaleDb
+import com.viktoriagavrosh.database.model.FolkDb
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -19,37 +19,28 @@ import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class FolkDaoTest {
-    private lateinit var taleDao: FolkDao
+    private lateinit var folkDao: FolkDao
     private lateinit var appDatabase: AppRoomDatabase
-    private val tale1 = TaleDb(
+    private val folk1 = FolkDb(
         id = 1,
-        genre = "story",
+        genre = "lullaby",
         title = "Title",
         text = "Text",
-        answer = null,
         imageUrl = "",
-        audioUrl = null,
-        isFavorite = false
     )
-    private val tale2 = TaleDb(
+    private val folk2 = FolkDb(
         id = 2,
-        genre = "story",
+        genre = "poem",
         title = "Title2",
         text = "Text2",
-        answer = null,
         imageUrl = "",
-        audioUrl = null,
-        isFavorite = true
     )
-    private val tale3 = TaleDb(
+    private val folk3 = FolkDb(
         id = 3,
-        genre = "puzzle",
+        genre = "counting",
         title = "Title3",
         text = "Text3",
-        answer = "answer3",
         imageUrl = "",
-        audioUrl = null,
-        isFavorite = false
     )
 
     @Before
@@ -58,7 +49,7 @@ class FolkDaoTest {
         appDatabase = Room.inMemoryDatabaseBuilder(context, AppRoomDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        taleDao = appDatabase.taleDao()
+        folkDao = appDatabase.folkDao()
     }
 
     @After
@@ -69,69 +60,56 @@ class FolkDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun daoInsert_addTaleIntoDb() = runBlocking {
+    fun folkDao_insert_addFolkIntoDb() = runBlocking {
         addItemToDb()
-        val allItems = taleDao.getAllTales("story").first()
-        assertEquals(allItems[0], tale1)
+        val allItems = folkDao.getAllFolks("lullaby").first()
+        assertEquals(allItems[0], folk1)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoGetAllTales_returnsAllTalesFromDB() = runBlocking {
+    fun folkDao_getAllFolks_returnAllLullabyFromDB() = runBlocking {
         addTwoItemsToDb()
-        val allItems = taleDao.getAllTales("story").first()
-        assertEquals(allItems[0], tale1)
-        assertEquals(allItems[1], tale2)
-
+        val allItems = folkDao.getAllFolks("lullaby").first()
+        assertEquals(allItems[0], folk1)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoGetAllTales_returnAllPuzzlesFromDB() = runBlocking {
+    fun folkDao_getAllTales_returnAllPoemsFromDB() = runBlocking {
         addThreeItemsToDb()
-        val allItems = taleDao.getAllTales("puzzle").first()
-        assertEquals(allItems[0], tale3)
+        val allItems = folkDao.getAllFolks("poem").first()
+        assertEquals(allItems[0], folk2)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoGetAllFavoriteTales_returnAllFavoriteTalesFromDb() = runBlocking {
-        addTwoItemsToDb()
-        val allItems = taleDao.getAllFavoriteTales("story").first()
-        assertEquals(allItems[0], tale2)
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun daoGetTaleById_returnTaleFromDB() = runBlocking {
+    fun folkDao_getAllTales_returnAllCountingFromDB() = runBlocking {
         addThreeItemsToDb()
-        val actualTale = taleDao.getTaleById(3).first()
-        assertEquals(actualTale, tale3)
+        val allItems = folkDao.getAllFolks("counting").first()
+        assertEquals(allItems[0], folk3)
     }
 
     @Test
     @Throws(Exception::class)
-    fun daoUpdateFavoriteTale_updatedItemInDb() = runBlocking {
-        val isTrueFavorite = 1
-        val isFavoriteExpected = true
-        addItemToDb()
-        taleDao.updateFavoriteTale(1, isTrueFavorite)
-        val allItems = taleDao.getAllFavoriteTales("story").first()
-        assertEquals(allItems[0].isFavorite, isFavoriteExpected)
+    fun folkDao_getFolkById_returnFolkFromDB() = runBlocking {
+        addThreeItemsToDb()
+        val actualTale = folkDao.getFolkById(3).first()
+        assertEquals(actualTale, folk3)
     }
 
     private suspend fun addItemToDb() {
-        taleDao.insert(tale1)
+        folkDao.insert(folk1)
     }
 
     private suspend fun addTwoItemsToDb() {
-        taleDao.insert(tale1)
-        taleDao.insert(tale2)
+        folkDao.insert(folk1)
+        folkDao.insert(folk2)
     }
 
     private suspend fun addThreeItemsToDb() {
-        taleDao.insert(tale1)
-        taleDao.insert(tale2)
-        taleDao.insert(tale3)
+        folkDao.insert(folk1)
+        folkDao.insert(folk2)
+        folkDao.insert(folk3)
     }
 }

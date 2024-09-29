@@ -33,5 +33,4 @@ interface TaleDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(tale: TaleDb)
-
 }
