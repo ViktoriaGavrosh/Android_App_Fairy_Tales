@@ -4,14 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.viktoriagavrosh.database.dao.AppDao
+import com.viktoriagavrosh.database.dao.FolkDao
+import com.viktoriagavrosh.database.dao.RiddleDao
+import com.viktoriagavrosh.database.dao.TaleDao
 import com.viktoriagavrosh.database.model.FolkDb
 import com.viktoriagavrosh.database.model.RiddleDb
 import com.viktoriagavrosh.database.model.TaleDb
 
 // Database interface for testing
 interface TaleAppDatabase {
-    val taleDao: AppDao
+    val taleDao: TaleDao
+    val folkDao: FolkDao
+    val riddleDao: RiddleDao
 }
 
 /**
@@ -20,8 +24,12 @@ interface TaleAppDatabase {
 class AppDatabase internal constructor(
     private val database: AppRoomDatabase
 ) : TaleAppDatabase {
-    override val taleDao: AppDao
+    override val taleDao: TaleDao
         get() = database.taleDao()
+    override val folkDao: FolkDao
+        get() = database.folkDao()
+    override val riddleDao: RiddleDao
+        get() = database.riddleDao()
 }
 
 /**
@@ -32,7 +40,9 @@ class AppDatabase internal constructor(
     version = 5
 )
 internal abstract class AppRoomDatabase : RoomDatabase() {
-    abstract fun taleDao(): AppDao
+    abstract fun taleDao(): TaleDao
+    abstract fun folkDao(): FolkDao
+    abstract fun riddleDao(): RiddleDao
 }
 
 /**

@@ -13,9 +13,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.infomenu.model.TaleInfo
-import com.viktoriagavrosh.uikit.BookImage
 import com.viktoriagavrosh.uikit.Cover
 import com.viktoriagavrosh.uikit.R
+import com.viktoriagavrosh.uikit.image.BookImage
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable

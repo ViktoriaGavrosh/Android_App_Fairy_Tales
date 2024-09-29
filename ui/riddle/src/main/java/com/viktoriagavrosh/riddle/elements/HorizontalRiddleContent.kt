@@ -20,7 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.riddle.model.ReadRiddle
 import com.viktoriagavrosh.uikit.R
-import com.viktoriagavrosh.uikit.TextRow
+import com.viktoriagavrosh.uikit.text.TextRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**

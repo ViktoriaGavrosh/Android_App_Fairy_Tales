@@ -1,7 +1,7 @@
 package com.viktoriagavrosh.repositories
 
 import com.viktoriagavrosh.database.TaleAppDatabase
-import com.viktoriagavrosh.database.dao.AppDao
+import com.viktoriagavrosh.database.dao.FolkDao
 import com.viktoriagavrosh.database.model.TaleDb
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,11 +21,11 @@ internal object FakeSource {
     }
 
     internal class FakeDb : TaleAppDatabase {
-        override val taleDao: AppDao = FakeDao()
+        override val taleDao: FolkDao = FakeDao()
 
     }
 
-    private class FakeDao : AppDao {
+    private class FakeDao : FolkDao {
         override fun getAllTales(genre: String): Flow<List<TaleDb>> {
             return if (genre == "error") {
                 throw IllegalArgumentException()

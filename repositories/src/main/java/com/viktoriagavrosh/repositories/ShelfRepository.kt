@@ -71,7 +71,7 @@ class OfflineShelfRepository @Inject constructor(
 
     private fun getAllRiddles(): Flow<RequestResult<List<Riddle>>> {
         return getDataFromDb(
-            getFun = { appDatabase.taleDao.getAllRiddles() },
+            getFun = { appDatabase.riddleDao.getAllRiddles() },
             mapFun = { it.map { riddleDb -> riddleDb.toRiddle() } }
         )
     }
@@ -101,7 +101,7 @@ class OfflineShelfRepository @Inject constructor(
 
     private fun getAllFolks(genre: ShelfGenre): Flow<RequestResult<List<Folk>>> {
         return getDataFromDb(
-            getFun = { appDatabase.taleDao.getAllFolks(genre.genreName) },
+            getFun = { appDatabase.folkDao.getAllFolks(genre.genreName) },
             mapFun = { it.map { folkDb -> folkDb.toFolk() } }
         )
     }

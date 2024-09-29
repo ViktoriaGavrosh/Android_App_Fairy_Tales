@@ -17,6 +17,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.decor.DecorHorizontalEmptyDivider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 

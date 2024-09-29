@@ -78,7 +78,7 @@ class OfflineReadRepository @Inject constructor(
 
     private fun getRiddleById(id: Int): Flow<RequestResult<Riddle>> {
         return getDataFromDb(
-            getFunction = { appDatabase.taleDao.getRiddleById(id) },
+            getFunction = { appDatabase.riddleDao.getRiddleById(id) },
             mapFunction = { it.toRiddle() }
         )
     }
@@ -92,7 +92,7 @@ class OfflineReadRepository @Inject constructor(
 
     private fun getFolkById(id: Int): Flow<RequestResult<Folk>> {
         return getDataFromDb(
-            getFunction = { appDatabase.taleDao.getFolkById(id) },
+            getFunction = { appDatabase.folkDao.getFolkById(id) },
             mapFunction = { it.toFolk() }
         )
     }

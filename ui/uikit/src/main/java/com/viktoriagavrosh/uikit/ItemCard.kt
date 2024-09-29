@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.uikit.image.BookImage
 import com.viktoriagavrosh.uikit.utils.FairyTaleColors
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 

@@ -15,10 +15,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.addtale.model.NewTale
 import com.viktoriagavrosh.addtale.utils.TaleGenre
-import com.viktoriagavrosh.uikit.AppTextField
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.SelectionDropdownMenu
 import com.viktoriagavrosh.uikit.SwitchRow
+import com.viktoriagavrosh.uikit.text.AppTextField
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable

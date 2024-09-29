@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.viktoriagavrosh.database.AppRoomDatabase
-import com.viktoriagavrosh.database.dao.AppDao
+import com.viktoriagavrosh.database.dao.FolkDao
 import com.viktoriagavrosh.database.model.TaleDb
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -18,8 +18,8 @@ import java.io.IOException
 
 
 @RunWith(AndroidJUnit4::class)
-class AppDaoTest {
-    private lateinit var taleDao: AppDao
+class FolkDaoTest {
+    private lateinit var taleDao: FolkDao
     private lateinit var appDatabase: AppRoomDatabase
     private val tale1 = TaleDb(
         id = 1,
