@@ -39,14 +39,6 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.lifecycle.runtime.compose)
-
-    // Compose
-    implementation(platform(libs.compose.bom))
-
     // Modules
     implementation(projects.uitheme)
     implementation(projects.ui.uikit)

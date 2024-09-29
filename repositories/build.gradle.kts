@@ -38,6 +38,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.jakarta.inject.api)
 
+    //Modules
     implementation(projects.database)
     implementation(projects.datastore)
 

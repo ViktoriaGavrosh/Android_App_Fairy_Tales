@@ -36,18 +36,6 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.core.ktx)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.lifecycle.runtime.compose)
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.activity.compose)
-
-    // Compose
-    implementation(platform(libs.compose.bom))
-
     // Modules
     implementation(projects.ui.uikit)
     implementation(projects.uitheme)

@@ -35,8 +35,9 @@ android {
 
 dependencies {
 
-    implementation(libs.core.ktx)
     implementation(libs.coil.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.lifecycle.viewmodel.compose)
 
     // Compose
     implementation(platform(libs.compose.bom))

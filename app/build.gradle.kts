@@ -51,40 +51,21 @@ android {
 }
 
 dependencies {
-    // Coil
-    implementation(libs.coil.compose)
-
-    // Modules
-    implementation(projects.database)
-    implementation(projects.datastore)
-    implementation(projects.repositories)
-    implementation(projects.ui.navigation)
-    implementation(projects.ui.shelf)
-    implementation(project(":ui:reader"))
-    //implementation(projects.ui.read)   TODO 111
-    //implementation(projects.ui.riddle)   TODO 111
-    //implementation(projects.ui.startmenu)   TODO 111
-    implementation(project(":ui:riddle"))
-    implementation(project(":ui:startmenu"))
-    implementation(project(":ui:librarymenu"))
-    implementation(project(":ui:infomenu"))
-    implementation(project(":ui:addtale"))
-    implementation(projects.ui.settings)
-    implementation(projects.uitheme)
-
-    // Dagger
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    implementation(libs.hilt.navigation.compose)
-
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.material3.window.size)
 
-    testImplementation(libs.junit)
-    testImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    // Dagger
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.navigation.compose)
+
+    // Modules
+    implementation(projects.database)
+    implementation(projects.datastore)
+    implementation(projects.repositories)
+    implementation(projects.ui.navigation)
+    implementation(projects.uitheme)
 }
