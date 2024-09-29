@@ -27,6 +27,7 @@ fun TextRow(
                 text = text,
                 textSizeProvider = textSizeProvider,
                 isTitleShow = isTitleShow,
+                isDecorShow = false,
             )
             Spacer(modifier = Modifier.weight(1F))
         } else {

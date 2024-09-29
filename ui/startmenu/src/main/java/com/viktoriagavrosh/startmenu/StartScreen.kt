@@ -2,6 +2,7 @@ package com.viktoriagavrosh.startmenu
 
 import android.content.res.Configuration
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,6 +28,10 @@ fun StartScreen(
 ) {
     val viewModel: StartViewModel = hiltViewModel()
 
+    LaunchedEffect(Unit) {    // TODO  111 Look for info where should it be
+        viewModel.initStartUiState()
+    }
+
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     StartScreen(
@@ -35,7 +40,9 @@ fun StartScreen(
         onFavoriteClick = onFavoriteClick,
         onNightClick = onNightClick,
         onLibraryClick = onLibraryClick,
-        onLastTaleClick = { onLastTaleClick(uiState.lastTaleId) },
+        onLastTaleClick = {
+            onLastTaleClick(uiState.lastTaleId)
+        },
         onRandomClick = {
             viewModel.updateRandomTale()
             viewModel.updateLastTale()

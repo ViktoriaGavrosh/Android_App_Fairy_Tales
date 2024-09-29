@@ -11,9 +11,13 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -30,16 +34,34 @@ class RiddleViewModel @AssistedInject constructor(
     internal val uiState: StateFlow<RiddleUiState>
         get() = _uiState
 
+    private var _textSize: Flow<Float> = repository.getTextSize()
+        .map { requestResult ->
+            if (requestResult is RequestResult.Error) {
+                _uiState.update {
+                    it.copy(isError = true)
+                }
+                0.0F
+            } else {
+                requestResult.data ?: 0.0F
+            }
+        }
+
     init {
         initUiState()
     }
 
+    internal val textSize: StateFlow<Float>
+        get() = _textSize.stateIn(
+            viewModelScope,
+            SharingStarted.Lazily,
+            0.0F
+        )
+
     internal fun initUiState() {
         viewModelScope.launch {
             val requestResultRiddle = repository.getBookById(riddleId, ShelfGenre.Riddles).first()
-            val requestResultTextSize = repository.getTextSize().first()
 
-            if (requestResultRiddle is RequestResult.Error || requestResultTextSize is RequestResult.Error) {
+            if (requestResultRiddle is RequestResult.Error) {
                 _uiState.update {
                     it.copy(
                         isError = true
@@ -47,12 +69,10 @@ class RiddleViewModel @AssistedInject constructor(
                 }
             } else {
                 val riddle = requestResultRiddle.data?.toReadRiddle() ?: ReadRiddle()
-                val textSize = requestResultTextSize.data ?: 8.0F
 
                 _uiState.update {
                     it.copy(
                         riddle = riddle,
-                        textSize = textSize
                     )
                 }
             }
@@ -68,5 +88,4 @@ class RiddleViewModel @AssistedInject constructor(
 internal data class RiddleUiState(
     val riddle: ReadRiddle = ReadRiddle(),
     val isError: Boolean = false,
-    val textSize: Float = 0.0F,
 )

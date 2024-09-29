@@ -12,7 +12,6 @@ import com.viktoriagavrosh.shelf.elements.ContentScreen
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uikit.ErrorScreen
-import com.viktoriagavrosh.uikit.utils.ScreenState
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
@@ -32,59 +31,60 @@ fun ShelfScreen(
         }
     )
 
-    val screenState = viewModel.screenState.collectAsStateWithLifecycle()
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 
     ShelfScreen(
-        screenStateProvider = { screenState.value },
+        booksProvider = { uiState.value.books },
         genre = genre,
-        tabs = viewModel.tabs,
+        tabsProvider = { uiState.value.tabs },
+        selectedTabProvider = { uiState.value.selectedTab },
+        isErrorProvider = { uiState.value.isError },
         isVerticalScreen = isVerticalScreen,
         onCardClick = onCardClick,
         onTabClick = viewModel::updateScreenState,
         onBackClick = onBackClick,
         onHeartClick = viewModel::updateBookFavorite,
-        onErrorButtonClick = viewModel::updateScreenState,
+        onErrorButtonClick = viewModel::initScreenState,
         modifier = modifier,
     )
 }
 
 @Composable
 internal fun ShelfScreen(
-    screenStateProvider: () -> ScreenState<List<Book>>,
+    booksProvider: () -> List<Book>,
     genre: ShelfGenre,
-    tabs: List<Tabs>,
+    tabsProvider: () -> List<Tabs>,
+    selectedTabProvider: () -> Tabs,
+    isErrorProvider: () -> Boolean,
     isVerticalScreen: Boolean,
     onCardClick: (Int) -> Unit,
-    onTabClick: (ShelfGenre) -> Unit,
+    onTabClick: (Tabs) -> Unit,
     onBackClick: () -> Unit,
     onHeartClick: (Book) -> Unit,
     onErrorButtonClick: (ShelfGenre) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    when (screenStateProvider()) {
-        is ScreenState.None -> {}
-        is ScreenState.Error -> {
-            ErrorScreen(
-                onButtonClick = { onErrorButtonClick(genre) },
-                modifier = modifier,
-            )
-        }
-
-        is ScreenState.Success -> {
-            ContentScreen(
-                booksProvider = { screenStateProvider().data ?: emptyList() },
-                genre = genre,
-                tabs = tabs,
-                isVerticalScreen = isVerticalScreen,
-                onCardClick = onCardClick,
-                onTabClick = onTabClick,
-                onBackClick = onBackClick,
-                onHeartClick = onHeartClick,
-                modifier = modifier,
-            )
-        }
+    if (isErrorProvider()) {
+        ErrorScreen(
+            onButtonClick = { onErrorButtonClick(genre) },
+            modifier = modifier,
+        )
+    } else {
+        ContentScreen(
+            booksProvider = booksProvider,
+            genre = genre,
+            tabsProvider = tabsProvider,
+            selectedTabProvider = selectedTabProvider,
+            isVerticalScreen = isVerticalScreen,
+            onCardClick = onCardClick,
+            onTabClick = onTabClick,
+            onBackClick = onBackClick,
+            onHeartClick = onHeartClick,
+            modifier = modifier,
+        )
     }
 }
+
 
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -92,20 +92,20 @@ internal fun ShelfScreen(
 private fun CompactHomeScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenStateProvider = {
-                ScreenState.Success(
-                    List(4) {
-                        Book(
-                            id = it,
-                            title = "title",
-                            imageUrl = "",
-                        )
-                    }
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        id = it,
+                        title = "title",
+                        imageUrl = "",
+                    )
+                }
             },
             genre = ShelfGenre.Folks.Poem,
-            tabs = Tabs.FolkTab.entries,
+            tabsProvider = { Tabs.FolkTab.entries },
             isVerticalScreen = true,
+            isErrorProvider = { false },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             onCardClick = {},
             onTabClick = {},
             onBackClick = {},
@@ -121,20 +121,20 @@ private fun CompactHomeScreenPreview() {
 private fun ExpandedHomeScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenStateProvider = {
-                ScreenState.Success(
-                    List(4) {
-                        Book(
-                            id = it,
-                            title = "title",
-                            imageUrl = "",
-                        )
-                    }
-                )
+            booksProvider = {
+                List(4) {
+                    Book(
+                        id = it,
+                        title = "title",
+                        imageUrl = "",
+                    )
+                }
             },
             genre = ShelfGenre.Folks.Poem,
-            tabs = Tabs.FolkTab.entries,
+            tabsProvider = { Tabs.FolkTab.entries },
             isVerticalScreen = false,
+            isErrorProvider = { false },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             onCardClick = {},
             onTabClick = {},
             onBackClick = {},
@@ -150,12 +150,12 @@ private fun ExpandedHomeScreenPreview() {
 private fun VerticalErrorShelfScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenStateProvider = {
-                ScreenState.Error()
-            },
+            booksProvider = { emptyList() },
             genre = ShelfGenre.Folks.Poem,
-            tabs = emptyList(),
+            tabsProvider = { emptyList() },
             isVerticalScreen = true,
+            isErrorProvider = { true },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             onCardClick = {},
             onTabClick = {},
             onBackClick = {},
@@ -172,12 +172,12 @@ private fun VerticalErrorShelfScreenPreview() {
 private fun HorizontalErrorContentScreenPreview() {
     FairyTalesTheme {
         ShelfScreen(
-            screenStateProvider = {
-                ScreenState.Error()
-            },
+            booksProvider = { emptyList() },
             genre = ShelfGenre.Folks.Poem,
-            tabs = emptyList(),
-            isVerticalScreen = true,
+            tabsProvider = { emptyList() },
+            isVerticalScreen = false,
+            isErrorProvider = { true },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             onCardClick = {},
             onTabClick = {},
             onBackClick = {},

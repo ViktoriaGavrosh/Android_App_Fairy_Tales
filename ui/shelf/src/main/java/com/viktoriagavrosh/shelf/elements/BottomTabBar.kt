@@ -14,7 +14,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -24,26 +23,26 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun BottomTabBar(
-    tabs: List<Tabs>,
-    selectedTab: ShelfGenre,
-    onTabClick: (ShelfGenre) -> Unit,
+    tabsProvider: () -> List<Tabs>,
+    selectedTabProvider: () -> Tabs,
+    onTabClick: (Tabs) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val bottomNavigateBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
+    val selectedTab = selectedTabProvider()
 
     NavigationBar(
         modifier = modifier
             .testTag(bottomNavigateBarTestTag)
             .sizeIn(maxHeight = dimensionResource(id = R.dimen.max_bottom_navigation_bar_height)),
-        //containerColor = MaterialTheme.colorScheme.secondaryContainer
     ) {
-        for (item in tabs) {
+        for (item in tabsProvider()) {
             NavigationBarItem(
                 selected = item == selectedTab,
-                onClick = { onTabClick(item.genre) },
+                onClick = { onTabClick(item) },
                 icon = {
                     Icon(
-                        painter = painterResource(id = item.iconId),
+                        painter = painterResource(id = item.iconId ?: R.drawable.ic_favorite_false),
                         contentDescription = stringResource(id = item.textId),
                         modifier = Modifier.scale(1.5F),
                         tint = MaterialTheme.colorScheme.surfaceTint
@@ -60,8 +59,8 @@ internal fun BottomTabBar(
 private fun BottomNavigateBarPreview() {
     FairyTalesTheme {
         BottomTabBar(
-            tabs = Tabs.FolkTab.entries,
-            selectedTab = ShelfGenre.Folks.Poem,
+            tabsProvider = { Tabs.FolkTab.entries },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             onTabClick = {}
         )
     }

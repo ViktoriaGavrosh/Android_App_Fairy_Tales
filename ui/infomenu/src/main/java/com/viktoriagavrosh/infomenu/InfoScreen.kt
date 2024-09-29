@@ -34,10 +34,7 @@ fun InfoScreen(
         isErrorProvider = { uiState.value.isError },
         isVerticalScreen = isVerticalScreen,
         onBackClick = onBackClick,
-        onReadClick = {
-            viewModel.updateLastTale()
-            onReadClick()
-        },
+        onReadClick = onReadClick,
         onErrorButtonClick = viewModel::updateUiState,
         modifier = modifier
     )

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.uikit.decor.DecorHorizontalDivider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
@@ -22,7 +23,7 @@ internal fun VerticalSettingsContent(
             onTextSizeUpdate = onTextSizeUpdate,
             modifier = Modifier.fillMaxWidth()
         )
-        // TODO DecorHorizontalDivider will be here
+        DecorHorizontalDivider()
     }
 }
 
@@ -32,7 +33,7 @@ internal fun VerticalSettingsContent(
 private fun VerticalSettingsContentPreview() {
     FairyTalesTheme {
         VerticalSettingsContent(
-            textSizeProvider = { 24.0F },
+            textSizeProvider = { 80.0F },
             onTextSizeUpdate = {},
         )
     }

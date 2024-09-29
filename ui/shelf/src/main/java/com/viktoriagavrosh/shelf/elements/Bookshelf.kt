@@ -34,6 +34,7 @@ internal fun Bookshelf(
     topBarTitle: String,
     isVerticalScreen: Boolean,
     isHeartShow: Boolean,
+    isBlurImages: Boolean,
     onCardClick: (Int) -> Unit,
     onBackClick: () -> Unit,
     onHeartClick: (Book) -> Unit,
@@ -68,6 +69,7 @@ internal fun Bookshelf(
                             .testTag(book.id.toString()),
                         isFavorite = book.isFavorite,
                         isHeartShow = isHeartShow,
+                        isBlur = isBlurImages,
                         onCardClick = { onCardClick(book.id) },
                         onHeartClick = { onHeartClick(book) },
                     )
@@ -89,6 +91,7 @@ internal fun Bookshelf(
                             .testTag(book.id.toString()),   // TODO 111
                         isFavorite = book.isFavorite,
                         isHeartShow = isHeartShow,
+                        isBlur = isBlurImages,
                         minLineText = 2,
                         onCardClick = { onCardClick(book.id) },
                         onHeartClick = { onHeartClick(book) },
@@ -116,6 +119,7 @@ private fun VerticalListTalesPreview() {
             topBarTitle = "Title",
             isVerticalScreen = true,
             isHeartShow = true,
+            isBlurImages = false,
             onCardClick = {},
             onBackClick = {},
             onHeartClick = {}
@@ -141,6 +145,7 @@ private fun HorizontalListTalesPreview() {
             topBarTitle = "Title",
             isVerticalScreen = false,
             isHeartShow = true,
+            isBlurImages = false,
             onCardClick = {},
             onBackClick = {},
             onHeartClick = {}

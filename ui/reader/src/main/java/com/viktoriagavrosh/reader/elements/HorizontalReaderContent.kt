@@ -2,10 +2,8 @@ package com.viktoriagavrosh.reader.elements
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -102,36 +100,13 @@ private fun TaleContent(
         verticalArrangement = Arrangement.Center,
         modifier = modifier,
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Box(
-                modifier = Modifier
-                    .padding(top = dimensionResource(id = R.dimen.padding_small))
-                    .weight(1F),
-                contentAlignment = Alignment.Center
-            ) {
-                BookImage(
-                    title = book.title,
-                    imageUrl = book.imageUrl ?: "",
-                    modifier = Modifier
-                        .width(dimensionResource(R.dimen.image_width)),
-                )
-            }
-            TextRow(
-                text = book.title,
-                title = book.title,
-                textSizeProvider = textSizeProvider,
-                isNotFullScreen = false,
-                modifier = Modifier
-                    .padding(
-                        horizontal = dimensionResource(R.dimen.padding_small)
-                    )
-                    .weight(1F)
-            )
-        }
+        BookImage(
+            title = book.title,
+            imageUrl = book.imageUrl ?: "",
+            modifier = Modifier
+                .width(dimensionResource(R.dimen.image_width))
+                .padding(top = dimensionResource(id = R.dimen.padding_small)),
+        )
         TextRow(
             text = book.text,
             title = book.title,

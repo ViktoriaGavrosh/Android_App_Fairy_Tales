@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
@@ -37,10 +36,12 @@ fun SettingSlider(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.width(250.dp)    // TODO 111
+        modifier = Modifier.width(
+            dimensionResource(R.dimen.slider_column_width)
+        )
     ) {
         Box(
-            modifier = Modifier.height(120.dp),   // TODO 111
+            modifier = Modifier.height(dimensionResource(R.dimen.slider_box_height)),
             contentAlignment = Alignment.Center,
         ) {
             Text(

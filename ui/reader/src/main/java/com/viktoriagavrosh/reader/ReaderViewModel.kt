@@ -36,19 +36,15 @@ class ReaderViewModel @AssistedInject constructor(
         get() = _uiState
 
     private var _textSize: Flow<Float> = repository.getTextSize()
-        .map {
-            it.data ?: 0.0F
-            /*   TODO 11111111
+        .map { requestResult ->
             if (requestResult is RequestResult.Error) {
                 _uiState.update {
                     it.copy(isError = true)
                 }
-                8.0F
+                0.0F
             } else {
-                requestResult.data ?: 8.0F
+                requestResult.data ?: 0.0F
             }
-
-             */
         }
 
     init {

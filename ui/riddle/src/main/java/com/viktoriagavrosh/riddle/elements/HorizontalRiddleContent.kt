@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -55,18 +54,13 @@ internal fun HorizontalRiddleContent(
             verticalArrangement = Arrangement.Center,
         ) {
             if (bigCard) {
-                Row {
-                    Spacer(modifier = Modifier.weight(1F))
-                    Answer(
-                        answer = riddle.answer,
-                        imageUrl = riddle.imageUrl ?: "",
-                        isBigImage = false,
-                        modifier = Modifier
-                            .weight(2F)
-                            .padding(top = dimensionResource(id = R.dimen.padding_small))
-                    )
-                    Spacer(modifier = Modifier.weight(1F))
-                }
+                Answer(
+                    answer = riddle.answer,
+                    imageUrl = riddle.imageUrl ?: "",
+                    isBigImage = false,
+                    modifier = Modifier
+                        .padding(top = dimensionResource(id = R.dimen.padding_small))
+                )
             } else {
                 Button(
                     onClick = { bigCard = true },

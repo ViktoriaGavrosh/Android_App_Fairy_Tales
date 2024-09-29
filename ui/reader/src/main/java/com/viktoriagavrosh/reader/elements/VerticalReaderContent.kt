@@ -3,17 +3,19 @@ package com.viktoriagavrosh.reader.elements
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.reader.model.ReadBook
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
-import com.viktoriagavrosh.uikit.BookImage
+import com.viktoriagavrosh.uikit.BookImageRow
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.TextRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -31,17 +33,15 @@ internal fun VerticalReaderContent(
     val book = bookProvider()
     Column(
         modifier = modifier.verticalScroll(scrollState),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        BookImage(
+        BookImageRow(
             title = book.title,
             imageUrl = book.imageUrl ?: "",
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(
-                    start = dimensionResource(id = R.dimen.padding_extra_large),
                     top = dimensionResource(id = R.dimen.padding_large),
-                    end = dimensionResource(id = R.dimen.padding_extra_large),
                     bottom = dimensionResource(id = R.dimen.padding_small)
                 ),
         )
@@ -70,6 +70,7 @@ private fun VerticalReadContentPreview() {
                 )
             },
             textSizeProvider = { 24.0F },
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }
@@ -88,6 +89,7 @@ private fun FullScreenVerticalReadContentPreview() {
                 )
             },
             textSizeProvider = { 24.0F },
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }

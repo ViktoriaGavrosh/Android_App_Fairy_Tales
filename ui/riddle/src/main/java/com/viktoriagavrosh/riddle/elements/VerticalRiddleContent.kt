@@ -17,10 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.riddle.model.ReadRiddle
-import com.viktoriagavrosh.uikit.BookImage
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.TextRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -72,41 +70,6 @@ internal fun VerticalRiddleContent(
                 )
             }
         }
-    }
-}
-
-@Composable
-internal fun Answer(
-    answer: String,
-    imageUrl: String,
-    isBigImage: Boolean,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-    ) {
-        BookImage(
-            title = answer,
-            imageUrl = imageUrl,
-            modifier = if (isBigImage) {
-                Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        start = dimensionResource(id = R.dimen.padding_extra_large),
-                        top = dimensionResource(id = R.dimen.padding_large),
-                        end = dimensionResource(id = R.dimen.padding_extra_large),
-                        bottom = dimensionResource(id = R.dimen.padding_small)
-                    )
-            } else {
-                Modifier
-            }
-        )
-        Text(
-            text = answer,
-            style = MaterialTheme.typography.displaySmall,
-            modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center
-        )
     }
 }
 

@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
-import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
@@ -23,18 +22,17 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 internal fun ContentScreen(
     booksProvider: () -> List<Book>,
     genre: ShelfGenre,
-    tabs: List<Tabs>,
+    tabsProvider: () -> List<Tabs>,
+    selectedTabProvider: () -> Tabs,
     isVerticalScreen: Boolean,
     onCardClick: (Int) -> Unit,
-    onTabClick: (ShelfGenre) -> Unit,
+    onTabClick: (Tabs) -> Unit,
     onBackClick: () -> Unit,
     onHeartClick: (Book) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val topBarTitle = stringResource(getTitleId(genre))
-
-    val isTabsShow =
-        (genre is ShelfGenre.Tales) || (genre is ShelfGenre.Folks)   // TODO check how it works 111
+    val isTabsShow = tabsProvider().isNotEmpty()
+    val topBarTitle = stringResource(selectedTabProvider().textId)
     val isHeartShow = genre is ShelfGenre.Tales
 
     if (isVerticalScreen) {
@@ -47,6 +45,7 @@ internal fun ContentScreen(
                 topBarTitle = topBarTitle,
                 isVerticalScreen = true,
                 isHeartShow = isHeartShow,
+                isBlurImages = genre is ShelfGenre.Riddles,
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
@@ -54,8 +53,8 @@ internal fun ContentScreen(
             )
             if (isTabsShow) {
                 BottomTabBar(
-                    tabs = tabs,
-                    selectedTab = genre,
+                    tabsProvider = tabsProvider,
+                    selectedTabProvider = selectedTabProvider,
                     onTabClick = onTabClick,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -66,8 +65,8 @@ internal fun ContentScreen(
         Row(modifier = modifier) {
             if (isTabsShow) {
                 LeftTabRail(
-                    tabs = tabs,
-                    selectedTab = genre,
+                    tabsProvider = tabsProvider,
+                    selectedTabProvider = selectedTabProvider,
                     onTabClick = onTabClick,
                     modifier = Modifier.fillMaxHeight()
                 )
@@ -77,26 +76,13 @@ internal fun ContentScreen(
                 topBarTitle = topBarTitle,
                 isVerticalScreen = false,
                 isHeartShow = isHeartShow,
+                isBlurImages = genre is ShelfGenre.Riddles,
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
                 // modifier = Modifier.weight(1F)   TODO 111
             )
         }
-    }
-}
-
-private fun getTitleId(genre: ShelfGenre): Int {
-    return when (genre) {
-        ShelfGenre.Tales.Animal -> Tabs.TaleTab.Animal.textId
-        ShelfGenre.Tales.Fairy -> Tabs.TaleTab.Fairy.textId
-        ShelfGenre.Tales.People -> Tabs.TaleTab.People.textId
-        ShelfGenre.Folks.Poem -> Tabs.FolkTab.Poem.textId
-        ShelfGenre.Folks.Counting -> Tabs.FolkTab.Counting.textId
-        ShelfGenre.Folks.Lullaby -> Tabs.FolkTab.Lullaby.textId
-        ShelfGenre.Riddles -> R.string.title_riddles
-        ShelfGenre.Nights -> R.string.title_night
-        ShelfGenre.Favorites -> R.string.title_favorite
     }
 }
 
@@ -115,7 +101,8 @@ private fun TabsVerticalContentScreenPreview() {
                 }
             },
             genre = ShelfGenre.Folks.Poem,
-            tabs = Tabs.FolkTab.entries,
+            tabsProvider = { Tabs.FolkTab.entries },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             isVerticalScreen = true,
             onCardClick = {},
             onTabClick = {},
@@ -140,7 +127,8 @@ private fun VerticalContentScreenPreview() {
                 }
             },
             genre = ShelfGenre.Nights,
-            tabs = emptyList(),
+            tabsProvider = { emptyList() },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             isVerticalScreen = true,
             onCardClick = {},
             onTabClick = {},
@@ -165,7 +153,8 @@ private fun TabsHorizontalContentScreenPreview() {
                 }
             },
             genre = ShelfGenre.Nights,
-            tabs = emptyList(),
+            tabsProvider = { emptyList() },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             isVerticalScreen = false,
             onCardClick = {},
             onTabClick = {},
@@ -190,7 +179,8 @@ private fun HorizontalContentScreenPreview() {
                 }
             },
             genre = ShelfGenre.Folks.Poem,
-            tabs = Tabs.FolkTab.entries,
+            tabsProvider = { Tabs.FolkTab.entries },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             isVerticalScreen = false,
             onCardClick = {},
             onTabClick = {},

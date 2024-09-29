@@ -28,10 +28,11 @@ fun RiddleScreen(
         }
     )
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    val textSize = viewModel.textSize.collectAsStateWithLifecycle()
 
     RiddleScreen(
         riddleProvider = { uiState.value.riddle },
-        textSizeProvider = { uiState.value.textSize },
+        textSizeProvider = { textSize.value },
         isErrorProvider = { uiState.value.isError },
         isVerticalScreen = isVerticalScreen,
         onBackClick = onBackClick,

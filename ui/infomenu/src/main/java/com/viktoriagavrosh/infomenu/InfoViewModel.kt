@@ -52,14 +52,14 @@ class InfoViewModel @AssistedInject constructor(
                         tale = tale
                     )
                 }
+                updateLastTale(tale.id)
             }
         }
     }
 
-    internal fun updateLastTale() {
+    private fun updateLastTale(taleId: Int) {
         viewModelScope.launch {
-            val tale = uiState.first().tale
-            repository.updateLastTaleId(tale.id)
+            repository.updateLastTaleId(taleId)
         }
     }
 

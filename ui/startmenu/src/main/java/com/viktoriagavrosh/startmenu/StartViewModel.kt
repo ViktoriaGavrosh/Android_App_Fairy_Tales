@@ -32,6 +32,13 @@ class StartViewModel @Inject constructor(
 
     internal fun initStartUiState() {
         viewModelScope.launch {
+            getLastTaleId()
+            updateRandomTale()
+        }
+    }
+
+    private fun getLastTaleId() {
+        viewModelScope.launch {
             val requestResultLastTale = repository.getLastTaleId().first()
 
             if (requestResultLastTale is RequestResult.Error) {

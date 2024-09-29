@@ -11,5 +11,6 @@ internal fun NewTale.toTale(): Tale {
         text = text,
         isNight = isNight,
         isChangeable = isChangeable,
+        imageUrl = "",               // TODO needs to show image on the card in ShelfScreen
     )
 }

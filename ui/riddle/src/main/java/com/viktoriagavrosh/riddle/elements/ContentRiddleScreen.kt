@@ -35,7 +35,7 @@ internal fun ContentRiddleScreen(
         modifier = modifier.background(color = MaterialTheme.colorScheme.surfaceContainerHigh),
         topBar = {
             ScreenTopBar(
-                text = riddleProvider().title,
+                text = "",
                 scrollBehavior = scrollBehavior,
                 isSettingsIconShow = true,
                 isBackIconShow = true,

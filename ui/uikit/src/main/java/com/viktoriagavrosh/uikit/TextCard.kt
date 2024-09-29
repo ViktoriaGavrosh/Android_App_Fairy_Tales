@@ -26,6 +26,7 @@ fun TextCard(
     textSizeProvider: () -> Float,
     modifier: Modifier = Modifier,
     isTitleShow: Boolean = false,
+    isDecorShow: Boolean = true,
     title: String = "",
 ) {
     Column(
@@ -35,17 +36,19 @@ fun TextCard(
             .clip(RoundedCornerShape(dimensionResource(id = R.dimen.corner)))
             .background(color = MaterialTheme.colorScheme.onPrimary),
     ) {
-        DecorHorizontalEmptyDivider(
-            modifier = Modifier.fillMaxWidth()
-        )
+        if (isDecorShow) {
+            DecorHorizontalEmptyDivider(
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
         if (isTitleShow) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.displaySmall,
+                style = MaterialTheme.typography.titleLarge,
                 fontSize = textSizeProvider().sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .padding(bottom = dimensionResource(id = R.dimen.padding_small)),
+                    .padding(bottom = dimensionResource(id = R.dimen.padding_medium)),
             )
         }
         Text(
@@ -56,9 +59,11 @@ fun TextCard(
                 .padding(horizontal = dimensionResource(id = R.dimen.padding_small))
                 .animateContentSize(),
         )
-        DecorHorizontalEmptyDivider(
-            modifier = Modifier.fillMaxWidth()
-        )
+        if (isDecorShow) {
+            DecorHorizontalEmptyDivider(
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
     }
 }
 
@@ -70,6 +75,19 @@ private fun TextCardPreview() {
         TextCard(
             text = "Text",
             textSizeProvider = { 24.0F },
+        )
+    }
+}
+
+@Preview(name = "Light")
+@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun WithoutDecorTextCardPreview() {
+    FairyTalesTheme {
+        TextCard(
+            text = "Text",
+            textSizeProvider = { 24.0F },
+            isDecorShow = false,
         )
     }
 }

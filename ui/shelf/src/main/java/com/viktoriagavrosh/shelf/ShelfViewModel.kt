@@ -3,21 +3,19 @@ package com.viktoriagavrosh.shelf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.repositories.ShelfRepository
+import com.viktoriagavrosh.repositories.utils.RequestResult
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.shelf.utils.toBook
-import com.viktoriagavrosh.uikit.utils.ScreenState
-import com.viktoriagavrosh.uikit.utils.toScreenState
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -29,36 +27,39 @@ class ShelfViewModel @AssistedInject constructor(
     private val shelfRepository: ShelfRepository
 ) : ViewModel() {
 
-    private lateinit var _screenState: Flow<ScreenState<List<Book>>>
-
-    internal lateinit var tabs: List<Tabs>
+    private var _uiState = MutableStateFlow(ShelfUiState())
 
     init {
-        val genre = genre
-        updateScreenState(genre)
-        initTabs(genre)
+        initScreenState(genre)
     }
 
-    internal val screenState: StateFlow<ScreenState<List<Book>>> = _screenState
-        .stateIn(
-            viewModelScope,
-            SharingStarted.Lazily,
-            ScreenState.None()
-        )
+    internal val uiState: StateFlow<ShelfUiState>
+        get() = _uiState
 
     /**
-     * Update [ScreenState] for navigation between tabs
+     * Update [ShelfUiState] for navigation between tabs
      */
-    internal fun updateScreenState(genre: ShelfGenre) {
-        _screenState = shelfRepository
-            .getItems(genre)
-            .map { requestResult ->
-                requestResult.toScreenState(
-                    convertData = { list ->
-                        list.map { it.toBook() }
-                    }
-                )
+    internal fun updateScreenState(tab: Tabs) {
+        val genre = tab.genre
+        viewModelScope.launch {
+            val requestResult = shelfRepository.getItems(genre).first()
+            if (requestResult is RequestResult.Error) {
+                _uiState.update {
+                    it.copy(
+                        isError = true,
+                        selectedTab = tab,
+                    )
+                }
+            } else {
+                val books = requestResult.data?.map { it.toBook() } ?: emptyList()
+                _uiState.update {
+                    it.copy(
+                        books = books,
+                        selectedTab = tab,
+                    )
+                }
             }
+        }
     }
 
     /**
@@ -67,12 +68,40 @@ class ShelfViewModel @AssistedInject constructor(
     fun updateBookFavorite(book: Book) {
         viewModelScope.launch {
             shelfRepository.updateFavoriteTale(book.id, !book.isFavorite)
+            val selectedTab = uiState.first().selectedTab
+            updateScreenState(selectedTab)
         }
-        updateScreenState(book.genre)   // TODO check : uiState might update without it ???
     }
 
-    private fun initTabs(genre: ShelfGenre) {
-        tabs = when (genre) {
+    /**
+     * Update [ShelfUiState] for navigation between tabs
+     */
+    internal fun initScreenState(genre: ShelfGenre) {
+        viewModelScope.launch {
+            val requestResult = shelfRepository.getItems(genre).first()
+            if (requestResult is RequestResult.Error) {
+                _uiState.update {
+                    it.copy(
+                        isError = true
+                    )
+                }
+            } else {
+                val books = requestResult.data?.map { it.toBook() } ?: emptyList()
+                val tabs = getTabs(genre)
+                val selectedTab = genre.toTab()
+                _uiState.update {
+                    it.copy(
+                        books = books,
+                        tabs = tabs,
+                        selectedTab = selectedTab,
+                    )
+                }
+            }
+        }
+    }
+
+    private fun getTabs(genre: ShelfGenre): List<Tabs> {
+        return when (genre) {
             in ShelfGenre.Folks.entries -> Tabs.FolkTab.entries
             in ShelfGenre.Tales.entries -> Tabs.TaleTab.entries
             else -> emptyList()
@@ -83,4 +112,26 @@ class ShelfViewModel @AssistedInject constructor(
     interface ShelfViewModelFactory {
         fun create(genre: ShelfGenre): ShelfViewModel
     }
+}
+
+internal data class ShelfUiState(
+    val books: List<Book> = emptyList(),
+    val tabs: List<Tabs> = emptyList(),
+    val selectedTab: Tabs = Tabs.TaleTab.Animal,
+    val isError: Boolean = false,
+)
+
+private fun ShelfGenre.toTab(): Tabs {
+    return when (this) {
+        ShelfGenre.Tales.Animal -> Tabs.TaleTab.Animal
+        ShelfGenre.Tales.Fairy -> Tabs.TaleTab.Fairy
+        ShelfGenre.Tales.People -> Tabs.TaleTab.People
+        ShelfGenre.Folks.Poem -> Tabs.FolkTab.Poem
+        ShelfGenre.Folks.Counting -> Tabs.FolkTab.Counting
+        ShelfGenre.Folks.Lullaby -> Tabs.FolkTab.Lullaby
+        ShelfGenre.Favorites -> Tabs.Favorite
+        ShelfGenre.Nights -> Tabs.Night
+        ShelfGenre.Riddles -> Tabs.Riddle
+    }
+
 }

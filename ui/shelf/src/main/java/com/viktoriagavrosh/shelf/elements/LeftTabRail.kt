@@ -15,7 +15,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -25,26 +24,28 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun LeftTabRail(
-    tabs: List<Tabs>,
-    selectedTab: ShelfGenre,
-    onTabClick: (ShelfGenre) -> Unit,
+    tabsProvider: () -> List<Tabs>,
+    selectedTabProvider: () -> Tabs,
+    onTabClick: (Tabs) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val verticalNavigationRailTestTag = stringResource(
         id = R.string.expanded_screen_test_tag
     )
+    val selectedTab = selectedTabProvider()
+
     NavigationRail(
         modifier = modifier
             .testTag(verticalNavigationRailTestTag),
     ) {
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_double_extra_large)))
-        for (item in tabs) {
+        for (item in tabsProvider()) {
             NavigationRailItem(
                 selected = item == selectedTab,
-                onClick = { onTabClick(item.genre) },
+                onClick = { onTabClick(item) },
                 icon = {
                     Icon(
-                        painter = painterResource(id = item.iconId),
+                        painter = painterResource(id = item.iconId ?: R.drawable.ic_favorite_false),
                         contentDescription = stringResource(id = item.textId),
                         tint = MaterialTheme.colorScheme.surfaceTint,
                         modifier = Modifier.scale(1.5F)
@@ -61,8 +62,8 @@ internal fun LeftTabRail(
 private fun VerticalNavigationRailPreview() {
     FairyTalesTheme {
         LeftTabRail(
-            tabs = Tabs.FolkTab.entries,
-            selectedTab = ShelfGenre.Folks.Poem,
+            tabsProvider = { Tabs.FolkTab.entries },
+            selectedTabProvider = { Tabs.FolkTab.Poem },
             onTabClick = {}
         )
     }

@@ -1,6 +1,7 @@
 package com.viktoriagavrosh.settings.elements
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -26,7 +27,8 @@ internal fun TextSizeRow(
 ) {
     Row(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             text = stringResource(R.string.textsize_title),
@@ -34,7 +36,7 @@ internal fun TextSizeRow(
                 end = dimensionResource(id = R.dimen.padding_extra_large),
                 start = dimensionResource(id = R.dimen.padding_small)
             ),
-            style = MaterialTheme.typography.displaySmall
+            style = MaterialTheme.typography.titleLarge
         )
         SettingSlider(
             text = stringResource(R.string.letters),
@@ -51,7 +53,7 @@ internal fun TextSizeRow(
 private fun TextSizeRowPreview() {
     FairyTalesTheme {
         TextSizeRow(
-            textSizeProvider = { 25.0F },
+            textSizeProvider = { 80.0F },
             onTextSizeUpdate = {}
         )
     }

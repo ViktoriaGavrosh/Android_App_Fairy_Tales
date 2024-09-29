@@ -32,11 +32,13 @@ internal fun ContentReaderScreen(
     val topAppBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
 
-    val title = bookProvider().title
-    val topBarTitle = if (isVerticalScreen) {
-        "${title.take(8)}..."
+    val book = bookProvider()
+    val topBarTitle = if (book.genre is ShelfGenre.Folks || book.genre is ShelfGenre.Riddles) {
+        ""
     } else {
-        title
+        if (isVerticalScreen) {
+            "${book.title.take(8)}..."
+        } else book.title
     }
 
     Scaffold(
@@ -47,7 +49,7 @@ internal fun ContentReaderScreen(
                 scrollBehavior = scrollBehavior,
                 isSettingsIconShow = true,
                 isBackIconShow = true,
-                isInfoShow = bookProvider().genre !is ShelfGenre.Folks,
+                isInfoShow = book.genre !is ShelfGenre.Folks,
                 onSettingsClick = onSettingsClick,
                 onBackClick = onBackClick,
                 onInfoClick = { onInfoClick() },

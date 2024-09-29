@@ -3,6 +3,7 @@ package com.viktoriagavrosh.settings.elements
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.R
+import com.viktoriagavrosh.uikit.decor.DecorVerticalDivider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 @Composable
@@ -35,7 +37,11 @@ internal fun HorizontalSettingsContent(
                 modifier = Modifier.fillMaxWidth()
             )
         }
-        // TODO DecorVerticalDivider will be here
+        DecorVerticalDivider(
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(vertical = dimensionResource(R.dimen.padding_medium))
+        )
         Column(
             modifier = Modifier.weight(1F)
         ) {

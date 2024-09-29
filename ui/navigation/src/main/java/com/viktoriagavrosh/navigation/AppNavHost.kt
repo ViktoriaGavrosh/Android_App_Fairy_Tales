@@ -39,7 +39,7 @@ internal fun AppNavHost(
                     navController.navigate(Reader(id, NavGenre.Fairy))
                 },
                 onRandomClick = { id: Int ->
-                    navController.navigate(Reader(id, NavGenre.Fairy))
+                    navController.navigate(BookInfo(id, NavGenre.Fairy))
                 },
                 onSettingsClick = { navController.navigate(Settings) },
                 modifier = modifier,
@@ -48,11 +48,11 @@ internal fun AppNavHost(
         composable<LibraryMenu> {
             LibraryScreen(
                 isVerticalScreen = isVerticalScreen,
-                onTaleClick = { navController.navigate(Shelf(NavGenre.Fairy)) },
+                onTaleClick = { navController.navigate(Shelf(NavGenre.Animal)) },
                 onRiddleClick = { navController.navigate(Shelf(NavGenre.Riddle)) },
                 onFolkClick = { navController.navigate(Shelf(NavGenre.Poem)) },
                 onRandomClick = { id: Int ->
-                    navController.navigate(Reader(id, NavGenre.Fairy))
+                    navController.navigate(BookInfo(id, NavGenre.Fairy))
                 },
                 onAddTaleClick = { navController.navigate(AddTale) },
                 onBackClick = { navController.navigateUp() },
@@ -68,8 +68,8 @@ internal fun AppNavHost(
                 onCardClick = { id ->
                     when (genre) {
                         is ShelfGenre.Riddles -> navController.navigate(Riddle(id))
-                        is ShelfGenre.Tales -> navController.navigate(BookInfo(id, shelf.navGenre))
-                        else -> navController.navigate(Reader(id, shelf.navGenre))
+                        is ShelfGenre.Folks -> navController.navigate(Reader(id, shelf.navGenre))
+                        else -> navController.navigate(BookInfo(id, shelf.navGenre))
                     }
                 },
                 onBackClick = { navController.navigateUp() },
