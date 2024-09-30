@@ -1,8 +1,6 @@
 package com.viktoriagavrosh.repositories.fake
 
-import com.viktoriagavrosh.database.dao.FolkDao
 import com.viktoriagavrosh.database.dao.RiddleDao
-import com.viktoriagavrosh.database.model.FolkDb
 import com.viktoriagavrosh.database.model.RiddleDb
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
