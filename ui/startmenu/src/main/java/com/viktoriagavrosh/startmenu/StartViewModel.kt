@@ -37,27 +37,6 @@ class StartViewModel @Inject constructor(
         }
     }
 
-    private fun getLastTaleId() {
-        viewModelScope.launch {
-            val requestResultLastTale = repository.getLastTaleId().first()
-
-            if (requestResultLastTale is RequestResult.Error) {
-                _uiState.update {
-                    it.copy(
-                        isError = true,
-                    )
-                }
-            } else {
-                val lastTaleId = requestResultLastTale.data ?: 1
-                _uiState.update {
-                    it.copy(
-                        lastTaleId = lastTaleId,
-                    )
-                }
-            }
-        }
-    }
-
     internal fun updateLastTale() {
         viewModelScope.launch {
             val newLastTaleId = uiState.first().randomTaleId
@@ -84,6 +63,27 @@ class StartViewModel @Inject constructor(
                 _uiState.update {
                     it.copy(
                         randomTaleId = randomTaleId,
+                    )
+                }
+            }
+        }
+    }
+
+    private fun getLastTaleId() {
+        viewModelScope.launch {
+            val requestResultLastTale = repository.getLastTaleId().first()
+
+            if (requestResultLastTale is RequestResult.Error) {
+                _uiState.update {
+                    it.copy(
+                        isError = true,
+                    )
+                }
+            } else {
+                val lastTaleId = requestResultLastTale.data ?: 1
+                _uiState.update {
+                    it.copy(
+                        lastTaleId = lastTaleId,
                     )
                 }
             }
