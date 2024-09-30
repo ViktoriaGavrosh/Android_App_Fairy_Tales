@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.viktoriagavrosh.database.AppDatabase
 import com.viktoriagavrosh.database.getDatabase
+import com.viktoriagavrosh.datastore.AppPreferencesManager
 import com.viktoriagavrosh.datastore.PreferencesManager
 import com.viktoriagavrosh.repositories.AddRepository
 import com.viktoriagavrosh.repositories.DatastoreSettingsRepository
@@ -42,6 +43,14 @@ object AppModule {
         return getDatabase(
             context = context
         )
+    }
+
+    @Provides
+    @Singleton
+    fun providePreferencesManager(
+        dataStore: DataStore<Preferences>
+    ): PreferencesManager {
+        return AppPreferencesManager(dataStore)
     }
 
     @Provides

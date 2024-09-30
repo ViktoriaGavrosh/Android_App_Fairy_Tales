@@ -13,26 +13,36 @@ import kotlinx.coroutines.flow.map
 private val TEXT_SIZE_KEY = stringPreferencesKey("text_size_key")
 private val LAST_TALE_KEY = stringPreferencesKey("last_tale_key")
 
+interface PreferencesManager {
+    fun getSettings(): Flow<SettingsDs>
+
+    suspend fun updateTextSize(textSize: String)
+
+    suspend fun updateLastTaleId(lastTaleId: String)
+
+
+}
+
 /**
  * Class for working with DataStore<Preferences>. DataStore provides data for Settings
  */
-class PreferencesManager @Inject constructor(
+class AppPreferencesManager @Inject constructor(
     private val dataStore: DataStore<Preferences>
-) {
+) : PreferencesManager {
 
-    fun getSettings(): Flow<SettingsDs> {
+    override fun getSettings(): Flow<SettingsDs> {
         return dataStore.data.map { preferences ->
             preferences.toSettingsDs()
         }
     }
 
-    suspend fun updateTextSize(textSize: String) {
+    override suspend fun updateTextSize(textSize: String) {
         dataStore.edit { preferences: MutablePreferences ->
             preferences[TEXT_SIZE_KEY] = textSize
         }
     }
 
-    suspend fun updateLastTaleId(lastTaleId: String) {
+    override suspend fun updateLastTaleId(lastTaleId: String) {
         dataStore.edit { preferences: MutablePreferences ->
             preferences[LAST_TALE_KEY] = lastTaleId
         }
