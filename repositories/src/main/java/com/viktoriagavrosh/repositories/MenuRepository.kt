@@ -101,6 +101,7 @@ class OfflineMenuRepository @Inject constructor(
             .catch {
                 emit(RequestResult.Error(error = it))
             }
+
         return request
     }
 

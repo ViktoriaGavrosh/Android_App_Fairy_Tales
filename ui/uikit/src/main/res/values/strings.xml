@@ -61,4 +61,5 @@
     <string name="compact_screen_test_tag">compact screen</string>
     <string name="cover_test_tag">Cover</string>
     <string name="horizontal_start_content_test_tag">horizontal start content</string>
+    <string name="horizontal_info_content_test_tag">horizontal info content</string>
 </resources>

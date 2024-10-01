@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.infomenu.model.TaleInfo
 import com.viktoriagavrosh.infomenu.utils.toTaleInfo
 import com.viktoriagavrosh.repositories.MenuRepository
-import com.viktoriagavrosh.repositories.ReadRepository
 import com.viktoriagavrosh.repositories.utils.RequestResult
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -18,7 +17,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel to retrieve and update item from the [ReadRepository]'s data source
+ * ViewModel to retrieve and update item from the [MenuRepository]'s data source
  */
 @HiltViewModel(assistedFactory = InfoViewModel.InfoViewModelFactory::class)
 class InfoViewModel @AssistedInject constructor(
@@ -26,8 +25,8 @@ class InfoViewModel @AssistedInject constructor(
     private val repository: MenuRepository,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ReaderUiState())
-    internal val uiState: StateFlow<ReaderUiState>
+    private val _uiState = MutableStateFlow(InfoUiState())
+    internal val uiState: StateFlow<InfoUiState>
         get() = _uiState
 
     init {
@@ -69,7 +68,7 @@ class InfoViewModel @AssistedInject constructor(
     }
 }
 
-internal data class ReaderUiState(
+internal data class InfoUiState(
     val tale: TaleInfo = TaleInfo(),
     val isError: Boolean = false,
 )

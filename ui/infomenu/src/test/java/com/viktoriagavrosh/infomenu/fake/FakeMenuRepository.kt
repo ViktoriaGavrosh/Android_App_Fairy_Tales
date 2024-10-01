@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.startmenu.fake
+package com.viktoriagavrosh.infomenu.fake
 
 import com.viktoriagavrosh.repositories.MenuRepository
 import com.viktoriagavrosh.repositories.model.Tale
