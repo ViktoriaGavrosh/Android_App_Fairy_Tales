@@ -15,6 +15,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -24,7 +25,6 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun LeftTabRail(
-    tabsProvider: () -> List<Tabs>,
     selectedTabProvider: () -> Tabs,
     onTabClick: (Tabs) -> Unit,
     modifier: Modifier = Modifier
@@ -33,13 +33,14 @@ internal fun LeftTabRail(
         id = R.string.expanded_screen_test_tag
     )
     val selectedTab = selectedTabProvider()
+    val tabs = getTabs(selectedTab.genre)
 
     NavigationRail(
         modifier = modifier
             .testTag(verticalNavigationRailTestTag),
     ) {
         Spacer(modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_double_extra_large)))
-        for (item in tabsProvider()) {
+        for (item in tabs) {
             NavigationRailItem(
                 selected = item == selectedTab,
                 onClick = { onTabClick(item) },
@@ -56,13 +57,20 @@ internal fun LeftTabRail(
     }
 }
 
+internal fun getTabs(genre: ShelfGenre): List<Tabs> {
+    return when (genre) {
+        in ShelfGenre.Folks.entries -> Tabs.FolkTab.entries
+        in ShelfGenre.Tales.entries -> Tabs.TaleTab.entries
+        else -> emptyList()
+    }
+}
+
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun VerticalNavigationRailPreview() {
     FairyTalesTheme {
         LeftTabRail(
-            tabsProvider = { Tabs.FolkTab.entries },
             selectedTabProvider = { Tabs.FolkTab.Poem },
             onTabClick = {}
         )

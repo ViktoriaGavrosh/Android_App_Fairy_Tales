@@ -1,4 +1,4 @@
-package com.viktoriagavrosh.home
+package com.viktoriagavrosh.uikit
 /*
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule

@@ -23,20 +23,20 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 internal fun BottomTabBar(
-    tabsProvider: () -> List<Tabs>,
     selectedTabProvider: () -> Tabs,
     onTabClick: (Tabs) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val bottomNavigateBarTestTag = stringResource(id = R.string.compact_screen_test_tag)
     val selectedTab = selectedTabProvider()
+    val tabs = getTabs(selectedTab.genre)
 
     NavigationBar(
         modifier = modifier
             .testTag(bottomNavigateBarTestTag)
             .sizeIn(maxHeight = dimensionResource(id = R.dimen.max_bottom_navigation_bar_height)),
     ) {
-        for (item in tabsProvider()) {
+        for (item in tabs) {
             NavigationBarItem(
                 selected = item == selectedTab,
                 onClick = { onTabClick(item) },
@@ -59,7 +59,6 @@ internal fun BottomTabBar(
 private fun BottomNavigateBarPreview() {
     FairyTalesTheme {
         BottomTabBar(
-            tabsProvider = { Tabs.FolkTab.entries },
             selectedTabProvider = { Tabs.FolkTab.Poem },
             onTabClick = {}
         )

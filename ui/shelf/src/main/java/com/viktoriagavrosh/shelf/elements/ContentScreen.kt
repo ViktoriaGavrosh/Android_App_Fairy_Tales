@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.shelf.model.Book
 import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
@@ -21,8 +20,6 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
 @Composable
 internal fun ContentScreen(
     booksProvider: () -> List<Book>,
-    genre: ShelfGenre,
-    tabsProvider: () -> List<Tabs>,
     selectedTabProvider: () -> Tabs,
     isVerticalScreen: Boolean,
     onCardClick: (Int) -> Unit,
@@ -31,9 +28,10 @@ internal fun ContentScreen(
     onHeartClick: (Book) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val isTabsShow = tabsProvider().isNotEmpty()
+    val selectedTab = selectedTabProvider()
+    val isTabsShow = selectedTab is Tabs.TaleTab || selectedTab is Tabs.FolkTab
     val topBarTitle = stringResource(selectedTabProvider().textId)
-    val isHeartShow = genre is ShelfGenre.Tales
+    val isHeartShow = selectedTab is Tabs.TaleTab
 
     if (isVerticalScreen) {
         Column(
@@ -45,7 +43,7 @@ internal fun ContentScreen(
                 topBarTitle = topBarTitle,
                 isVerticalScreen = true,
                 isHeartShow = isHeartShow,
-                isBlurImages = genre is ShelfGenre.Riddles,
+                isBlurImages = selectedTab is Tabs.Riddle,
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
@@ -53,7 +51,6 @@ internal fun ContentScreen(
             )
             if (isTabsShow) {
                 BottomTabBar(
-                    tabsProvider = tabsProvider,
                     selectedTabProvider = selectedTabProvider,
                     onTabClick = onTabClick,
                     modifier = Modifier.fillMaxWidth()
@@ -65,7 +62,6 @@ internal fun ContentScreen(
         Row(modifier = modifier) {
             if (isTabsShow) {
                 LeftTabRail(
-                    tabsProvider = tabsProvider,
                     selectedTabProvider = selectedTabProvider,
                     onTabClick = onTabClick,
                     modifier = Modifier.fillMaxHeight()
@@ -76,7 +72,7 @@ internal fun ContentScreen(
                 topBarTitle = topBarTitle,
                 isVerticalScreen = false,
                 isHeartShow = isHeartShow,
-                isBlurImages = genre is ShelfGenre.Riddles,
+                isBlurImages = selectedTab is Tabs.Riddle,
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
@@ -100,8 +96,6 @@ private fun TabsVerticalContentScreenPreview() {
                     )
                 }
             },
-            genre = ShelfGenre.Folks.Poem,
-            tabsProvider = { Tabs.FolkTab.entries },
             selectedTabProvider = { Tabs.FolkTab.Poem },
             isVerticalScreen = true,
             onCardClick = {},
@@ -126,9 +120,7 @@ private fun VerticalContentScreenPreview() {
                     )
                 }
             },
-            genre = ShelfGenre.Nights,
-            tabsProvider = { emptyList() },
-            selectedTabProvider = { Tabs.FolkTab.Poem },
+            selectedTabProvider = { Tabs.Night },
             isVerticalScreen = true,
             onCardClick = {},
             onTabClick = {},
@@ -152,8 +144,6 @@ private fun TabsHorizontalContentScreenPreview() {
                     )
                 }
             },
-            genre = ShelfGenre.Nights,
-            tabsProvider = { emptyList() },
             selectedTabProvider = { Tabs.FolkTab.Poem },
             isVerticalScreen = false,
             onCardClick = {},
@@ -178,9 +168,7 @@ private fun HorizontalContentScreenPreview() {
                     )
                 }
             },
-            genre = ShelfGenre.Folks.Poem,
-            tabsProvider = { Tabs.FolkTab.entries },
-            selectedTabProvider = { Tabs.FolkTab.Poem },
+            selectedTabProvider = { Tabs.Night },
             isVerticalScreen = false,
             onCardClick = {},
             onTabClick = {},

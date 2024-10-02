@@ -1,20 +1,36 @@
 package com.viktoriagavrosh.home.fake
 
-/*
-class FakeSource(
-    val fakeListTales: MutableList<Tale> = MutableList(4) {
+import com.viktoriagavrosh.repositories.model.Folk
+import com.viktoriagavrosh.repositories.model.Riddle
+import com.viktoriagavrosh.repositories.model.Tale
+import com.viktoriagavrosh.repositories.utils.ShelfGenre
+
+internal object FakeSource {
+
+    val fakeTales = List(3) {
         Tale(
             id = it,
-            genre = if (it % 2 == 0) "story" else "game",
-            title = "title",
-            text = "text",
-            answer = null,
-            imageUrl = null,
-            audioUrl = null,
-            isFavorite = false
+            genre = ShelfGenre.Tales.entries[it],
+            title = "Title $it",
+            text = "Text $it",
+            isFavorite = it % 2 == 0,
+            isNight = it % 2 == 0,
         )
     }
-)
-
-
- */
+    val fakeFolks = List(3) {
+        Folk(
+            id = it,
+            genre = ShelfGenre.Folks.entries[it],
+            title = "Title $it",
+            text = "Text $it",
+        )
+    }
+    val fakeRiddles = List(3) {
+        Riddle(
+            id = it,
+            title = "Title $it",
+            text = "Text $it",
+            answer = "Answer $it",
+        )
+    }
+}

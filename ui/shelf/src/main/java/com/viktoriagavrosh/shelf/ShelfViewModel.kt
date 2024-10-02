@@ -87,24 +87,14 @@ class ShelfViewModel @AssistedInject constructor(
                 }
             } else {
                 val books = requestResult.data?.map { it.toBook() } ?: emptyList()
-                val tabs = getTabs(genre)
                 val selectedTab = genre.toTab()
                 _uiState.update {
                     it.copy(
                         books = books,
-                        tabs = tabs,
                         selectedTab = selectedTab,
                     )
                 }
             }
-        }
-    }
-
-    private fun getTabs(genre: ShelfGenre): List<Tabs> {
-        return when (genre) {
-            in ShelfGenre.Folks.entries -> Tabs.FolkTab.entries
-            in ShelfGenre.Tales.entries -> Tabs.TaleTab.entries
-            else -> emptyList()
         }
     }
 
@@ -116,7 +106,6 @@ class ShelfViewModel @AssistedInject constructor(
 
 internal data class ShelfUiState(
     val books: List<Book> = emptyList(),
-    val tabs: List<Tabs> = emptyList(),
     val selectedTab: Tabs = Tabs.TaleTab.Animal,
     val isError: Boolean = false,
 )
