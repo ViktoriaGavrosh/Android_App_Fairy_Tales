@@ -66,7 +66,8 @@ internal fun VerticalRiddleContent(
             ) {
                 Text(
                     text = stringResource(R.string.answer_button),
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
                 )
             }
         }
