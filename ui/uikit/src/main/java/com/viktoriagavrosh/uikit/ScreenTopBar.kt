@@ -101,7 +101,10 @@ private fun DropdownButton(
             onDismissRequest = { expanded = false },
             containerColor = MaterialTheme.colorScheme.onPrimary,
         ) {
-            val options = listOf(R.drawable.ic_info, R.drawable.ic_settings)
+            val options = listOf(
+                R.drawable.ic_info to R.string.info,
+                R.drawable.ic_settings to R.string.settings
+            )
             options.forEachIndexed { index, option ->
                 DropdownMenuItem(
                     text = {
@@ -110,8 +113,8 @@ private fun DropdownButton(
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Icon(
-                                painter = painterResource(option),
-                                contentDescription = null,
+                                painter = painterResource(option.first),
+                                contentDescription = stringResource(option.second),
                                 modifier = Modifier
                                     .size(dimensionResource(id = R.dimen.top_bar_icon_size))
                             )

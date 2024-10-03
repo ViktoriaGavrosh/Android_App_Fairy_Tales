@@ -32,7 +32,7 @@ class ContentLibraryScreenUiTest {
     }
 
     @Test
-    fun infoScreen_verticalScreen_titleOnTopBarIsDisplayed() {
+    fun libraryScreen_verticalScreen_titleOnTopBarIsDisplayed() {
         setContentScreen(
             isVerticalScreen = true
         )
@@ -43,7 +43,7 @@ class ContentLibraryScreenUiTest {
     }
 
     @Test
-    fun infoScreen_horizontalScreen_backButtonOnTopBarIsDisplayed() {
+    fun libraryScreen_horizontalScreen_backButtonOnTopBarIsDisplayed() {
         setContentScreen(
             isVerticalScreen = false
         )
@@ -54,7 +54,7 @@ class ContentLibraryScreenUiTest {
     }
 
     @Test
-    fun infoScreen_horizontalScreen_titleOnTopBarIsDisplayed() {
+    fun libraryScreen_horizontalScreen_titleOnTopBarIsDisplayed() {
         setContentScreen(
             isVerticalScreen = false
         )
