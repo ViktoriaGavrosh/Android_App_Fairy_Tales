@@ -1,6 +1,8 @@
 package com.viktoriagavrosh.settings
 
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertHasNoClickAction
 import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsDisplayed
@@ -10,31 +12,31 @@ import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
 import androidx.compose.ui.unit.dp
-import com.viktoriagavrosh.settings.elements.SettingsContent
+import com.viktoriagavrosh.settings.elements.VerticalSettingsContent
+import com.viktoriagavrosh.settings.utils.onNodeWithTagById
+import com.viktoriagavrosh.settings.utils.onNodeWithTextById
+import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 import org.junit.Rule
 import org.junit.Test
 
-class SettingsContentUiTest {
+class VerticalSettingsContentUiTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun settingsScreen_verticalScreen_verifyTextSizeTitle() {
-        setContentScreen()
-
+    fun settingsScreen_verticalScreen_textSizeTitleIsDisplayed() {
+        setVerticalContent(textSize = 35.0F)
         composeTestRule.onNodeWithTextById(R.string.textsize_title)
             .assertExists("No text size title")
             .assertIsDisplayed()
             .assertHasNoClickAction()
-
     }
 
     @Test
-    fun settingsScreen_verticalScreen_verifyLetters() {
-        setContentScreen()
-
+    fun settingsScreen_verticalScreen_lettersIsDisplayed() {
+        setVerticalContent(textSize = 35.0F)
         composeTestRule.onNodeWithTextById(R.string.letters)
             .assertExists("No letters")
             .assertIsDisplayed()
@@ -42,10 +44,9 @@ class SettingsContentUiTest {
     }
 
     @Test
-    fun settingsScreen_verticalScreen_verifyTextSizeSlider() {
-        setContentScreen()
-
-        composeTestRule.onNodeWithTagForStringId(R.string.textsize_slider)
+    fun settingsScreen_verticalScreen_textSizeSliderIsDisplayed() {
+        setVerticalContent(textSize = 35.0F)
+        composeTestRule.onNodeWithTagById(R.string.textsize_slider)
             .assertExists("No textSize slider")
             .assertIsDisplayed()
             .assertIsEnabled()
@@ -53,25 +54,23 @@ class SettingsContentUiTest {
 
     @Test
     fun settingsScreen_moveRightTextSizeSlider_increasedLetters() {
-        setContentScreen()
-
-        composeTestRule.onNodeWithTagForStringId(R.string.textsize_slider)
-            .performTouchInput { swipeRight() }
+        setVerticalContent(textSize = 35.0F)
+        composeTestRule.onNodeWithTagById(R.string.textsize_slider)
+            .performTouchInput { this.swipeRight() }
         composeTestRule.onNodeWithTextById(R.string.letters)
             .assertHeightIsAtLeast(50.dp)
     }
 
     @Test
     fun settingsScreen_moveLeftTextSizeSlider_decreasedLetters() {
-        setContentScreen(textSize = 90.0F)
-
-        composeTestRule.onNodeWithTagForStringId(R.string.textsize_slider)
-            .performTouchInput { swipeLeft() }
+        setVerticalContent(textSize = 50.0F)
+        composeTestRule.onNodeWithTagById(R.string.textsize_slider)
+            .performTouchInput { this.swipeLeft() }
 
         // needs to get the opposite of assertHeightIsAtLeast
         try {
             composeTestRule.onNodeWithTextById(R.string.letters)
-                .assertHeightIsAtLeast(90.dp)
+                .assertHeightIsAtLeast(50.dp)
         } catch (e: AssertionError) {
             return
         }
@@ -80,32 +79,30 @@ class SettingsContentUiTest {
 
     @Test
     fun settingsScreen_largeTextSize_verifyLargeLetters() {
-        setContentScreen(textSize = 100.0F)
-
+        setVerticalContent(textSize = 60.0F)
         composeTestRule.onNodeWithTextById(R.string.letters)
-            .assertHeightIsAtLeast(50.dp)
+            .assertHeightIsAtLeast(30.dp)
     }
 
     @Test
     fun settingsScreen_smallTextSize_verifySmallLetters() {
-        setContentScreen(textSize = 10.0F)
-
+        setVerticalContent(textSize = 10.0F)
         try {
             composeTestRule.onNodeWithTextById(R.string.letters)
-                .assertHeightIsAtLeast(50.dp)
+                .assertHeightIsAtLeast(30.dp)
         } catch (e: AssertionError) {
             return
         }
         throw AssertionError("letters not small when enter small textSize")
     }
 
-    private fun setContentScreen(textSize: Float = 24.0F) {
+    private fun setVerticalContent(textSize: Float) {
         composeTestRule.setContent {
             FairyTalesTheme {
-                SettingsContent(
-                    textSize = textSize,
-                    isVerticalScreen = true,
-                    onTextSizeUpdate = {}
+                VerticalSettingsContent(
+                    textSizeProvider = { textSize },
+                    onTextSizeUpdate = {},
+                    modifier = Modifier.fillMaxSize()
                 )
             }
         }

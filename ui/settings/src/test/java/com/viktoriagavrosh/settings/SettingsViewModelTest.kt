@@ -1,18 +1,11 @@
 package com.viktoriagavrosh.settings
 
+import com.viktoriagavrosh.settings.fake.FakeSettingsRepository
 import com.viktoriagavrosh.settings.fake.FakeSource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestDispatcher
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.test.setMain
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestWatcher
-import org.junit.runner.Description
 
 internal class SettingsViewModelTest {
 
@@ -20,66 +13,49 @@ internal class SettingsViewModelTest {
     val testDispatcher = TestDispatcherRule()
 
     @Test
-    internal fun settingsViewModel_validTextSize_initSettingsStateSuccess() {
+    internal fun settingsViewModel_initSettingsState_initTextSize() {
         runTest {
-            val fakeSettingsState = FakeSource.fakeSettingsState
             val viewModel = SettingsViewModel(
-                settingsRepository = FakeSettingsRepository(fakeSettingsState),
+                settingsRepository = FakeSettingsRepository(),
             )
-
-            val expectedTextSize = FakeSource.fakeSettingsState.textSize
+            val expectedTextSize = FakeSource.fakeSettings.textSize
             val actualTextSize = viewModel.uiState.value.textSize
-            assertEquals(
-                expectedTextSize,
-                actualTextSize
-            )
+            assertEquals(expectedTextSize, actualTextSize)
         }
     }
 
     @Test
-    internal fun settingsViewModel_notValidMinTextSize_initSettingsStateSuccess() {
+    internal fun settingsViewModel_updateTextSize_textSizeUpdated() {
         runTest {
-            val fakeSettingsState = FakeSource.fakeSettingsState.copy(textSize = -25.0F)
-            val viewModel = SettingsViewModel(
-                settingsRepository = FakeSettingsRepository(fakeSettingsState),
-            )
+            val viewModel = SettingsViewModel(FakeSettingsRepository())
+            val expectedTextSize = 50.0F
+            viewModel.updateTextSize(expectedTextSize)
+            val actualTextSize = viewModel.uiState.value.textSize
+            assertEquals(expectedTextSize, actualTextSize)
+        }
+    }
 
+    @Test
+    internal fun settingsViewModel_updateTextSizeWithSmallValue_textSizeUpdated() {
+        runTest {
+            val viewModel = SettingsViewModel(FakeSettingsRepository())
+            val newTextSize = 1.0F
+            viewModel.updateTextSize(newTextSize)
             val expectedTextSize = 8.0F
             val actualTextSize = viewModel.uiState.value.textSize
-            assertEquals(
-                expectedTextSize,
-                actualTextSize
-            )
+            assertEquals(expectedTextSize, actualTextSize)
         }
     }
 
     @Test
-    internal fun settingsViewModel_notValidMaxTextSize_initSettingsStateSuccess() {
+    internal fun settingsViewModel_updateTextSizeWithLargeValue_textSizeUpdated() {
         runTest {
-            val fakeSettingsState = FakeSource.fakeSettingsState.copy(textSize = 150.0F)
-            val viewModel = SettingsViewModel(
-                settingsRepository = FakeSettingsRepository(fakeSettingsState),
-            )
-
-            val expectedTextSize = 100.0F
+            val viewModel = SettingsViewModel(FakeSettingsRepository())
+            val newTextSize = 100.0F
+            viewModel.updateTextSize(newTextSize)
+            val expectedTextSize = 60.0F
             val actualTextSize = viewModel.uiState.value.textSize
-            assertEquals(
-                expectedTextSize,
-                actualTextSize
-            )
+            assertEquals(expectedTextSize, actualTextSize)
         }
-    }
-}
-
-@OptIn(ExperimentalCoroutinesApi::class)
-internal class TestDispatcherRule(
-    private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
-) : TestWatcher() {
-    override fun starting(description: Description) {
-        Dispatchers.setMain(testDispatcher)
-    }
-
-    override fun finished(description: Description) {
-        Dispatchers.resetMain()
     }
 }

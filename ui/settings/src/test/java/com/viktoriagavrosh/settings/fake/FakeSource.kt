@@ -1,10 +1,11 @@
 package com.viktoriagavrosh.settings.fake
 
-import com.viktoriagavrosh.settings.SettingsState
+import com.viktoriagavrosh.repositories.model.Settings
 
 internal object FakeSource {
 
-    val fakeSettingsState = SettingsState(
-        textSize = 25.0F
+    val fakeSettings = Settings(
+        textSize = 24.0F,
+        lastTaleId = 0
     )
 }

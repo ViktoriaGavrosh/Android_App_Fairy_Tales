@@ -2,25 +2,17 @@ package com.viktoriagavrosh.settings
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.viktoriagavrosh.settings.elements.SettingsContent
+import com.viktoriagavrosh.settings.elements.ContentSettingsScreen
 import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uikit.R
-import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
@@ -46,7 +38,6 @@ fun SettingsScreen(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsScreen(
     textSizeProvider: () -> Float,
@@ -63,32 +54,15 @@ internal fun SettingsScreen(
             modifier = modifier,
         )
     } else {
-
-        val topAppBarState = rememberTopAppBarState()
-        val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(topAppBarState)
-
-        Scaffold(
-            modifier = modifier,
-            topBar = {
-                ScreenTopBar(
-                    text = stringResource(id = R.string.settings_title),
-                    scrollBehavior = scrollBehavior,
-                    onBackClick = onBackClick,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        ) { paddingValues ->
-            SettingsContent(
-                textSizeProvider = textSizeProvider,
-                isVerticalScreen = isVerticalScreen,
-                onTextSizeUpdate = onTextSizeUpdate,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues)
-                    .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
-                    .nestedScroll(scrollBehavior.nestedScrollConnection),
-            )
-        }
+        ContentSettingsScreen(
+            textSizeProvider = textSizeProvider,
+            isVerticalScreen = isVerticalScreen,
+            onTextSizeUpdate = onTextSizeUpdate,
+            onBackClick = onBackClick,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = dimensionResource(id = R.dimen.padding_medium)),
+        )
     }
 }
 

@@ -54,6 +54,7 @@ class SettingsViewModel @Inject constructor(
     internal fun updateTextSize(textSize: Float) {
         viewModelScope.launch {
             settingsRepository.updateTextSize(textSize)
+            initSettingsState()
         }
     }
 
