@@ -26,7 +26,8 @@ fun SettingSlider(
     text: String,
     settingSizeProvider: () -> Float,
     onSettingSizeUpdate: (Float) -> Unit,
-    testTag: String,
+    modifier: Modifier = Modifier,
+    testTag: String = "",
 ) {
     var sliderPosition by remember {
         mutableFloatStateOf(0.0F)
@@ -36,7 +37,7 @@ fun SettingSlider(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.width(
+        modifier = modifier.width(
             dimensionResource(R.dimen.slider_column_width)
         )
     ) {

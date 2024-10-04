@@ -5,13 +5,19 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ContentAddTaleScreenUiTest">
+      <SelectionState runConfigName="TaleCardTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="infoContent_verticalScreen_titleTextFieldIsDisplayed()">
+      <SelectionState runConfigName="uikit_itemCard_imageBlurIsDisplayed()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="infoContent_verticalScreen_titleTextFieldShowInputText()">
+      <SelectionState runConfigName="uikit_itemCard_imageDoesNotDisplayed()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="ScreenTopBarUiTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="SelectionDropdownMenuUiTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -17,7 +17,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.image.BookImage
 import com.viktoriagavrosh.uikit.utils.FairyTaleColors
@@ -28,9 +30,9 @@ import com.viktoriagavrosh.uitheme.FairyTalesTheme
  */
 @Composable
 fun ItemCard(
-    modifier: Modifier = Modifier,
     title: String,
     imageUrl: String?,
+    modifier: Modifier = Modifier,
     isFavorite: Boolean = false,
     isHeartShow: Boolean = false,
     isBlur: Boolean = false,

@@ -25,14 +25,14 @@ fun Cover(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        FlowersRow()
+        FlowersRow(modifier = Modifier.testTag(stringResource(R.string.top_flowersrow_test_tag)))
         Text(
             text = text,
             style = MaterialTheme.typography.displayMedium,
             textAlign = TextAlign.Center,
             modifier = Modifier
         )
-        FlowersRow()
+        FlowersRow(modifier = Modifier.testTag(stringResource(R.string.bottom_flowersrow_test_tag)))
     }
 }
 
