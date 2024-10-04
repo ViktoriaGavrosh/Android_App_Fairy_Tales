@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -74,7 +75,8 @@ private fun RightColumn(
             label = stringResource(R.string.add_tale_text),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimensionResource(R.dimen.add_text_field_height)),
+                .height(dimensionResource(R.dimen.add_text_field_height))
+                .testTag(stringResource(R.string.textfield_for_taletext_test_tag)),
         )
     }
 }

@@ -5,19 +5,13 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ContentSettingsScreenUiTest">
+      <SelectionState runConfigName="ContentAddTaleScreenUiTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="settingsScreen_horizontalScreen_titleOnTopBarIsDisplayed()">
+      <SelectionState runConfigName="infoContent_verticalScreen_titleTextFieldIsDisplayed()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="VerticalSettingsContentUiTest">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="settingsScreen_moveRightTextSizeSlider_increasedLetters()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="settingsScreen_moveLeftTextSizeSlider_decreasedLetters()">
+      <SelectionState runConfigName="infoContent_verticalScreen_titleTextFieldShowInputText()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -68,7 +69,8 @@ internal fun VerticalAddTaleContent(
             onValueChange = onTextValueChange,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dimensionResource(R.dimen.add_text_field_height)),
+                .height(dimensionResource(R.dimen.add_text_field_height))
+                .testTag(stringResource(R.string.textfield_for_taletext_test_tag)),
         )
         SwitchRow(
             text = stringResource(R.string.night),

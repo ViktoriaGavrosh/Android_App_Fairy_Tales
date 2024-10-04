@@ -510,6 +510,19 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-452776318">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-A525F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-431270197">
           <value>
             <AndroidTestResultsTableState>
@@ -758,6 +771,19 @@
           </value>
         </entry>
         <entry key="317291278">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-A525F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="322416799">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
@@ -1044,6 +1070,19 @@
           </value>
         </entry>
         <entry key="1155410941">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-A525F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1157147852">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
