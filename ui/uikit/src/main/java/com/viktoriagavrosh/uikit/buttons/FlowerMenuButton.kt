@@ -49,8 +49,7 @@ fun FlowerMenuButton(
 @Composable
 private fun DesignMenuButtonPreview() {
     FairyTalesTheme {
-        IconMenuButton(
-            iconId = R.drawable.ic_favorite_false,
+        FlowerMenuButton(
             text = "Text",
             onClick = {},
         )

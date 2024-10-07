@@ -58,11 +58,11 @@ class TaleCardTest {
                 ItemCard(
                     title = title,
                     imageUrl = imageUrl,
-                isFavorite = isFavorite,
-                isHeartShow = isHeartShow,
-                isBlur = isBlur,
-                onCardClick = {},
-                onHeartClick = {},
+                    isFavorite = isFavorite,
+                    isHeartShow = isHeartShow,
+                    isBlur = isBlur,
+                    onCardClick = {},
+                    onHeartClick = {},
                 )
             }
         }

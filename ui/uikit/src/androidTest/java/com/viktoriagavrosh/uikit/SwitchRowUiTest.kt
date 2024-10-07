@@ -52,7 +52,6 @@ class SwitchRowUiTest {
     }
 
 
-
     private fun setContent(text: String = "", isChecked: Boolean = false) {
         composeTestRule.setContent {
             FairyTalesTheme {

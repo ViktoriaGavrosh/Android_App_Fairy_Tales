@@ -42,7 +42,8 @@ fun SwitchRow(
                 checked = !checked
                 onValueChange(it)
             },
-            modifier = Modifier.padding(dimensionResource(R.dimen.padding_large))
+            modifier = Modifier
+                .padding(dimensionResource(R.dimen.padding_large))
                 .testTag(stringResource(R.string.switch_test_tag))
         )
     }

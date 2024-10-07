@@ -5,19 +5,19 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TaleCardTest">
+      <SelectionState runConfigName="uikit_switchRow_switchIsOn()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="uikit_itemCard_imageBlurIsDisplayed()">
+      <SelectionState runConfigName="FlowerMenuButtonUiTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="uikit_itemCard_imageDoesNotDisplayed()">
+      <SelectionState runConfigName="uikit_menuButton_textIsDisplayed()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ScreenTopBarUiTest">
+      <SelectionState runConfigName="OutlinedMenuButtonUiTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="SelectionDropdownMenuUiTest">
+      <SelectionState runConfigName="IconMenuButtonUiTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

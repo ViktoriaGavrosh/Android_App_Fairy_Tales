@@ -68,4 +68,6 @@
     <string name="bottom_flowersrow_test_tag">bottom flowersRow</string>
     <string name="blur_image_test_tag">blur image</string>
     <string name="not_blur_image_test_tag">not blur image</string>
+    <string name="top_decor_divider_test_tag">top_decor_divider</string>
+    <string name="bottom_decor_divider_test_tag">bottom_decor_divider</string>
 </resources>

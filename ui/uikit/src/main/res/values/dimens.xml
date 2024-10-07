@@ -16,6 +16,8 @@
 
     <dimen name="slider_box_height">100dp</dimen>
     <dimen name="slider_column_width">250dp</dimen>
+    <dimen name="decor_icon_size">36dp</dimen>
+    <dimen name="divider_thickness">3dp</dimen>
 
     <!-- InfoScreen -->
     <dimen name="info_button_width">300dp</dimen>
