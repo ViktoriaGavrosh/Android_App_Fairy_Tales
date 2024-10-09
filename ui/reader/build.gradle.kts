@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kotlin.plugin.compose)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.dagger.hilt.android)
 }
 
@@ -45,10 +45,10 @@ dependencies {
 
     // Dagger
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.assisted.inject.annotations.dagger2)
-    kapt(libs.assisted.inject.processor.dagger2)
+    ksp(libs.assisted.inject.processor.dagger2)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

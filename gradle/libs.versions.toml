@@ -3,7 +3,7 @@ activityCompose = "1.9.2"
 agp = "8.6.1"
 assistedInjectAnnotationsDagger2 = "0.5.2"
 coilCompose = "2.7.0"
-composeBom = "2024.09.02"
+composeBom = "2024.09.03"
 coreKtx = "1.13.1"
 espressoCore = "3.6.1"
 hiltAndroid = "2.52"
@@ -14,13 +14,11 @@ junitVersion = "1.2.1"
 kotlin = "2.0.20"
 kotlinxCoroutines = "1.8.1"
 library = "8.6.1"
-ksp = "2.0.10-1.0.24"
+ksp = "2.0.20-1.0.25"
 datastore = "1.1.1"
 lifecycleRuntimeKtx = "2.8.6"
-navigationCompose = "2.8.1"
+navigationCompose = "2.8.2"
 room = "2.6.1"
-appcompat = "1.7.0"
-material = "1.12.0"
 serialization = "2.0.20"
 serialization_json = "1.7.2"
 
@@ -38,7 +36,6 @@ core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
 lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
 material3-window-size = { module = "androidx.compose.material3:material3-window-size-class" }
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 
@@ -67,15 +64,12 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationCompose" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltAndroid" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-plugin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "library" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

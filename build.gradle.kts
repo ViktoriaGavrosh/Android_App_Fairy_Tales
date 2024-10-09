@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.kotlin.plugin.compose) apply false
     alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.devtools.ksp) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.dagger.hilt.android) apply false
     alias(libs.plugins.kotlin.plugin.serialization) apply false
