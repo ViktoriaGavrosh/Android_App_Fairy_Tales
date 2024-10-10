@@ -76,7 +76,6 @@ internal fun ContentScreen(
                 onCardClick = onCardClick,
                 onBackClick = onBackClick,
                 onHeartClick = onHeartClick,
-                // modifier = Modifier.weight(1F)   TODO 111
             )
         }
     }

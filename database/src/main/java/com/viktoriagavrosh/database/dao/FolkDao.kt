@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.viktoriagavrosh.database.model.FolkDb
-import com.viktoriagavrosh.database.model.TaleDb
 import kotlinx.coroutines.flow.Flow
 
 /**

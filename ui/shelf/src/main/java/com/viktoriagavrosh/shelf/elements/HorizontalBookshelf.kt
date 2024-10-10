@@ -41,7 +41,7 @@ internal fun HorizontalBookshelf(
                 imageUrl = book.imageUrl,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_medium))
-                    .testTag(book.id.toString()),                              // TODO 111
+                    .testTag(book.id.toString()),
                 isFavorite = book.isFavorite,
                 isHeartShow = isHeartShow,
                 isBlur = isBlurImages,

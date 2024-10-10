@@ -19,7 +19,7 @@ internal fun ShelfButtons(
     onFolkClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column (
+    Column(
         modifier = modifier,
     ) {
         FlowerMenuButton(

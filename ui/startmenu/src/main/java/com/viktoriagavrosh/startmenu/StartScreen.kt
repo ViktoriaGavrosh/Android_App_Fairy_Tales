@@ -28,7 +28,7 @@ fun StartScreen(
 ) {
     val viewModel: StartViewModel = hiltViewModel()
 
-    LaunchedEffect(Unit) {    // TODO  111 Look for info where should it be
+    LaunchedEffect(Unit) {    // TODO Look for info where should it be
         viewModel.initStartUiState()
     }
 

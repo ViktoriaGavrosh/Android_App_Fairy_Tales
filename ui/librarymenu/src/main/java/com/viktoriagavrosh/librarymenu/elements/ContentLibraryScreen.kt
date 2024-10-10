@@ -50,7 +50,8 @@ internal fun ContentLibraryScreen(
                 onFolkClick = onFolkClick,
                 onTaleClick = onTaleClick,
                 onAddTaleClick = onAddTaleClick,
-                modifier = modifier.fillMaxHeight()
+                modifier = modifier
+                    .fillMaxHeight()
                     .padding(paddingValues)
                     .nestedScroll(scrollBehavior.nestedScrollConnection),
             )

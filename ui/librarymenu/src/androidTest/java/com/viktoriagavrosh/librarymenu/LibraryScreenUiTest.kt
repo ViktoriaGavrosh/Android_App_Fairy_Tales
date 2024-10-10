@@ -16,27 +16,27 @@ class LibraryScreenUiTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
-        @Test
-        fun libraryScreen_verticalScreen_error() {
-            setLibraryScreen(
-                isError = true,
-                isVerticalScreen = true
-            )
-            composeTestRule.onNodeWithTagById(R.string.error_screen_test_tag)
-                .assertExists("No error screen")
-                .assertIsDisplayed()
-        }
+    @Test
+    fun libraryScreen_verticalScreen_error() {
+        setLibraryScreen(
+            isError = true,
+            isVerticalScreen = true
+        )
+        composeTestRule.onNodeWithTagById(R.string.error_screen_test_tag)
+            .assertExists("No error screen")
+            .assertIsDisplayed()
+    }
 
-        @Test
-        fun libraryScreen_horizontalScreen_error() {
-            setLibraryScreen(
-                isError = true,
-                isVerticalScreen = false
-            )
-            composeTestRule.onNodeWithTagById(R.string.error_screen_test_tag)
-                .assertExists("No error screen")
-                .assertIsDisplayed()
-        }
+    @Test
+    fun libraryScreen_horizontalScreen_error() {
+        setLibraryScreen(
+            isError = true,
+            isVerticalScreen = false
+        )
+        composeTestRule.onNodeWithTagById(R.string.error_screen_test_tag)
+            .assertExists("No error screen")
+            .assertIsDisplayed()
+    }
 
     private fun setLibraryScreen(isError: Boolean, isVerticalScreen: Boolean) {
         composeTestRule.setContent {

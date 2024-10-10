@@ -45,7 +45,7 @@ internal fun HorizontalSettingsContent(
         Column(
             modifier = Modifier.weight(1F)
         ) {
-            // TODO it will be when there are more settings
+            // needs for more settings
         }
     }
 }

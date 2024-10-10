@@ -20,7 +20,7 @@ internal fun AdditionalButtons(
     onRandomClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column (
+    Column(
         modifier = modifier.width(dimensionResource(R.dimen.additional_button_width)),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

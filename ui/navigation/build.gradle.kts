@@ -56,14 +56,12 @@ dependencies {
     // Modules
     implementation(projects.repositories)
     implementation(projects.ui.shelf)
-    implementation(project(":ui:reader"))
-    //implementation(projects.ui.read)   TODO 111
-    //implementation(projects.ui.riddle)   TODO 111
-    implementation(project(":ui:riddle"))
-    implementation(project(":ui:startmenu"))
-    implementation(project(":ui:librarymenu"))
-    implementation(project(":ui:infomenu"))
-    implementation(project(":ui:addtale"))
+    implementation(projects.ui.reader)
+    implementation(projects.ui.riddle)
+    implementation(projects.ui.startmenu)
+    implementation(projects.ui.librarymenu)
+    implementation(projects.ui.infomenu)
+    implementation(projects.ui.addtale)
     implementation(projects.ui.settings)
     implementation(projects.uitheme)
 

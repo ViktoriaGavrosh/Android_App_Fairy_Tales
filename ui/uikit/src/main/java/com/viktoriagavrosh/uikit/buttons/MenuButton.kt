@@ -31,7 +31,7 @@ fun MenuButton(
             text = text,
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Center,
-            lineHeight = 25.sp,            // TODO 111
+            lineHeight = 25.sp,
             modifier = Modifier
         )
     }

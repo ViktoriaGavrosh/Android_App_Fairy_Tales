@@ -48,13 +48,3 @@ internal enum class NavGenre(val genre: ShelfGenre) {
     Favorite(ShelfGenre.Favorites),
     Riddle(ShelfGenre.Riddles),
 }
-
-/*   TODO 111
-internal enum class NavigationDestination(val screen: String) {
-    HomeScreen(screen = "home"),
-    ReadScreen(screen = "read"),
-    SettingsScreen(screen = "settings"),
-    RiddleScreen(screen = "riddle"),
-}
-
- */
