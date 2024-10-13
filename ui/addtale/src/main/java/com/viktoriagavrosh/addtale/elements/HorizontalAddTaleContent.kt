@@ -22,6 +22,18 @@ import com.viktoriagavrosh.uikit.SwitchRow
 import com.viktoriagavrosh.uikit.text.AppTextField
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display AddTaleScreen content (horizontal screen orientation)
+ *
+ * @param taleProvider provides instance [NewTale]
+ * @param isTaleValidProvider provides boolean. If true, new tale can be saved.
+ * @param onTitleValueChange callback that is executed when tale's title is changed
+ * @param onTextValueChange callback that is executed when tale's text is changed
+ * @param onGenreValueChange callback that is executed when tale's genre is changed
+ * @param onIsNightValueChange callback that is executed when tale's isNight is changed
+ * @param onAddButtonClick callback that is executed when add button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun HorizontalAddTaleContent(
     taleProvider: () -> NewTale,
@@ -58,6 +70,13 @@ internal fun HorizontalAddTaleContent(
     }
 }
 
+/**
+ * Composable to display right part of horizontal screen
+ *
+ * @param taleProvider provides instance [NewTale]
+ * @param onTextValueChange callback that is executed when tale's text is changed
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun RightColumn(
     taleProvider: () -> NewTale,
@@ -81,6 +100,17 @@ private fun RightColumn(
     }
 }
 
+/**
+ * Composable to display left part of horizontal screen
+ *
+ * @param taleProvider provides instance [NewTale]
+ * @param onTitleValueChange callback that is executed when tale's title is changed
+ * @param onGenreValueChange callback that is executed when tale's genre is changed
+ * @param onIsNightValueChange callback that is executed when tale's isNight is changed
+ * @param onAddButtonClick callback that is executed when add button is clicked
+ * @param isTaleValidProvider provides boolean. If true, new tale can be saved.
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun LeftColumn(
     taleProvider: () -> NewTale,
@@ -120,7 +150,7 @@ private fun LeftColumn(
                 .padding(start = dimensionResource(R.dimen.padding_large))
         )
         AddButton(
-            onAddButtonClick = onAddButtonClick,
+            onClick = onAddButtonClick,
             isTaleValidProvider = isTaleValidProvider,
             modifier = Modifier
                 .fillMaxWidth()

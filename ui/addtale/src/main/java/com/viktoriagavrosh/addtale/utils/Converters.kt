@@ -3,6 +3,11 @@ package com.viktoriagavrosh.addtale.utils
 import com.viktoriagavrosh.addtale.model.NewTale
 import com.viktoriagavrosh.repositories.model.Tale
 
+/**
+ * convert model for AddTaleScreen to model of repository
+ *
+ * @return [Tale]
+ */
 internal fun NewTale.toTale(): Tale {
     return Tale(
         id = id,

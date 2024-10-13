@@ -18,24 +18,32 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 /**
- * Repository that provides insert, update, delete and retrieve of items from a given data source.
+ * provide data for ui from data source
  */
-
 interface ReadRepository {
 
     /**
-     * Retrieve the item from the given data source by id
+     * Retrieve book from the given data source by id
+     *
+     * @param id unique object identifier
+     * @param genre name of book`s genre
+     * @return flow of [RequestResult] of [Retaining]
      */
     fun getBookById(id: Int, genre: ShelfGenre): Flow<RequestResult<Retaining>>
 
     /**
-     * Retrieve the item from the given data source
+     * Retrieve textSize setting value from given datasource
+     *
+     * @return flow of [RequestResult] of value
      */
     fun getTextSize(): Flow<RequestResult<Float>>
 }
 
 /**
- * [ReadRepository] implementation that provides functions for working with the database
+ * provide data for ui from local database and Datastore
+ *
+ * @param appDatabase instance of [TaleAppDatabase]
+ * @param preferencesManager instance of [PreferencesManager] for working with Datastore
  */
 class OfflineReadRepository @Inject constructor(
     private val appDatabase: TaleAppDatabase,
@@ -43,7 +51,11 @@ class OfflineReadRepository @Inject constructor(
 ) : ReadRepository {
 
     /**
-     * Retrieve the item from db by id
+     * Retrieve book from [TaleAppDatabase] by id
+     *
+     * @param id unique object identifier
+     * @param genre name of book`s genre
+     * @return flow of [RequestResult] of [Retaining]
      */
     override fun getBookById(id: Int, genre: ShelfGenre): Flow<RequestResult<Retaining>> {
         return when (genre) {
@@ -62,7 +74,9 @@ class OfflineReadRepository @Inject constructor(
     }
 
     /**
-     * Retrieve the item from the given data source
+     * Retrieve textSize setting value from Datastore
+     *
+     * @return flow of [RequestResult] of value
      */
     override fun getTextSize(): Flow<RequestResult<Float>> {
         return try {

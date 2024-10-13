@@ -14,6 +14,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display LibraryScreen content (horizontal screen orientation)
+ *
+ * @param onTaleClick callback that is executed when tale button is clicked
+ * @param onRiddleClick callback that is executed when riddle button is clicked
+ * @param onFolkClick callback that is executed when folk button is clicked
+ * @param onAddTaleClick callback that is executed when add tale button is clicked
+ * @param onRandomClick callback that is executed when random button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun HorizontalLibraryContent(
     onTaleClick: () -> Unit,

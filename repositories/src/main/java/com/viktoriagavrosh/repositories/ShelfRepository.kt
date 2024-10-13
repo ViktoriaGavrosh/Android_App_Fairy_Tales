@@ -16,32 +16,43 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 /**
- * Repository that provides insert, update, delete and retrieve of items from a given data source.
+ * provide data for ui from data source
  */
-
 interface ShelfRepository {
+
     /**
-     * Retrieve all the items from the given data source by genre
+     * Retrieve all items from the given data source by genre
+     *
+     * @param genre genre of item
+     * @return flow of [RequestResult] of [Retaining]
      */
     fun getItems(
         genre: ShelfGenre
     ): Flow<RequestResult<List<Retaining>>>
 
     /**
-     * Update the value of an item field is_favorite in the data source
+     * Update favorite value of tale by id
+     *
+     * @param id unique object identifier
+     * @param isFavorite new value of tale
      */
     suspend fun updateFavoriteTale(id: Int, isFavorite: Boolean)
 }
 
 /**
- * [ShelfRepository] implementation that provides functions for working with the database
+ * provide data for ui from local database
+ *
+ * @param appDatabase instance of [TaleAppDatabase]
  */
 class OfflineShelfRepository @Inject constructor(
     private val appDatabase: TaleAppDatabase
 ) : ShelfRepository {
 
     /**
-     * Retrieve all the items from db by genre
+     * Retrieve all items from [TaleAppDatabase] by genre
+     *
+     * @param genre genre of item
+     * @return flow of [RequestResult] of [Retaining]
      */
     override fun getItems(
         genre: ShelfGenre
@@ -62,7 +73,10 @@ class OfflineShelfRepository @Inject constructor(
     }
 
     /**
-     * Update the value of Tale field is_favorite in db
+     * Update favorite value of tale by id
+     *
+     * @param id unique object identifier
+     * @param isFavorite new value of tale
      */
     override suspend fun updateFavoriteTale(id: Int, isFavorite: Boolean) {
         val isFavoriteValue = if (isFavorite) 1 else 0

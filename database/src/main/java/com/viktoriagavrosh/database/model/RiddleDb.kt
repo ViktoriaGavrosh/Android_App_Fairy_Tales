@@ -5,7 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * Entity data class represents a single Riddle for database module
+ * Model represents a single riddle given from database
+ *
+ * @param id unique object identifier
+ * @param title riddle`s title
+ * @param text riddle`s text
+ * @param answer riddle`s answer
+ * @param imageUrl url of image for riddle
  */
 @Entity(tableName = "riddle")
 data class RiddleDb(

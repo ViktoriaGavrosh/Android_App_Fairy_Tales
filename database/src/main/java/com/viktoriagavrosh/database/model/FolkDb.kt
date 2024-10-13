@@ -5,7 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * Entity data class represents a single Folk for database module
+ * Model represents a single folk given from database
+ *
+ * @param id unique object identifier
+ * @param genre name of folk genre
+ * @param title folk`s title
+ * @param text folk`s text
+ * @param imageUrl url of image for folk
  */
 @Entity(tableName = "folk")
 data class FolkDb(

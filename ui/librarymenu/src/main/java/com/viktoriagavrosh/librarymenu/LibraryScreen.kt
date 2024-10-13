@@ -12,7 +12,16 @@ import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display different screens depending on window size
+ * Composable for displaying library menu
+ *
+ * @param isVerticalScreen describes screen orientation
+ * @param onTaleClick callback that is executed when tale button is clicked
+ * @param onRiddleClick callback that is executed when riddle button is clicked
+ * @param onFolkClick callback that is executed when folk button is clicked
+ * @param onAddTaleClick callback that is executed when add tale button is clicked
+ * @param onRandomClick callback that is executed when random button is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 fun LibraryScreen(
@@ -47,6 +56,20 @@ fun LibraryScreen(
     )
 }
 
+/**
+ * Composable for displaying library menu
+ *
+ * @param isErrorProvider provides boolean. If true ErrorScreen will be shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onTaleClick callback that is executed when tale button is clicked
+ * @param onRiddleClick callback that is executed when riddle button is clicked
+ * @param onFolkClick callback that is executed when folk button is clicked
+ * @param onAddTaleClick callback that is executed when add tale button is clicked
+ * @param onRandomClick callback that is executed when random button is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onErrorButtonClick callback that is executed when button on ErrorScreen is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun LibraryScreen(
     isErrorProvider: () -> Boolean,

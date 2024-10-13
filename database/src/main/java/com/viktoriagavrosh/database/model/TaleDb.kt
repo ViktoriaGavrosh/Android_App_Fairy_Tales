@@ -5,7 +5,20 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * Entity data class represents a single Tale for database module
+ * Model represents a single tale given from database
+ *
+ * @param id unique object identifier
+ * @param genre name of tale genre
+ * @param title tale`s title
+ * @param text tale`s text
+ * @param isFavorite boolean parameter describes tale is favorite
+ * @param isNight boolean parameter describes tale is night
+ * @param isChangeable boolean parameter describes tale can be changed
+ * @param imageUrl url of image for tale
+ * @param audioUrl url of audio for tale
+ * @param quizUrl url of quiz for tale
+ * @param questionsUrl url of questions for tale
+ * @param gameUrl url of game for tale
  */
 @Entity(tableName = "tale")
 data class TaleDb(

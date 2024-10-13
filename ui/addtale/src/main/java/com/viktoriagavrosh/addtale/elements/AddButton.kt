@@ -15,10 +15,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display add tale button
+ *
+ * @param isTaleValidProvider provides boolean. If true, new tale can be saved
+ * @param onClick callback that is executed when button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun AddButton(
-    onAddButtonClick: () -> Unit,
     isTaleValidProvider: () -> Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -26,7 +33,7 @@ internal fun AddButton(
         contentAlignment = Alignment.CenterEnd,
     ) {
         Button(
-            onClick = onAddButtonClick,
+            onClick = onClick,
             enabled = isTaleValidProvider(),
         ) {
             Text(
@@ -44,7 +51,7 @@ internal fun AddButton(
 private fun AddButtonPreview() {
     FairyTalesTheme {
         AddButton(
-            onAddButtonClick = {},
+            onClick = {},
             isTaleValidProvider = { true },
         )
     }

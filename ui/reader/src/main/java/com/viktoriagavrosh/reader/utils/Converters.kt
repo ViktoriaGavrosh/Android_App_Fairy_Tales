@@ -5,6 +5,11 @@ import com.viktoriagavrosh.repositories.model.Folk
 import com.viktoriagavrosh.repositories.model.Retaining
 import com.viktoriagavrosh.repositories.model.Tale
 
+/**
+ * convert model of repository to model for ReaderScreen
+ *
+ * @return [ReadBook]
+ */
 fun Retaining.toReadBook(): ReadBook {
     return when (this) {
         is Folk -> ReadBook(

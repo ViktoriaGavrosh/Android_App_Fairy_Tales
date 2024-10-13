@@ -24,7 +24,11 @@ import com.viktoriagavrosh.uikit.text.TextRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [ReadRiddle] on expanded screen
+ * Composable to display RiddleScreen content (horizontal screen orientation)
+ *
+ * @param riddleProvider provides id of selected riddle
+ * @param textSizeProvider provides text size value
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 internal fun HorizontalRiddleContent(

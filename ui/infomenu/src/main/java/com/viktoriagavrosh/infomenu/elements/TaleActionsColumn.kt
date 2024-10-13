@@ -12,6 +12,13 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.buttons.FlowerMenuButton
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display buttons with actions
+ *
+ * @param firstButtonText text on top button
+ * @param onFirstButtonClick callback that is executed when top button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun TaleActionsColumn(
     firstButtonText: String,

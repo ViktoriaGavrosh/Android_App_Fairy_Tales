@@ -17,6 +17,13 @@ import com.viktoriagavrosh.settings.SettingsScreen
 import com.viktoriagavrosh.shelf.ShelfScreen
 import com.viktoriagavrosh.startmenu.StartScreen
 
+/**
+ * Composable with navigation between app screens
+ *
+ * @param isVerticalScreen boolean parameter describes screen orientation
+ * @param modifier the modifier to be applied to the layout
+ * @param navController the navController for this host
+ */
 @Composable
 internal fun AppNavHost(
     isVerticalScreen: Boolean,

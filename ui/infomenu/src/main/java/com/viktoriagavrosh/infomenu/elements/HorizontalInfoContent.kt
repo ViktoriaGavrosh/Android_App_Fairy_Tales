@@ -24,6 +24,13 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.image.BookImage
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display AddTaleScreen content (horizontal screen orientation)
+ *
+ * @param taleProvider provides instance [TaleInfo]
+ * @param onReadClick callback that is executed when read button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun HorizontalInfoContent(
     taleProvider: () -> TaleInfo,
@@ -51,10 +58,16 @@ internal fun HorizontalInfoContent(
     }
 }
 
+/**
+ * Composable to display cover of book (horizontal screen orientation)
+ *
+ * @param taleProvider provides instance [TaleInfo]
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun TaleInfoRow(
-    modifier: Modifier,
     taleProvider: () -> TaleInfo,
+    modifier: Modifier,
 ) {
     val tale = taleProvider()
     Row(

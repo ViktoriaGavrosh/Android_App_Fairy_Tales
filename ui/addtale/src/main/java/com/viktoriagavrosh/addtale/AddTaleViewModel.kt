@@ -9,7 +9,6 @@ import com.viktoriagavrosh.addtale.utils.TaleGenre.Fairy
 import com.viktoriagavrosh.addtale.utils.TaleGenre.People
 import com.viktoriagavrosh.addtale.utils.toTale
 import com.viktoriagavrosh.repositories.AddRepository
-import com.viktoriagavrosh.repositories.ShelfRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +18,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel to retrieve and update item from the [ShelfRepository]'s data source
+ * ViewModel to retrieve, update and insert item to repository data source
+ *
+ * @param repository instance of [AddRepository]
  */
 @HiltViewModel
 class AddTaleViewModel @Inject constructor(
@@ -30,6 +31,9 @@ class AddTaleViewModel @Inject constructor(
     internal val uiState: StateFlow<AddTaleUiState>
         get() = _uiState
 
+    /**
+     * Add new tale to data source
+     */
     internal fun addTale() {
         viewModelScope.launch {
             val newTale = uiState.first().newTale
@@ -37,6 +41,11 @@ class AddTaleViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update title value of [AddTaleUiState]
+     *
+     * @param title new value
+     */
     internal fun updateTitle(title: String) {
         viewModelScope.launch {
             val newTale = uiState.first().newTale.copy(
@@ -47,6 +56,11 @@ class AddTaleViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update text value of [AddTaleUiState]
+     *
+     * @param text new value
+     */
     internal fun updateText(text: String) {
         viewModelScope.launch {
             val newTale = uiState.first().newTale.copy(
@@ -57,6 +71,11 @@ class AddTaleViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update genre value of [AddTaleUiState]
+     *
+     * @param genreTitle name of new genre
+     */
     internal fun updateGenre(genreTitle: String) {
         val genre = getGenreByTitle(genreTitle)
         viewModelScope.launch {
@@ -67,6 +86,11 @@ class AddTaleViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update isNight value of [AddTaleUiState]
+     *
+     * @param isNight new value
+     */
     internal fun updateIsNight(isNight: Boolean) {
         viewModelScope.launch {
             val newTale = uiState.first().newTale.copy(
@@ -105,6 +129,13 @@ class AddTaleViewModel @Inject constructor(
     }
 }
 
+/**
+ * holds [AddTaleScreen] state
+ *
+ * @param newTale instance [NewTale]
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ * @param isTaleValid if true, new tale can be saved.
+ */
 internal data class AddTaleUiState(
     val newTale: NewTale = NewTale(),
     val isError: Boolean = false,

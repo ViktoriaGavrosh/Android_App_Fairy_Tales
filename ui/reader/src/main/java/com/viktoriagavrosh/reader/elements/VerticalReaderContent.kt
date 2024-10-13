@@ -21,7 +21,11 @@ import com.viktoriagavrosh.uikit.text.TextRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [ReadBook] on compact and medium screens
+ * Composable to display ReaderScreen content (vertical screen orientation)
+ *
+ * @param bookProvider provides id of selected book
+ * @param textSizeProvider provides text size value
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 internal fun VerticalReaderContent(

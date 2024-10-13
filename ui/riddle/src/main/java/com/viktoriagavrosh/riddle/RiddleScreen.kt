@@ -12,7 +12,13 @@ import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [ReadRiddle]
+ * Composable for displaying reader for riddles
+ *
+ * @param riddleId id of selected riddle
+ * @param isVerticalScreen describes screen orientation
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onSettingsClick callback that is executed when settings button is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 fun RiddleScreen(
@@ -42,6 +48,18 @@ fun RiddleScreen(
     )
 }
 
+/**
+ * Composable for displaying reader for riddles
+ *
+ * @param riddleProvider provides id of selected riddle
+ * @param textSizeProvider provides text size value
+ * @param isErrorProvider provides boolean. If true ErrorScreen will be shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onSettingsClick callback that is executed when settings button is clicked
+ * @param onErrorButtonClick callback that is executed when button on ErrorScreen is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun RiddleScreen(
     riddleProvider: () -> ReadRiddle,

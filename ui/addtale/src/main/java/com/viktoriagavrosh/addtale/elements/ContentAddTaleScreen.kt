@@ -19,6 +19,20 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display AddTaleScreen content with topBar
+ *
+ * @param taleProvider provides instance [NewTale]
+ * @param isTaleValidProvider provides boolean. If true, new tale can be saved.
+ * @param isVerticalScreen describes screen orientation
+ * @param onTitleValueChange callback that is executed when tale's title is changed
+ * @param onTextValueChange callback that is executed when tale's text is changed
+ * @param onGenreValueChange callback that is executed when tale's genre is changed
+ * @param onIsNightValueChange callback that is executed when tale's isNight is changed
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onAddButtonClick callback that is executed when add button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ContentAddTaleScreen(

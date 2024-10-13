@@ -3,7 +3,6 @@ package com.viktoriagavrosh.librarymenu
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.repositories.MenuRepository
-import com.viktoriagavrosh.repositories.ShelfRepository
 import com.viktoriagavrosh.repositories.utils.RequestResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel to retrieve and update item from the [ShelfRepository]'s data source
+ * ViewModel to update data to repository data source
+ *
+ * @param repository instance of [MenuRepository]
  */
 @HiltViewModel
 class LibraryViewModel @Inject constructor(
@@ -30,10 +31,16 @@ class LibraryViewModel @Inject constructor(
     internal val uiState: StateFlow<LibraryUiState>
         get() = _uiState
 
+    /**
+     * init instance of [LibraryUiState]
+     */
     internal fun initLibraryUiState() {
         updateRandomTale()
     }
 
+    /**
+     * Update last tale value of repository
+     */
     internal fun updateLastTale() {
         viewModelScope.launch {
             val newLastTaleId = uiState.first().randomTaleId
@@ -41,6 +48,9 @@ class LibraryViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update random tale value of [LibraryUiState]
+     */
     internal fun updateRandomTale() {
         viewModelScope.launch {
             val requestResultRandomTale = repository.getRandomTaleId().first()
@@ -62,6 +72,12 @@ class LibraryViewModel @Inject constructor(
     }
 }
 
+/**
+ * holds [LibraryScreen] state
+ *
+ * @param randomTaleId random tale id for ui
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ */
 internal data class LibraryUiState(
     val randomTaleId: Int = 0,
     val isError: Boolean = false,

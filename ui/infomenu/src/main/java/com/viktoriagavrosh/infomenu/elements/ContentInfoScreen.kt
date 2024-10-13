@@ -19,6 +19,15 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display InfoScreen content with topBar
+ *
+ * @param taleProvider provides instance [TaleInfo]
+ * @param isVerticalScreen describes screen orientation
+ * @param onReadClick callback that is executed when read button is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ContentInfoScreen(

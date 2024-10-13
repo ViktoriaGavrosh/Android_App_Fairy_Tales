@@ -4,6 +4,11 @@ import com.viktoriagavrosh.repositories.model.Retaining
 import com.viktoriagavrosh.repositories.model.Riddle
 import com.viktoriagavrosh.riddle.model.ReadRiddle
 
+/**
+ * convert model of repository to model for RiddleScreen
+ *
+ * @return [ReadRiddle]
+ */
 fun Retaining.toReadRiddle(): ReadRiddle {
     return when (this) {
         is Riddle -> ReadRiddle(

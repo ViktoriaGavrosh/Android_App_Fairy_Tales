@@ -17,7 +17,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel to retrieve and update item from the [MenuRepository]'s data source
+ * ViewModel to update item into repository data source
+ *
+ * @param taleId id of tale that will be shown on InfoScreen
+ * @param repository instance of [MenuRepository]
  */
 @HiltViewModel(assistedFactory = InfoViewModel.InfoViewModelFactory::class)
 class InfoViewModel @AssistedInject constructor(
@@ -33,6 +36,10 @@ class InfoViewModel @AssistedInject constructor(
         updateUiState()
     }
 
+    /**
+     * Update value of [InfoUiState]
+     *
+     */
     internal fun updateUiState() {
         viewModelScope.launch {
             val requestResultTale = repository.getTaleById(taleId).first()
@@ -68,6 +75,12 @@ class InfoViewModel @AssistedInject constructor(
     }
 }
 
+/**
+ * holds [InfoScreen] state
+ *
+ * @param tale instance [TaleInfo]
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ */
 internal data class InfoUiState(
     val tale: TaleInfo = TaleInfo(),
     val isError: Boolean = false,

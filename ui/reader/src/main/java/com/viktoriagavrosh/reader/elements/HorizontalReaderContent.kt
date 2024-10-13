@@ -21,7 +21,11 @@ import com.viktoriagavrosh.uikit.text.TextRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [ReadBook] on expanded screen
+ * Composable to display ReaderScreen content (horizontal screen orientation)
+ *
+ * @param bookProvider provides id of selected book
+ * @param textSizeProvider provides text size value
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 internal fun HorizontalReaderContent(
@@ -46,6 +50,13 @@ internal fun HorizontalReaderContent(
     }
 }
 
+/**
+ * Composable to display folk on ReaderScreen
+ *
+ * @param bookProvider provides id of selected book
+ * @param textSizeProvider provides text size value
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun FolkContent(
     bookProvider: () -> ReadBook,
@@ -87,6 +98,13 @@ private fun FolkContent(
     }
 }
 
+/**
+ * Composable to display tale on ReaderScreen
+ *
+ * @param bookProvider provides id of selected book
+ * @param textSizeProvider provides text size value
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun TaleContent(
     bookProvider: () -> ReadBook,

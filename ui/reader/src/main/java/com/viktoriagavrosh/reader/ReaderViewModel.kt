@@ -22,7 +22,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel to retrieve and update item from the [ReadRepository]'s data source
+ * ViewModel to retrieve item from repository data source
+ *
+ * @param bookId id of tale that will be shown on ReaderScreen
+ * @param genre genre of selected book
+ * @param repository instance of [ReadRepository]
  */
 @HiltViewModel(assistedFactory = ReaderViewModel.ReaderViewModelFactory::class)
 class ReaderViewModel @AssistedInject constructor(
@@ -58,7 +62,9 @@ class ReaderViewModel @AssistedInject constructor(
             0.0F
         )
 
-
+    /**
+     * Init instance of [ReaderUiState]
+     */
     internal fun initUiState() {
         viewModelScope.launch {
             val requestResultBook = repository.getBookById(bookId, genre).first()
@@ -87,6 +93,12 @@ class ReaderViewModel @AssistedInject constructor(
     }
 }
 
+/**
+ * holds [ReaderScreen] state
+ *
+ * @param book instance [ReadBook]
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ */
 internal data class ReaderUiState(
     val book: ReadBook = ReadBook(),
     val isError: Boolean = false,

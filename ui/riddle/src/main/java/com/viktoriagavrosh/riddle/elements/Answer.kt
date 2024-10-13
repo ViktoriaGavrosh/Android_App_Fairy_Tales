@@ -15,6 +15,14 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.image.BookImageRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display answer content
+ *
+ * @param answer answer of riddle
+ * @param imageUrl url of image for riddle
+ * @param isBigImage if true - image takes all width of screen
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun Answer(
     answer: String,

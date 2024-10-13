@@ -12,31 +12,39 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
 /**
- * Repository that provides insert, update, delete and retrieve of items from a given data source.
+ * provide data for ui from data source
  */
-
 interface AddRepository {
 
     /**
-     * Update the value of an item field is_favorite in the data source
+     * Insert tale into given data source
+     *
+     * @param tale instance of [Tale], that user created
      */
     suspend fun addTale(tale: Tale)
 
     /**
-     * Retrieve the item from the given data source by id
+     * Retrieve item from given data source by id
+     *
+     * @param id unique object identifier
+     * @return flow of [RequestResult] with list [Retaining]
      */
     fun getTaleById(id: Int): Flow<RequestResult<Retaining>>
 }
 
 /**
- * [AddRepository] implementation that provides functions for working with the database
+ * provide data for ui from local database
+ *
+ * @param appDatabase instance of [TaleAppDatabase]
  */
 class OfflineAddRepository @Inject constructor(
     private val appDatabase: TaleAppDatabase
 ) : AddRepository {
 
     /**
-     * Insert new Tale in db
+     * Insert tale into [TaleAppDatabase]
+     *
+     * @param tale instance of [Tale], that user created
      */
     override suspend fun addTale(tale: Tale) {
         val taleDb = tale.toTaleDb()
@@ -44,7 +52,10 @@ class OfflineAddRepository @Inject constructor(
     }
 
     /**
-     * Retrieve the item from the given data source by id
+     * Retrieve item from [TaleAppDatabase] by id
+     *
+     * @param id unique object identifier
+     * @return flow of [RequestResult] with list [Retaining]
      */
     override fun getTaleById(id: Int): Flow<RequestResult<Tale>> {
         val request = appDatabase.taleDao.getTaleById(id)

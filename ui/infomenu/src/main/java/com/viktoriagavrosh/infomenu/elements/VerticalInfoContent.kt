@@ -18,6 +18,13 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.image.BookImage
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display AddTaleScreen content (vertical screen orientation)
+ *
+ * @param taleProvider provides instance [TaleInfo]
+ * @param onReadClick callback that is executed when read button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun VerticalInfoContent(
     taleProvider: () -> TaleInfo,

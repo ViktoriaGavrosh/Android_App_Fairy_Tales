@@ -12,7 +12,13 @@ import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [TaleInfo]
+ * Composable for displaying info about tale
+ *
+ * @param taleId id of tale that will be shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onReadClick callback that is executed when read button is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 fun InfoScreen(
@@ -40,13 +46,24 @@ fun InfoScreen(
     )
 }
 
+/**
+ * Composable for displaying info about tale
+ *
+ * @param taleProvider provides instance [TaleInfo]
+ * @param isErrorProvider provides boolean. If true ErrorScreen will be shown.
+ * @param isVerticalScreen describes screen orientation
+ * @param onReadClick callback that is executed when read button is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onErrorButtonClick callback that is executed when button on ErrorScreen is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun InfoScreen(
     taleProvider: () -> TaleInfo,
     isErrorProvider: () -> Boolean,
     isVerticalScreen: Boolean,
-    onBackClick: () -> Unit,
     onReadClick: () -> Unit,
+    onBackClick: () -> Unit,
     onErrorButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {

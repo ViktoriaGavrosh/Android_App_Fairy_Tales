@@ -13,7 +13,15 @@ import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display details of selected [ReadBook]
+ * Composable for displaying reader
+ *
+ * @param bookId id of selected book
+ * @param genre genre of selected book
+ * @param isVerticalScreen describes screen orientation
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onSettingsClick callback that is executed when settings button is clicked
+ * @param onInfoClick callback that is executed when info button is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 fun ReaderScreen(
@@ -46,6 +54,19 @@ fun ReaderScreen(
     )
 }
 
+/**
+ * Composable for displaying reader
+ *
+ * @param bookProvider provides id of selected book
+ * @param textSizeProvider provides text size value
+ * @param isErrorProvider provides boolean. If true ErrorScreen will be shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onSettingsClick callback that is executed when settings button is clicked
+ * @param onInfoClick callback that is executed when info button is clicked
+ * @param onErrorButtonClick callback that is executed when button on ErrorScreen is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun ReaderScreen(
     bookProvider: () -> ReadBook,

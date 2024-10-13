@@ -12,39 +12,52 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
 /**
- * Repository that provides insert, update, delete and retrieve of items from a given data source.
+ * provide data for ui from data source
  */
-
 interface MenuRepository {
 
     /**
-     * Update the value of an Tale field is_favorite in the data source
+     * Update favorite value of tale by id
+     *
+     * @param id unique object identifier
+     * @param isFavorite new value of tale
      */
     suspend fun updateFavoriteTale(id: Int, isFavorite: Boolean)
 
     /**
-     * Update the value of lastTale in the data source
+     * Update lastTaleId setting value into given datasource
+     *
+     * @param id unique object identifier
      */
     suspend fun updateLastTaleId(id: Int)
 
     /**
-     * Retrieve the item from the given data source
+     * Retrieve lastTaleId setting from given datasource
+     *
+     * @return flow of [RequestResult] of id
      */
     fun getLastTaleId(): Flow<RequestResult<Int>>
 
     /**
      * Retrieve id of random item from the given data source
+     *
+     * @return flow of [RequestResult] of id
      */
     fun getRandomTaleId(): Flow<RequestResult<Int>>
 
     /**
-     * Retrieve the item from the given data source by id
+     * Retrieve tale from the given data source by id
+     *
+     * @return flow of [RequestResult] of [Retaining]
      */
     fun getTaleById(id: Int): Flow<RequestResult<Retaining>>
 }
 
 /**
- * [MenuRepository] implementation that provides functions for working with the database
+ * provide data for ui from local database and Datastore
+ *
+ * @param appDatabase instance of [TaleAppDatabase]
+ * @param preferencesManager instance of [PreferencesManager] for working with Datastore
  */
 class OfflineMenuRepository @Inject constructor(
     private val appDatabase: TaleAppDatabase,
@@ -52,7 +65,10 @@ class OfflineMenuRepository @Inject constructor(
 ) : MenuRepository {
 
     /**
-     * Update the value of Tale field is_favorite in db
+     * Update favorite value of tale by id into [TaleAppDatabase]
+     *
+     * @param id unique object identifier
+     * @param isFavorite new value of tale
      */
     override suspend fun updateFavoriteTale(id: Int, isFavorite: Boolean) {
         val isFavoriteValue = if (isFavorite) 1 else 0
@@ -60,7 +76,9 @@ class OfflineMenuRepository @Inject constructor(
     }
 
     /**
-     * Retrieve id of random Tale from db
+     * Retrieve id of random item from [TaleAppDatabase]
+     *
+     * @return flow of [RequestResult] of id
      */
     override fun getRandomTaleId(): Flow<RequestResult<Int>> {
         return appDatabase.taleDao.getAllTaleId()
@@ -72,7 +90,9 @@ class OfflineMenuRepository @Inject constructor(
     }
 
     /**
-     * Retrieve item from datastore
+     * Retrieve lastTaleId setting from Datastore
+     *
+     * @return flow of [RequestResult] of id
      */
     override fun getLastTaleId(): Flow<RequestResult<Int>> {
         return preferencesManager.getSettings()
@@ -84,7 +104,9 @@ class OfflineMenuRepository @Inject constructor(
     }
 
     /**
-     * Update the value of an item field textSize in datastore
+     * Update lastTaleId setting value into Datastore
+     *
+     * @param id unique object identifier
      */
     override suspend fun updateLastTaleId(id: Int) {
         val idString = id.toString()
@@ -92,7 +114,9 @@ class OfflineMenuRepository @Inject constructor(
     }
 
     /**
-     * Retrieve the item from the given data source by id
+     * Retrieve tale from [TaleAppDatabase] by id
+     *
+     * @return flow of [RequestResult] of [Retaining]
      */
     override fun getTaleById(id: Int): Flow<RequestResult<Tale>> {
         val request = appDatabase.taleDao.getTaleById(id)
@@ -101,8 +125,6 @@ class OfflineMenuRepository @Inject constructor(
             .catch {
                 emit(RequestResult.Error(error = it))
             }
-
         return request
     }
-
 }

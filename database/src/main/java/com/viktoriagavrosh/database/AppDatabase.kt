@@ -11,7 +11,6 @@ import com.viktoriagavrosh.database.model.FolkDb
 import com.viktoriagavrosh.database.model.RiddleDb
 import com.viktoriagavrosh.database.model.TaleDb
 
-// Database interface for testing
 interface TaleAppDatabase {
     val taleDao: TaleDao
     val folkDao: FolkDao
@@ -20,6 +19,9 @@ interface TaleAppDatabase {
 
 /**
  * Database class for working with other modules
+ *
+ * @param database instance [AppRoomDatabase]
+ * @return [TaleAppDatabase] object
  */
 class AppDatabase internal constructor(
     private val database: AppRoomDatabase
@@ -47,6 +49,9 @@ internal abstract class AppRoomDatabase : RoomDatabase() {
 
 /**
  *  Function build [AppDatabase] object
+ *
+ *  @param context local context
+ *  @return [AppDatabase] object
  */
 fun getDatabase(context: Context): AppDatabase {
     val appRoomDatabase = Room.databaseBuilder(

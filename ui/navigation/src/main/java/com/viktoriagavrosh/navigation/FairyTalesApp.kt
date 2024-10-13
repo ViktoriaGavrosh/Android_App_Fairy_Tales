@@ -5,12 +5,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 /**
- * Top level composable that represents screens for the application
+ * Composable entry point of application UI
+ *
+ * @param windowSize parameter describes screen orientation
+ * @param modifier the modifier to be applied to the layout
  */
 @Composable
 fun FairyTalesApp(
-    modifier: Modifier = Modifier,
     windowSize: WindowWidthSizeClass,
+    modifier: Modifier = Modifier,
 ) {
     val isVerticalScreen = windowSize == WindowWidthSizeClass.Compact
 

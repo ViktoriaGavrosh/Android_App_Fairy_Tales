@@ -18,6 +18,16 @@ import com.viktoriagavrosh.riddle.model.ReadRiddle
 import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display RiddleScreen content with topBar
+ *
+ * @param riddleProvider provides id of selected riddle
+ * @param textSizeProvider provides text size value
+ * @param isVerticalScreen describes screen orientation
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onSettingsClick callback that is executed when settings button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ContentRiddleScreen(

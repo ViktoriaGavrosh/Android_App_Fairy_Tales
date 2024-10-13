@@ -25,10 +25,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * for getting settings from [DataStore]
+ */
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 /**
- * Object fo dependency injection (dagger hilt)
+ * Object for dependency injection (dagger hilt)
  */
 @Module
 @InstallIn(SingletonComponent::class)

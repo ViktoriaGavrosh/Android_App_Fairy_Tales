@@ -12,6 +12,14 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.buttons.FlowerMenuButton
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display buttons with actions
+ *
+ * @param onTaleClick callback that is executed when tale button is clicked
+ * @param onRiddleClick callback that is executed when riddle button is clicked
+ * @param onFolkClick callback that is executed when folk button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun ShelfButtons(
     onTaleClick: () -> Unit,

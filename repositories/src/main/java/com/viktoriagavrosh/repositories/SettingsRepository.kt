@@ -10,29 +10,38 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
 /**
- * Repository that provides insert, update, and retrieve settings from a given data source.
+ * provide data for ui from data source
  */
 interface SettingsRepository {
+
     /**
-     * Retrieve the item from the given data source
+     * Retrieve settings from the given data source
+     *
+     * @return flow of [RequestResult] of [Settings]
      */
     fun getSettings(): Flow<RequestResult<Settings>>
 
     /**
-     * Update the value of an item field textSize in the data source
+     * Update textSize setting value into given datasource
+     *
+     * @param textSize new value
      */
     suspend fun updateTextSize(textSize: Float)
 }
 
 /**
- * [SettingsRepository] implementation that provides functions for working with DatastorePreferences
+ * provide data for ui from Datastore
+ *
+ * @param preferencesManager instance of [PreferencesManager] for working with Datastore
  */
 class DatastoreSettingsRepository @Inject constructor(
     private val preferencesManager: PreferencesManager,
 ) : SettingsRepository {
 
     /**
-     * Retrieve settings from datastore
+     * Retrieve settings from Datastore
+     *
+     * @return flow of [RequestResult] of [Settings]
      */
     override fun getSettings(): Flow<RequestResult<Settings>> {
         return preferencesManager.getSettings()
@@ -44,7 +53,9 @@ class DatastoreSettingsRepository @Inject constructor(
     }
 
     /**
-     * Update the value of an item field textSize in datastore
+     * Update textSize setting value into Datastore
+     *
+     * @param textSize new value
      */
     override suspend fun updateTextSize(textSize: Float) {
         val textSizeString = textSize.toString()

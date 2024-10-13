@@ -4,6 +4,11 @@ import com.viktoriagavrosh.infomenu.model.TaleInfo
 import com.viktoriagavrosh.repositories.model.Retaining
 import com.viktoriagavrosh.repositories.model.Tale
 
+/**
+ * convert model of repository to model for InfoScreen
+ *
+ * @return [TaleInfo]
+ */
 fun Retaining.toTaleInfo(): TaleInfo {
     return when (this) {
         is Tale -> TaleInfo(

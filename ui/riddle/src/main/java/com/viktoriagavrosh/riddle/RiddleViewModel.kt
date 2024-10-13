@@ -22,7 +22,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel to retrieve and update item from the [ReadRepository]'s data source
+ * ViewModel to retrieve item from repository data source
+ *
+ * @param riddleId id of tale that will be shown on RiddleScreen
+ * @param repository instance of [ReadRepository]
  */
 @HiltViewModel(assistedFactory = RiddleViewModel.RiddleViewModelFactory::class)
 class RiddleViewModel @AssistedInject constructor(
@@ -57,6 +60,9 @@ class RiddleViewModel @AssistedInject constructor(
             0.0F
         )
 
+    /**
+     * Init instance of [RiddleUiState]
+     */
     internal fun initUiState() {
         viewModelScope.launch {
             val requestResultRiddle = repository.getBookById(riddleId, ShelfGenre.Riddles).first()
@@ -85,6 +91,12 @@ class RiddleViewModel @AssistedInject constructor(
     }
 }
 
+/**
+ * holds [RiddleScreen] state
+ *
+ * @param riddle instance [ReadRiddle]
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ */
 internal data class RiddleUiState(
     val riddle: ReadRiddle = ReadRiddle(),
     val isError: Boolean = false,
