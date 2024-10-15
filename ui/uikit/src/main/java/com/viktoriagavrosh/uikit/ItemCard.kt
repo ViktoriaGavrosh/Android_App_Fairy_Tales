@@ -24,19 +24,29 @@ import com.viktoriagavrosh.uikit.utils.FairyTaleColors
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Card for display one item
+ * Composable to display one card for bookshelf
+ *
+ * @param title text on card
+ * @param imageUrl url of image
+ * @param onCardClick callback that is executed when card is clicked
+ * @param onHeartClick callback that is executed when heart icon on cart is clicked
+ * @param modifier the modifier to be applied to this layout node
+ * @param isFavorite if true, dark heart icon is shown
+ * @param isHeartShow if true, heart icon is shown
+ * @param isBlur if true, image is blur
+ * @param minLineText minimum number of visible lines
  */
 @Composable
 fun ItemCard(
     title: String,
     imageUrl: String?,
+    onCardClick: () -> Unit,
+    onHeartClick: () -> Unit,
     modifier: Modifier = Modifier,
     isFavorite: Boolean = false,
     isHeartShow: Boolean = false,
     isBlur: Boolean = false,
     minLineText: Int = 1,
-    onCardClick: () -> Unit,
-    onHeartClick: () -> Unit
 ) {
     Card(
         modifier = modifier,
@@ -75,6 +85,16 @@ fun ItemCard(
     }
 }
 
+/**
+ * Composable to display header of card
+ *
+ * @param title text on card
+ * @param onHeartClick callback that is executed when heart icon on cart is clicked
+ * @param modifier the modifier to be applied to this layout node
+ * @param isFavorite if true, dark heart icon is shown
+ * @param isHeartShow if true, heart icon is shown
+ * @param minLineText minimum number of visible lines
+ */
 @Composable
 private fun CardTitle(
     title: String,

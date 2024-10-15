@@ -15,7 +15,16 @@ import com.viktoriagavrosh.shelf.utils.Tabs
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display [Book] list or grid screen
+ * Composable to display ShelfScreen content with or without tabs
+ *
+ * @param booksProvider provides [Book]'s
+ * @param selectedTabProvider provides one of [Tabs], that is shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onCardClick callback that is executed when card is clicked
+ * @param onTabClick callback that is executed when one of tabs is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onHeartClick callback that is executed when heart on card is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 internal fun ContentScreen(

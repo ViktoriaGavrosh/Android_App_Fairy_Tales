@@ -1,5 +1,14 @@
 package com.viktoriagavrosh.navigation
 
+import com.viktoriagavrosh.navigation.NavGenre.Animal
+import com.viktoriagavrosh.navigation.NavGenre.Counting
+import com.viktoriagavrosh.navigation.NavGenre.Fairy
+import com.viktoriagavrosh.navigation.NavGenre.Favorite
+import com.viktoriagavrosh.navigation.NavGenre.Lullaby
+import com.viktoriagavrosh.navigation.NavGenre.Night
+import com.viktoriagavrosh.navigation.NavGenre.People
+import com.viktoriagavrosh.navigation.NavGenre.Poem
+import com.viktoriagavrosh.navigation.NavGenre.Riddle
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.repositories.utils.ShelfGenre.Favorites
 import com.viktoriagavrosh.repositories.utils.ShelfGenre.Folks

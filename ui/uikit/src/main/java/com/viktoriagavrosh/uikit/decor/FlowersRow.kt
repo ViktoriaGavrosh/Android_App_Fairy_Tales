@@ -10,6 +10,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display decor element
+ *
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun FlowersRow(
     modifier: Modifier = Modifier,

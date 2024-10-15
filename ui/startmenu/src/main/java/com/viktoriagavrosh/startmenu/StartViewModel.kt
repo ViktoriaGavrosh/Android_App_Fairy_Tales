@@ -3,7 +3,6 @@ package com.viktoriagavrosh.startmenu
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viktoriagavrosh.repositories.MenuRepository
-import com.viktoriagavrosh.repositories.ShelfRepository
 import com.viktoriagavrosh.repositories.utils.RequestResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel to retrieve and update item from the [ShelfRepository]'s data source
+ * ViewModel to update and retrieve data from repository data source
+ *
+ * @param repository instance of [MenuRepository]
  */
 @HiltViewModel
 class StartViewModel @Inject constructor(
@@ -30,6 +31,9 @@ class StartViewModel @Inject constructor(
     internal val uiState: StateFlow<StartUiState>
         get() = _uiState
 
+    /**
+     * init instance of [StartUiState]
+     */
     internal fun initStartUiState() {
         viewModelScope.launch {
             getLastTaleId()
@@ -37,6 +41,9 @@ class StartViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update last tale value of [StartUiState]
+     */
     internal fun updateLastTale() {
         viewModelScope.launch {
             val newLastTaleId = uiState.first().randomTaleId
@@ -49,6 +56,9 @@ class StartViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Update random tale value of [StartUiState]
+     */
     internal fun updateRandomTale() {
         viewModelScope.launch {
             val requestResultRandomTale = repository.getRandomTaleId().first()
@@ -91,6 +101,13 @@ class StartViewModel @Inject constructor(
     }
 }
 
+/**
+ * holds [StartScreen] state
+ *
+ * @param randomTaleId random tale id for ui
+ * @param lastTaleId last tale id for ui
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ */
 internal data class StartUiState(
     val randomTaleId: Int = 0,
     val lastTaleId: Int = 0,

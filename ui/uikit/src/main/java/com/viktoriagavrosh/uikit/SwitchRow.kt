@@ -19,6 +19,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display switch with text
+ *
+ * @param text text of switch
+ * @param isChecked state of switch
+ * @param onValueChange callback that is executed when switch state is changed
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun SwitchRow(
     text: String,

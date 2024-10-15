@@ -32,7 +32,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * App bar to display title and  conditionally display the back navigation
+ * Composable to display top bar
+ *
+ * @param text text on top bar
+ * @param scrollBehavior holds various offset values that will be applied by this top app bar to set up its height and colors.
+ * @param modifier the modifier to be applied to this layout node
+ * @param isSettingsIconShow if true, settings icon is shown
+ * @param isBackIconShow if true, back icon is shown
+ * @param isInfoShow if true, info icon is shown
+ * @param onSettingsClick callback that is executed when settings icon is clicked
+ * @param onBackClick callback that is executed when back icon on cart is clicked
+ * @param onInfoClick callback that is executed when info icon is clicked
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,6 +84,13 @@ fun ScreenTopBar(
     )
 }
 
+/**
+ * Composable to display button, that holds some icons
+ *
+ * @param onInfoClick callback that is executed when info icon is clicked
+ * @param onSettingsClick callback that is executed when settings icon is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun DropdownButton(
     onInfoClick: () -> Unit,
@@ -130,6 +147,12 @@ private fun DropdownButton(
     }
 }
 
+/**
+ * Composable to display back button
+ *
+ * @param onBackClick callback that is executed when back icon is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun BackButton(
     onBackClick: () -> Unit,
@@ -147,6 +170,12 @@ private fun BackButton(
     }
 }
 
+/**
+ * Composable to display settings button
+ *
+ * @param onSettingsClick callback that is executed when settings icon is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun SettingsButton(
     onSettingsClick: () -> Unit,
@@ -168,6 +197,12 @@ private fun SettingsButton(
     )
 }
 
+/**
+ * Composable to display info button
+ *
+ * @param onInfoClick callback that is executed when info icon is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 private fun InfoButton(
     onInfoClick: () -> Unit,

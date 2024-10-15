@@ -7,6 +7,11 @@ import com.viktoriagavrosh.repositories.model.Tale
 import com.viktoriagavrosh.repositories.utils.ShelfGenre
 import com.viktoriagavrosh.shelf.model.Book
 
+/**
+ * convert model of repository to model for ShelfScreen
+ *
+ * @return [Book]
+ */
 fun Retaining.toBook(): Book {
     return when (this) {
         is Folk -> Book(

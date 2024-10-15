@@ -15,7 +15,13 @@ import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display different screens depending on window size
+ * Composable for displaying shelf with books
+ *
+ * @param genre selected genre of books
+ * @param isVerticalScreen describes screen orientation
+ * @param onCardClick callback that is executed when card is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 fun ShelfScreen(
@@ -47,6 +53,20 @@ fun ShelfScreen(
     )
 }
 
+/**
+ * Composable for displaying shelf with books
+ *
+ * @param booksProvider provides [Book]'s
+ * @param selectedTabProvider provides one of [Tabs], that is shown
+ * @param isErrorProvider provides boolean. If true ErrorScreen will be shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onCardClick callback that is executed when card is clicked
+ * @param onTabClick callback that is executed when one of tabs is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onHeartClick callback that is executed when heart on card is clicked
+ * @param onErrorButtonClick callback that is executed when button on ErrorScreen is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun ShelfScreen(
     booksProvider: () -> List<Book>,
@@ -78,7 +98,6 @@ internal fun ShelfScreen(
         )
     }
 }
-
 
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)

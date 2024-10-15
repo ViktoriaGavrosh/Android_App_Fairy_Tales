@@ -15,6 +15,13 @@ import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display bright button
+ *
+ * @param text text on button
+ * @param onClick callback that is executed when button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun MenuButton(
     text: String,

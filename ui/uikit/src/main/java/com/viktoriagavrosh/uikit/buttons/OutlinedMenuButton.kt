@@ -14,6 +14,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display outlined button
+ *
+ * @param text text on button
+ * @param onClick callback that is executed when button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun OutlinedMenuButton(
     text: String,

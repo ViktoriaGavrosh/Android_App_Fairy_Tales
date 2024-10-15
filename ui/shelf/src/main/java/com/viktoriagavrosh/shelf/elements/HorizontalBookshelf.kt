@@ -17,6 +17,17 @@ import com.viktoriagavrosh.uikit.ItemCard
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display ShelfScreen content (horizontal screen orientation)
+ *
+ * @param paddingValues describes a padding to be applied along the edges inside a box.
+ * @param booksProvider provides [Book]'s
+ * @param isHeartShow if true, heart on card show
+ * @param isBlurImages if true, image on card is blur
+ * @param onCardClick callback that is executed when card is clicked
+ * @param onHeartClick callback that is executed when heart on card is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun HorizontalBookshelf(
     paddingValues: PaddingValues,

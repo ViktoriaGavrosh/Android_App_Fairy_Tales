@@ -16,7 +16,7 @@ internal class SettingsViewModelTest {
     internal fun settingsViewModel_initSettingsState_initTextSize() {
         runTest {
             val viewModel = SettingsViewModel(
-                settingsRepository = FakeSettingsRepository(),
+                repository = FakeSettingsRepository(),
             )
             val expectedTextSize = FakeSource.fakeSettings.textSize
             val actualTextSize = viewModel.uiState.value.textSize

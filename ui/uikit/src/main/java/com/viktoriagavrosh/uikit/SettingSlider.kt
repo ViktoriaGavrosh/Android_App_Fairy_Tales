@@ -21,6 +21,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display slider to change setting size value
+ *
+ * @param text example text for changing
+ * @param settingSizeProvider provides setting's size value
+ * @param onSettingSizeUpdate callback that is executed when value is changed
+ * @param modifier the modifier to be applied to this layout node
+ * @param testTag tag for testing
+ */
 @Composable
 fun SettingSlider(
     text: String,

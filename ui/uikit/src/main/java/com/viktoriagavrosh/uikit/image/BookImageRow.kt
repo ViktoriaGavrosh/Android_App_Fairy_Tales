@@ -8,6 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display image with spacers
+ *
+ * @param title Text used to describe what this image represents
+ * @param imageUrl url of image
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun BookImageRow(
     title: String,

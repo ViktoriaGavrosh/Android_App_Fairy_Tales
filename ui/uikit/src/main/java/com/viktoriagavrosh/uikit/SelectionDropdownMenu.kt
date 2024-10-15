@@ -18,6 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display selection menu
+ *
+ * @param options list of items to select
+ * @param selectedOption selected item
+ * @param onValueChange callback that is executed when item is selected
+ * @param modifier the modifier to be applied to this layout node
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SelectionDropdownMenu(

@@ -9,6 +9,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display text and decor elements
+ *
+ * @param text text that is displayed
+ * @param title title of text
+ * @param textSizeProvider provides text size value
+ * @param isNotFullScreen if false, text takes all width of screen
+ * @param modifier the modifier to be applied to this layout node
+ * @param isTitleShow if true, title will show
+ *
+ */
 @Composable
 fun TextRow(
     text: String,

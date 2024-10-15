@@ -2,6 +2,7 @@ package com.viktoriagavrosh.uikit.utils
 
 import androidx.compose.ui.graphics.Color
 
+// TODO delete this !
 object FairyTaleColors {
     private val colors = listOf(
         Color(0xFFDDE3EA),

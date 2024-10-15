@@ -23,6 +23,16 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.decor.DecorHorizontalEmptyDivider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display card with text and decor elements
+ *
+ * @param text text that is displayed
+ * @param textSizeProvider provides text size value
+ * @param modifier the modifier to be applied to this layout node
+ * @param isTitleShow if true, title will show
+ * @param isDecorShow f true, decor elements will show
+ * @param title title of text
+ */
 @Composable
 fun TextCard(
     text: String,

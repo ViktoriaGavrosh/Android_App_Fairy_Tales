@@ -15,6 +15,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.decor.FlowersRow
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display cover
+ *
+ * @param text text on cover
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun Cover(
     text: String,

@@ -18,7 +18,13 @@ import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display Settings
+ * Composable to display SettingsScreen content with topBar
+ *
+ * @param textSizeProvider provides text size value
+ * @param isVerticalScreen describes screen orientation
+ * @param onTextSizeUpdate callback that is executed when text size is changed
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

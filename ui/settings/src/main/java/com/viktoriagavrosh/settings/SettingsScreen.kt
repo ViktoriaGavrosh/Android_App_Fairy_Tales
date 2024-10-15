@@ -16,7 +16,12 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display settings
+ * Composable for displaying settings
+ *
+ * @param isVerticalScreen describes screen orientation
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ * @param viewModel instance of [SettingsViewModel]
  */
 @Composable
 fun SettingsScreen(
@@ -38,6 +43,17 @@ fun SettingsScreen(
     )
 }
 
+/**
+ * Composable for displaying settings
+ *
+ * @param textSizeProvider provides text size value
+ * @param isErrorProvider provides boolean. If true ErrorScreen will be shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onTextSizeUpdate callback that is executed when text size is changed
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onErrorButtonClick callback that is executed when button on ErrorScreen is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun SettingsScreen(
     textSizeProvider: () -> Float,

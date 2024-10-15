@@ -13,7 +13,16 @@ import com.viktoriagavrosh.uikit.ErrorScreen
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display different screens depending on window size
+ * Composable for displaying start menu
+ *
+ * @param isVerticalScreen describes screen orientation
+ * @param onFavoriteClick callback that is executed when favorite tale button is clicked
+ * @param onNightClick callback that is executed when night tale button is clicked
+ * @param onLibraryClick callback that is executed when library button is clicked
+ * @param onLastTaleClick callback that is executed when last tale button is clicked
+ * @param onRandomClick callback that is executed when random button is clicked
+ * @param onSettingsClick callback that is executed when settings button is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 fun StartScreen(
@@ -54,6 +63,20 @@ fun StartScreen(
     )
 }
 
+/**
+ * Composable for displaying start menu
+ *
+ * @param isErrorProvider provides boolean. If true ErrorScreen will be shown
+ * @param isVerticalScreen describes screen orientation
+ * @param onFavoriteClick callback that is executed when favorite tale button is clicked
+ * @param onNightClick callback that is executed when night tale button is clicked
+ * @param onLibraryClick callback that is executed when library button is clicked
+ * @param onLastTaleClick callback that is executed when last tale button is clicked
+ * @param onRandomClick callback that is executed when random button is clicked
+ * @param onSettingsClick callback that is executed when settings button is clicked
+ * @param onErrorButtonClick callback that is executed when button on ErrorScreen is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun StartScreen(
     isErrorProvider: () -> Boolean,

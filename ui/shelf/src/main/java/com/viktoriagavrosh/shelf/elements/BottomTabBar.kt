@@ -19,7 +19,11 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * App bar to display tabs on compact screen
+ * Composable to display bar for tabs
+ *
+ * @param selectedTabProvider provides one of [Tabs], that is shown
+ * @param onTabClick callback that is executed when one of tabs is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 internal fun BottomTabBar(

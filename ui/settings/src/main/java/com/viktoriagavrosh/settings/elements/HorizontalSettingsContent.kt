@@ -15,6 +15,13 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.decor.DecorVerticalDivider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display SettingsScreen content (horizontal screen orientation)
+ *
+ * @param textSizeProvider provides text size value
+ * @param onTextSizeUpdate callback that is executed when text size is changed
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun HorizontalSettingsContent(
     textSizeProvider: () -> Float,

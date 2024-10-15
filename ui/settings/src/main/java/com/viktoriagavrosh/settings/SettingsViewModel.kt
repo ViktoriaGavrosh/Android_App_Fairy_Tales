@@ -13,24 +13,29 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel to retrieve and update item from the [SettingsRepository]'s data source
+ * ViewModel to update data to repository DataStore
+ *
+ * @param repository instance of [SettingsRepository]
  */
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val settingsRepository: SettingsRepository
+    private val repository: SettingsRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(SettingsState())
-    val uiState: StateFlow<SettingsState>
+    private val _uiState = MutableStateFlow(SettingsUiState())
+    val uiState: StateFlow<SettingsUiState>
         get() = _uiState
 
     init {
         initSettingsState()
     }
 
+    /**
+     * init instance of [SettingsUiState]
+     */
     internal fun initSettingsState() {
         viewModelScope.launch {
-            val requestResult = settingsRepository.getSettings().first()
+            val requestResult = repository.getSettings().first()
             if (requestResult is RequestResult.Error) {
                 _uiState.update {
                     it.copy(
@@ -49,11 +54,11 @@ class SettingsViewModel @Inject constructor(
     }
 
     /**
-     * Update the value of textSize in the data source
+     * Update text size value of repository
      */
     internal fun updateTextSize(textSize: Float) {
         viewModelScope.launch {
-            settingsRepository.updateTextSize(textSize)
+            repository.updateTextSize(textSize)
             initSettingsState()
         }
     }
@@ -67,7 +72,13 @@ class SettingsViewModel @Inject constructor(
     }
 }
 
-data class SettingsState(
+/**
+ * holds [SettingsScreen] state
+ *
+ * @param textSize book's text size
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ */
+data class SettingsUiState(
     val textSize: Float = 0.0F,
     val isError: Boolean = false,
 )

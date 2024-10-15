@@ -13,6 +13,14 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.buttons.IconMenuButton
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display buttons with actions
+ *
+ * @param onFavoriteClick callback that is executed when favorite tale button is clicked
+ * @param onNightClick callback that is executed when night tale button is clicked
+ * @param onLibraryClick callback that is executed when library button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun MainButtonColumn(
     onFavoriteClick: () -> Unit,

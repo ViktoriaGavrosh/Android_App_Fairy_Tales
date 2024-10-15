@@ -17,6 +17,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display error message for user
+ *
+ * @param onButtonClick callback that is executed when button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun ErrorScreen(
     onButtonClick: () -> Unit,
@@ -46,7 +52,6 @@ fun ErrorScreen(
         }
     }
 }
-
 
 @Preview(name = "Light")
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)

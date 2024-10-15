@@ -17,7 +17,11 @@ import com.viktoriagavrosh.uikit.SettingSlider
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display all about textSize
+ * Composable to display textSize setting
+ *
+ * @param textSizeProvider provides text size value
+ * @param onTextSizeUpdate callback that is executed when text size is changed
+ * @param modifier the modifier to be applied to this layout node
  */
 @Composable
 internal fun TextSizeRow(

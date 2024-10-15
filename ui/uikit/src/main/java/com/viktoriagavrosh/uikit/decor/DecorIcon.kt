@@ -12,6 +12,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display decor element
+ *
+ * @param modifier the modifier to be applied to this layout node
+ * @param isWhite if true, element is white
+ */
 @Composable
 fun DecorIcon(
     modifier: Modifier = Modifier,

@@ -14,6 +14,13 @@ import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uikit.buttons.MenuButton
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display additional buttons with actions
+ *
+ * @param onLastTaleClick callback that is executed when last tale button is clicked
+ * @param onRandomClick callback that is executed when random tale button is clicked
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 internal fun AdditionalButtonColumn(
     onLastTaleClick: () -> Unit,
@@ -28,7 +35,6 @@ internal fun AdditionalButtonColumn(
             text = stringResource(R.string.last_tale),
             onClick = onLastTaleClick,
         )
-
         MenuButton(
             text = stringResource(R.string.random_tale),
             onClick = onRandomClick,

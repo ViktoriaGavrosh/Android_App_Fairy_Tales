@@ -19,6 +19,14 @@ import coil.request.ImageRequest
 import com.viktoriagavrosh.uikit.R
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display image
+ *
+ * @param title Text used to describe what this image represents
+ * @param imageUrl url of image
+ * @param modifier the modifier to be applied to this layout node
+ * @param isBlur if true, image is blur
+ */
 @Composable
 fun BookImage(
     title: String,

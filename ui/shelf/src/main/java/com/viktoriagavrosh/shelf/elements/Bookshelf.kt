@@ -15,7 +15,17 @@ import com.viktoriagavrosh.uikit.ScreenTopBar
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
 /**
- * Composable to display a list of [Book]-s on compact and medium screens
+ * Composable to display ShelfScreen content with topBar
+ *
+ * @param booksProvider provides [Book]'s
+ * @param topBarTitle title for topBar
+ * @param isVerticalScreen describes screen orientation
+ * @param isHeartShow if true, heart on card show
+ * @param isBlurImages if true, image on card is blur
+ * @param onCardClick callback that is executed when card is clicked
+ * @param onBackClick callback that is executed when back button is clicked
+ * @param onHeartClick callback that is executed when heart on card is clicked
+ * @param modifier the modifier to be applied to this layout node
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

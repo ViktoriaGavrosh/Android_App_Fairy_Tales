@@ -9,6 +9,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display dark of bright heart icon
+ *
+ * @param isFavorite if true, dark heart icon is shown
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun HeartIcon(
     isFavorite: Boolean,

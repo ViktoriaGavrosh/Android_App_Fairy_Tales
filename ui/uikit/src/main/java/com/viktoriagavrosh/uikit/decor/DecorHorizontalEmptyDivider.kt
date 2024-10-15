@@ -9,6 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.viktoriagavrosh.uitheme.FairyTalesTheme
 
+/**
+ * Composable to display decor element without line
+ *
+ * @param modifier the modifier to be applied to this layout node
+ */
 @Composable
 fun DecorHorizontalEmptyDivider(
     modifier: Modifier = Modifier,

@@ -19,12 +19,15 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel to retrieve and update item from the [ShelfRepository]'s data source
+ * ViewModel to update data to repository data source
+ *
+ * @param genre selected genre of books
+ * @param repository instance of [ShelfRepository]
  */
 @HiltViewModel(assistedFactory = ShelfViewModel.ShelfViewModelFactory::class)
 class ShelfViewModel @AssistedInject constructor(
     @Assisted private val genre: ShelfGenre,
-    private val shelfRepository: ShelfRepository
+    private val repository: ShelfRepository
 ) : ViewModel() {
 
     private var _uiState = MutableStateFlow(ShelfUiState())
@@ -37,12 +40,14 @@ class ShelfViewModel @AssistedInject constructor(
         get() = _uiState
 
     /**
-     * Update [ShelfUiState] for navigation between tabs
+     * Update [ShelfUiState]
+     *
+     * @param tab selected one of [Tabs]
      */
     internal fun updateScreenState(tab: Tabs) {
         val genre = tab.genre
         viewModelScope.launch {
-            val requestResult = shelfRepository.getItems(genre).first()
+            val requestResult = repository.getItems(genre).first()
             if (requestResult is RequestResult.Error) {
                 _uiState.update {
                     it.copy(
@@ -63,22 +68,24 @@ class ShelfViewModel @AssistedInject constructor(
     }
 
     /**
-     * Update the value of an item field is_favorite in the data source
+     * Update isFavorite value of book in repository
+     *
+     * @param book item for updating
      */
     fun updateBookFavorite(book: Book) {
         viewModelScope.launch {
-            shelfRepository.updateFavoriteTale(book.id, !book.isFavorite)
+            repository.updateFavoriteTale(book.id, !book.isFavorite)
             val selectedTab = uiState.first().selectedTab
             updateScreenState(selectedTab)
         }
     }
 
     /**
-     * Update [ShelfUiState] for navigation between tabs
+     * init instance of [ShelfUiState]
      */
     internal fun initScreenState(genre: ShelfGenre) {
         viewModelScope.launch {
-            val requestResult = shelfRepository.getItems(genre).first()
+            val requestResult = repository.getItems(genre).first()
             if (requestResult is RequestResult.Error) {
                 _uiState.update {
                     it.copy(
@@ -104,6 +111,13 @@ class ShelfViewModel @AssistedInject constructor(
     }
 }
 
+/**
+ * holds [ShelfScreen] state
+ *
+ * @param books list of [Book]
+ * @param selectedTab one of [Tabs], that is shown
+ * @param isError boolean parameter describes screen state. If true ErrorScreen will be shown.
+ */
 internal data class ShelfUiState(
     val books: List<Book> = emptyList(),
     val selectedTab: Tabs = Tabs.TaleTab.Animal,

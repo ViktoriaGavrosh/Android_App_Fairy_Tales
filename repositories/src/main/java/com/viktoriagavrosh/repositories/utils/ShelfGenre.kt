@@ -1,5 +1,16 @@
 package com.viktoriagavrosh.repositories.utils
 
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Favorites
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Favorites.genreName
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Folks
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Folks.Counting
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Folks.Lullaby
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Folks.Poem
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Nights
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Nights.genreName
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Riddles
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Riddles.genreName
+import com.viktoriagavrosh.repositories.utils.ShelfGenre.Tales
 import com.viktoriagavrosh.repositories.utils.ShelfGenre.Tales.Animal
 import com.viktoriagavrosh.repositories.utils.ShelfGenre.Tales.Fairy
 import com.viktoriagavrosh.repositories.utils.ShelfGenre.Tales.People
