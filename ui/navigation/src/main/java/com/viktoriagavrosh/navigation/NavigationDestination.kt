@@ -36,7 +36,7 @@ internal object LibraryMenu
  */
 @Serializable
 internal data class Shelf(
-    val navGenre: NavGenre = NavGenre.Night,
+    val navGenre: NavGenre = Night,
 )
 
 /**
@@ -48,7 +48,7 @@ internal data class Shelf(
 @Serializable
 internal data class BookInfo(
     val bookId: Int = 0,
-    val navGenre: NavGenre = NavGenre.Night,
+    val navGenre: NavGenre = Night,
 )
 
 /**
@@ -60,7 +60,7 @@ internal data class BookInfo(
 @Serializable
 internal data class Reader(
     val bookId: Int = 0,
-    val navGenre: NavGenre = NavGenre.Night,
+    val navGenre: NavGenre = Night,
 )
 
 /**
