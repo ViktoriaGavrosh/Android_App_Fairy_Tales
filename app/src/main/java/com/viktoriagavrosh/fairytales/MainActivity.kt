@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
                     val windowSize: WindowSizeClass = calculateWindowSizeClass(activity = this)
                     FairyTalesApp(
                         windowSize = windowSize.widthSizeClass
+
                     )
                 }
             }
