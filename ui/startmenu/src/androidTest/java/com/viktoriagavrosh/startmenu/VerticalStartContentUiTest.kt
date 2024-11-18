@@ -8,6 +8,8 @@ import androidx.compose.ui.test.assertHasNoClickAction
 import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.swipeUp
 import androidx.compose.ui.unit.dp
 import com.viktoriagavrosh.startmenu.elements.VerticalStartContent
 import com.viktoriagavrosh.startmenu.utils.onNodeWithTagById
@@ -79,6 +81,8 @@ class VerticalStartContentUiTest {
     @Test
     fun startContent_verticalScreen_settingsButtonIsDisplayed() {
         setVerticalStartContent()
+        composeTestRule.onNodeWithTagById(R.string.vertical_start_content_test_tag)
+            .performTouchInput { swipeUp() }
         composeTestRule.onNodeWithTextById(R.string.settings_title)
             .assertExists("No settings button")
             .assertIsDisplayed()

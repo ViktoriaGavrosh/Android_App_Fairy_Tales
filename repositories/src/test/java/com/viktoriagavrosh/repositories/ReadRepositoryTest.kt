@@ -20,7 +20,7 @@ import org.junit.Test
 class ReadRepositoryTest {
 
     @get:Rule
-    val testDispatcher = RepositoryTestDispatcherRule()
+    internal val testDispatcher = RepositoryTestDispatcherRule()
 
     private val repository = OfflineReadRepository(FakeDb(), FakePreferencesManager())
 

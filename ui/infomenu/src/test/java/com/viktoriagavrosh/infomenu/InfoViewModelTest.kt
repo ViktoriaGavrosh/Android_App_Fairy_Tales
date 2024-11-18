@@ -28,7 +28,7 @@ class InfoViewModelTest {
         runTest {
             val viewModel = InfoViewModel(taleId = 10, FakeMenuRepository())
             val isErrorValue = viewModel.uiState.first().isError
-            assertEquals(isErrorValue, true)
+            assertEquals(true, isErrorValue)
         }
     }
 }

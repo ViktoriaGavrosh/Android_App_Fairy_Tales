@@ -61,6 +61,7 @@ class HorizontalSettingsContentUiTest {
             .assertHeightIsAtLeast(50.dp)
     }
 
+    // run test only on Expanded screen (or crash)
     @Test
     fun settingsScreen_moveLeftTextSizeSlider_decreasedLetters() {
         setHorizontalContent(textSize = 50.0F)

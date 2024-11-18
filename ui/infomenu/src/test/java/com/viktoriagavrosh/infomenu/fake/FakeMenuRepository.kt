@@ -12,15 +12,15 @@ internal class FakeMenuRepository : MenuRepository {
     private var fakeLastTaleId = FakeSource.fakeLastTaleId
 
     override fun getTaleById(id: Int): Flow<RequestResult<Tale>> {
-        val a: Flow<RequestResult<Tale>> =
+        return if (id <= fakeListTales.size) {
             flow {
-                try {
-                    emit(RequestResult.Success(fakeListTales.first { it.id == id }))
-                } catch (e: Exception) {
-                    emit(RequestResult.Error())
-                }
+                emit(RequestResult.Success(fakeListTales.first { it.id == id }))
             }
-        return a
+        } else {
+            flow {
+                emit(RequestResult.Error())
+            }
+        }
     }
 
     override suspend fun updateFavoriteTale(id: Int, isFavorite: Boolean) {

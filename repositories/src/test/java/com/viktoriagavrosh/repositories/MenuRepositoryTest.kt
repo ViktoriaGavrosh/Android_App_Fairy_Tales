@@ -17,7 +17,7 @@ import org.junit.Test
 class MenuRepositoryTest {
 
     @get:Rule
-    val testDispatcher = RepositoryTestDispatcherRule()
+    internal val testDispatcher = RepositoryTestDispatcherRule()
 
     private lateinit var repository: MenuRepository
 

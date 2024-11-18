@@ -43,6 +43,7 @@ class StartViewModelTest {
         }
     }
 
+    // test sometimes crashes because of random
     @Test
     fun startViewModel_updateRandomTaleId_uiStateUpdated() {
         runTest {

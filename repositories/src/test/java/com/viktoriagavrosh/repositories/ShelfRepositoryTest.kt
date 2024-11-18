@@ -20,7 +20,7 @@ import org.junit.Test
 class ShelfRepositoryTest {
 
     @get:Rule
-    val testDispatcher = RepositoryTestDispatcherRule()
+    internal val testDispatcher = RepositoryTestDispatcherRule()
 
     private lateinit var repository: ShelfRepository
 

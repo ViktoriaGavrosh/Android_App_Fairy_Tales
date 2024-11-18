@@ -41,7 +41,7 @@ class LibraryViewModelTest {
             val oldId = repository.getLastTaleId().first().data ?: 0
             viewModel.updateLastTale()
             val newId = repository.getLastTaleId().first().data ?: 0
-            assert(oldId != newId)
+            assertNotEquals(oldId, newId)
         }
     }
 }
