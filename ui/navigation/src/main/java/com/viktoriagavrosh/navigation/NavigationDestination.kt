@@ -1,5 +1,6 @@
 package com.viktoriagavrosh.navigation
 
+import androidx.annotation.Keep
 import com.viktoriagavrosh.navigation.NavGenre.Animal
 import com.viktoriagavrosh.navigation.NavGenre.Counting
 import com.viktoriagavrosh.navigation.NavGenre.Fairy
@@ -99,6 +100,7 @@ internal object AddTale
  *  @see Favorite
  *  @see Riddle
  */
+@Keep
 internal enum class NavGenre(val genre: ShelfGenre) {
 
     /**

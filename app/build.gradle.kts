@@ -21,6 +21,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        resourceConfigurations += setOf("ru", "en")
     }
 
     buildTypes {
@@ -34,7 +36,7 @@ android {
         }
         release {
             signingConfig = signingConfigs["release"]
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -55,6 +57,12 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/kotlin/**"
+            excludes += "/META-INF/androidx.*.version"
+            excludes += "/META-INF/com.google.*.version"
+            excludes += "/META-INF/kotlinx.*.version"
+            excludes += "/kotlin-tooling-metadata.json"
+            excludes += "/DebugProbesKt.bin"
         }
     }
 }
