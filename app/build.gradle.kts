@@ -24,7 +24,16 @@ android {
     }
 
     buildTypes {
+        signingConfigs {
+            create("release") {
+                storeFile = File(rootDir, "fairytaleskeystorefile.jks")
+                keyPassword = "20241120"
+                keyAlias = "fairy"
+                storePassword = "20112024"
+            }
+        }
         release {
+            signingConfig = signingConfigs["release"]
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

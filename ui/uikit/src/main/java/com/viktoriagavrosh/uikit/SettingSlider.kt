@@ -41,7 +41,6 @@ fun SettingSlider(
     var sliderPosition by remember {
         mutableFloatStateOf(0.0F)
     }
-
     if (sliderPosition == 0.0F) sliderPosition = settingSizeProvider()
 
     Column(

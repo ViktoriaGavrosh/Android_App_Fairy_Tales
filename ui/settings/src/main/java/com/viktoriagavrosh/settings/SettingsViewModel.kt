@@ -43,7 +43,7 @@ class SettingsViewModel @Inject constructor(
                     )
                 }
             } else {
-                val textSize = requestResult.data?.textSize ?: 8.0F
+                val textSize = requestResult.data?.textSize ?: 24.0F
                 _uiState.update {
                     it.copy(
                         textSize = convertToValidTextSize(textSize)

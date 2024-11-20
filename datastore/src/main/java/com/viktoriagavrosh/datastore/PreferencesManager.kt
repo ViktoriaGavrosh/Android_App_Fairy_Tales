@@ -82,7 +82,7 @@ class AppPreferencesManager @Inject constructor(
  */
 private fun Preferences.toSettingsDs(): SettingsDs {
     return SettingsDs(
-        textSize = this[TEXT_SIZE_KEY]?.toFloat() ?: 0.0F,
+        textSize = this[TEXT_SIZE_KEY]?.toFloat() ?: 24.0F,
         lastTaleId = this[LAST_TALE_KEY]?.toInt() ?: 1,
     )
 }
