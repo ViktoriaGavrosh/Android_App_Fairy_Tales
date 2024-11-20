@@ -31,7 +31,7 @@ import javax.inject.Singleton
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 /**
- * Object for dependency injection (dagger hilt)
+ * Module for dependency injection (dagger hilt)
  */
 @Module
 @InstallIn(SingletonComponent::class)

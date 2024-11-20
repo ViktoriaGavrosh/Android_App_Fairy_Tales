@@ -60,7 +60,6 @@ fun getDatabase(context: Context): AppDatabase {
         name = "fairytales"
     )
         .createFromAsset("database/fairytales3.db")
-        //.fallbackToDestructiveMigration()  // TODO 111
         .build()
 
     return AppDatabase(appRoomDatabase)
