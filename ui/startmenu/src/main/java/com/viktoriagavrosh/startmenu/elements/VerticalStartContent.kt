@@ -44,7 +44,8 @@ internal fun VerticalStartContent(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.verticalScroll(rememberScrollState())
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
             .testTag(stringResource(R.string.vertical_start_content_test_tag)),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
