@@ -39,7 +39,8 @@ class AppDatabase internal constructor(
  */
 @Database(
     entities = [TaleDb::class, FolkDb::class, RiddleDb::class],
-    version = 5
+    version = 5,
+    exportSchema = false,
 )
 internal abstract class AppRoomDatabase : RoomDatabase() {
     abstract fun taleDao(): TaleDao
