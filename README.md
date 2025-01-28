@@ -12,6 +12,17 @@ Belarusian
 **Target audience:**
 Children, parents, and anyone interested in Belarusian culture and folklore.
 
+## Screenshots
+
+<div>
+  <img src="https://github.com/ViktoriaGavrosh/screenshots/raw/main/FairyTales1.jpg" title="Image" alt="Image" width="100" height="210"/>&nbsp; 
+  <img src="https://github.com/ViktoriaGavrosh/screenshots/raw/main/FairyTales2.jpg" title="Image" alt="Image" width="100" height="210"/>&nbsp; 
+  <img src="https://github.com/ViktoriaGavrosh/screenshots/raw/main/FairyTales3.jpg" title="Image" alt="Image" width="100" height="210"/>&nbsp; 
+  <img src="https://github.com/ViktoriaGavrosh/screenshots/raw/main/FairyTales4.jpg" title="Image" alt="Image" width="100" height="210"/>&nbsp; 
+  <img src="https://github.com/ViktoriaGavrosh/screenshots/raw/main/FairyTales5.jpg" title="Image" alt="Image" width="100" height="210"/>&nbsp; 
+  <img src="https://github.com/ViktoriaGavrosh/screenshots/raw/main/FairyTales6.jpg" title="Image" alt="Image" width="100" height="210"/>&nbsp; 
+</div>
+
 ## Main functions
 
 1. **Library**
