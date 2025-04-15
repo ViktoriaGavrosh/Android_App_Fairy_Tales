@@ -31,7 +31,7 @@ Children, parents, and anyone interested in Belarusian culture and folklore.
     - The option to filter tales by categories: magical, household, and animal tales, riddles,
       lullabies.
 
-2. **"Bedtime Story" Feature:**
+2. **Bedtime Story:**
     - A special section offering short and calming tales, perfect for evening reading before sleep.
 
 3. **Interactive Elements:**  (this section is under development)
@@ -42,7 +42,7 @@ Children, parents, and anyone interested in Belarusian culture and folklore.
     - The ability to listen to audio versions of the tales creates an atmosphere of magic and
       comfort.
 
-5. **"Favorite Story" Feature:**
+5. **Favorite Story:**
     - A special section offering favorite user`s tales.
 
 6. **Culture and Traditions:** (this section is under development)
@@ -60,6 +60,9 @@ Children, parents, and anyone interested in Belarusian culture and folklore.
     - The app features an intuitive and visually appealing interface with folk elements. The
       simplicity of navigation will help users easily find the stories they are looking for and
       immerse themselves in their magical world.
+
+## Technologies
+Kotlin, Android Compose, Coroutines, Room, Dagger/Hilt, MVVM, Coil, Navigation
 
 ##  
 
